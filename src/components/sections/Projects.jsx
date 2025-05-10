@@ -59,7 +59,7 @@ export const Projects = () => {
                                 view progress through graphs.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["PHP", "CSS3", "JavaScript", "HTML", "MySQL"].map((tech, key) => (
+                                {["PHP", "CSS3", "JavaScript", "HTML5", "MySQL"].map((tech, key) => (
                                     <span
                                         key={key}
                                         className="bg-blue-500/10 text-blue-500 py-1 px-3
@@ -89,13 +89,14 @@ export const Projects = () => {
                             hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
                             transition cursor-default"
                         >
-                            <h3 className="text-xl font-bold mb-2">E-Commerce Web App</h3>
+                            <h3 className="text-xl font-bold mb-2">Travel Planning Assistant / Budgeting Site</h3>
                             <p className="text-gray-400 mb-4">
-                                Full-stack e-commerce with modern UI, secure payment
-                                integration, and customizable product inventory.
+                                Full-Stack travel planning site that allowed users to plan their
+                                trips, and budget for them. Integrated with Google Maps API to allow users to
+                                view their trips on a map, and see the distance between locations.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["Next.js", "TypeScript", "Stripe", "PostgreSQL"].map(
+                                {["Node.js", "JavaScript", "HTML5", "CSS3"].map(
                                     (tech) => (
                                         <span
                                             key={tech}
@@ -112,8 +113,9 @@ export const Projects = () => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <a
-                                    href="#"
+                                    href="https://github.com/CoghillB/COSC205_CourseProject.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    target="_blank"
                                 >
                                     View Project →
                                 </a>
@@ -126,13 +128,13 @@ export const Projects = () => {
                             hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
                             transition cursor-default"
                         >
-                            <h3 className="text-xl font-bold mb-2">Real-Time Chat App</h3>
+                            <h3 className="text-xl font-bold mb-2">MineSweeper</h3>
                             <p className="text-gray-400 mb-4">
-                                Scalable chat platform supporting real-time messaging, presence,
-                                and group chat features.
+                                Small game made for fun to practice using JavaFX and Java. It is a
+                                simple implementation of the classic game.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["Socket.IO", "Express", "React", "Redis"].map((tech, key) => (
+                                {["Java", "JavaFX"].map((tech, key) => (
                                     <span
                                         key={key}
                                         className="
@@ -148,8 +150,9 @@ export const Projects = () => {
                             </div>
                             <div className="flex justify-between items-center ">
                                 <a
-                                    href="#"
+                                    href="https://github.com/CoghillB/MineSweeper.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    target="_blank"
                                 >
                                     View Project →
                                 </a>
