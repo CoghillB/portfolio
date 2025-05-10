@@ -86,7 +86,7 @@ export const About = () => {
                     <div className="p-6 rounded-xl border-white/10 border hover:-translate-y-1 transition-all mt-8">
                         <h3 className="text-xl font-bold mb-4"> 🏫 Education </h3>
                         <ul className="list-disc list-inside text-gray-300 space-y-2">
-                            <li style={{ listStyleType: "none" }}>
+                            <li className="list-none">
                                 <strong>Diploma in Computer Information Systems</strong> - Okanagan College
                                 (2023-2025)
                             </li>
