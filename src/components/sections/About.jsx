@@ -23,8 +23,7 @@ export const About = () => {
         "Django",
         "MySQL",
         "Docker",
-        "REST APIs",
-        "Axios"
+        "REST APIs"
     ];
 
     return (
@@ -92,8 +91,8 @@ export const About = () => {
                                 (2023-2025)
                             </li>
                             <li style={{ listStyleType: "none" }}>
-                                <strong>Relevant Coursework:</strong><br /> Computer Programming II || Project Management || Client-side Web Systems |
-                                Computer Data Structures | Algorithms | Systems Analysis & Design | Web Development with LAMP |
+                                <strong>Relevant Coursework:</strong><br /> Computer Programming II, Project Management, Client-side Web Systems,
+                                Computer Data Structures, Algorithms, Systems Analysis & Design, Web Development with LAMP,
                                 Information System Security
                             </li><br />
                             <li style={{ listStyleType: "none" }}>
