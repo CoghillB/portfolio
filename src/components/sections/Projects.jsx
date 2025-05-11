@@ -40,6 +40,7 @@ export const Projects = () => {
                                     href="https://github.com/CoghillB/ApeOffside.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     View Project →
                                 </a>
