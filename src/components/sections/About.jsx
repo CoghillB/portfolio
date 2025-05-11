@@ -40,12 +40,12 @@ export const About = () => {
 
                     <div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
                         <p className="text-gray-300 mb-6">
-                            I'm a motivated junior developer with hands-on experience building responsive,
-                            user-friendly web applications. I enjoy working with both frontend and backend technologies and
-                            have a strong interest in full-stack development. I'm passionate about writing clean,
-                            maintainable code and always eager to learn new tools and frameworks.
-                            I'm now looking for an opportunity to grow as a developer, contribute to real-world projects,
-                            and be part of a collaborative team.
+                            My main focus is full-stack development, and I’ve gained hands-on experience working with both frontend
+                            and backend technologies. I’ve built responsive web apps, worked with APIs, and focused on writing clean,
+                            maintainable code. I’m eager to join a collaborative team where I can continue to learn,
+                            contribute to meaningful projects, and grow as a developer.
+
+
                         </p>
 
                         <div className="flex flex-col gap-6">
