@@ -78,6 +78,8 @@ export const Projects = () => {
                                     href="https://github.com/CoghillB/Primate_Planner.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
                                     target="_blank"
+                                    rel="noopener noreferrer"
+
                                 >
                                     View Project →
                                 </a>
@@ -117,6 +119,8 @@ export const Projects = () => {
                                     href="https://github.com/CoghillB/COSC205_CourseProject.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
                                     target="_blank"
+                                    rel="noopener noreferrer"
+
                                 >
                                     View Project →
                                 </a>
@@ -154,6 +158,7 @@ export const Projects = () => {
                                     href="https://github.com/CoghillB/MineSweeper.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     View Project →
                                 </a>
