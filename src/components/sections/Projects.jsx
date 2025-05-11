@@ -14,17 +14,20 @@ export const Projects = () => {
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                            <h3 className="text-xl font-bold mb-2"> Cloud Platform</h3>
+                            <h3 className="text-xl font-bold mb-2"> Player-Prop Bets </h3>
                             <p className="text-gray-400 mb-4">
-                                Scalable cloud infrastructure management with real-time
-                                monitoring and automated scaling.
+                                Live platform for player-prop betting with real-time odds and
+                                statistics. Using live stats and AI assistant to help users make
+                                informed decisions and linking them to sport books. My focus in this project was
+                                on the backend, using Python and Django to create a RESTful API and integration of the
+                                AI assistant.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["React", "Node.js", "AWS", "Docker"].map((tech, key) => (
+                                {["React", "JavaScript", "Python", "Django", "HTML5/CSS3", "Docker"].map((tech, key) => (
                                     <span
                                         key={key}
                                         className="bg-blue-500/10 text-blue-500 py-1 px-3 rounded-full text-sm hover:bg-blue-500/20 
-                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.1)] transition-all
+                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.1)] transition cursor-default
                     "
                                     >
                                         {tech}
@@ -34,37 +37,37 @@ export const Projects = () => {
 
                             <div className="flex justify-between items-center">
                                 <a
-                                    href="#"
+                                    href="https://github.com/CoghillB/ApeOffside.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
                                     View Project →
                                 </a>
                             </div>
                         </div>
                         <div
-                            className="
-              glass p-6 rounded-xl border border-white/10 
-              hover:-translate-y-1 hover:border-blue-500/30
-              hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
-              transition-all
-            "
+                            className="glass p-6 rounded-xl border border-white/10
+                            hover:-translate-y-1 hover:border-blue-500/30
+                            hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
+                            transition cursor-default"
                         >
-                            <h3 className="text-xl font-bold mb-2">AI Analytics Dashboard</h3>
+                            <h3 className="text-xl font-bold mb-2">Day Planner</h3>
                             <p className="text-gray-400 mb-4">
-                                ML-powered data visualization platform with predictive analytics
-                                and interactive reports.
+                                Day planner that was built for a final project. It allows users to
+                                add events to a calendar, and view them in a list. The events are stored in a
+                                database and can be edited or deleted. It also allows the user to track fitness goals and
+                                view progress through graphs.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["Python", "TensorFlow", "D3.js", "Flask"].map((tech, key) => (
+                                {["PHP", "CSS3", "JavaScript", "HTML5", "MySQL"].map((tech, key) => (
                                     <span
                                         key={key}
-                                        className="
-                      bg-blue-500/10 text-blue-500 py-1 px-3 
-                      rounded-full text-sm
-                      transition
-                      hover:bg-blue-500/20 hover:-translate-y-0.5
-                      hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]
-                    "
+                                        className="bg-blue-500/10 text-blue-500 py-1 px-3
+                                        rounded-full text-sm
+                                        transition
+                                        hover:bg-blue-500/20 hover:-translate-y-0.5
+                                        hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
                                     >
                                         {tech}
                                     </span>
@@ -72,8 +75,9 @@ export const Projects = () => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <a
-                                    href="#"
+                                    href="https://github.com/CoghillB/Primate_Planner.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    target="_blank"
                                 >
                                     View Project →
                                 </a>
@@ -81,30 +85,27 @@ export const Projects = () => {
                         </div>
 
                         <div
-                            className="
-              glass p-6 rounded-xl border border-white/10 
-              hover:-translate-y-1 hover:border-blue-500/30
-              hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
-              transition-all
-            "
+                            className="glass p-6 rounded-xl border border-white/10
+                            hover:-translate-y-1 hover:border-blue-500/30
+                            hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
+                            transition cursor-default"
                         >
-                            <h3 className="text-xl font-bold mb-2">E-Commerce Web App</h3>
+                            <h3 className="text-xl font-bold mb-2">Travel Planning Assistant / Budgeting Site</h3>
                             <p className="text-gray-400 mb-4">
-                                Full-stack e-commerce with modern UI, secure payment
-                                integration, and customizable product inventory.
+                                Full-Stack travel planning site that allowed users to plan their
+                                trips, and budget for them. Integrated with Google Maps API to allow users to
+                                view their trips on a map, and see the distance between locations.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["Next.js", "TypeScript", "Stripe", "PostgreSQL"].map(
+                                {["Node.js", "JavaScript", "HTML5", "CSS3"].map(
                                     (tech) => (
                                         <span
                                             key={tech}
-                                            className="
-                      bg-blue-500/10 text-blue-500 py-1 px-3 
-                      rounded-full text-sm
-                      transition
-                      hover:bg-blue-500/20 hover:-translate-y-0.5
-                      hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]
-                    "
+                                            className="bg-blue-500/10 text-blue-500 py-1 px-3
+                                            rounded-full text-sm
+                                            transition
+                                            hover:bg-blue-500/20 hover:-translate-y-0.5
+                                            hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
                                         >
                                             {tech}
                                         </span>
@@ -113,8 +114,9 @@ export const Projects = () => {
                             </div>
                             <div className="flex justify-between items-center">
                                 <a
-                                    href="#"
+                                    href="https://github.com/CoghillB/COSC205_CourseProject.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    target="_blank"
                                 >
                                     View Project →
                                 </a>
@@ -122,29 +124,26 @@ export const Projects = () => {
                         </div>
 
                         <div
-                            className="
-              glass p-6 rounded-xl border border-white/10 
-              hover:-translate-y-1 hover:border-blue-500/30
-              hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
-              transition-all
-            "
+                            className="glass p-6 rounded-xl border border-white/10
+                            hover:-translate-y-1 hover:border-blue-500/30
+                            hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
+                            transition cursor-default"
                         >
-                            <h3 className="text-xl font-bold mb-2">Real-Time Chat App</h3>
+                            <h3 className="text-xl font-bold mb-2">MineSweeper</h3>
                             <p className="text-gray-400 mb-4">
-                                Scalable chat platform supporting real-time messaging, presence,
-                                and group chat features.
+                                Small game made for fun to practice using JavaFX and Java. It is a
+                                simple implementation of the classic game.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["Socket.IO", "Express", "React", "Redis"].map((tech, key) => (
+                                {["Java", "JavaFX"].map((tech, key) => (
                                     <span
                                         key={key}
                                         className="
-                      bg-blue-500/10 text-blue-500 py-1 px-3 
-                      rounded-full text-sm
-                      transition
-                      hover:bg-blue-500/20 hover:-translate-y-0.5
-                      hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]
-                    "
+                                    bg-blue-500/10 text-blue-500 py-1 px-3
+                                    rounded-full text-sm
+                                    transition
+                                    hover:bg-blue-500/20 hover:-translate-y-0.5
+                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
                                     >
                                         {tech}
                                     </span>
@@ -152,8 +151,9 @@ export const Projects = () => {
                             </div>
                             <div className="flex justify-between items-center ">
                                 <a
-                                    href="#"
+                                    href="https://github.com/CoghillB/MineSweeper.git"
                                     className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    target="_blank"
                                 >
                                     View Project →
                                 </a>
