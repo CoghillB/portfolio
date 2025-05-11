@@ -13,9 +13,9 @@ export const Home = () => {
                     </h1>
 
                     <p className="tex-gray-400 text-lg mb-8 max-w-lg mx-auto">
-                        I'm a recent graduate from Okanagan College with a Diploma in Computer Information Systems, 
-                        passionate about full-stack development. I enjoy building practical, 
-                        user-focused applications and constantly expanding my skills in both front-end and back-end technologies. 
+                        I'm a recent graduate from Okanagan College with a Diploma in Computer Information Systems.
+                        Passionate about full-stack development. I enjoy building practical,
+                        user-focused applications and constantly expanding my skills in both front-end and back-end technologies.
                         I'm currently seeking opportunities to apply my knowledge, grow as a developer, and contribute to real-world projects.
 
 
