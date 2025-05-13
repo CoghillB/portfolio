@@ -11,7 +11,8 @@ export const About = () => {
         "Bootstrap",
         "HTML5",
         "Vite",
-        "Responsive Design"
+        "Responsive Design",
+        "VB.NET"
     ];
 
     const backendSkills = [

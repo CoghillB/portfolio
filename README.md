@@ -34,7 +34,9 @@ The portfolio is deployed on GitHub Pages and can be accessed at: [https://Coghi
     ```
 
 ## Deployment
-This project is configured for GitHub Pages deployment:
+
+### Manual Deployment
+You can manually deploy the project to GitHub Pages:
 
 1. Build the project:
     ```bash
@@ -45,7 +47,25 @@ This project is configured for GitHub Pages deployment:
     npm run deploy
     ```
 
-This will automatically build the project and publish it to the gh-pages branch on GitHub.
+This will build the project and publish it to the gh-pages branch on GitHub.
+
+### Automated Deployment
+This project is also configured with GitHub Actions for automated deployment:
+
+- When you push changes to the `main` branch, GitHub Actions will automatically build and deploy the site to GitHub Pages
+- The workflow configuration can be found in `.github/workflows/deploy.yml`
+- No manual steps are required for this method
+
+### GitHub Pages Configuration
+To ensure GitHub Pages is properly configured:
+
+1. Go to your GitHub repository
+2. Navigate to Settings > Pages
+3. Under "Build and deployment":
+   - Set Source to "Deploy from a branch"
+   - Set Branch to "gh-pages" and folder to "/ (root)"
+4. Click Save
+5. Your site will be published at `https://[username].github.io/portfolio/`
 
 ## License
 This project is licensed under the MIT License. See the `LICENSE` file for details.
