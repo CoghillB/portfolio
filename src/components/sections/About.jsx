@@ -1,7 +1,10 @@
-import { RevealOnScroll } from "../RevealOnScroll";
+import {RevealOnScroll} from "../RevealOnScroll";
 
 export const About = () => {
     const frontendSkills = [
+        "Java",
+        "Python",
+        "Using REST APIs",
         "React",
         "jQuery",
         "JavaScript (ES6+)",
@@ -41,8 +44,10 @@ export const About = () => {
 
                     <div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
                         <p className="text-gray-300 mb-6">
-                            My main focus is full-stack development, and I’ve gained hands-on experience working with both frontend
-                            and backend technologies. I’ve built responsive web apps, worked with APIs, and focused on writing clean,
+                            My main focus is full-stack development, and I’ve gained hands-on experience working with
+                            both frontend
+                            and backend technologies. I’ve built responsive web apps, worked with APIs, and focused on
+                            writing clean,
                             maintainable code. I’m eager to join a collaborative team where I can continue to learn,
                             contribute to meaningful projects, and grow as a developer.
 
@@ -91,12 +96,15 @@ export const About = () => {
                                 <strong>Diploma in Computer Information Systems</strong> - Okanagan College
                                 (2023-2025)
                             </li>
-                            <li style={{ listStyleType: "none" }}>
-                                <strong>Relevant Coursework:</strong><br /> Computer Programming II, Project Management, Client-side Web Systems,
-                                Computer Data Structures, Algorithms, Systems Analysis & Design, Web Development with LAMP,
+                            <li style={{listStyleType: "none"}}>
+                                <strong>Relevant Coursework:</strong><br/> Computer Programming II, Project Management,
+                                Client-side Web Systems,
+                                Computer Data Structures, Algorithms, Systems Analysis & Design, Web Development with
+                                LAMP,
                                 Information System Security
-                            </li><br />
-                            <li style={{ listStyleType: "none" }}>
+                            </li>
+                            <br/>
+                            <li style={{listStyleType: "none"}}>
                                 <strong>Responsive Web Design Certification</strong> - FreeCodeCamp (2022) -{" "}
                                 <a
                                     href="https://www.freecodecamp.org/certification/BraydenCoghill/responsive-web-design"

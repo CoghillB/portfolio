@@ -1,0 +1,3 @@
+- Personalize 'About me' to talk about family, moving into a second career, future goals, why I got into front-end dev.
+- Remove 'Backend' from the 'about me' section and move relevant backend skills to frontend skills.
+- Add a picture of me to the 'Home' section.
