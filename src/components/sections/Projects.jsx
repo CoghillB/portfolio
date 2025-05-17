@@ -8,14 +8,13 @@ export const Projects = () => {
         >
             <RevealOnScroll>
                 <div className="max-w-5xl mx-auto px-4">
-                    <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
-                        {" "}
+                    <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent text-center">
                         Featured Projects
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition">
-                            <h3 className="text-xl font-bold mb-2"> Player-Prop Bets </h3>
-                            <p className="text-gray-400 mb-4">
+                        <div className="p-6 rounded-xl border border-green-900/30 bg-green-950/20 backdrop-blur-sm shadow-lg hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_4px_20px_rgba(34,197,94,0.3)] transition-all duration-300">
+                            <h3 className="text-xl font-bold mb-2 text-green-400"> Player-Prop Bets </h3>
+                            <p className="text-gray-300 mb-4">
                                 Live platform for player-prop betting with real-time odds and
                                 statistics. Using live stats and AI assistant to help users make
                                 informed decisions and linking them to sport books. My focus in this project was
@@ -26,8 +25,8 @@ export const Projects = () => {
                                 {["React", "JavaScript", "Python", "Django", "HTML5/CSS3", "Docker"].map((tech, key) => (
                                     <span
                                         key={key}
-                                        className="bg-blue-500/10 text-blue-500 py-1 px-3 rounded-full text-sm hover:bg-blue-500/20 
-                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.1)] transition cursor-default
+                                        className="bg-green-900/40 text-green-300 py-1 px-3 rounded-full text-sm hover:bg-green-800/50 
+                                    hover:shadow-[0_2px_8px_rgba(34,197,94,0.3)] transition-all duration-300 cursor-default
                     "
                                     >
                                         {tech}
@@ -38,7 +37,7 @@ export const Projects = () => {
                             <div className="flex justify-between items-center">
                                 <a
                                     href="https://github.com/CoghillB/ApeOffside.git"
-                                    className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    className="text-green-400 hover:text-green-300 transition-colors duration-300 my-4"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -47,13 +46,13 @@ export const Projects = () => {
                             </div>
                         </div>
                         <div
-                            className="glass p-6 rounded-xl border border-white/10
+                            className="glass p-6 rounded-xl border border-blue-900/30 bg-blue-950/20 backdrop-blur-sm shadow-lg
                             hover:-translate-y-1 hover:border-blue-500/30
-                            hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
-                            transition cursor-default"
+                            hover:shadow-[0_4px_20px_rgba(59,130,246,0.3)]
+                            transition-all duration-300 cursor-default"
                         >
-                            <h3 className="text-xl font-bold mb-2">Day Planner</h3>
-                            <p className="text-gray-400 mb-4">
+                            <h3 className="text-xl font-bold mb-2 text-blue-400">Day Planner</h3>
+                            <p className="text-gray-300 mb-4">
                                 Day planner that was built for a final project. It allows users to
                                 add events to a calendar, and view them in a list. The events are stored in a
                                 database and can be edited or deleted. It also allows the user to track fitness goals and
@@ -63,11 +62,11 @@ export const Projects = () => {
                                 {["PHP", "CSS3", "JavaScript", "HTML5", "MySQL"].map((tech, key) => (
                                     <span
                                         key={key}
-                                        className="bg-blue-500/10 text-blue-500 py-1 px-3
+                                        className="bg-blue-900/40 text-blue-300 py-1 px-3
                                         rounded-full text-sm
-                                        transition
-                                        hover:bg-blue-500/20 hover:-translate-y-0.5
-                                        hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
+                                        transition-all duration-300
+                                        hover:bg-blue-800/50 hover:-translate-y-0.5
+                                        hover:shadow-[0_2px_8px_rgba(59,130,246,0.3)]"
                                     >
                                         {tech}
                                     </span>
@@ -76,10 +75,9 @@ export const Projects = () => {
                             <div className="flex justify-between items-center">
                                 <a
                                     href="https://github.com/CoghillB/Primate_Planner.git"
-                                    className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    className="text-blue-400 hover:text-blue-300 transition-colors duration-300 my-4"
                                     target="_blank"
                                     rel="noopener noreferrer"
-
                                 >
                                     View Project →
                                 </a>
@@ -87,13 +85,13 @@ export const Projects = () => {
                         </div>
 
                         <div
-                            className="glass p-6 rounded-xl border border-white/10
-                            hover:-translate-y-1 hover:border-blue-500/30
-                            hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
-                            transition cursor-default"
+                            className="glass p-6 rounded-xl border border-purple-900/30 bg-purple-950/20 backdrop-blur-sm shadow-lg
+                            hover:-translate-y-1 hover:border-purple-500/30
+                            hover:shadow-[0_4px_20px_rgba(168,85,247,0.3)]
+                            transition-all duration-300 cursor-default"
                         >
-                            <h3 className="text-xl font-bold mb-2">Travel Planning Assistant / Budgeting Site</h3>
-                            <p className="text-gray-400 mb-4">
+                            <h3 className="text-xl font-bold mb-2 text-purple-400">Travel Planning Assistant / Budgeting Site</h3>
+                            <p className="text-gray-300 mb-4">
                                 Full-Stack travel planning site that allowed users to plan their
                                 trips, and budget for them. Integrated with Google Maps API to allow users to
                                 view their trips on a map, and see the distance between locations.
@@ -103,11 +101,11 @@ export const Projects = () => {
                                     (tech) => (
                                         <span
                                             key={tech}
-                                            className="bg-blue-500/10 text-blue-500 py-1 px-3
+                                            className="bg-purple-900/40 text-purple-300 py-1 px-3
                                             rounded-full text-sm
-                                            transition
-                                            hover:bg-blue-500/20 hover:-translate-y-0.5
-                                            hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
+                                            transition-all duration-300
+                                            hover:bg-purple-800/50 hover:-translate-y-0.5
+                                            hover:shadow-[0_2px_8px_rgba(168,85,247,0.3)]"
                                         >
                                             {tech}
                                         </span>
@@ -117,10 +115,9 @@ export const Projects = () => {
                             <div className="flex justify-between items-center">
                                 <a
                                     href="https://github.com/CoghillB/COSC205_CourseProject.git"
-                                    className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    className="text-purple-400 hover:text-purple-300 transition-colors duration-300 my-4"
                                     target="_blank"
                                     rel="noopener noreferrer"
-
                                 >
                                     View Project →
                                 </a>
@@ -128,13 +125,13 @@ export const Projects = () => {
                         </div>
 
                         <div
-                            className="glass p-6 rounded-xl border border-white/10
-                            hover:-translate-y-1 hover:border-blue-500/30
-                            hover:shadow-[0_4px_20px_rgba(59,130,246,0.1)]
-                            transition cursor-default"
+                            className="glass p-6 rounded-xl border border-indigo-900/30 bg-indigo-950/20 backdrop-blur-sm shadow-lg
+                            hover:-translate-y-1 hover:border-indigo-500/30
+                            hover:shadow-[0_4px_20px_rgba(99,102,241,0.3)]
+                            transition-all duration-300 cursor-default"
                         >
-                            <h3 className="text-xl font-bold mb-2">MineSweeper</h3>
-                            <p className="text-gray-400 mb-4">
+                            <h3 className="text-xl font-bold mb-2 text-indigo-400">MineSweeper</h3>
+                            <p className="text-gray-300 mb-4">
                                 Small game made for fun to practice using JavaFX and Java. It is a
                                 simple implementation of the classic game.
                             </p>
@@ -143,11 +140,11 @@ export const Projects = () => {
                                     <span
                                         key={key}
                                         className="
-                                    bg-blue-500/10 text-blue-500 py-1 px-3
+                                    bg-indigo-900/40 text-indigo-300 py-1 px-3
                                     rounded-full text-sm
-                                    transition
-                                    hover:bg-blue-500/20 hover:-translate-y-0.5
-                                    hover:shadow-[0_2px_8px_rgba(59,130,246,0.2)]"
+                                    transition-all duration-300
+                                    hover:bg-indigo-800/50 hover:-translate-y-0.5
+                                    hover:shadow-[0_2px_8px_rgba(99,102,241,0.3)]"
                                     >
                                         {tech}
                                     </span>
@@ -156,7 +153,7 @@ export const Projects = () => {
                             <div className="flex justify-between items-center ">
                                 <a
                                     href="https://github.com/CoghillB/MineSweeper.git"
-                                    className="text-blue-400 hover:text-blue-300 transition-colors my-4"
+                                    className="text-green-600 hover:text-green-800 transition-colors my-4"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
