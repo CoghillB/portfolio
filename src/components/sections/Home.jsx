@@ -1,4 +1,4 @@
-import { RevealOnScroll } from "../RevealOnScroll";
+import {RevealOnScroll} from "../RevealOnScroll";
 
 export const Home = () => {
     return (
@@ -8,36 +8,41 @@ export const Home = () => {
         >
             <RevealOnScroll>
                 <div className="text-center z-10 px-4">
-                    <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent leading-right">
+                    <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent leading-right animate-float">
                         Hi, I'm Brayden Coghill
                     </h1>
 
-                    <p className="tex-gray-400 text-lg mb-8 max-w-lg mx-auto">
-                        I’m a recent graduate of Okanagan College’s Computer Information Systems program,
-                        where I developed a strong interest in solving real-world problems through software.
-                        What drew me to development was the creativity and logic involved in building
-                        something from scratch that others can use and benefit from.
-                        I enjoy the process of turning ideas into working, interactive applications.
-
+                    <p className="text-gray-300 text-lg mb-8 max-w-lg mx-auto">
+                        I'm a frontend developer with a passion for crafting clean, responsive, and user-friendly web
+                        interfaces.
+                        I specialize in turning design concepts into interactive experiences using modern technologies
+                        like HTML,
+                        CSS, JavaScript, and frameworks such as React. With a strong understanding of REST APIs, I build
+                        dynamic applications that seamlessly connect to backend services. I take pride in writing
+                        maintainable code, optimizing performance, and creating accessible interfaces that work across
+                        all devices. I'm constantly learning and evolving to stay current with the latest trends in web
+                        development.
                     </p>
-                    <div className="flex justify-center space-x-4">
+
+                    <div className="flex flex-wrap justify-center gap-4">
                         <a
                             href="#about"
-                            className="border border-blue-500/50 text-blue-500 py-3 px-6 rounded font-medium transition-all duration-200
-                            hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.2)] hover:bg-blue-500/10"                        >
+                            className="border border-purple-500/50 text-purple-300 py-3 px-6 rounded-lg font-medium transition-all duration-300
+                            hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] hover:bg-purple-900/30 backdrop-blur-sm"
+                        >
                             About Me
                         </a>
                         <a
                             href="#projects"
-                            className="border border-blue-500/50 text-blue-500 py-3 px-6 rounded font-medium transition-all duration-200
-                            hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.2)] hover:bg-blue-500/10"                        >
+                            className="border border-blue-500/50 text-blue-300 py-3 px-6 rounded-lg font-medium transition-all duration-300
+                            hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] hover:bg-blue-900/30 backdrop-blur-sm"
+                        >
                             View Projects
                         </a>
-
                         <a
                             href="#contact"
-                            className="border border-blue-500/50 text-blue-500 py-3 px-6 rounded font-medium transition-all duration-200
-                            hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.2)] hover:bg-blue-500/10"
+                            className="border border-indigo-500/50 text-indigo-300 py-3 px-6 rounded-lg font-medium transition-all duration-300
+                            hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] hover:bg-indigo-900/30 backdrop-blur-sm"
                         >
                             Contact Me
                         </a>
