@@ -56,68 +56,71 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     }, [menuOpen]);
 
     return (
-        <nav className={`fixed top-0 w-full z-40 transition-all duration-1000 bg-gradient-to-r from-blue-900/90 via-purple-900/90 to-indigo-900/90 backdrop-blur-lg shadow-lg py-2 border-b border-white/10`}>
-            <div className="max-w-5xl mx-auto px-4">
-                <div className="flex justify-between items-center">
-                    <a 
-                        href="#home" 
-                        className="font-mono text-xl font-bold relative group animate-float"
-                    >
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 hover:from-blue-300 hover:to-cyan-200 transition-all duration-300 transform group-hover:scale-105 inline-block">
-                            Brayden
-                        </span>
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300 hover:from-green-300 hover:to-emerald-200 transition-all duration-300 transform group-hover:scale-105 inline-block">
-                            .Coghill
-                        </span>
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-green-400 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-
-                    <div
-                        className="w-8 h-8 flex flex-col justify-center items-center cursor-pointer z-40 md:hidden relative"
-                        onClick={() => setMenuOpen((prev) => !prev)}
-                    >
-                        <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                        <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? 'opacity-0' : ''}`}></span>
-                        <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-                    </div>
-
-                    <div className="hidden md:flex items-center space-x-8">
-                        <NavLink 
+        <>
+            <nav className={`fixed top-0 w-full z-60 transition-all duration-1000 bg-gradient-to-r from-blue-900/90 via-purple-900/90 to-indigo-900/90 backdrop-blur-lg shadow-lg py-2 border-b border-white/10`}>
+                <div className="max-w-5xl mx-auto px-4">
+                    <div className="flex justify-between items-center">
+                        <a 
                             href="#home" 
-                            color="blue" 
-                            label="Home" 
-                            icon={<HomeIcon />} 
-                            isActive={activeLink === "home"} 
-                        />
-                        <NavLink 
-                            href="#about" 
-                            color="purple" 
-                            label="About" 
-                            icon={<AboutIcon />} 
-                            isActive={activeLink === "about"} 
-                        />
-                        <NavLink 
-                            href="#projects" 
-                            color="indigo" 
-                            label="Projects" 
-                            icon={<ProjectsIcon />} 
-                            isActive={activeLink === "projects"} 
-                        />
-                        <NavLink 
-                            href="#contact" 
-                            color="cyan" 
-                            label="Contact" 
-                            icon={<ContactIcon />} 
-                            isActive={activeLink === "contact"} 
-                        />
+                            className="font-mono text-xl font-bold relative group animate-float"
+                        >
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 hover:from-blue-300 hover:to-cyan-200 transition-all duration-300 transform group-hover:scale-105 inline-block">
+                                Brayden
+                            </span>
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300 hover:from-green-300 hover:to-emerald-200 transition-all duration-300 transform group-hover:scale-105 inline-block">
+                                .Coghill
+                            </span>
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-green-400 transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+
+                        <div
+                            className="w-8 h-8 flex flex-col justify-center items-center cursor-pointer z-70 md:hidden relative"
+                            onClick={() => setMenuOpen((prev) => !prev)}
+                        >
+                            <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+                            <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? 'opacity-0' : ''}`}></span>
+                            <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                        </div>
+
+                        <div className="hidden md:flex items-center space-x-8">
+                            <NavLink 
+                                href="#home" 
+                                color="blue" 
+                                label="Home" 
+                                icon={<HomeIcon />} 
+                                isActive={activeLink === "home"} 
+                            />
+                            <NavLink 
+                                href="#about" 
+                                color="purple" 
+                                label="About" 
+                                icon={<AboutIcon />} 
+                                isActive={activeLink === "about"} 
+                            />
+                            <NavLink 
+                                href="#projects" 
+                                color="indigo" 
+                                label="Projects" 
+                                icon={<ProjectsIcon />} 
+                                isActive={activeLink === "projects"} 
+                            />
+                            <NavLink 
+                                href="#contact" 
+                                color="cyan" 
+                                label="Contact" 
+                                icon={<ContactIcon />} 
+                                isActive={activeLink === "contact"} 
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </nav>
 
-            {/* Mobile menu */}
+            {/* Mobile menu - moved outside nav element */}
             {menuOpen && (
-                <div className="fixed inset-0 top-14 bg-gradient-to-r from-blue-950/98 via-purple-950/98 to-indigo-950/98 backdrop-blur-lg border-b border-white/10 flex flex-col items-center justify-start pt-10 pb-20 space-y-3 md:hidden animate-fadeIn overflow-y-auto">
-                    {/* Close button removed from here as it's redundant with the hamburger menu */}
+                <div
+                    className="fixed inset-0 z-50 bg-gradient-to-r from-blue-950/98 via-purple-950/98 to-indigo-950/98 backdrop-blur-lg flex flex-col items-center justify-center space-y-6 md:hidden animate-fadeIn overflow-y-auto h-screen">
+                {/* Close button removed from here as it's redundant with the hamburger menu */}
                     <div className="animate-slideIn-1">
                         <NavLink 
                             href="#home" 
@@ -160,7 +163,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                     </div>
                 </div>
             )}
-        </nav>
+        </>
     );
 };
 

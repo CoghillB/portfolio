@@ -153,7 +153,7 @@ export const Projects = () => {
                             <div className="flex justify-between items-center ">
                                 <a
                                     href="https://github.com/CoghillB/MineSweeper.git"
-                                    className="text-green-600 hover:text-green-800 transition-colors my-4"
+                                    className="text-indigo-300 hover:text-indigo-900 transition-colors my-4"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
