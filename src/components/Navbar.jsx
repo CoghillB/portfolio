@@ -62,7 +62,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                     <div className="flex justify-between items-center">
                         <a 
                             href="#home" 
-                            className="font-mono text-xl font-bold relative group animate-float"
+                            className="font-mono text-xl font-bold relative group"
                         >
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 hover:from-blue-300 hover:to-cyan-200 transition-all duration-300 transform group-hover:scale-105 inline-block">
                                 Brayden
