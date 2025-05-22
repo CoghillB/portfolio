@@ -123,13 +123,106 @@ html.dark .particle:nth-child(5n) {
 --------------------------------------------------------------*/
 .reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: all 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: transform, opacity;
 }
 
+/* Base visible state */
 .reveal.visible {
     opacity: 1;
+}
+
+/* Fade Up (default) */
+.reveal-fade-up {
+    transform: translateY(40px);
+}
+.reveal-fade-up.visible {
     transform: translateY(0);
+}
+
+/* Fade Down */
+.reveal-fade-down {
+    transform: translateY(-40px);
+}
+.reveal-fade-down.visible {
+    transform: translateY(0);
+}
+
+/* Fade Left */
+.reveal-fade-left {
+    transform: translateX(-40px);
+}
+.reveal-fade-left.visible {
+    transform: translateX(0);
+}
+
+/* Fade Right */
+.reveal-fade-right {
+    transform: translateX(40px);
+}
+.reveal-fade-right.visible {
+    transform: translateX(0);
+}
+
+/* Zoom In */
+.reveal-zoom-in {
+    transform: scale(0.8);
+}
+.reveal-zoom-in.visible {
+    transform: scale(1);
+}
+
+/* Zoom Out */
+.reveal-zoom-out {
+    transform: scale(1.2);
+}
+.reveal-zoom-out.visible {
+    transform: scale(1);
+}
+
+/* Flip Up */
+.reveal-flip-up {
+    transform: perspective(800px) rotateX(90deg);
+    transform-origin: center bottom;
+}
+.reveal-flip-up.visible {
+    transform: perspective(800px) rotateX(0);
+}
+
+/* Flip Down */
+.reveal-flip-down {
+    transform: perspective(800px) rotateX(-90deg);
+    transform-origin: center top;
+}
+.reveal-flip-down.visible {
+    transform: perspective(800px) rotateX(0);
+}
+
+/* Flip Left */
+.reveal-flip-left {
+    transform: perspective(800px) rotateY(-90deg);
+    transform-origin: right center;
+}
+.reveal-flip-left.visible {
+    transform: perspective(800px) rotateY(0);
+}
+
+/* Flip Right */
+.reveal-flip-right {
+    transform: perspective(800px) rotateY(90deg);
+    transform-origin: left center;
+}
+.reveal-flip-right.visible {
+    transform: perspective(800px) rotateY(0);
+}
+
+/* Rotate */
+.reveal-rotate {
+    transform: rotate(-45deg);
+    transform-origin: center center;
+}
+.reveal-rotate.visible {
+    transform: rotate(0);
 }
 
 /*--------------------------------------------------------------
