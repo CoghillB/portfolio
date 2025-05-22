@@ -49,6 +49,7 @@ export const About = () => {
                             it's a personal project or a client's dream, seeing it come together visually is what drives
                             me every day.
                         </p>
+
                         <div className="flex flex-col gap-6">
                             <div
                                 className={`rounded-xl p-6 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm border ${
