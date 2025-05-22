@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
+import { useTheme } from "../context/ThemeContext";
 
 // Icons as SVG components
 const HomeIcon = () => (
@@ -29,6 +31,7 @@ const ContactIcon = () => (
 export const Navbar = ({ menuOpen, setMenuOpen }) => {
     const [scrolled, setScrolled] = useState(false);
     const [activeLink, setActiveLink] = useState("home");
+    const { theme } = useTheme();
 
     useEffect(() => {
         document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -57,29 +60,33 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
     return (
         <>
-            <nav className={`fixed top-0 w-full z-60 transition-all duration-1000 bg-gradient-to-r from-blue-900/90 via-purple-900/90 to-indigo-900/90 backdrop-blur-lg shadow-lg py-2 border-b border-white/10`}>
+            <nav className={`fixed top-0 w-full z-60 transition-all duration-1000 ${
+              theme === 'dark' 
+                ? 'bg-gradient-to-r from-[#0a1128]/95 via-[#1a2a52]/95 to-[#0a1128]/95 border-gray-700/30' 
+                : 'bg-gradient-to-r from-[#ffffff]/95 via-[#f5f5f5]/95 to-[#fffff0]/95 border-gray-300/30'
+            } backdrop-blur-lg shadow-lg py-2 border-b`}>
                 <div className="max-w-5xl mx-auto px-4">
                     <div className="flex justify-between items-center">
                         <a 
                             href="#home" 
                             className="font-mono text-xl font-bold relative group"
                         >
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 hover:from-blue-300 hover:to-cyan-200 transition-all duration-300 transform group-hover:scale-105 inline-block">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6495ED] to-[#4682B4] hover:from-[#4682B4] hover:to-[#6495ED] transition-all duration-300 transform group-hover:scale-105 inline-block">
                                 Brayden
                             </span>
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-300 hover:from-green-300 hover:to-emerald-200 transition-all duration-300 transform group-hover:scale-105 inline-block">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6495ED] to-[#FF7F50] hover:from-[#6495ED] hover:to-[#FF7F50] transition-all duration-300 transform group-hover:scale-105 inline-block">
                                 .Coghill
                             </span>
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-green-400 transition-all duration-300 group-hover:w-full"></span>
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#6495ED] to-[#FF7F50] transition-all duration-300 group-hover:w-full"></span>
                         </a>
 
                         <div
                             className="w-8 h-8 flex flex-col justify-center items-center cursor-pointer z-70 md:hidden relative"
                             onClick={() => setMenuOpen((prev) => !prev)}
                         >
-                            <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                            <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? 'opacity-0' : ''}`}></span>
-                            <span className={`block w-6 h-0.5 bg-white rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                            <span className={`block w-6 h-0.5 ${theme === 'dark' ? 'bg-gray-200' : 'bg-gray-800'} rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+                            <span className={`block w-6 h-0.5 ${theme === 'dark' ? 'bg-gray-200' : 'bg-gray-800'} rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? 'opacity-0' : ''}`}></span>
+                            <span className={`block w-6 h-0.5 ${theme === 'dark' ? 'bg-gray-200' : 'bg-gray-800'} rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
                         </div>
 
                         <div className="hidden md:flex items-center space-x-8">
@@ -111,6 +118,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                                 icon={<ContactIcon />} 
                                 isActive={activeLink === "contact"} 
                             />
+                            <div className="ml-2">
+                                <ThemeToggle />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,7 +129,11 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
             {/* Mobile menu - moved outside nav element */}
             {menuOpen && (
                 <div
-                    className="fixed inset-0 z-50 bg-gradient-to-r from-blue-950/98 via-purple-950/98 to-indigo-950/98 backdrop-blur-lg flex flex-col items-center justify-center space-y-6 md:hidden animate-fadeIn overflow-y-auto h-screen">
+                    className={`fixed inset-0 z-50 backdrop-blur-lg flex flex-col items-center justify-center space-y-6 md:hidden animate-fadeIn overflow-y-auto h-screen ${
+                        theme === 'dark'
+                            ? 'bg-gradient-to-r from-[#0a1128]/98 via-[#1a2a52]/98 to-[#0a1128]/98 text-gray-200'
+                            : 'bg-gradient-to-r from-[#6495ED]/98 via-[#98FB98]/98 to-[#FF7F50]/98 text-gray-900'
+                    }`}>
                 {/* Close button removed from here as it's redundant with the hamburger menu */}
                     <div className="animate-slideIn-1">
                         <NavLink 
@@ -161,6 +175,11 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                             onClick={() => setMenuOpen(false)} 
                         />
                     </div>
+                    <div className="animate-slideIn-4 mt-6">
+                        <div className="flex justify-center">
+                            <ThemeToggle />
+                        </div>
+                    </div>
                 </div>
             )}
         </>
@@ -169,25 +188,26 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
 // Helper component for navigation links
 const NavLink = ({ href, color, label, icon, mobile = false, onClick, isActive = false }) => {
+    const { theme } = useTheme();
     const colorClasses = {
-        blue: "from-blue-400 to-blue-300 hover:from-blue-300 hover:to-blue-200",
-        purple: "from-purple-400 to-purple-300 hover:from-purple-300 hover:to-purple-200",
-        indigo: "from-indigo-400 to-indigo-300 hover:from-indigo-300 hover:to-indigo-200",
-        cyan: "from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-200"
+        blue: "from-[#6495ED] to-[#4682B4] hover:from-[#4682B4] hover:to-[#6495ED]", /* Soft blue shades */
+        purple: "from-[#98FB98] to-[#3CB371] hover:from-[#3CB371] hover:to-[#98FB98]", /* Mint shades */
+        indigo: "from-[#FF7F50] to-[#FF6347] hover:from-[#FF6347] hover:to-[#FF7F50]", /* Coral shades */
+        cyan: "from-[#6495ED] to-[#98FB98] hover:from-[#98FB98] hover:to-[#FF7F50]" /* Soft blue to mint to coral gradient */
     };
 
     return (
         <a
             href={href}
-            className={`relative group flex items-center ${mobile ? 'text-xl font-bold p-3 w-56 rounded-lg bg-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.4)] hover:bg-white/15 transition-all duration-300 hover:scale-105 hover:shadow-[0_8px_30px_rgba(59,130,246,0.4)] justify-center my-1' : ''} ${isActive ? 'scale-110' : ''}`}
+            className={`relative group flex items-center ${mobile ? `text-xl font-bold p-3 w-56 rounded-lg ${theme === 'dark' ? 'bg-gray-700/20 hover:bg-gray-700/30' : 'bg-gray-800/10 hover:bg-gray-800/15'} shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_8px_30px_rgba(59,130,246,0.4)] justify-center my-1` : ''} ${isActive ? 'scale-110' : ''}`}
             onClick={onClick}
         >
             {icon && (
-                <span className={`mr-1.5 ${isActive ? 'animate-float' : ''} text-white opacity-80 group-hover:opacity-100 transition-opacity`}>
+                <span className={`mr-1.5 ${isActive ? 'animate-float' : ''} ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'} opacity-80 group-hover:opacity-100 transition-opacity`}>
                     {icon}
                 </span>
             )}
-            <span className={`${mobile ? 'text-white font-bold' : 'bg-clip-text text-transparent bg-gradient-to-r'} ${!mobile ? colorClasses[color] : ''} transition-all duration-300`}>
+            <span className={`${mobile ? `${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'} font-bold` : `${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'} font-semibold`} transition-all duration-300`}>
                 {label}
             </span>
             <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r ${colorClasses[color]} transition-all duration-300 ${isActive ? 'w-full' : ''} group-hover:w-full`}></span>

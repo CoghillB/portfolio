@@ -2,14 +2,14 @@ import React from 'react';
 
 export const Footer = () => {
     return (
-        <footer className="bg-gradient-to-r from-blue-900/90 via-purple-900/90 to-indigo-900/90 text-gray-300 py-6 border-t border-white/10 backdrop-blur-lg shadow-lg">
+        <footer className="bg-gradient-to-r from-[#ffffff]/95 via-[#f5f5f5]/95 to-[#fffff0]/95 text-gray-700 py-6 border-t border-gray-300/30 backdrop-blur-lg shadow-lg">
             <div className="container mx-auto px-4 text-center">
                 <div className="flex justify-center items-center">
                     <a
                         href="https://www.linkedin.com/in/braydencoghill"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-400 hover:text-blue-300 transition-colors duration-300 flex items-center gap-2 hover:-translate-y-0.5"
+                        className="text-[#4169E1] hover:text-[#336699] transition-colors duration-300 flex items-center gap-2 hover:-translate-y-0.5"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@ export const Footer = () => {
                         LinkedIn
                     </a>
                 </div>
-                <p className="mt-4 text-sm text-gray-400">© {new Date().getFullYear()} Brayden Coghill. All rights
+                <p className="mt-4 text-sm text-gray-500">© {new Date().getFullYear()} Brayden Coghill. All rights
                     reserved.</p>
             </div>
         </footer>
