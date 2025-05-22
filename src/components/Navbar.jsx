@@ -132,7 +132,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
                     className={`fixed inset-0 z-50 backdrop-blur-lg flex flex-col items-center justify-center space-y-6 md:hidden animate-fadeIn overflow-y-auto h-screen ${
                         theme === 'dark'
                             ? 'bg-gradient-to-r from-[#0a1128]/98 via-[#1a2a52]/98 to-[#0a1128]/98 text-gray-200'
-                            : 'bg-gradient-to-r from-[#6495ED]/98 via-[#98FB98]/98 to-[#FF7F50]/98 text-gray-900'
+                            : 'bg-gradient-to-r from-[#6495ED]/98  to-[#FF7F50]/98 text-gray-900'
                     }`}>
                 {/* Close button removed from here as it's redundant with the hamburger menu */}
                     <div className="animate-slideIn-1">
