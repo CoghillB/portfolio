@@ -35,8 +35,8 @@ export const Home = () => {
                         <div className="flex flex-wrap justify-center gap-4">
                             <a
                                 href="#about"
-                                className="border border-[#FFD700]/50 text-[#B8860B] py-3 px-6 rounded-lg font-medium transition-all duration-300
-                                hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(255,215,0,0.4)] hover:bg-[#FFD700]/10 backdrop-blur-sm"
+                                className="border border-[#FF9933]/50 text-[#FF9933] py-3 px-6 rounded-lg font-medium transition-all duration-300
+                                hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(255,215,0,0.4)] hover:bg-[#FF9933]/10 backdrop-blur-sm"
                             >
                                 About Me
                             </a>
