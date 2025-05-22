@@ -54,11 +54,11 @@ export const About = () => {
                             <div
                                 className={`rounded-xl p-6 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm border ${
                                     theme === 'dark'
-                                        ? 'bg-[#FFD700]/20 border-[#FFD700]/50'
+                                        ? 'bg-[#FF5733]/10 border-[#FF6347]/30'
                                         : 'bg-[#FF5733]/10 border-[#FF6347]/30'
                                 }`}>
                                 <h3 className={`text-xl font-bold mb-4 ${
-                                    theme === 'dark' ? 'text-[#FFD700]' : 'text-[#FF5733]'
+                                    theme === 'dark' ? 'text-[#FF5733]' : 'text-[#FF5733]'
                                 }`}> Frontend Skills</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {frontendSkills.map((tech, key) => (
@@ -66,8 +66,8 @@ export const About = () => {
                                             key={key}
                                             className={`py-1 px-3 rounded-full text-sm transition-all duration-300 cursor-default ${
                                                 theme === 'dark'
-                                                    ? 'bg-[#FFD700]/30 text-[#FFD700] hover:bg-[#FFD700]/40 hover:shadow-[0_2px_8px_rgba(255,215,0,0.5)]'
-                                                    : 'bg-[#FF5733]/10 text-[#FF5733] hover:bg-[#FF5733]/30 hover:shadow-[0_2px_8px_rgba(255,215,0,0.3)]'
+                                                    ? 'bg-[#FF5733]/10 text-[#FF5733] hover:bg-[#FF5733]/30 hover:shadow-[0_2px_8px_rgba(255,87,51,0.3)]'
+                                                    : 'bg-[#FF5733]/10 text-[#FF5733] hover:bg-[#FF5733]/30 hover:shadow-[0_2px_8px_rgba(255,87,51,0.3)]'
                                             }`}
                                         >
                                                 {tech}
