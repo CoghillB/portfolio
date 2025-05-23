@@ -6,7 +6,7 @@ export const Home = () => {
     return (
         <section
             id="home"
-            className="min-h-screen flex items-center justify-center relative"
+            className="min-h-screen flex items-center justify-center relative pt-16 md:pt-0"
         >
             <div className="text-center z-10 px-4">
                     <RevealOnScroll animation="zoom-in" delay={0.1}>
