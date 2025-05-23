@@ -25,11 +25,11 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FFD700]' : 'text-[#B8860B]'
                             }`}> Player-Prop Bets </h3>
-                            <img
-                                src="src/assets/ApeOffside.jpg"
-                                alt="ApeOffside Project Screenshot"
-                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"
-                            />
+                            {/*<img*/}
+                            {/*    src="src/assets/ApeOffside.jpg"*/}
+                            {/*    alt="ApeOffside Project Screenshot"*/}
+                            {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
+                            {/*/>*/}
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
@@ -85,11 +85,11 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FF9933]' : 'text-[#D2691E]'
                             }`}>Day Planner</h3>
-                            <img
-                                src="src/assets/PrimatePlanner.jpg"
-                                alt="Day Planner Project Screenshot"
-                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"
-                            />
+                            {/*<img*/}
+                            {/*    src="src/assets/PrimatePlanner.jpg"*/}
+                            {/*    alt="Day Planner Project Screenshot"*/}
+                            {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
+                            {/*/>*/}
 
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
@@ -143,11 +143,11 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FF5733]' : 'text-[#B22222]'
                             }`}>Travel Planning Assistant / Budgeting Site</h3>
-                            <img
-                                src="src/assets/TravelPlanner.jpg"
-                                alt="Travel Planner Project Screenshot"
-                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"
-                            />
+                            {/*<img*/}
+                            {/*    src="src/assets/TravelPlanner.jpg"*/}
+                            {/*    alt="Travel Planner Project Screenshot"*/}
+                            {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
+                            {/*/>*/}
 
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
@@ -204,11 +204,11 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FF66B2]' : 'text-[#C71585]'
                             }`}>MineSweeper</h3>
-                            <img
-                                src="src/assets/MineSweeper.jpg"
-                                alt="MineSweeper Project Screenshot"
-                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"
-                            />
+                            {/*<img*/}
+                            {/*    src="src/assets/MineSweeper.jpg"*/}
+                            {/*    alt="MineSweeper Project Screenshot"*/}
+                            {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
+                            {/*/>*/}
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
