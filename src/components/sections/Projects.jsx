@@ -14,10 +14,10 @@ export const Projects = () => {
                         Featured Projects
                     </h2>
                 </RevealOnScroll>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr">
                     <RevealOnScroll animation="flip-left" delay={0.2}>
                         <div
-                            className={`p-6 rounded-xl border backdrop-blur-sm shadow-lg hover:-translate-y-1 transition-all duration-300 ${
+                            className={`p-6 rounded-xl border backdrop-blur-sm shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col ${
                                 theme === 'dark'
                                     ? 'border-[#FFD700]/40 bg-[#1a2a52]/70 hover:border-[#FFD700]/60 hover:shadow-[0_4px_20px_rgba(255,215,0,0.4)]'
                                     : 'border-[#FFD700]/30 bg-white/70 hover:border-[#FFD700]/50 hover:shadow-[0_4px_20px_rgba(255,215,0,0.3)]'
@@ -25,6 +25,11 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FFD700]' : 'text-[#B8860B]'
                             }`}> Player-Prop Bets </h3>
+                            <img
+                                src="src/assets/ApeOffside.jpg"
+                                alt="ApeOffside Project Screenshot"
+                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"
+                            />
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
@@ -32,8 +37,10 @@ export const Projects = () => {
                                 statistics. Using live stats and AI assistant to help users make
                                 informed decisions and linking them to sport books. My focus in this project was
                                 on the backend, using Python and Django to create a RESTful API and integration of the
-                                AI assistant.
+                                AI assistant. I learned a lot about working with APIs to enhance the user experience and
+                                the use of colours and design to navigate the user through the site.
                             </p>
+
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {["React", "JavaScript", "Python", "Django", "HTML5/CSS3", "Docker"].map((tech, key) => (
                                     <span
@@ -49,9 +56,9 @@ export const Projects = () => {
                                 ))}
                             </div>
 
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center mt-auto">
                                 <a
-                                    href="https://github.com/CoghillB/ApeOffside.git"
+                                    href="https://View on GitHub.com/CoghillB/ApeOffside.git"
                                     className={`transition-colors duration-300 my-4 ${
                                         theme === 'dark'
                                             ? 'text-[#FFD700] hover:text-[#FFEC8B]'
@@ -60,7 +67,7 @@ export const Projects = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    View Project →
+                                    View on GitHub →
                                 </a>
                             </div>
                         </div>
@@ -69,7 +76,7 @@ export const Projects = () => {
                     <RevealOnScroll animation="flip-right" delay={0.3}>
                         <div
                             className={`glass p-6 rounded-xl border backdrop-blur-sm shadow-lg
-                                hover:-translate-y-1 transition-all duration-300 cursor-default ${
+                                hover:-translate-y-1 transition-all duration-300 cursor-default h-full flex flex-col ${
                                 theme === 'dark'
                                     ? 'border-[#FF9933]/40 bg-[#1a2a52]/70 hover:border-[#FF9933]/60 hover:shadow-[0_4px_20px_rgba(255,153,51,0.4)]'
                                     : 'border-[#FF9933]/30 bg-white/70 hover:border-[#FF9933]/50 hover:shadow-[0_4px_20px_rgba(255,153,51,0.3)]'
@@ -78,6 +85,12 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FF9933]' : 'text-[#D2691E]'
                             }`}>Day Planner</h3>
+                            <img
+                                src="src/assets/PrimatePlanner.jpg"
+                                alt="Day Planner Project Screenshot"
+                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"
+                            />
+
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
@@ -101,7 +114,7 @@ export const Projects = () => {
                                         </span>
                                 ))}
                             </div>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center mt-auto">
                                 <a
                                     href="https://github.com/CoghillB/Primate_Planner.git"
                                     className={`transition-colors duration-300 my-4 ${
@@ -112,7 +125,7 @@ export const Projects = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    View Project →
+                                    View on GitHub →
                                 </a>
                             </div>
                         </div>
@@ -121,7 +134,7 @@ export const Projects = () => {
                     <RevealOnScroll animation="flip-up" delay={0.4}>
                         <div
                             className={`glass p-6 rounded-xl border backdrop-blur-sm shadow-lg
-                                hover:-translate-y-1 transition-all duration-300 cursor-default ${
+                                hover:-translate-y-1 transition-all duration-300 cursor-default h-full flex flex-col ${
                                 theme === 'dark'
                                     ? 'border-[#FF5733]/40 bg-[#1a2a52]/70 hover:border-[#FF5733]/60 hover:shadow-[0_4px_20px_rgba(255,87,51,0.4)]'
                                     : 'border-[#FF5733]/30 bg-white/70 hover:border-[#FF5733]/50 hover:shadow-[0_4px_20px_rgba(255,87,51,0.3)]'
@@ -130,12 +143,21 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FF5733]' : 'text-[#B22222]'
                             }`}>Travel Planning Assistant / Budgeting Site</h3>
+                            <img
+                                src="src/assets/TravelPlanner.jpg"
+                                alt="Travel Planner Project Screenshot"
+                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"
+                            />
+
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
-                                Full-Stack travel planning site that allowed users to plan their
+                                Travel planning site that allowed users to plan their
                                 trips, and budget for them. Integrated with Google Maps API to allow users to
-                                view their trips on a map, and see the distance between locations.
+                                view their trips on a map, and see the distance between locations. I focused on the design
+                                and user experience of the site, using Figma to create a prototype and then implementing it in
+                                CSS and JavaScript. I learned how to set up the user interface to match themes to purpose
+                                of the site.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {["Node.js", "JavaScript", "HTML5", "CSS3"].map(
@@ -153,7 +175,7 @@ export const Projects = () => {
                                     )
                                 )}
                             </div>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center mt-auto">
                                 <a
                                     href="https://github.com/CoghillB/COSC205_CourseProject.git"
                                     className={`transition-colors duration-300 my-4 ${
@@ -164,7 +186,7 @@ export const Projects = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    View Project →
+                                    View on GitHub →
                                 </a>
                             </div>
                         </div>
@@ -173,7 +195,7 @@ export const Projects = () => {
                     <RevealOnScroll animation="flip-down" delay={0.5}>
                         <div
                             className={`glass p-6 rounded-xl border backdrop-blur-sm shadow-lg
-                                hover:-translate-y-1 transition-all duration-300 cursor-default ${
+                                hover:-translate-y-1 transition-all duration-300 cursor-default h-full flex flex-col ${
                                 theme === 'dark'
                                     ? 'border-[#FF66B2]/40 bg-[#1a2a52]/70 hover:border-[#FF66B2]/60 hover:shadow-[0_4px_20px_rgba(255,102,178,0.4)]'
                                     : 'border-[#FF66B2]/30 bg-white/70 hover:border-[#FF66B2]/50 hover:shadow-[0_4px_20px_rgba(255,102,178,0.3)]'
@@ -182,11 +204,17 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FF66B2]' : 'text-[#C71585]'
                             }`}>MineSweeper</h3>
+                            <img
+                                src="src/assets/MineSweeper.jpg"
+                                alt="MineSweeper Project Screenshot"
+                                className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"
+                            />
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
-                                Small game made for fun to practice using JavaFX and Java. It is a
-                                simple implementation of the classic game.
+                            Small game made for fun to practice using JavaFX and Java. It is a
+                                simple implementation of the classic game. I learned how to use JavaFX to create a
+                                user interface and how to use Java to create the game logic.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {["Java", "JavaFX"].map((tech, key) => (
@@ -202,7 +230,7 @@ export const Projects = () => {
                                         </span>
                                 ))}
                             </div>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center mt-auto">
                                 <a
                                     href="https://github.com/CoghillB/MineSweeper.git"
                                     className={`transition-colors duration-300 my-4 ${
@@ -213,7 +241,7 @@ export const Projects = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    View Project →
+                                    View on GitHub →
                                 </a>
                             </div>
                         </div>
