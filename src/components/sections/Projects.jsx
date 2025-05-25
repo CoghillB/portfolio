@@ -154,9 +154,12 @@ export const Projects = () => {
                             }`}>
                                 Travel planning site that allowed users to plan their
                                 trips, and budget for them. Integrated with Google Maps API to allow users to
-                                view their trips on a map, and see the distance between locations. I focused on the design
-                                and user experience of the site, using Figma to create a prototype and then implementing it in
-                                CSS and JavaScript. I learned how to set up the user interface to match themes to purpose
+                                view their trips on a map, and see the distance between locations. I focused on the
+                                design
+                                and user experience of the site, using Figma to create a prototype and then implementing
+                                it in
+                                CSS and JavaScript. I learned how to set up the user interface to match themes to
+                                purpose
                                 of the site.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
@@ -212,9 +215,10 @@ export const Projects = () => {
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
-                            Small game made for fun to practice using JavaFX and Java. It is a
-                                simple implementation of the classic game. I learned how to use JavaFX to create a
-                                user interface and how to use Java to create the game logic.
+                                Small game made for fun to practice using JavaFX and Java. It is a
+                                simple implementation of the classic game. It was made for a school project
+                                to showcase our knowledge of JavaFX and using Java to create a functional frontend that uses
+                                recursion to update the game board.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {["Java", "JavaFX"].map((tech, key) => (

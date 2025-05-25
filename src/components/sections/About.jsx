@@ -39,11 +39,13 @@ export const About = () => {
                                 ? 'border-[#FF9933]/40 bg-[#1a2a52]/70 text-gray-200'
                                 : 'border-[#FF9933]/20 bg-white/70 text-gray-700'
                         }`}>
-                        <p className={`mb-6 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
+
+                        <p className={`mb-6 text-center ${theme === 'dark' ? 'text-gray-200' : 'text-gray-700'}`}>
                             I'm a husband and proud father based in Kelowna, BC, currently building my second career as
                             a frontend developer. Before stepping into tech, I worked as a commercial diver, a
                             challenging and unconventional path that taught me resilience, creative problem-solving, and
-                            how to lead under pressure. Now, I bring that same determination and mindset into web
+                            how to lead under pressure. <br/><br/>Now, I bring that same determination and mindset into
+                            web
                             development. I chose frontend because I love helping people bring their ideas to
                             life—translating vision into something real, interactive, and meaningful on screen. Whether
                             it's a personal project or a client's dream, seeing it come together visually is what drives
@@ -76,53 +78,60 @@ export const About = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </RevealOnScroll>
 
-                <RevealOnScroll animation="fade-left" delay={0.3}>
-                    <div
-                        className={`p-6 rounded-xl border backdrop-blur-sm shadow-lg hover:-translate-y-1 transition-all duration-300 mt-8 ${
-                            theme === 'dark'
-                                ? 'border-[#FF5733]/40 bg-[#FF5733]/20'
-                                : 'border-[#FF9933]/20 bg-[#FF9933]/5'
-                        }`}>
-                        <h3 className={`text-xl font-bold mb-4 ${
-                            theme === 'dark' ? 'text-[#FF6347]' : 'text-[#FF9933]'
-                        }`}> 🏫 Education </h3>
-                        <ul className={`list-disc list-inside space-y-2 ${
-                            theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                        }`}>
-                            <li className="list-none">
-                                <strong>Diploma in Computer Information Systems</strong> - Okanagan College
-                                (2023-2025)
-                            </li>
-                            <li style={{listStyleType: "none"}}>
-                                <strong>Relevant Coursework:</strong><br/> Computer Programming II, Project Management,
-                                Client-side Web Systems,
-                                Computer Data Structures, Algorithms, Systems Analysis & Design, Web Development with
-                                LAMP,
-                                Information System Security
-                            </li>
-                            <br/>
-                            <li style={{listStyleType: "none"}}>
-                                <strong>Responsive Web Design Certification</strong> - FreeCodeCamp (2022) -{" "}
-                                <a
-                                    href="https://www.freecodecamp.org/certification/BraydenCoghill/responsive-web-design"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`hover:underline transition-colors duration-300 ${
-                                        theme === 'dark'
-                                            ? 'text-[#FF6347] hover:text-[#FF7F50]'
-                                            : 'text-[#FF9933] hover:text-[#8B0000]'
-                                    }`}
-                                >
-                                    View Certificate
-                                </a>
-                            </li>
-                        </ul>
+
+                        {/*<RevealOnScroll animation="fade-left" delay={0.3}>*/}
+                        <div
+                            className={`p-6 rounded-xl border backdrop-blur-sm shadow-lg hover:-translate-y-1 transition-all duration-300 mt-8 ${
+                                theme === 'dark'
+                                    ? 'border-[#FF5733]/40 bg-[#FF5733]/20'
+                                    : 'border-[#FF9933]/20 bg-[#FF9933]/5'
+                            }`}>
+                            <h3 className={`text-xl font-bold mb-4 ${
+                                theme === 'dark' ? 'text-[#FF6347]' : 'text-[#FF9933]'
+                            }`}>Education </h3>
+                            <ul className={`list-disc list-inside space-y-2 ${
+                                theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+                            }`}>
+                                <li className="list-none">
+                                    <strong>Diploma in Computer Information Systems</strong> - Okanagan College
+                                    (2023-2025)
+                                </li>
+                                <li style={{listStyleType: "none"}}>
+                                    <strong>Relevant Coursework:</strong><br/>
+                                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 list-disc list-inside">
+                                        <li>Computer Programming II</li>
+                                        <li>Project Management</li>
+                                        <li>Client-side Web Systems</li>
+                                        <li>Computer Data Structures</li>
+                                        <li>Algorithms</li>
+                                        <li>Systems Analysis & Design</li>
+                                        <li>Web Development with LAMP</li>
+                                        <li>Information System Security</li>
+                                    </ul>
+                                </li>
+                                <br/>
+                                <li style={{listStyleType: "none"}}>
+                                    <strong>Responsive Web Design Certification</strong> - FreeCodeCamp (2022) -{" "}
+                                    <a
+                                        href="https://www.freecodecamp.org/certification/BraydenCoghill/responsive-web-design"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`hover:underline transition-colors duration-300 ${
+                                            theme === 'dark'
+                                                ? 'text-[#FF6347] hover:text-[#FF7F50]'
+                                                : 'text-[#FF9933] hover:text-[#8B0000]'
+                                        }`}
+                                    >
+                                        View Certificate
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </RevealOnScroll>
             </div>
         </section>
-    );
+    )
+        ;
 };
