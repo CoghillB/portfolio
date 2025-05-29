@@ -2,4 +2,4 @@ DONE Personalize 'About me' to talk about family, moving into a second career, f
 DONE Update portfolio theme to "Adaptive Biophilic" color scheme that works well in both dark and light modes.
 DONE Improve light theme readability by enhancing text contrast and adjusting background colors.
 TODO Add a picture of me to the 'Home' section.
-TODO Add link to resume
+DONE Add link to resume
