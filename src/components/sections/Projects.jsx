@@ -206,7 +206,7 @@ export const Projects = () => {
                         >
                             <h3 className={`text-xl font-bold mb-2 ${
                                 theme === 'dark' ? 'text-[#FF66B2]' : 'text-[#C71585]'
-                            }`}>MineSweeper</h3>
+                            }`}>EdgeFinder: AI-Powered NFL Prop Betting Platform</h3>
                             {/*<img*/}
                             {/*    src="src/assets/MineSweeper.jpg"*/}
                             {/*    alt="MineSweeper Project Screenshot"*/}
@@ -215,13 +215,13 @@ export const Projects = () => {
                             <p className={`mb-4 ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
-                                Small game made for fun to practice using JavaFX and Java. It is a
-                                simple implementation of the classic game. It was made for a school project
-                                to showcase our knowledge of JavaFX and using Java to create a functional frontend that uses
-                                recursion to update the game board.
+                                I designed and built a modern, responsive landing page for EdgeFinder, an AI-driven NFL
+                                prop betting tool that turns complex data into actionable insights. The site highlights
+                                the product’s core features—including machine learning-based recommendations, confidence
+                                ratings, and trend analysis—through an intuitive, interactive UI.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["Java", "JavaFX"].map((tech, key) => (
+                                {["React(Vite)", "Tailwind CSS", "Mailchimp"].map((tech, key) => (
                                     <span
                                         key={key}
                                         className={`py-1 px-3 rounded-full text-sm transition-all duration-300 hover:-translate-y-0.5 ${
@@ -236,7 +236,7 @@ export const Projects = () => {
                             </div>
                             <div className="flex justify-between items-center mt-auto">
                                 <a
-                                    href="https://github.com/CoghillB/MineSweeper.git"
+                                    href="https://www.edgefinder.ca"
                                     className={`transition-colors duration-300 my-4 ${
                                         theme === 'dark'
                                             ? 'text-[#FF66B2] hover:text-[#FF85AD]'
@@ -245,7 +245,7 @@ export const Projects = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    View on GitHub →
+                                    View Site →
                                 </a>
                             </div>
                         </div>
