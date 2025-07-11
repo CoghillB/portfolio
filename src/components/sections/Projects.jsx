@@ -22,7 +22,7 @@ export const Projects = () => {
                                     ? 'border-[#FFD700]/40 bg-[#1a2a52]/70 hover:border-[#FFD700]/60 hover:shadow-[0_4px_20px_rgba(255,215,0,0.4)]'
                                     : 'border-[#FFD700]/30 bg-white/70 hover:border-[#FFD700]/50 hover:shadow-[0_4px_20px_rgba(255,215,0,0.3)]'
                             }`}>
-                            <h3 className={`text-xl font-bold mb-2 ${
+                            <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FFD700]' : 'text-[#B8860B]'
                             }`}> Player-Prop Bets </h3>
                             {/*<img*/}
@@ -30,7 +30,7 @@ export const Projects = () => {
                             {/*    alt="ApeOffside Project Screenshot"*/}
                             {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
                             {/*/>*/}
-                            <p className={`mb-4 ${
+                            <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
                                 Live platform for player-prop betting with real-time odds and
@@ -56,7 +56,7 @@ export const Projects = () => {
                                 ))}
                             </div>
 
-                            <div className="flex justify-between items-center mt-auto">
+                            <div className="flex justify-between items-center">
                                 <a
                                     href="https://View on GitHub.com/CoghillB/ApeOffside.git"
                                     className={`transition-colors duration-300 my-4 ${
@@ -82,26 +82,28 @@ export const Projects = () => {
                                     : 'border-[#FF9933]/30 bg-white/70 hover:border-[#FF9933]/50 hover:shadow-[0_4px_20px_rgba(255,153,51,0.3)]'
                             }`}
                         >
-                            <h3 className={`text-xl font-bold mb-2 ${
+                            <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FF9933]' : 'text-[#D2691E]'
-                            }`}>Day Planner</h3>
+                            }`}>Kelowna Creative</h3>
                             {/*<img*/}
                             {/*    src="src/assets/PrimatePlanner.jpg"*/}
                             {/*    alt="Day Planner Project Screenshot"*/}
                             {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
                             {/*/>*/}
 
-                            <p className={`mb-4 ${
+                            <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
-                                Day planner that was built for a final project. It allows users to
-                                add events to a calendar, and view them in a list. The events are stored in a
-                                database and can be edited or deleted. It also allows the user to track fitness goals
-                                and
-                                view progress through graphs.
+                                I engineered a dynamic and visually immersive website for Kelowna Creative to reflect
+                                their high-end brand identity. Leveraging a modern tech stack of Next.js, TypeScript,
+                                and Tailwind CSS, the site features a seamless, fixed background for a unified user
+                                experience. I implemented sophisticated UI elements, including elegant "glassmorphism"
+                                cards, subtle 3D transforms, and smooth animations with Framer Motion and AOS. The final
+                                product is a fully responsive, polished platform that effectively showcases their
+                                portfolio and establishes them as a leading creative force.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["PHP", "CSS3", "JavaScript", "HTML5", "MySQL"].map((tech, key) => (
+                                {["Typescript", "Tailwind CSS", "Next.js", "Framer Motion", "AOS"].map((tech, key) => (
                                     <span
                                         key={key}
                                         className={`py-1 px-3 rounded-full text-sm transition-all duration-300 hover:-translate-y-0.5 ${
@@ -114,9 +116,9 @@ export const Projects = () => {
                                         </span>
                                 ))}
                             </div>
-                            <div className="flex justify-between items-center mt-auto">
+                            <div className="flex justify-between items-center">
                                 <a
-                                    href="https://github.com/CoghillB/Primate_Planner.git"
+                                    href="https://www.kelownacreative.ca"
                                     className={`transition-colors duration-300 my-4 ${
                                         theme === 'dark'
                                             ? 'text-[#FF9933] hover:text-[#FFA54F]'
@@ -125,7 +127,7 @@ export const Projects = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    View on GitHub →
+                                    View Site →
                                 </a>
                             </div>
                         </div>
@@ -140,7 +142,7 @@ export const Projects = () => {
                                     : 'border-[#FF5733]/30 bg-white/70 hover:border-[#FF5733]/50 hover:shadow-[0_4px_20px_rgba(255,87,51,0.3)]'
                             }`}
                         >
-                            <h3 className={`text-xl font-bold mb-2 ${
+                            <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FF5733]' : 'text-[#B22222]'
                             }`}>Travel Planning Assistant / Budgeting Site</h3>
                             {/*<img*/}
@@ -149,7 +151,7 @@ export const Projects = () => {
                             {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
                             {/*/>*/}
 
-                            <p className={`mb-4 ${
+                            <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
                                 Travel planning site that allowed users to plan their
@@ -178,7 +180,7 @@ export const Projects = () => {
                                     )
                                 )}
                             </div>
-                            <div className="flex justify-between items-center mt-auto">
+                            <div className="flex justify-between items-center">
                                 <a
                                     href="https://github.com/CoghillB/COSC205_CourseProject.git"
                                     className={`transition-colors duration-300 my-4 ${
@@ -204,7 +206,7 @@ export const Projects = () => {
                                     : 'border-[#FF66B2]/30 bg-white/70 hover:border-[#FF66B2]/50 hover:shadow-[0_4px_20px_rgba(255,102,178,0.3)]'
                             }`}
                         >
-                            <h3 className={`text-xl font-bold mb-2 ${
+                            <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FF66B2]' : 'text-[#C71585]'
                             }`}>EdgeFinder: AI-Powered NFL Prop Betting Platform</h3>
                             {/*<img*/}
@@ -212,7 +214,7 @@ export const Projects = () => {
                             {/*    alt="MineSweeper Project Screenshot"*/}
                             {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
                             {/*/>*/}
-                            <p className={`mb-4 ${
+                            <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
                                 I designed and built a modern, responsive landing page for EdgeFinder, an AI-driven NFL
@@ -234,7 +236,7 @@ export const Projects = () => {
                                         </span>
                                 ))}
                             </div>
-                            <div className="flex justify-between items-center mt-auto">
+                            <div className="flex justify-between items-center">
                                 <a
                                     href="https://www.edgefinder.ca"
                                     className={`transition-colors duration-300 my-4 ${
