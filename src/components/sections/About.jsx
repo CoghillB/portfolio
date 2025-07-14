@@ -5,6 +5,7 @@ export const About = () => {
     const {theme} = useTheme();
     const frontendSkills = [
         "Java",
+        "Typescript",
         "Python",
         "Using REST APIs",
         "React",
@@ -13,11 +14,18 @@ export const About = () => {
         "JavaFX",
         "CSS3",
         "TailwindCSS",
+        "Next.js",
+        "Node.js",
+        "Django",
+        "Fastify",
         "Bootstrap",
         "HTML5",
         "Vite",
         "Responsive Design",
-        "VB.NET"
+        "VB.NET",
+        "GitHub",
+        "PostgreSQL",
+        "MySQL"
     ];
 
     return (
@@ -61,7 +69,7 @@ export const About = () => {
                                 }`}>
                                 <h3 className={`text-xl font-bold mb-4 ${
                                     theme === 'dark' ? 'text-[#FF5733]' : 'text-[#FF5733]'
-                                }`}> Frontend Skills</h3>
+                                }`}> Technical Skills</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {frontendSkills.map((tech, key) => (
                                         <span

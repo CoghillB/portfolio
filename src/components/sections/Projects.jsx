@@ -133,7 +133,7 @@ export const Projects = () => {
                         </div>
                     </RevealOnScroll>
 
-                    <RevealOnScroll animation="flip-up" delay={0.4}>
+                    <RevealOnScroll animation="flip-up" delay={0.2}>
                         <div
                             className={`glass p-6 rounded-xl border backdrop-blur-sm shadow-lg
                                 hover:-translate-y-1 transition-all duration-300 cursor-default h-full flex flex-col ${
@@ -197,7 +197,7 @@ export const Projects = () => {
                         </div>
                     </RevealOnScroll>
 
-                    <RevealOnScroll animation="flip-down" delay={0.5}>
+                    <RevealOnScroll animation="fade-up" delay={0.5}>
                         <div
                             className={`glass p-6 rounded-xl border backdrop-blur-sm shadow-lg
                                 hover:-translate-y-1 transition-all duration-300 cursor-default h-full flex flex-col ${
@@ -223,7 +223,7 @@ export const Projects = () => {
                                 ratings, and trend analysis—through an intuitive, interactive UI.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
-                                {["React(Vite)", "Tailwind CSS", "Mailchimp"].map((tech, key) => (
+                                {["React(Vite)", "Tailwind CSS", "Mailchimp", "Fastify", "TypeScript", "AI Integration", "Node.js", "Supabase"].map((tech, key) => (
                                     <span
                                         key={key}
                                         className={`py-1 px-3 rounded-full text-sm transition-all duration-300 hover:-translate-y-0.5 ${
