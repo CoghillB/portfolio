@@ -25,26 +25,6 @@ export const Footer = () => {
                         </svg>
                         LinkedIn
                     </a>
-                    <a
-                        href="/portfolio/resume.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[#4169E1] hover:text-[#336699] transition-colors duration-300 flex items-center gap-2 hover:-translate-y-0.5"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            className="inline-block"
-                        >
-                            <path
-                                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8 11h8v1H8v-1zm0 2h8v1H8v-1zm0 2h8v1H8v-1z"
-                            />
-                        </svg>
-                        Resume
-                    </a>
                 </div>
                 <p className="mt-4 text-sm text-gray-500">© {new Date().getFullYear()} Brayden Coghill. All rights
                     reserved.</p>
