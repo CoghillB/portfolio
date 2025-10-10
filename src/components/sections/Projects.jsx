@@ -1,6 +1,23 @@
 import {RevealOnScroll} from "../RevealOnScroll";
 import {useTheme} from "../../context/ThemeContext";
 
+/**
+ * Represents a React functional component responsible for rendering the "Projects" section of the page.
+ * This section highlights featured projects with detailed descriptions, technologies used, and external links.
+ * Includes interactive design elements and responsive styling tailored to the active theme (light or dark).
+ *
+ * The "Projects" section features:
+ * - A title with playful gradient text styling.
+ * - A responsive grid layout to display project cards, adjusting for screen sizes.
+ * - Animated elements revealed on scroll for visual engagement.
+ * - Dynamic styling adjustments based on the current theme.
+ * - Comprehensive project details, including a description, technology stack, and external GitHub links.
+ *
+ * Dependencies:
+ * - useTheme (for handling light/dark theme changes).
+ * - RevealOnScroll (for scroll-triggered animations).
+ * - Tailwind CSS classes for styling.
+ */
 export const Projects = () => {
     const {theme} = useTheme();
     return (
@@ -15,63 +32,7 @@ export const Projects = () => {
                     </h2>
                 </RevealOnScroll>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr">
-                    <RevealOnScroll animation="flip-left" delay={0.2}>
-                        <div
-                            className={`p-6 rounded-xl border backdrop-blur-sm shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col ${
-                                theme === 'dark'
-                                    ? 'border-[#FFD700]/40 bg-[#1a2a52]/70 hover:border-[#FFD700]/60 hover:shadow-[0_4px_20px_rgba(255,215,0,0.4)]'
-                                    : 'border-[#FFD700]/30 bg-white/70 hover:border-[#FFD700]/50 hover:shadow-[0_4px_20px_rgba(255,215,0,0.3)]'
-                            }`}>
-                            <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
-                                theme === 'dark' ? 'text-[#FFD700]' : 'text-[#B8860B]'
-                            }`}> Player-Prop Bets </h3>
-                            {/*<img*/}
-                            {/*    src="src/assets/ApeOffside.jpg"*/}
-                            {/*    alt="ApeOffside Project Screenshot"*/}
-                            {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
-                            {/*/>*/}
-                            <p className={`mb-4 flex-grow ${
-                                theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                            }`}>
-                                Live platform for player-prop betting with real-time odds and
-                                statistics. Using live stats and AI assistant to help users make
-                                informed decisions and linking them to sport books. My focus in this project was
-                                on the backend, using Python and Django to create a RESTful API and integration of the
-                                AI assistant. I learned a lot about working with APIs to enhance the user experience and
-                                the use of colours and design to navigate the user through the site.
-                            </p>
 
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["React", "JavaScript", "Python", "Django", "HTML5/CSS3", "Docker"].map((tech, key) => (
-                                    <span
-                                        key={key}
-                                        className={`py-1 px-3 rounded-full text-sm transition-all duration-300 cursor-default ${
-                                            theme === 'dark'
-                                                ? 'bg-[#FFD700]/30 text-[#FFD700] hover:bg-[#FFD700]/40 hover:shadow-[0_2px_8px_rgba(255,215,0,0.5)]'
-                                                : 'bg-[#FFD700]/20 text-[#B8860B] hover:bg-[#FFD700]/30 hover:shadow-[0_2px_8px_rgba(255,215,0,0.3)]'
-                                        }`}
-                                    >
-                                            {tech}
-                                        </span>
-                                ))}
-                            </div>
-
-                            <div className="flex justify-between items-center">
-                                <a
-                                    href="https://View on GitHub.com/CoghillB/ApeOffside.git"
-                                    className={`transition-colors duration-300 my-4 ${
-                                        theme === 'dark'
-                                            ? 'text-[#FFD700] hover:text-[#FFEC8B]'
-                                            : 'text-[#B8860B] hover:text-[#DAA520]'
-                                    }`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    View on GitHub →
-                                </a>
-                            </div>
-                        </div>
-                    </RevealOnScroll>
 
                     <RevealOnScroll animation="flip-right" delay={0.3}>
                         <div
@@ -85,11 +46,6 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FF9933]' : 'text-[#D2691E]'
                             }`}>Kelowna Creative</h3>
-                            {/*<img*/}
-                            {/*    src="src/assets/PrimatePlanner.jpg"*/}
-                            {/*    alt="Day Planner Project Screenshot"*/}
-                            {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
-                            {/*/>*/}
 
                             <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
@@ -133,6 +89,115 @@ export const Projects = () => {
                         </div>
                     </RevealOnScroll>
 
+                    {/* EdgeFinder Project Card */}
+                    <RevealOnScroll animation="fade-up" delay={0.5}>
+                        <div
+                            className={`glass p-6 rounded-xl border backdrop-blur-sm shadow-lg
+                                hover:-translate-y-1 transition-all duration-300 cursor-default h-full flex flex-col ${
+                                theme === 'dark'
+                                    ? 'border-[#FF66B2]/40 bg-[#1a2a52]/70 hover:border-[#FF66B2]/60 hover:shadow-[0_4px_20px_rgba(255,102,178,0.4)]'
+                                    : 'border-[#FF66B2]/30 bg-white/70 hover:border-[#FF66B2]/50 hover:shadow-[0_4px_20px_rgba(255,102,178,0.3)]'
+                            }`}
+                        >
+                            <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
+                                theme === 'dark' ? 'text-[#FF66B2]' : 'text-[#C71585]'
+                            }`}>EdgeFinder: AI-Powered NFL Prop Betting Platform</h3>
+
+                            <p className={`mb-4 flex-grow ${
+                                theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+                            }`}>
+                                I designed and built a modern, responsive landing page for EdgeFinder, an AI-driven NFL
+                                prop betting tool that turns complex data into actionable insights. The site highlights
+                                the product’s core features—including machine learning-based recommendations, confidence
+                                ratings, and trend analysis—through an intuitive, interactive UI.
+                            </p>
+                            <div className="flex flex-wrap gap-2 mb-4">
+                                {["React(Vite)", "Tailwind CSS", "Mailchimp", "Fastify", "TypeScript", "AI Integration", "Node.js", "Supabase"].map((tech, key) => (
+                                    <span
+                                        key={key}
+                                        className={`py-1 px-3 rounded-full text-sm transition-all duration-300 hover:-translate-y-0.5 ${
+                                            theme === 'dark'
+                                                ? 'bg-[#FF66B2]/30 text-[#FF66B2] hover:bg-[#FF66B2]/40 hover:shadow-[0_2px_8px_rgba(255,102,178,0.5)]'
+                                                : 'bg-[#FF66B2]/20 text-[#C71585] hover:bg-[#FF66B2]/30 hover:shadow-[0_2px_8px_rgba(255,102,178,0.3)]'
+                                        }`}
+                                    >
+                                            {tech}
+                                        </span>
+                                ))}
+                            </div>
+                            <div className="flex justify-between items-center">
+                                <a
+                                    href="https://www.edgefinder.ca"
+                                    className={`transition-colors duration-300 my-4 ${
+                                        theme === 'dark'
+                                            ? 'text-[#FF66B2] hover:text-[#FF85AD]'
+                                            : 'text-[#C71585] hover:text-[#DB7093]'
+                                    }`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View Site →
+                                </a>
+                            </div>
+                        </div>
+                    </RevealOnScroll>
+
+                    {/* College Capstone Project Card */}
+                    <RevealOnScroll animation="flip-left" delay={0.2}>
+                        <div
+                            className={`p-6 rounded-xl border backdrop-blur-sm shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col ${
+                                theme === 'dark'
+                                    ? 'border-[#FFD700]/40 bg-[#1a2a52]/70 hover:border-[#FFD700]/60 hover:shadow-[0_4px_20px_rgba(255,215,0,0.4)]'
+                                    : 'border-[#FFD700]/30 bg-white/70 hover:border-[#FFD700]/50 hover:shadow-[0_4px_20px_rgba(255,215,0,0.3)]'
+                            }`}>
+                            <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
+                                theme === 'dark' ? 'text-[#FFD700]' : 'text-[#B8860B]'
+                            }`}> Player-Prop Bets </h3>
+
+                            <p className={`mb-4 flex-grow ${
+                                theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
+                            }`}>
+                                Live platform for player-prop betting with real-time odds and
+                                statistics. Using live stats and AI assistant to help users make
+                                informed decisions and linking them to sport books. My focus in this project was
+                                on the backend, using Python and Django to create a RESTful API and integration of the
+                                AI assistant. I learned a lot about working with APIs to enhance the user experience and
+                                the use of colours and design to navigate the user through the site.
+                            </p>
+
+                            <div className="flex flex-wrap gap-2 mb-4">
+                                {["React", "JavaScript", "Python", "Django", "HTML5/CSS3", "Docker"].map((tech, key) => (
+                                    <span
+                                        key={key}
+                                        className={`py-1 px-3 rounded-full text-sm transition-all duration-300 cursor-default ${
+                                            theme === 'dark'
+                                                ? 'bg-[#FFD700]/30 text-[#FFD700] hover:bg-[#FFD700]/40 hover:shadow-[0_2px_8px_rgba(255,215,0,0.5)]'
+                                                : 'bg-[#FFD700]/20 text-[#B8860B] hover:bg-[#FFD700]/30 hover:shadow-[0_2px_8px_rgba(255,215,0,0.3)]'
+                                        }`}
+                                    >
+                                            {tech}
+                                        </span>
+                                ))}
+                            </div>
+
+                            <div className="flex justify-between items-center">
+                                <a
+                                    href="https://View on GitHub.com/CoghillB/ApeOffside.git"
+                                    className={`transition-colors duration-300 my-4 ${
+                                        theme === 'dark'
+                                            ? 'text-[#FFD700] hover:text-[#FFEC8B]'
+                                            : 'text-[#B8860B] hover:text-[#DAA520]'
+                                    }`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    View on GitHub →
+                                </a>
+                            </div>
+                        </div>
+                    </RevealOnScroll>
+
+                    {/* College Travel Planning Project Card */}
                     <RevealOnScroll animation="flip-up" delay={0.2}>
                         <div
                             className={`glass p-6 rounded-xl border backdrop-blur-sm shadow-lg
@@ -145,11 +210,7 @@ export const Projects = () => {
                             <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FF5733]' : 'text-[#B22222]'
                             }`}>Travel Planning Assistant / Budgeting Site</h3>
-                            {/*<img*/}
-                            {/*    src="src/assets/TravelPlanner.jpg"*/}
-                            {/*    alt="Travel Planner Project Screenshot"*/}
-                            {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
-                            {/*/>*/}
+
 
                             <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
@@ -192,62 +253,6 @@ export const Projects = () => {
                                     rel="noopener noreferrer"
                                 >
                                     View on GitHub →
-                                </a>
-                            </div>
-                        </div>
-                    </RevealOnScroll>
-
-                    <RevealOnScroll animation="fade-up" delay={0.5}>
-                        <div
-                            className={`glass p-6 rounded-xl border backdrop-blur-sm shadow-lg
-                                hover:-translate-y-1 transition-all duration-300 cursor-default h-full flex flex-col ${
-                                theme === 'dark'
-                                    ? 'border-[#FF66B2]/40 bg-[#1a2a52]/70 hover:border-[#FF66B2]/60 hover:shadow-[0_4px_20px_rgba(255,102,178,0.4)]'
-                                    : 'border-[#FF66B2]/30 bg-white/70 hover:border-[#FF66B2]/50 hover:shadow-[0_4px_20px_rgba(255,102,178,0.3)]'
-                            }`}
-                        >
-                            <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
-                                theme === 'dark' ? 'text-[#FF66B2]' : 'text-[#C71585]'
-                            }`}>EdgeFinder: AI-Powered NFL Prop Betting Platform</h3>
-                            {/*<img*/}
-                            {/*    src="src/assets/MineSweeper.jpg"*/}
-                            {/*    alt="MineSweeper Project Screenshot"*/}
-                            {/*    className="w-full h-48 object-cover rounded-lg mb-4 shadow-md hover:shadow-xl transition-shadow duration-300"*/}
-                            {/*/>*/}
-                            <p className={`mb-4 flex-grow ${
-                                theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                            }`}>
-                                I designed and built a modern, responsive landing page for EdgeFinder, an AI-driven NFL
-                                prop betting tool that turns complex data into actionable insights. The site highlights
-                                the product’s core features—including machine learning-based recommendations, confidence
-                                ratings, and trend analysis—through an intuitive, interactive UI.
-                            </p>
-                            <div className="flex flex-wrap gap-2 mb-4">
-                                {["React(Vite)", "Tailwind CSS", "Mailchimp", "Fastify", "TypeScript", "AI Integration", "Node.js", "Supabase"].map((tech, key) => (
-                                    <span
-                                        key={key}
-                                        className={`py-1 px-3 rounded-full text-sm transition-all duration-300 hover:-translate-y-0.5 ${
-                                            theme === 'dark'
-                                                ? 'bg-[#FF66B2]/30 text-[#FF66B2] hover:bg-[#FF66B2]/40 hover:shadow-[0_2px_8px_rgba(255,102,178,0.5)]'
-                                                : 'bg-[#FF66B2]/20 text-[#C71585] hover:bg-[#FF66B2]/30 hover:shadow-[0_2px_8px_rgba(255,102,178,0.3)]'
-                                        }`}
-                                    >
-                                            {tech}
-                                        </span>
-                                ))}
-                            </div>
-                            <div className="flex justify-between items-center">
-                                <a
-                                    href="https://www.edgefinder.ca"
-                                    className={`transition-colors duration-300 my-4 ${
-                                        theme === 'dark'
-                                            ? 'text-[#FF66B2] hover:text-[#FF85AD]'
-                                            : 'text-[#C71585] hover:text-[#DB7093]'
-                                    }`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    View Site →
                                 </a>
                             </div>
                         </div>
