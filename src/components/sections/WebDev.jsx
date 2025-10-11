@@ -3,6 +3,7 @@ import React from "react";
 import {RevealOnScroll} from "../RevealOnScroll";
 import ImageWithSkeleton from "../ImageWithSkeleton";
 import {Contact} from "./Contact.jsx";
+import aboutMeImg from "/public/aboutme.jpg";
 
 /* Palette
 Primary: #1E3A8A (Deep blue)
@@ -255,7 +256,7 @@ const WebDev = () => {
                         <div className="flex flex-col md:flex-row items-center gap-8">
                             <div className="md:w-1/3 text-center">
                                 <ImageWithSkeleton
-                                    src="/aboutme.jpg"
+                                    src={aboutMeImg}
                                     alt="Brayden Coghill"
                                     className="rounded-2xl w-auto h-auto mx-auto border-4 border-white/20 shadow-lg"
                                 />
