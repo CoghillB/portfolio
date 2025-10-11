@@ -105,8 +105,7 @@ export const Projects = () => {
 
                             <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                            }`}>
-                                I designed and built a modern, responsive landing page for EdgeFinder, an AI-driven NFL
+                            }`}>I designed and built a modern, responsive landing page for EdgeFinder, an AI-driven NFL
                                 prop betting tool that turns complex data into actionable insights. The site highlights
                                 the product’s core features—including machine learning-based recommendations, confidence
                                 ratings, and trend analysis—through an intuitive, interactive UI.
