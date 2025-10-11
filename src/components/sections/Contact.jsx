@@ -1,11 +1,17 @@
 import emailjs from "emailjs-com";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {RevealOnScroll} from "../RevealOnScroll";
 import {useTheme} from "../../context/ThemeContext";
 
 export const Contact = ({palette}) => {
     const {theme} = useTheme();
     const isDark = theme === "dark";
+
+    const serviceId = import.meta.env.VITE_SERVICE_ID;
+    const templateId = import.meta.env.VITE_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_PUBLIC_KEY;
+
+    const [isConfigValid, setIsConfigValid] = useState(true);
     const [formData, setFormData] = useState({
         name: "",
         phoneNumber: "",
@@ -13,21 +19,52 @@ export const Contact = ({palette}) => {
         message: "",
     });
 
+    useEffect(() => {
+        const missing = [];
+        if (!publicKey) missing.push("VITE_PUBLIC_KEY");
+        if (!serviceId) missing.push("VITE_SERVICE_ID");
+        if (!templateId) missing.push("VITE_TEMPLATE_ID");
+
+        if (missing.length) {
+            setIsConfigValid(false);
+            console.error(
+                `EmailJS config is missing: ${missing.join(", ")}. Please set these in your .env (Vite requires the VITE_ prefix).`
+            );
+            return;
+        }
+
+        try {
+            // Initialize EmailJS with the public key to avoid runtime errors in production builds
+            emailjs.init(publicKey);
+        } catch (err) {
+            console.error("Failed to initialize EmailJS:", err);
+            setIsConfigValid(false);
+        }
+    }, [publicKey, serviceId, templateId]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        if (!isConfigValid) {
+            alert("Email service is not configured. Please try again later.");
+            return;
+        }
+
         emailjs
             .sendForm(
-                import.meta.env.VITE_SERVICE_ID,
-                import.meta.env.VITE_TEMPLATE_ID,
+                serviceId,
+                templateId,
                 e.target,
-                import.meta.env.VITE_PUBLIC_KEY
+                publicKey
             )
             .then(() => {
                 alert("Message Sent!");
                 setFormData({name: "", phoneNumber: "", email: "", message: ""});
             })
-            .catch(() => alert("Oops! Something went wrong. Please try again."));
+            .catch((err) => {
+                console.error("EmailJS send error:", err);
+                alert("Oops! Something went wrong. Please try again.");
+            });
     };
 
     const defaultPalette = {
@@ -130,9 +167,12 @@ export const Contact = ({palette}) => {
                     <RevealOnScroll animation="zoom-in" delay={0.5}>
                         <button
                             type="submit"
-                            className={`w-full text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 relative overflow-hidden hover:-translate-y-1 ${p.button}`}
+                            disabled={!isConfigValid}
+                            aria-disabled={!isConfigValid}
+                            title={!isConfigValid ? "Email service not configured" : undefined}
+                            className={`w-full text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 relative overflow-hidden ${isConfigValid ? "hover:-translate-y-1" : "opacity-60 cursor-not-allowed"} ${p.button}`}
                         >
-                            Send Message
+                            {isConfigValid ? "Send Message" : "Unavailable"}
                         </button>
                     </RevealOnScroll>
                 </form>
