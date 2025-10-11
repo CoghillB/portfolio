@@ -255,7 +255,7 @@ const WebDev = () => {
                         <div className="flex flex-col md:flex-row items-center gap-8">
                             <div className="md:w-1/3 text-center">
                                 <ImageWithSkeleton
-                                    src="/public/aboutme.jpg"
+                                    src="/aboutme.jpg"
                                     alt="Brayden Coghill"
                                     className="rounded-2xl w-auto h-auto mx-auto border-4 border-white/20 shadow-lg"
                                 />
@@ -274,7 +274,8 @@ const WebDev = () => {
                                     in customers. Every project I take on is designed to be mobile-friendly, easy to
                                     manage, and optimized for search engines so your business can stand out locally.
                                     <br/><br/>
-                                    I started Coghill Dev to give local business owners a more personal, straightforward
+                                    I started this service to give local business owners a more personal,
+                                    straightforward
                                     option than large agencies. When you work with me, you'll get clear communication,
                                     quick turnaround times, and a site that genuinely represents your business.
                                 </p>
