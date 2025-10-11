@@ -29,6 +29,11 @@ const WebDev = () => {
                 ? "border-[#1E3A8A]/40 focus:border-[#10B981]/70 focus:ring-1 focus:ring-[#10B981]/70"
                 : "border-gray-300/70 focus:border-[#1E3A8A]/80 focus:ring-1 focus:ring-[#1E3A8A]/80",
         },
+        phoneNumber: {
+            border: isDark
+                ? "border-[#1E3A8A]/40 focus:border-[#10B981]/70 focus:ring-1 focus:ring-[#10B981]/70"
+                : "border-gray-300/70 focus:border-[#1E3A8A]/80 focus:ring-1 focus:ring-[#1E3A8A]/80",
+        },
         email: {
             border: isDark
                 ? "border-[#1E3A8A]/40 focus:border-[#10B981]/70 focus:ring-1 focus:ring-[#10B981]/70"

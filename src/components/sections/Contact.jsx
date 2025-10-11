@@ -1,13 +1,14 @@
 import emailjs from "emailjs-com";
-import { useState } from "react";
-import { RevealOnScroll } from "../RevealOnScroll";
-import { useTheme } from "../../context/ThemeContext";
+import {useState} from "react";
+import {RevealOnScroll} from "../RevealOnScroll";
+import {useTheme} from "../../context/ThemeContext";
 
-export const Contact = ({ palette }) => {
-    const { theme } = useTheme();
+export const Contact = ({palette}) => {
+    const {theme} = useTheme();
     const isDark = theme === "dark";
     const [formData, setFormData] = useState({
         name: "",
+        phoneNumber: "",
         email: "",
         message: "",
     });
@@ -24,7 +25,7 @@ export const Contact = ({ palette }) => {
             )
             .then(() => {
                 alert("Message Sent!");
-                setFormData({ name: "", email: "", message: "" });
+                setFormData({name: "", phoneNumber: "", email: "", message: ""});
             })
             .catch(() => alert("Oops! Something went wrong. Please try again."));
     };
@@ -37,6 +38,9 @@ export const Contact = ({ palette }) => {
             : "bg-[#f5f5f5]/70 text-gray-700 placeholder-gray-500",
         name: {
             border: isDark ? "border-[#FF5733]/40 focus:border-[#FF5733]/70 focus:ring-1 focus:ring-[#FF5733]/70" : "border-[#FF5733]/20 focus:border-[#FF5733]/50 focus:ring-1 focus:ring-[#FF5733]/50",
+        },
+        phoneNumber: {
+            border: isDark ? "border-[#FF9933]/40 focus:border-[#FF9933]/70 focus:ring-1 focus:ring-[#FF9933]/70" : "border-[#FF9933]/20 focus:border-[#FF9933]/50 focus:ring-1 focus:ring-[#FF9933]/50",
         },
         email: {
             border: isDark ? "border-[#FF9933]/40 focus:border-[#FF9933]/70 focus:ring-1 focus:ring-[#FF9933]/70" : "border-[#FF9933]/20 focus:border-[#FF9933]/50 focus:ring-1 focus:ring-[#FF9933]/50",
@@ -54,7 +58,8 @@ export const Contact = ({ palette }) => {
             id="contact"
             className="min-h-screen flex items-center justify-center py-20"
         >
-            <div className={`px-4 w-full min-w-[300px] md:w-[500px] sm:w-2/3 p-8 rounded-xl border backdrop-blur-sm shadow-lg ${p.container}`}>
+            <div
+                className={`px-4 w-full min-w-[300px] md:w-[500px] sm:w-2/3 p-8 rounded-xl border backdrop-blur-sm shadow-lg ${p.container}`}>
                 <RevealOnScroll animation="rotate" delay={0.1}>
                     <h2 className={`text-3xl font-bold mb-8 bg-clip-text text-transparent text-center ${p.title}`}>
                         Get In Touch
@@ -72,7 +77,22 @@ export const Contact = ({ palette }) => {
                                 value={formData.name}
                                 className={`w-full rounded-lg px-4 py-3 transition-all duration-300 focus:outline-none ${p.input} ${p.name.border}`}
                                 placeholder="Name..."
-                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            />
+                        </div>
+                    </RevealOnScroll>
+
+                    <RevealOnScroll animation="fade-left" delay={0.3}>
+                        <div className="relative">
+                            <input
+                                type="tel"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                optional
+                                value={formData.phoneNumber}
+                                className={`w-full rounded-lg px-4 py-3 transition-all duration-300 focus:outline-none ${p.input} ${p.phoneNumber.border}`}
+                                placeholder="Phone Number..."
+                                onChange={(e) => setFormData({...formData, phoneNumber: e.target.value})}
                             />
                         </div>
                     </RevealOnScroll>
@@ -87,7 +107,7 @@ export const Contact = ({ palette }) => {
                                 value={formData.email}
                                 className={`w-full rounded-lg px-4 py-3 transition-all duration-300 focus:outline-none ${p.input} ${p.email.border}`}
                                 placeholder="example@gmail.com"
-                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                onChange={(e) => setFormData({...formData, email: e.target.value})}
                             />
                         </div>
                     </RevealOnScroll>
@@ -102,7 +122,7 @@ export const Contact = ({ palette }) => {
                                 value={formData.message}
                                 className={`w-full rounded-lg px-4 py-3 transition-all duration-300 focus:outline-none ${p.input} ${p.message.border}`}
                                 placeholder="Your Message..."
-                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                onChange={(e) => setFormData({...formData, message: e.target.value})}
                             />
                         </div>
                     </RevealOnScroll>
