@@ -98,9 +98,12 @@ export const Contact = ({palette}) => {
             <div
                 className={`px-4 w-full min-w-[300px] md:w-[500px] sm:w-2/3 p-8 rounded-xl border backdrop-blur-sm shadow-lg ${p.container}`}>
                 <RevealOnScroll animation="rotate" delay={0.1}>
-                    <h2 className={`text-3xl font-bold mb-8 bg-clip-text text-transparent text-center ${p.title}`}>
-                        Get In Touch
+                    <h2 className={`text-3xl font-bold mb-4 bg-clip-text text-transparent text-center ${p.title}`}>
+                        Contact Me
                     </h2>
+                    <p className={`text-center mb-8 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                        Have a project in mind or want to connect? Fill out the form below and I'll get back to you as soon as possible.
+                    </p>
                 </RevealOnScroll>
 
                 <form className="space-y-6" onSubmit={handleSubmit}>

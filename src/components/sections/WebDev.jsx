@@ -5,14 +5,6 @@ import ImageWithSkeleton from "../ImageWithSkeleton";
 import {Contact} from "./Contact.jsx";
 import aboutMeImg from "/public/aboutme.jpg";
 
-/* Palette
-Primary: #1E3A8A (Deep blue)
-Accent:  #10B981 (Emerald)
-Background (light): #F9FAFB
-Text Primary: #111827
-Text Secondary: #4B5563
-*/
-
 const WebDev = () => {
     const {theme} = useTheme();
     const isDark = theme === "dark";
@@ -58,19 +50,15 @@ const WebDev = () => {
             <div className="container mx-auto px-4">
                 {/* Hero Section */}
                 <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-[#1E3A8A]  to-[#10B981] bg-clip-text text-transparent leading-tight">
-                        Professional Websites for Kelowna Small Businesses & Trades
-                    </h2>
+                    <h1 className="text-3xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-[#1E3A8A]  to-[#10B981] bg-clip-text text-transparent leading-tight">
+                        Kelowna Web Design for Small Businesses & Trades
+                    </h1>
                     <p
                         className={`text-lg lg:text-xl mb-12 ${
                             isDark ? "text-gray-200" : "text-[#4B5563]"
                         }`}
                     >
-                        I build custom, affordable websites for small businesses and trades across Kelowna, Vernon, and
-                        Penticton. Each site is fast, mobile-friendly, and optimized to bring in real customers, not
-                        just look good. Whether you need a new website or a refresh of your current one, I focus on
-                        clean design, quick turnaround, and clear communication from start to finish. Get professional
-                        results without agency pricing.
+                        I build custom, affordable websites for small businesses and trades in Kelowna, Vernon, and Penticton. My sites are fast, mobile-friendly, and optimized to attract local customers. Whether you need a new website or a refresh, I provide clean design, quick turnaround, and clear communication. Get professional results without the agency price tag.
                     </p>
                     <a href="#contact"
                        className={`inline-block text-white py-3 px-8 rounded-lg font-medium transition-all duration-300 relative overflow-hidden hover:-translate-y-1 ${p.button}`}>
@@ -81,7 +69,7 @@ const WebDev = () => {
                 {/* Services Section */}
                 <div className="my-20">
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center">
-                        <span className="bg-gradient-to-r from-[#1E3A8A] to-[#10B981] bg-clip-text text-transparent">What I Offer</span>
+                        <span className="bg-gradient-to-r from-[#1E3A8A] to-[#10B981] bg-clip-text text-transparent">Web Development Services</span>
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {/* Service 1: Web Design & Development */}
@@ -111,7 +99,7 @@ const WebDev = () => {
                                 <h3 className={`text-xl font-bold mb-2 ${isDark ? "text-[#10B981]" : "text-[#1E3A8A]"}`}>SEO
                                     & Optimization</h3>
                                 <p className={`${isDark ? "text-gray-200" : "text-[#4B5563]"}`}>Improve Google rankings
-                                    and site performance.</p>
+                                    and site performance in the Okanagan.</p>
                             </div>
                         </RevealOnScroll>
                     </div>
@@ -120,7 +108,7 @@ const WebDev = () => {
                 {/* Portfolio / Recent Projects */}
                 <div className="my-20">
                     <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-center">
-                        <span className="bg-gradient-to-r from-[#1E3A8A] to-[#10B981] bg-clip-text text-transparent">Recent Projects</span>
+                        <span className="bg-gradient-to-r from-[#1E3A8A] to-[#10B981] bg-clip-text text-transparent">Recent Web Design Projects</span>
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                         {/* Kelowna Creative Example Work */}
@@ -134,7 +122,7 @@ const WebDev = () => {
                             >
                                 <ImageWithSkeleton
                                     src="/kelowna-creative.png"
-                                    alt="Redesign of Kelowna Creative Website"
+                                    alt="Kelowna Creative website redesign for a local creative agency"
                                     className="rounded-md mb-4 border border-gray-200/40 aspect-video"
                                 />
                                 <h3
@@ -149,7 +137,7 @@ const WebDev = () => {
                                     I engineered a dynamic and visually immersive website for Kelowna Creative to
                                     reflect their high-end brand identity. The final product is a fully responsive,
                                     polished platform that effectively showcases their portfolio and establishes them as
-                                    a leading creative force.
+                                    a leading creative force in the Okanagan.
                                 </p>
                                 <div className="flex flex-wrap gap-2 mb-4">
                                     {["TypeScript", "Tailwind CSS", "Next.js", "Framer Motion", "AOS"].map(
@@ -195,7 +183,7 @@ const WebDev = () => {
                             >
                                 <ImageWithSkeleton
                                     src="/edgefinder.png"
-                                    alt="EdgeFinder website"
+                                    alt="EdgeFinder website for an AI-powered NFL betting tool"
                                     className="rounded-md mb-4 border border-gray-200/40 aspect-video"
                                 />
                                 <h3
@@ -257,7 +245,7 @@ const WebDev = () => {
                             <div className="md:w-1/3 text-center">
                                 <ImageWithSkeleton
                                     src={aboutMeImg}
-                                    alt="Brayden Coghill"
+                                    alt="Brayden Coghill, a web developer in Kelowna, BC"
                                     className="rounded-2xl w-auto h-auto mx-auto border-4 border-white/20 shadow-lg"
                                 />
                             </div>
@@ -267,18 +255,7 @@ const WebDev = () => {
                                         className="bg-gradient-to-r from-[#1E3A8A] to-[#10B981] bg-clip-text text-transparent">About Me</span>
                                 </h2>
                                 <p className={`${isDark ? "text-gray-200" : "text-[#4B5563]"}`}>
-                                    Hi, I'm Brayden Coghill, a Kelowna-based web developer with a Diploma in Computer
-                                    Information Systems. I specialize in creating modern, affordable websites for small
-                                    businesses and trades across the Okanagan.
-                                    <br/><br/>
-                                    My goal is simple: to build websites that look great, load fast, and actually bring
-                                    in customers. Every project I take on is designed to be mobile-friendly, easy to
-                                    manage, and optimized for search engines so your business can stand out locally.
-                                    <br/><br/>
-                                    I started this service to give local business owners a more personal,
-                                    straightforward
-                                    option than large agencies. When you work with me, you'll get clear communication,
-                                    quick turnaround times, and a site that genuinely represents your business.
+                                    Hi, I'm Brayden Coghill, a web developer based in Kelowna, BC. I specialize in creating modern, affordable websites for small businesses and trades across the Okanagan. My goal is to build websites that are not only visually appealing but also fast, reliable, and optimized for local search to help your business grow.
                                 </p>
                             </div>
                         </div>

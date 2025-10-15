@@ -1,23 +1,6 @@
 import {RevealOnScroll} from "../RevealOnScroll";
 import {useTheme} from "../../context/ThemeContext";
 
-/**
- * Represents a React functional component responsible for rendering the "Projects" section of the page.
- * This section highlights featured projects with detailed descriptions, technologies used, and external links.
- * Includes interactive design elements and responsive styling tailored to the active theme (light or dark).
- *
- * The "Projects" section features:
- * - A title with playful gradient text styling.
- * - A responsive grid layout to display project cards, adjusting for screen sizes.
- * - Animated elements revealed on scroll for visual engagement.
- * - Dynamic styling adjustments based on the current theme.
- * - Comprehensive project details, including a description, technology stack, and external GitHub links.
- *
- * Dependencies:
- * - useTheme (for handling light/dark theme changes).
- * - RevealOnScroll (for scroll-triggered animations).
- * - Tailwind CSS classes for styling.
- */
 export const Projects = () => {
     const {theme} = useTheme();
     return (
@@ -28,7 +11,7 @@ export const Projects = () => {
             <div className="max-w-5xl mx-auto px-4">
                 <RevealOnScroll animation="zoom-in" delay={0.1}>
                     <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-[#FF5733] via-[#FF9933] to-[#FFD700] bg-clip-text text-transparent text-center">
-                        Featured Projects
+                        Featured Web & Software Projects
                     </h2>
                 </RevealOnScroll>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr">
@@ -45,18 +28,15 @@ export const Projects = () => {
                         >
                             <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FF9933]' : 'text-[#D2691E]'
-                            }`}>Kelowna Creative</h3>
+                            }`}>Kelowna Creative: Agency Website</h3>
 
                             <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
-                                I engineered a dynamic and visually immersive website for Kelowna Creative to reflect
-                                their high-end brand identity. Leveraging a modern tech stack of Next.js, TypeScript,
-                                and Tailwind CSS, the site features a seamless, fixed background for a unified user
-                                experience. I implemented sophisticated UI elements, including elegant "glassmorphism"
-                                cards, subtle 3D transforms, and smooth animations with Framer Motion and AOS. The final
-                                product is a fully responsive, polished platform that effectively showcases their
-                                portfolio and establishes them as a leading creative force.
+                                Engineered a dynamic, visually immersive website for a local marketing agency. This fully
+                                responsive platform, built with Next.js, TypeScript, and Tailwind CSS, showcases their
+                                portfolio using sophisticated UI elements like 'glassmorphism' cards and smooth
+                                animations with Framer Motion.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {["Typescript", "Tailwind CSS", "Next.js", "Framer Motion", "AOS"].map((tech, key) => (
@@ -101,14 +81,13 @@ export const Projects = () => {
                         >
                             <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FF66B2]' : 'text-[#C71585]'
-                            }`}>EdgeFinder: AI-Powered NFL Prop Betting Platform</h3>
+                            }`}>EdgeFinder: AI-Powered NFL Prop Betting Tool</h3>
 
                             <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
-                            }`}>I designed and built a modern, responsive landing page for EdgeFinder, an AI-driven NFL
-                                prop betting tool that turns complex data into actionable insights. The site highlights
-                                the product’s core features—including machine learning-based recommendations, confidence
-                                ratings, and trend analysis—through an intuitive, interactive UI.
+                            }`}>Designed and built a modern, responsive landing page for an AI-driven NFL prop betting
+                                tool. The site highlights core features like machine learning-based recommendations and
+                                trend analysis through an intuitive, interactive UI built with React.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {["React(Vite)", "Tailwind CSS", "Mailchimp", "Fastify", "TypeScript", "AI Integration", "Node.js", "Supabase"].map((tech, key) => (
@@ -151,17 +130,14 @@ export const Projects = () => {
                             }`}>
                             <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FFD700]' : 'text-[#B8860B]'
-                            }`}> Player-Prop Bets </h3>
+                            }`}>ApeOffside: Player-Prop Betting Platform</h3>
 
                             <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
-                                Live platform for player-prop betting with real-time odds and
-                                statistics. Using live stats and AI assistant to help users make
-                                informed decisions and linking them to sport books. My focus in this project was
-                                on the backend, using Python and Django to create a RESTful API and integration of the
-                                AI assistant. I learned a lot about working with APIs to enhance the user experience and
-                                the use of colours and design to navigate the user through the site.
+                                Developed a live platform for player-prop betting, featuring real-time odds and
+                                statistics. The backend was built with Python and Django to create a RESTful API, which
+                                integrates with an AI assistant to provide users with data-driven betting insights.
                             </p>
 
                             <div className="flex flex-wrap gap-2 mb-4">
@@ -181,7 +157,7 @@ export const Projects = () => {
 
                             <div className="flex justify-between items-center">
                                 <a
-                                    href="https://View on GitHub.com/CoghillB/ApeOffside.git"
+                                    href="https://github.com/CoghillB/ApeOffside.git"
                                     className={`transition-colors duration-300 my-4 ${
                                         theme === 'dark'
                                             ? 'text-[#FFD700] hover:text-[#FFEC8B]'
@@ -208,21 +184,16 @@ export const Projects = () => {
                         >
                             <h3 className={`text-xl font-bold mb-2 min-h-[56px] ${
                                 theme === 'dark' ? 'text-[#FF5733]' : 'text-[#B22222]'
-                            }`}>Travel Planning Assistant / Budgeting Site</h3>
+                            }`}>Travel Planner: A Trip & Budgeting Web App</h3>
 
 
                             <p className={`mb-4 flex-grow ${
                                 theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                             }`}>
-                                Travel planning site that allowed users to plan their
-                                trips, and budget for them. Integrated with Google Maps API to allow users to
-                                view their trips on a map, and see the distance between locations. I focused on the
-                                design
-                                and user experience of the site, using Figma to create a prototype and then implementing
-                                it in
-                                CSS and JavaScript. I learned how to set up the user interface to match themes to
-                                purpose
-                                of the site.
+                                A travel planning web application that allows users to plan trips and manage budgets.
+                                The app integrates the Google Maps API to visualize routes and locations. The user
+                                interface was designed in Figma and implemented with vanilla JavaScript, HTML5, and CSS3
+                                to create a purpose-driven user experience.
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {["Node.js", "JavaScript", "HTML5", "CSS3"].map(

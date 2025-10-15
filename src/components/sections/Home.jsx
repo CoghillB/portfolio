@@ -11,25 +11,16 @@ export const Home = () => {
             <div className="text-center z-10 px-4">
                 <RevealOnScroll animation="zoom-in" delay={0.1}>
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-[#FF5733] via-[#FF9933] to-[#FFD700] bg-clip-text text-transparent leading-right animate-float">
-                        Hi, I'm Brayden Coghill
+                        Brayden Coghill
                     </h1>
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6">Software Developer</h2>
                 </RevealOnScroll>
 
                 <RevealOnScroll animation="fade-up" delay={0.3}>
-                    <p className={`text-lg mb-8 max-w-lg mx-auto ${
+                    <p className={`text-lg mb-8 max-w-2xl mx-auto ${
                         theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                     }`}>
-                        I am a frontend developer passionate about crafting clean, responsive, and user-friendly web
-                        interfaces. Skilled in transforming design concepts into interactive experiences using modern
-                        technologies like HTML, CSS, JavaScript, and frameworks such as React.
-                        <br/><br/>
-                        Experienced in building dynamic applications that integrate smoothly with backend services
-                        through REST APIs. Committed to writing maintainable code, optimizing performance, and creating
-                        accessible interfaces that work across all devices.
-                        <br/><br/>
-                        Continuously learning and evolving to stay current with the latest trends in web development.
-
-
+                        I am a software developer specializing in frontend web development. I build clean, responsive, and user-friendly web applications using modern technologies like React, JavaScript, HTML, and CSS. I have experience with REST APIs and am committed to writing maintainable, high-performance, and accessible code.
                     </p>
                 </RevealOnScroll>
 
