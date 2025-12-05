@@ -20,7 +20,11 @@ export const Home = () => {
                     <p className={`text-lg mb-8 max-w-2xl mx-auto ${
                         theme === 'dark' ? 'text-gray-200' : 'text-gray-700'
                     }`}>
-                        I am a software developer specializing in frontend web development. I build clean, responsive, and user-friendly web applications using modern technologies like React, JavaScript, HTML, and CSS. I have experience with REST APIs and am committed to writing maintainable, high-performance, and accessible code.
+                        I am a software developer specializing in frontend web development. I build clean, responsive,
+                        and user-friendly web applications using modern technologies like React, JavaScript, Typescript,
+                        HTML, and
+                        CSS. I have experience with REST APIs and am committed to writing maintainable,
+                        high-performance, and accessible code.
                     </p>
                 </RevealOnScroll>
 
