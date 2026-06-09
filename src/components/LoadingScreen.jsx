@@ -1,36 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 export const LoadingScreen = ({ onComplete }) => {
-    const [text, setText] = useState("");
-    const fullText = "< Coghill Dev />";
+  const [text, setText] = useState('')
+  const fullText = '< Coghill.dev />'
 
-    useEffect(() => {
-        let index = 0;
-        const interval = setInterval(() => {
-            setText(fullText.substring(0, index));
-            index++;
+  useEffect(() => {
+    let index = 0
+    const interval = setInterval(() => {
+      setText(fullText.substring(0, index))
+      index++
+      if (index > fullText.length) {
+        clearInterval(interval)
+        setTimeout(() => onComplete(), 900)
+      }
+    }, 90)
+    return () => clearInterval(interval)
+  }, [onComplete])
 
-            if (index > fullText.length) {
-                clearInterval(interval);
+  return (
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-base">
+      <div className="mb-5 font-mono text-3xl font-bold text-gradient sm:text-4xl">
+        {text}
+        <span className="ml-1 animate-pulse text-accent">|</span>
+      </div>
 
-                setTimeout(() => {
-                    onComplete();
-                }, 1000);
-            }
-        }, 100);
+      <div className="relative h-[2px] w-[220px] overflow-hidden rounded bg-line-strong">
+        <div className="absolute inset-y-0 left-0 w-1/3 animate-[loadingbar_0.9s_ease_infinite] rounded bg-gradient-to-r from-accent to-accent-3 shadow-[0_0_15px_var(--color-accent-glow)]" />
+      </div>
 
-        return () => clearInterval(interval);
-    }, [onComplete]);
+      <style>{`@keyframes loadingbar{0%{transform:translateX(-100%)}100%{transform:translateX(360%)}}`}</style>
+    </div>
+  )
+}
 
-    return (
-        <div className="fixed inset-0 z-50 bg-gradient-to-r from-white/98 via-[#f5f5f5]/98 to-[#fffff0]/98 backdrop-blur-lg text-gray-800 flex flex-col items-center justify-center">
-            <div className="mb-4 text-4xl font-mono font-bold bg-gradient-to-r from-[#6495ED] via-[#98FB98] to-[#FF7F50] bg-clip-text text-transparent">
-                {text} <span className="animate-blink ml-1 text-[#6495ED]"> | </span>
-            </div>
-
-            <div className="w-[200px] h-[2px] bg-gray-300/50 rounded relative overflow-hidden backdrop-blur-sm">
-                <div className="w-[40%] h-full bg-gradient-to-r from-[#6495ED] to-[#FF7F50] shadow-[0_0_15px_rgba(100,149,237,0.6)] animate-loading-bar"></div>
-            </div>
-        </div>
-    );
-};
+export default LoadingScreen

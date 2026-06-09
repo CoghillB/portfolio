@@ -1,189 +1,208 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ThemeToggle } from "./ThemeToggle";
-import { useTheme } from "../context/ThemeContext";
+import { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X } from 'lucide-react'
+import { Github, Linkedin } from './BrandIcons'
+import { nav, profile } from '../data/content'
+import { ThemeToggle } from './ThemeToggle'
 
-// Icons as SVG components
-const HomeIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-  </svg>
-);
+const WEBDEV = { label: 'Web Dev', to: '/web-development' }
 
-const AboutIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-  </svg>
-);
+export const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('home')
+  const location = useLocation()
+  const navigate = useNavigate()
+  const onHome = location.pathname === '/'
 
-const ProjectsIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
-  </svg>
-);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-const ContactIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-  </svg>
-);
+  // Scroll-spy, home route only.
+  useEffect(() => {
+    if (!onHome) {
+      setActive(location.pathname === WEBDEV.to ? 'webdev' : '')
+      return
+    }
+    const ids = nav.map((n) => n.href.slice(1))
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id)
+        })
+      },
+      { rootMargin: '-45% 0px -50% 0px' },
+    )
+    ids.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [onHome, location.pathname])
 
-const WebDevelopmentIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2v-2a5 5 0 00-5-5z" />
-        <path d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9z" />
-    </svg>
-)
+  // When landing on the home route with a hash (e.g. after navigating from the
+  // WebDev page), smooth-scroll to that section.
+  useEffect(() => {
+    if (onHome && location.hash) {
+      const el = document.getElementById(location.hash.slice(1))
+      if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth' }))
+    }
+  }, [onHome, location.hash])
 
-export const Navbar = ({ menuOpen, setMenuOpen }) => {
-    const [activeLink, setActiveLink] = useState("home");
-    const { theme } = useTheme();
-    const location = useLocation();
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
 
-    useEffect(() => {
-        document.body.style.overflow = menuOpen ? "hidden" : "";
+  const goToSection = (href) => (e) => {
+    const id = href.slice(1)
+    if (onHome) {
+      e.preventDefault()
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      e.preventDefault()
+      navigate(`/${href}`) // e.g. "/#about"
+    }
+    setOpen(false)
+  }
 
-        const handleScroll = () => {
-            if (location.pathname === "/") {
-                const sections = ["home", "about", "projects", "contact"];
-                const scrollPosition = window.scrollY + 100;
-
-                for (const section of sections) {
-                    const element = document.getElementById(section);
-                    if (element && 
-                        scrollPosition >= element.offsetTop && 
-                        scrollPosition < element.offsetTop + element.offsetHeight) {
-                        setActiveLink(section);
-                        break;
-                    }
-                }
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [menuOpen, location.pathname]);
-
-    useEffect(() => {
-        if (location.pathname === '/web-development') {
-            setActiveLink('web-development');
-        } else {
-            const hash = location.hash.substring(1);
-            if (hash) {
-                setActiveLink(hash);
-            } else {
-                setActiveLink('home');
-            }
-        }
-    }, [location]);
-
-
-    return (
-        <>
-            <nav className={`fixed top-0 w-full z-60 transition-all duration-1000 ${
-              theme === 'dark' 
-                ? 'bg-gradient-to-r from-[#0a1128]/95 via-[#1a2a52]/95 to-[#0a1128]/95 border-gray-700/30' 
-                : 'bg-gradient-to-r from-[#ffffff]/95 via-[#f5f5f5]/95 to-[#fffff0]/95 border-gray-300/30'
-            } backdrop-blur-lg shadow-lg py-2 border-b`}>
-                <div className="max-w-5xl mx-auto px-4">
-                    <div className="flex justify-between items-center">
-                        <Link 
-                            to="/" 
-                            className="font-mono text-xl font-bold relative group"
-                        >
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6495ED] to-[#4682B4] hover:from-[#4682B4] hover:to-[#6495ED] transition-all duration-300 transform group-hover:scale-105 inline-block">
-                                Brayden
-                            </span>
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#6495ED] to-[#FF7F50] hover:from-[#6495ED] hover:to-[#FF7F50] transition-all duration-300 transform group-hover:scale-105 inline-block">
-                                .Coghill
-                            </span>
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#6495ED] to-[#FF7F50] transition-all duration-300 group-hover:w-full"></span>
-                        </Link>
-
-                        <div
-                            className="w-8 h-8 flex flex-col justify-center items-center cursor-pointer z-70 md:hidden relative"
-                            onClick={() => setMenuOpen((prev) => !prev)}
-                        >
-                            <span className={`block w-6 h-0.5 ${theme === 'dark' ? 'bg-gray-200' : 'bg-gray-800'} rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                            <span className={`block w-6 h-0.5 ${theme === 'dark' ? 'bg-gray-200' : 'bg-gray-800'} rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? 'opacity-0' : ''}`}></span>
-                            <span className={`block w-6 h-0.5 ${theme === 'dark' ? 'bg-gray-200' : 'bg-gray-800'} rounded-full transition-all duration-300 mt-1.5 ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-                        </div>
-
-                        <div className="hidden md:flex items-center space-x-8">
-                            <NavLink to="/#home" color="blue" label="Home" icon={<HomeIcon />} isActive={activeLink === "home"} />
-                            <NavLink to="/#about" color="purple" label="About" icon={<AboutIcon />} isActive={activeLink === "about"} />
-                            <NavLink to="/#projects" color="indigo" label="Projects" icon={<ProjectsIcon />} isActive={activeLink === "projects"} />
-                            <NavLink to="/#contact" color="cyan" label="Contact" icon={<ContactIcon />} isActive={activeLink === "contact"} />
-                            <NavLink to="/web-development" color="green" label="Web Development" icon={<WebDevelopmentIcon />} isActive={activeLink === "web-development"}/>
-                            <div className="ml-2">
-                                <ThemeToggle />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            {/* Mobile menu */}
-            {menuOpen && (
-                <div
-                    className={`fixed inset-0 z-50 backdrop-blur-lg flex flex-col items-center justify-center space-y-6 md:hidden animate-fadeIn overflow-y-auto h-screen ${
-                        theme === 'dark'
-                            ? 'bg-gradient-to-r from-[#0a1128]/98 via-[#1a2a52]/98 to-[#0a1128]/98 text-gray-200'
-                            : 'bg-gradient-to-r from-[#6495ED]/98  to-[#FF7F50]/98 text-gray-900'
-                    }`}>
-                    <div className="animate-slideIn-1"><NavLink to="/#home" color="blue" label="Home" icon={<HomeIcon />} mobile onClick={() => setMenuOpen(false)} /></div>
-                    <div className="animate-slideIn-2"><NavLink to="/#about" color="purple" label="About" icon={<AboutIcon />} mobile onClick={() => setMenuOpen(false)} /></div>
-                    <div className="animate-slideIn-3"><NavLink to="/#projects" color="indigo" label="Projects" icon={<ProjectsIcon />} mobile onClick={() => setMenuOpen(false)} /></div>
-                    <div className="animate-slideIn-5"><NavLink to="/#contact" color="cyan" label="Contact" icon={<ContactIcon />} mobile onClick={() => setMenuOpen(false)} /></div>
-                    <div className="animate-slideIn-4"><NavLink to="/web-development" color="green" label="Web Development" icon={<WebDevelopmentIcon />} mobile onClick={() => setMenuOpen(false)} /></div>
-                    <div className="animate-slideIn-6 mt-6"><div className="flex justify-center"><ThemeToggle /></div></div>
-                </div>
-            )}
-        </>
-    );
-};
-
-// Helper component for navigation links
-const NavLink = ({ to, color, label, icon, mobile = false, onClick, isActive = false }) => {
-    const { theme } = useTheme();
-    const navigate = useNavigate();
-    const location = useLocation();
-    const colorClasses = {
-        blue: "from-[#6495ED] to-[#4682B4] hover:from-[#4682B4] hover:to-[#6495ED]",
-        purple: "from-[#98FB98] to-[#3CB371] hover:from-[#3CB371] hover:to-[#98FB98]",
-        indigo: "from-[#FF7F50] to-[#FF6347] hover:from-[#FF6347] hover:to-[#FF7F50]",
-        green: "from-[#50C878] to-[#355E3B] hover:from-[#355E3B] hover:to-[#50C878]",
-        cyan: "from-[#6495ED] to-[#98FB98] hover:from-[#98FB98] hover:to-[#FF7F50]"
-    };
-
-    const handleClick = (e) => {
-        if (onClick) onClick();
-        if (to.startsWith('/#')) {
-            e.preventDefault();
-            const targetId = to.substring(2);
-            if (location.pathname !== '/') {
-                navigate(`/${to.substring(1)}`);
-            } else {
-                document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    };
-
-    return (
-        <Link
-            to={to}
-            onClick={handleClick}
-            className={`relative group flex items-center ${mobile ? `text-xl font-bold p-3 w-56 rounded-lg ${theme === 'dark' ? 'bg-gray-700/20 hover:bg-gray-700/30' : 'bg-gray-800/10 hover:bg-gray-800/15'} shadow-[0_4px_20px_rgba(0,0,0,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_8px_30px_rgba(59,130,246,0.4)] justify-center my-1` : ''} ${isActive ? 'scale-110' : ''}`}>
-            {icon && (
-                <span className={`mr-1.5 ${isActive ? 'animate-float' : ''} ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'} opacity-80 group-hover:opacity-100 transition-opacity`}>
-                    {icon}
-                </span>
-            )}
-            <span className={`${mobile ? `${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'} font-bold` : `${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'} font-semibold`} transition-all duration-300`}>
-                {label}
-            </span>
-            <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r ${colorClasses[color]} transition-all duration-300 ${isActive ? 'w-full' : ''} group-hover:w-full`}></span>
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
+      <motion.nav
+        initial={{ y: -24, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className={`flex w-full max-w-5xl items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300 sm:px-6 ${
+          scrolled ? 'glass shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]' : 'border border-transparent'
+        }`}
+      >
+        <Link to="/" className="group flex items-center gap-2 font-display text-sm font-semibold">
+          <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-accent to-accent-3 text-[13px] font-bold text-white shadow-[0_0_20px_var(--color-accent-glow)]">
+            BC
+          </span>
+          <span className="text-ink">
+            Coghill<span className="text-ink-muted">.dev</span>
+          </span>
         </Link>
-    );
-};
+
+        {/* Desktop links */}
+        <ul className="hidden items-center gap-1 lg:flex">
+          {nav.map((item) => {
+            const isActive = onHome && active === item.href.slice(1)
+            return (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={goToSection(item.href)}
+                  className={`relative rounded-lg px-3.5 py-2 text-sm transition-colors ${
+                    isActive ? 'text-ink' : 'text-ink-soft hover:text-ink'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 -z-10 rounded-lg bg-card-hover ring-1 ring-line"
+                      transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                  {item.label}
+                </a>
+              </li>
+            )
+          })}
+          <li>
+            <Link
+              to={WEBDEV.to}
+              className={`relative rounded-lg px-3.5 py-2 text-sm transition-colors ${
+                active === 'webdev' ? 'text-ink' : 'text-ink-soft hover:text-ink'
+              }`}
+            >
+              {active === 'webdev' && (
+                <motion.span
+                  layoutId="nav-pill"
+                  className="absolute inset-0 -z-10 rounded-lg bg-card-hover ring-1 ring-line"
+                  transition={{ type: 'spring', stiffness: 400, damping: 32 }}
+                />
+              )}
+              {WEBDEV.label}
+            </Link>
+          </li>
+        </ul>
+
+        <div className="flex items-center gap-1">
+          <ThemeToggle />
+          <a
+            href="#contact"
+            onClick={goToSection('#contact')}
+            className="ml-1 hidden rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-base transition-transform hover:scale-[1.03] lg:inline-block"
+          >
+            Let&apos;s talk
+          </a>
+
+          {/* Mobile toggle */}
+          <button
+            className="grid h-10 w-10 place-items-center rounded-lg text-ink lg:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="glass absolute inset-x-4 top-[4.75rem] z-40 rounded-2xl p-4 lg:hidden"
+          >
+            <ul className="flex flex-col gap-1">
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    onClick={goToSection(item.href)}
+                    className="block rounded-lg px-4 py-3 text-base text-ink-soft transition-colors hover:bg-card-hover hover:text-ink"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <Link
+                  to={WEBDEV.to}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-lg px-4 py-3 text-base text-ink-soft transition-colors hover:bg-card-hover hover:text-ink"
+                >
+                  {WEBDEV.label}
+                </Link>
+              </li>
+            </ul>
+            <div className="mt-3 flex items-center gap-2 border-t border-line pt-3">
+              <a href={profile.socials.github} target="_blank" rel="noreferrer" className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-card-2 py-2.5 text-center text-sm text-ink">
+                <Github size={16} /> GitHub
+              </a>
+              <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-card-2 py-2.5 text-center text-sm text-ink">
+                <Linkedin size={16} /> LinkedIn
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
+  )
+}
+
+export default Navbar

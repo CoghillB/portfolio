@@ -1,111 +1,57 @@
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { LoadingScreen } from "./components/LoadingScreen";
-import { Navbar } from "./components/Navbar";
-import { About } from "./components/sections/About";
-import { Contact } from "./components/sections/Contact";
-import { Home } from "./components/sections/Home";
-import { Projects } from "./components/sections/Projects";
-import WebDev from "./components/sections/WebDev";
-import { Footer } from "./components/Footer";
-import { useTheme } from "./context/ThemeContext";
-import "./index.css";
+import { useState } from 'react'
+import { MotionConfig } from 'framer-motion'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import AuroraBackground from './components/AuroraBackground'
+import { LoadingScreen } from './components/LoadingScreen'
+import { Navbar } from './components/Navbar'
+import { Footer } from './components/Footer'
+import Hero from './components/sections/Hero'
+import { About } from './components/sections/About'
+import { Experience } from './components/sections/Experience'
+import { Skills } from './components/sections/Skills'
+import { Projects } from './components/sections/Projects'
+import { Contact } from './components/sections/Contact'
+import WebDev from './components/sections/WebDev'
+import './index.css'
 
-const MainLayout = ({ children, menuOpen, setMenuOpen }) => {
-  const { theme } = useTheme();
-  return (
-    <>
-      <div id="particles-container" className="fixed inset-0 pointer-events-none z-0"></div>
-      <div className="wave-container">
-        <div className="wave wave1"></div>
-        <div className="wave wave2"></div>
-        <div className="wave wave3"></div>
-      </div>
-      <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      {children}
-      <Footer />
-    </>
-  );
-};
+const MainLayout = ({ children }) => (
+  <>
+    <AuroraBackground />
+    <Navbar />
+    <main>{children}</main>
+    <Footer />
+  </>
+)
 
 const Portfolio = () => (
   <>
-    <Home />
+    <Hero />
     <About />
+    <Experience />
+    <Skills />
     <Projects />
     <Contact />
   </>
-);
+)
 
 function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    const createParticles = () => {
-      const particleCount = 80;
-      const container = document.getElementById('particles-container');
-      if (container) {
-        container.innerHTML = '';
-        for (let i = 0; i < particleCount; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'particle';
-          particle.style.left = `${Math.random() * 100}vw`;
-          particle.style.top = `${Math.random() * 100}vh`;
-          const size = Math.random() * 4 + 1;
-          particle.style.width = `${size}px`;
-          particle.style.height = `${size}px`;
-          particle.style.opacity = `${Math.random() * 0.5 + 0.1}`;
-          particle.style.animationDuration = `${Math.random() * 25 + 10}s`;
-          particle.style.animationDelay = `${Math.random() * 8}s`;
-          if (i % 7 === 0) {
-            particle.classList.add('particle-special');
-          }
-          container.appendChild(particle);
-        }
-        const shapeCount = 6;
-        for (let i = 0; i < shapeCount; i++) {
-          const shape = document.createElement('div');
-          shape.className = 'floating-shape';
-          if (i % 3 === 0) {
-            shape.classList.add('shape-circle');
-          } else if (i % 3 === 1) {
-            shape.classList.add('shape-square');
-          } else {
-            shape.classList.add('shape-triangle');
-          }
-          shape.style.left = `${Math.random() * 90 + 5}vw`;
-          shape.style.top = `${Math.random() * 90 + 5}vh`;
-          shape.style.animationDuration = `${Math.random() * 40 + 20}s`;
-          shape.style.animationDelay = `${Math.random() * 10}s`;
-          container.appendChild(shape);
-        }
-      }
-    };
-
-    if (isLoaded) {
-        createParticles();
-        window.addEventListener('resize', createParticles);
-    }
-
-    return () => {
-      window.removeEventListener('resize', createParticles);
-    };
-  }, [isLoaded]);
+  const [isLoaded, setIsLoaded] = useState(false)
 
   return (
-    <Router>
-      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
-      <div
-        className={`min-h-screen transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"} bg-transparent ${theme === 'dark' ? 'text-white' : 'text-[#333333]'}`}>
-        <Routes>
-          <Route path="/" element={<MainLayout menuOpen={menuOpen} setMenuOpen={setMenuOpen}><Portfolio /></MainLayout>} />
-          <Route path="/web-development" element={<MainLayout menuOpen={menuOpen} setMenuOpen={setMenuOpen}><WebDev /></MainLayout>} />
-        </Routes>
-      </div>
-    </Router>
-  );
+    // reducedMotion="user" makes every Framer Motion animation honor the
+    // OS-level prefers-reduced-motion setting.
+    <MotionConfig reducedMotion="user">
+      <Router>
+        {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
+        <div className={`min-h-screen transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+          <Routes>
+            <Route path="/" element={<MainLayout><Portfolio /></MainLayout>} />
+            <Route path="/web-development" element={<MainLayout><WebDev /></MainLayout>} />
+          </Routes>
+        </div>
+      </Router>
+    </MotionConfig>
+  )
 }
 
-export default App;
+export default App
