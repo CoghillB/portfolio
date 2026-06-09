@@ -15,11 +15,22 @@
         gtag('config', 'AW-10816741322');
     </script>
     <meta charset="UTF-8"/>
+    <script>
+        // Apply the saved theme before paint to avoid a flash of the wrong theme.
+        (function () {
+            try {
+                var t = localStorage.getItem('theme') || 'dark';
+                document.documentElement.classList.add(t);
+            } catch (e) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/coding.svg"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-            href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
             rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="The portfolio of a software developer with experience in web development, and other technologies."/>
@@ -40,11 +51,11 @@
             }
         })();
     </script>
-  <script type="module" crossorigin src="/assets/main-BqOESiix.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-DsWyOB6s.css">
+  <script type="module" crossorigin src="/assets/main-55_ggVBd.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-C9iLzGGN.css">
 </head>
 
 <body>
-<div id="root"></div>
+<div id="root"></div>
 </body>
 </html>
