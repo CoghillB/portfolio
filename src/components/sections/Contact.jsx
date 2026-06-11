@@ -3,6 +3,7 @@ import emailjs from 'emailjs-com'
 import { Mail, Send, Check, AlertCircle } from 'lucide-react'
 import { Github, Linkedin } from '../BrandIcons'
 import Reveal, { SectionHeading } from '../Reveal'
+import TiltCard from '../fx/TiltCard'
 import { profile } from '../../data/content'
 
 const initial = { name: '', email: '', phone: '', message: '' }
@@ -100,6 +101,7 @@ export const Contact = () => {
           {/* Direct links */}
           <div className="flex flex-col gap-3">
             <Reveal>
+              <TiltCard max={5}>
               <a
                 href={`mailto:${profile.email}`}
                 className="glow-border flex items-center gap-4 rounded-2xl border border-line bg-card p-5 transition-colors hover:bg-card-hover"
@@ -112,8 +114,10 @@ export const Contact = () => {
                   <span className="block truncate text-sm text-ink">{profile.email}</span>
                 </span>
               </a>
+              </TiltCard>
             </Reveal>
             <Reveal delay={0.06}>
+              <TiltCard max={5}>
               <a
                 href={profile.socials.linkedin}
                 target="_blank"
@@ -128,8 +132,10 @@ export const Contact = () => {
                   <span className="block text-sm text-ink">in/braydencoghill</span>
                 </span>
               </a>
+              </TiltCard>
             </Reveal>
             <Reveal delay={0.12}>
+              <TiltCard max={5}>
               <a
                 href={profile.socials.github}
                 target="_blank"
@@ -144,6 +150,7 @@ export const Contact = () => {
                   <span className="block text-sm text-ink">@CoghillB</span>
                 </span>
               </a>
+              </TiltCard>
             </Reveal>
           </div>
 
@@ -200,8 +207,11 @@ export const Contact = () => {
               <button
                 type="submit"
                 disabled={status === 'sending' || status === 'sent'}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-2 px-6 py-3.5 font-semibold text-white shadow-[0_0_30px_-8px_var(--color-accent-glow)] transition-all hover:brightness-110 disabled:opacity-70"
+                className="cta-glow mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-2 px-6 py-3.5 font-semibold text-white transition-all hover:brightness-110 disabled:opacity-70"
               >
+                <span className="halo" aria-hidden="true">
+                  <span className="halo-disc" />
+                </span>
                 {status === 'sent' ? (
                   <>
                     <Check size={18} /> Message sent

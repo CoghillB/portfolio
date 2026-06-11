@@ -18,6 +18,9 @@ export const profile = {
   },
 }
 
+// Rotating descriptors in the hero role line.
+export const heroWords = ['fast', 'accessible', 'delightful', 'human']
+
 export const about = {
   paragraphs: [
     "I'm a husband and a proud dad based in Kelowna, BC, and I'm building my second career as a frontend developer. Before tech, I worked as a commercial diver. It was a tough, unusual job, and it taught me how to stay calm under pressure, think on my feet, and lead a team when it really counts.",

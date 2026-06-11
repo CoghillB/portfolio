@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { Mail, ArrowUp } from 'lucide-react'
 import { Github, Linkedin } from './BrandIcons'
 import { profile, nav } from '../data/content'
@@ -19,7 +20,20 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="relative border-t border-line px-6 py-12">
+    <footer className="relative overflow-hidden border-t border-line px-6 py-12">
+      {/* Giant wordmark rising out of the page edge; fills with gradient on hover */}
+      <div aria-hidden="true" className="pointer-events-none relative -mx-6 mb-2 flex justify-center overflow-hidden">
+        <motion.span
+          initial={{ y: '45%', opacity: 0 }}
+          whileInView={{ y: '12%', opacity: 1 }}
+          viewport={{ once: true, margin: '0px 0px -40px 0px' }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="text-stroke pointer-events-auto select-none whitespace-nowrap font-display text-[13.5vw] font-bold leading-none transition-colors duration-500 hover:text-ink sm:text-[10vw]"
+        >
+          COGHILL.DEV
+        </motion.span>
+      </div>
+
       <div className="mx-auto flex max-w-5xl flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Link to="/" className="font-display text-lg font-semibold text-ink">

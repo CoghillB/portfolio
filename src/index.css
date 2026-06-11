@@ -41,18 +41,6 @@
   --radius-xl: 1.25rem;
 }
 
-/* Animated angle for the primary-CTA glow halo (technique via 21st.dev). */
-@property --cta-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-@keyframes cta-spin {
-  to {
-    --cta-angle: 360deg;
-  }
-}
-
 /* Theme-only variables (not Tailwind tokens) consumed by the utilities below. */
 :root {
   --grid-line: rgba(255, 255, 255, 0.04);
@@ -61,6 +49,7 @@
   --grad-2: #818cf8;
   --grad-3: #22d3ee;
   --vignette: rgba(0, 0, 0, 0.45);
+  --stroke-ink: rgba(255, 255, 255, 0.16);
 }
 
 /* Light variant: redefine the same custom properties so utilities recolor. */
@@ -92,6 +81,7 @@ html.light {
   --grad-2: #4f46e5;
   --grad-3: #0e7490;
   --vignette: rgba(15, 17, 26, 0.06);
+  --stroke-ink: rgba(15, 17, 26, 0.22);
 }
 
 html.dark {
@@ -145,6 +135,37 @@ body {
   background: var(--color-ink-muted);
 }
 
+/* ----------------------------------------------------------------------------
+   Keyframes. Everything animates transform/opacity ONLY so it runs on the
+   compositor thread; no per-frame paint (the old aurora blobs and conic CTA
+   halo both repainted every frame, which is what made the site lag).
+---------------------------------------------------------------------------- */
+@keyframes blob-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(7vw, -6vh, 0) scale(1.12); }
+  66% { transform: translate3d(-4vw, 7vh, 0) scale(0.94); }
+}
+@keyframes blob-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(-8vw, 7vh, 0) scale(0.9); }
+  66% { transform: translate3d(5vw, -5vh, 0) scale(1.1); }
+}
+@keyframes blob-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(6vw, -7vh, 0) scale(1.08); }
+  66% { transform: translate3d(-7vw, 5vh, 0) scale(0.93); }
+}
+@keyframes halo-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes marquee-left {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes marquee-right {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
 /* Reusable utilities ----------------------------------------------------- */
 @layer utilities {
   .text-gradient {
@@ -159,13 +180,20 @@ body {
     color: transparent;
   }
 
+  /* Giant hollow display type (footer wordmark, section backdrops). */
+  .text-stroke {
+    -webkit-text-stroke: 1.5px var(--stroke-ink);
+    color: transparent;
+  }
+
   .glass {
     background: var(--glass-bg);
     border: 1px solid var(--color-line);
     backdrop-filter: blur(12px);
   }
 
-  /* Animated conic glow border for feature cards */
+  /* Animated angle-style glow border for feature cards (static gradient,
+     only opacity transitions, so hover stays cheap). */
   .glow-border {
     position: relative;
     isolation: isolate;
@@ -210,34 +238,76 @@ body {
     );
   }
 
-  /* Primary CTA: a slowly rotating violet→cyan glow halo behind the button.
-     The button face stays opaque on top; only the soft aura shows around it.
-     Degrades to a static glow where @property is unsupported, and the spin is
-     neutralized under prefers-reduced-motion by the rule at the bottom. */
-  .cta-glow {
-    position: relative;
-    isolation: isolate;
+  /* Aurora blobs: radial gradients are inherently soft, so no blur filter is
+     needed; the drift is a pure-transform keyframe on its own GPU layer. */
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    will-change: transform;
   }
-  .cta-glow::after {
-    content: "";
+  .blob-a { animation: blob-a 26s ease-in-out infinite; }
+  .blob-b { animation: blob-b 32s ease-in-out infinite; }
+  .blob-c { animation: blob-c 29s ease-in-out infinite; }
+
+  /* Primary CTA halo: a blurred conic layer spun with transform: rotate
+     (compositor-only) instead of the old @property conic angle, which forced
+     a full gradient repaint every frame. Markup supplies:
+     <span class="halo"><span class="halo-disc" /></span> inside a
+     relative/isolate button. */
+  .halo {
     position: absolute;
     inset: -3px;
     z-index: -1;
     border-radius: inherit;
+    overflow: hidden;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+  }
+  .group:hover > .halo,
+  .cta-glow:hover > .halo {
+    opacity: 0.95;
+  }
+  .halo-disc {
+    position: absolute;
+    inset: -150%;
     background: conic-gradient(
-      from var(--cta-angle),
       var(--color-accent),
       var(--color-accent-3),
       var(--color-accent-2),
       var(--color-accent)
     );
-    filter: blur(9px);
-    opacity: 0.45;
-    animation: cta-spin 4.5s linear infinite;
-    transition: opacity 0.4s ease;
+    filter: blur(14px);
+    animation: halo-spin 5s linear infinite;
+    will-change: transform;
   }
-  .cta-glow:hover::after {
-    opacity: 0.85;
+  .cta-glow {
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* Infinite marquee: track holds two copies of its content and translates
+     -50% on a loop. Pure transform, pauses on hover. */
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
+    );
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: marquee-left var(--marquee-duration, 40s) linear infinite;
+  }
+  .marquee-track.reverse {
+    animation-name: marquee-right;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
   }
 }
 

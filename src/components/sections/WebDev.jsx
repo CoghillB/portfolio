@@ -41,7 +41,7 @@ const WebDev = () => {
     <>
       <section id="webdev" className="relative px-6 pt-36 pb-12 sm:pt-40">
         {/* Hero glow */}
-        <div className="pointer-events-none absolute left-1/2 top-24 h-[45vh] w-[45vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.35),transparent_65%)] blur-[90px]" />
+        <div className="pointer-events-none absolute left-1/2 top-24 h-[45vh] w-[45vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.28),rgba(139,92,246,0.1)_45%,transparent_70%)]" />
 
         <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>

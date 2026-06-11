@@ -1,37 +1,33 @@
-import { motion, useReducedMotion } from 'framer-motion'
 import { useTheme } from '../context/ThemeContext'
 
 // Site-wide ambient backdrop: slowly drifting glow blobs + grid + noise.
-// Adapted from a 21st.dev "Aurora" component, retuned to the project tokens.
+// The blobs are plain radial gradients (already soft, no blur filter) driven
+// by CSS transform keyframes, so the whole layer runs on the compositor and
+// costs nothing on the main thread.
 const blobs = [
   {
-    color: 'rgba(139, 92, 246, 0.85)', // violet
+    drift: 'blob-a',
     className: 'top-[-12%] left-[8%] h-[65vh] w-[65vh] opacity-50',
-    animate: { x: [0, 90, -40, 0], y: [0, -70, 90, 0], scale: [1, 1.15, 0.95, 1] },
-    duration: 22,
+    background: 'radial-gradient(circle, rgba(139,92,246,0.5) 0%, rgba(139,92,246,0.18) 38%, transparent 68%)',
   },
   {
-    color: 'rgba(99, 102, 241, 0.8)', // indigo
+    drift: 'blob-b',
     className: 'top-[6%] right-[2%] h-[75vh] w-[75vh] opacity-45',
-    animate: { x: [0, -110, 70, 0], y: [0, 90, -50, 0], scale: [1, 0.9, 1.1, 1] },
-    duration: 27,
+    background: 'radial-gradient(circle, rgba(99,102,241,0.45) 0%, rgba(99,102,241,0.16) 38%, transparent 68%)',
   },
   {
-    color: 'rgba(34, 211, 238, 0.7)', // cyan
+    drift: 'blob-c',
     className: 'bottom-[2%] left-[22%] h-[58vh] w-[58vh] opacity-35',
-    animate: { x: [0, 80, -90, 0], y: [0, -80, 60, 0], scale: [1, 1.1, 0.92, 1] },
-    duration: 25,
+    background: 'radial-gradient(circle, rgba(34,211,238,0.4) 0%, rgba(34,211,238,0.14) 38%, transparent 68%)',
   },
   {
-    color: 'rgba(168, 85, 247, 0.6)', // fuchsia-violet, mid-page warmth
+    drift: 'blob-b',
     className: 'top-[45%] right-[28%] h-[50vh] w-[50vh] opacity-30',
-    animate: { x: [0, -60, 80, 0], y: [0, 70, -60, 0], scale: [1, 1.1, 0.9, 1] },
-    duration: 30,
+    background: 'radial-gradient(circle, rgba(168,85,247,0.35) 0%, rgba(168,85,247,0.12) 38%, transparent 68%)',
   },
 ]
 
 export default function AuroraBackground() {
-  const reduce = useReducedMotion()
   const { theme } = useTheme()
   const isDark = theme === 'dark'
 
@@ -40,12 +36,10 @@ export default function AuroraBackground() {
       {/* Blobs are softer in light mode so they read as gentle color washes. */}
       <div className={`absolute inset-0 ${isDark ? 'opacity-100' : 'opacity-55'}`}>
         {blobs.map((b, i) => (
-          <motion.div
+          <div
             key={i}
-            className={`absolute rounded-full blur-[110px] ${b.className}`}
-            style={{ background: `radial-gradient(circle, ${b.color} 0%, transparent 70%)` }}
-            animate={reduce ? undefined : b.animate}
-            transition={{ duration: b.duration, repeat: Infinity, ease: 'easeInOut' }}
+            className={`blob ${b.drift} ${b.className}`}
+            style={{ background: b.background }}
           />
         ))}
       </div>
