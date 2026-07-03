@@ -34,7 +34,38 @@ const work = [
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Supabase', 'Stripe', 'Capacitor', 'AI'],
     href: 'https://www.edgefinder.ca',
   },
+  {
+    title: 'M&B Capital',
+    body: 'A refined marketing and investor site for a private investment firm. An elegant, editorial design that walks investors and business owners through their acquire, build, and realize model with clear calls to action.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/MB-Capital/',
+  },
+  {
+    title: 'Cyan Analytics',
+    body: 'A modern marketing site for a data-transparency analytics product, built with the team in Next.js. Clean, fast, and focused on communicating the platform’s value to a business audience.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Team'],
+    href: 'https://www.cyananalytics.io/',
+  },
+  {
+    title: 'Kerion',
+    body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/kerion-youtube/',
+  },
 ]
+
+// Acid/magenta preview art for entries without a screenshot (matches the
+// main Work section's preview style).
+const gradients = [
+  'linear-gradient(135deg, rgba(198,255,0,0.5), rgba(255,46,154,0.35) 55%, rgba(198,255,0,0.22))',
+  'linear-gradient(135deg, rgba(255,46,154,0.45), rgba(198,255,0,0.38) 55%, rgba(255,46,154,0.22))',
+  'linear-gradient(135deg, rgba(198,255,0,0.5), rgba(255,46,154,0.3) 55%, rgba(198,255,0,0.25))',
+]
+
+const initials = (t) => {
+  const w = t.split(/[\s&]+/).filter(Boolean)
+  return (w.length > 1 ? w.map((x) => x[0]).join('') : w[0]).slice(0, 2).toUpperCase()
+}
 
 const WebDev = () => {
   return (
@@ -96,11 +127,22 @@ const WebDev = () => {
             {work.map((w, i) => (
               <Reveal key={w.title} delay={i * 0.1} className="h-full">
                 <div className="glow-border flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-card p-6">
-                  <ImageWithSkeleton
-                    src={w.img}
-                    alt={w.alt}
-                    className="mb-5 aspect-video w-full rounded-xl border border-line object-cover"
-                  />
+                  {w.img ? (
+                    <ImageWithSkeleton
+                      src={w.img}
+                      alt={w.alt}
+                      className="mb-5 aspect-video w-full rounded-xl border border-line object-cover"
+                    />
+                  ) : (
+                    <div
+                      className="mb-5 grid aspect-video w-full place-items-center overflow-hidden rounded-xl border border-line"
+                      style={{ background: gradients[i % gradients.length] }}
+                    >
+                      <span className="text-stroke select-none font-display text-6xl font-bold leading-none opacity-80">
+                        {initials(w.title)}
+                      </span>
+                    </div>
+                  )}
                   <h3 className="font-display text-xl font-semibold text-ink">{w.title}</h3>
                   <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-soft">{w.body}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
