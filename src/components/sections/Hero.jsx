@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowUpRight, ArrowDown, MapPin } from 'lucide-react'
 import { profile, heroWords } from '../../data/content'
 import SplitText from '../fx/SplitText'
 import Magnetic from '../fx/Magnetic'
+
+// Heavy three.js scene: split into its own chunk, loaded after first paint.
+const Hero3D = lazy(() => import('../Hero3D'))
 
 const item = {
   hidden: { opacity: 0, y: 24 },
@@ -61,7 +64,17 @@ export default function Hero() {
         DEV
       </motion.span>
 
-      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="relative mx-auto w-full max-w-5xl">
+      {/* 3D wireframe knot: desktop only, decorative, cursor-reactive */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 right-0 top-24 z-0 hidden w-[44%] items-center opacity-90 [mask-image:linear-gradient(to_right,transparent,black_30%)] lg:flex"
+      >
+        <Suspense fallback={null}>
+          <Hero3D />
+        </Suspense>
+      </div>
+
+      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="relative z-10 mx-auto w-full max-w-5xl">
         <motion.div
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } } }}
           initial="hidden"
