@@ -4,7 +4,7 @@ const tech = [
   'React', 'TypeScript', 'Next.js', 'Node.js', '.NET', 'C#', 'PostgreSQL', 'Tailwind', 'Framer Motion', 'Three.js',
 ]
 const words = [
-  'Software Developer', 'Frontend', 'Full-stack curious', 'Kelowna BC', 'Available for work', 'Let’s build',
+  'Software Developer', 'Full-stack', 'End to end', 'Kelowna BC', 'Available for work', 'Let’s build',
 ]
 
 // Two scroll-reactive tickers running opposite directions. Jet text on the

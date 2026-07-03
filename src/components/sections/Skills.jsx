@@ -15,7 +15,7 @@ export const Skills = () => {
         <SectionHeading
           eyebrow="Toolkit"
           title="Technologies I build with."
-          kicker="A modern frontend-leaning stack, backed by solid fundamentals across the full web pipeline. Hover a row to pause it."
+          kicker="A full-stack toolkit, from polished interfaces to the APIs and databases behind them. Hover a row to pause it."
         />
       </div>
 

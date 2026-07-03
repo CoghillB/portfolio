@@ -8,9 +8,9 @@ export const profile = {
   location: 'Kelowna, BC',
   available: true,
   tagline:
-    'I build clean, accessible web apps that feel good to use, usually with React, TypeScript, and Next.js.',
+    'I build web applications end to end, from clean React and TypeScript interfaces to the C#, Node, and PostgreSQL that power them.',
   intro:
-    'Frontend developer who likes turning ideas into fast, friendly experiences on the web.',
+    'Software developer who likes turning ideas into reliable, well-built products, front end to back.',
   email: 'brayden.coghill@gmail.com',
   socials: {
     github: 'https://github.com/CoghillB',
@@ -23,8 +23,8 @@ export const heroWords = ['fast', 'effortless', 'polished', 'human']
 
 export const about = {
   paragraphs: [
-    "I'm a husband and a proud dad based in Kelowna, BC, and I'm building my second career as a frontend developer. Before tech, I worked as a commercial diver. It was a tough, unusual job, and it taught me how to stay calm under pressure, think on my feet, and lead a team when it really counts.",
-    "I bring that same drive to web development now. I got into frontend because I love helping people bring their ideas to life, taking a rough vision and turning it into something real you can actually click and use. Whether it's my own side project or a client's big idea, watching it come together on screen is the part I look forward to most.",
+    "I'm a husband and a proud dad based in Kelowna, BC, and I'm building my second career as a software developer. Before tech, I worked as a commercial diver. It was a tough, unusual job, and it taught me how to stay calm under pressure, think on my feet, and lead a team when it really counts.",
+    "I bring that same drive to software development now. I got into it because I love helping people bring their ideas to life, taking a rough vision and turning it into something real that actually works. Whether it's my own side project or a client's big idea, watching it come together and ship is the part I look forward to most.",
   ],
   stats: [
     { value: '20+', label: 'Technologies' },

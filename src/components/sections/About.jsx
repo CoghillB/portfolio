@@ -17,7 +17,7 @@ export const About = () => {
       <div className="mx-auto max-w-5xl">
         <SectionHeading
           eyebrow="About"
-          title="From the deep end to the front end."
+          title="From the deep end to full stack."
         />
 
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
