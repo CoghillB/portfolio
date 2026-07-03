@@ -83,7 +83,9 @@ export const Contact = () => {
         setForm(initial)
       })
       .catch((err) => {
-        console.error('EmailJS send error:', err)
+        // EmailJS rejects with { status, text }; log both so failures like a
+        // 412 "reconnect your Gmail account" read clearly instead of a minified blob.
+        console.error('EmailJS send failed:', err?.status, err?.text || err)
         setStatus('error')
       })
   }
