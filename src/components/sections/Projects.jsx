@@ -7,10 +7,10 @@ import { projects } from '../../data/content'
 
 // Per-card preview art (presentation only, copy stays in content.js).
 const gradients = [
-  'linear-gradient(135deg, rgba(139,92,246,0.55), rgba(99,102,241,0.35) 50%, rgba(34,211,238,0.3))',
-  'linear-gradient(135deg, rgba(34,211,238,0.45), rgba(99,102,241,0.4) 55%, rgba(139,92,246,0.35))',
-  'linear-gradient(135deg, rgba(168,85,247,0.5), rgba(139,92,246,0.3) 55%, rgba(99,102,241,0.3))',
-  'linear-gradient(135deg, rgba(99,102,241,0.5), rgba(34,211,238,0.35) 55%, rgba(168,85,247,0.3))',
+  'linear-gradient(135deg, rgba(198,255,0,0.5), rgba(255,46,154,0.35) 55%, rgba(198,255,0,0.22))',
+  'linear-gradient(135deg, rgba(255,46,154,0.45), rgba(198,255,0,0.38) 55%, rgba(255,46,154,0.22))',
+  'linear-gradient(135deg, rgba(198,255,0,0.5), rgba(255,46,154,0.3) 55%, rgba(198,255,0,0.25))',
+  'linear-gradient(135deg, rgba(255,46,154,0.45), rgba(198,255,0,0.35) 55%, rgba(255,46,154,0.22))',
 ]
 
 // One card in the stack: pinned full-viewport, scales down as the next card

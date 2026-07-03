@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowUpRight, ArrowDown, MapPin } from 'lucide-react'
 import { profile, heroWords } from '../../data/content'
-import SplitText from '../fx/SplitText'
+import KineticText from '../fx/KineticText'
 import Magnetic from '../fx/Magnetic'
 
 // Heavy three.js scene: split into its own chunk, loaded after first paint.
@@ -95,10 +95,10 @@ export default function Hero() {
           {/* Name: per-character kinetic reveal */}
           <h1 className="mt-8 font-display text-[clamp(2.75rem,9vw,6.5rem)] font-bold leading-[0.95] tracking-tight">
             <span className="block text-ink">
-              <SplitText text={profile.firstName} per="char" stagger={0.045} delay={0.25} />
+              <KineticText text={profile.firstName} stagger={0.045} delay={0.25} />
             </span>
             <span className="block text-gradient">
-              <SplitText text={profile.lastName} per="char" stagger={0.045} delay={0.5} />
+              <KineticText text={profile.lastName} stagger={0.045} delay={0.5} />
             </span>
           </h1>
 
