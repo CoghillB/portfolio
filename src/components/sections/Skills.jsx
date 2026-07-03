@@ -1,12 +1,5 @@
 import Reveal, { SectionHeading } from '../Reveal'
-import Marquee from '../fx/Marquee'
 import { skillGroups } from '../../data/content'
-
-const rowConfig = [
-  { reverse: false, duration: 36 },
-  { reverse: true, duration: 30 },
-  { reverse: false, duration: 26 },
-]
 
 export const Skills = () => {
   return (
@@ -15,34 +8,35 @@ export const Skills = () => {
         <SectionHeading
           eyebrow="Toolkit"
           title="Technologies I build with."
-          kicker="A full-stack toolkit, from polished interfaces to the APIs and databases behind them. Hover a row to pause it."
+          kicker="A full-stack toolkit, from polished interfaces to the APIs and databases behind them."
         />
-      </div>
 
-      <div className="space-y-8">
-        {skillGroups.map((group, gi) => {
-          const { reverse, duration } = rowConfig[gi % rowConfig.length]
-          return (
-            <Reveal key={group.title} delay={gi * 0.08}>
-              <div className="mx-auto mb-3 flex max-w-5xl items-center gap-2 px-6">
-                <span className="font-mono text-xs text-accent-3">0{gi + 1}</span>
-                <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-ink-soft">
-                  {group.title}
-                </h3>
+        {/* Every group laid out in full so the whole stack is visible at a glance. */}
+        <div className="space-y-10">
+          {skillGroups.map((group, gi) => (
+            <Reveal key={group.title} delay={gi * 0.06}>
+              <div className="border-t-2 border-line pt-6">
+                <div className="mb-4 flex items-baseline gap-3">
+                  <span className="font-mono text-xs text-accent-3">0{gi + 1}</span>
+                  <h3 className="font-display text-lg uppercase tracking-wide text-ink sm:text-xl">
+                    {group.title}
+                  </h3>
+                  <span className="font-mono text-xs text-ink-muted">[{group.items.length}]</span>
+                </div>
+                <ul className="flex flex-wrap gap-2.5">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="border border-line bg-card px-4 py-2 font-mono text-sm text-ink-soft transition-colors hover:border-accent hover:bg-accent hover:text-[#0a0a0a]"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <Marquee reverse={reverse} duration={duration}>
-                {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="whitespace-nowrap rounded-xl border border-line bg-card px-5 py-3 font-display text-base text-ink-soft transition-colors hover:border-accent/40 hover:bg-accent/10 hover:text-ink sm:text-lg"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </Marquee>
             </Reveal>
-          )
-        })}
+          ))}
+        </div>
       </div>
     </section>
   )
