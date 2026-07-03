@@ -28,7 +28,7 @@ export const Experience = () => {
             <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-line-strong" />
             <motion.div
               style={{ scaleY: lineScale }}
-              className="absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 origin-top bg-gradient-to-b from-accent via-accent-2 to-accent-3 shadow-[0_0_12px_var(--color-accent-glow)]"
+              className="absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 origin-top bg-accent shadow-[0_0_12px_var(--color-accent-glow)]"
             />
             <motion.span
               initial={{ scale: 0 }}
@@ -46,7 +46,7 @@ export const Experience = () => {
                   {/* Header */}
                   <div className="flex flex-col gap-4 border-b border-line pb-6 sm:flex-row sm:items-start sm:justify-between">
                     <div className="flex items-start gap-4">
-                      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-accent to-accent-2 text-white shadow-[0_0_24px_-6px_var(--color-accent-glow)]">
+                      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-accent text-[#0a0a0a] shadow-[0_0_24px_-6px_var(--color-accent-glow)]">
                         <Briefcase size={20} />
                       </span>
                       <div>

@@ -25,7 +25,7 @@ export const LoadingScreen = ({ onComplete }) => {
       </div>
 
       <div className="relative h-[2px] w-[220px] overflow-hidden rounded bg-line-strong">
-        <div className="absolute inset-y-0 left-0 w-1/3 animate-[loadingbar_0.9s_ease_infinite] rounded bg-gradient-to-r from-accent to-accent-3 shadow-[0_0_15px_var(--color-accent-glow)]" />
+        <div className="absolute inset-y-0 left-0 w-1/3 animate-[loadingbar_0.9s_ease_infinite] rounded bg-accent shadow-[0_0_15px_var(--color-accent-glow)]" />
       </div>
 
       <style>{`@keyframes loadingbar{0%{transform:translateX(-100%)}100%{transform:translateX(360%)}}`}</style>

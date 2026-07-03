@@ -40,9 +40,6 @@ const WebDev = () => {
   return (
     <>
       <section id="webdev" className="relative px-6 pt-36 pb-12 sm:pt-40">
-        {/* Hero glow */}
-        <div className="pointer-events-none absolute left-1/2 top-24 h-[45vh] w-[45vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.28),rgba(139,92,246,0.1)_45%,transparent_70%)]" />
-
         <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>
             <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
@@ -66,7 +63,7 @@ const WebDev = () => {
           <Reveal delay={0.15}>
             <a
               href="#contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-2 px-6 py-3.5 font-semibold text-white shadow-[0_0_30px_-6px_var(--color-accent-glow)] transition-all hover:brightness-110"
+              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] transition-all hover:brightness-110"
             >
               Get a free quote
             </a>

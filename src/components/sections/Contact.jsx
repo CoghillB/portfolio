@@ -106,7 +106,7 @@ export const Contact = () => {
                 href={`mailto:${profile.email}`}
                 className="glow-border flex items-center gap-4 rounded-2xl border border-line bg-card p-5 transition-colors hover:bg-card-hover"
               >
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-accent to-accent-2 text-white">
+                <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-[#0a0a0a]">
                   <Mail size={18} />
                 </span>
                 <span className="min-w-0">
@@ -207,7 +207,7 @@ export const Contact = () => {
               <button
                 type="submit"
                 disabled={status === 'sending' || status === 'sent'}
-                className="cta-glow mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-2 px-6 py-3.5 font-semibold text-white transition-all hover:brightness-110 disabled:opacity-70"
+                className="cta-glow mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] transition-all hover:bg-accent-2 hover:text-[#0a0a0a] disabled:opacity-70"
               >
                 <span className="halo" aria-hidden="true">
                   <span className="halo-disc" />

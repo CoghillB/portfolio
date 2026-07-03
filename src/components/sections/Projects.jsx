@@ -28,7 +28,7 @@ function StackCard({ project, i, total, progress }) {
     mx.set(e.clientX - rect.left)
     my.set(e.clientY - rect.top)
   }
-  const spotlight = useMotionTemplate`radial-gradient(480px circle at ${mx}px ${my}px, rgba(139,92,246,0.1), transparent 70%)`
+  const spotlight = useMotionTemplate`radial-gradient(480px circle at ${mx}px ${my}px, rgba(198,255,0,0.12), transparent 70%)`
 
   const isGithub = project.cta.includes('GitHub')
   const domain = project.href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/.*$/, '')

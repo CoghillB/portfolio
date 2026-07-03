@@ -84,7 +84,7 @@ export const Navbar = () => {
         }`}
       >
         <Link to="/" className="group flex items-center gap-2 font-display text-sm font-semibold">
-          <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-accent to-accent-3 text-[13px] font-bold text-white shadow-[0_0_20px_var(--color-accent-glow)]">
+          <span className="grid h-7 w-7 place-items-center rounded-lg bg-accent text-[13px] font-bold text-[#0a0a0a] shadow-[0_0_20px_var(--color-accent-glow)]">
             BC
           </span>
           <span className="text-ink">

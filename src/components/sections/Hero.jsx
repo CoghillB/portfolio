@@ -52,10 +52,6 @@ export default function Hero() {
       ref={ref}
       className="relative flex min-h-[100dvh] items-center overflow-hidden px-6 pt-28 pb-20"
     >
-      {/* hero glow halos: soft radial gradients, no blur filters */}
-      <div className="pointer-events-none absolute left-[-5%] top-[20%] h-[55vh] w-[55vh] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.32),rgba(139,92,246,0.1)_45%,transparent_70%)]" />
-      <div className="pointer-events-none absolute right-[8%] top-[8%] h-[40vh] w-[40vh] rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.2),rgba(34,211,238,0.07)_45%,transparent_70%)]" />
-
       {/* giant backdrop word, slower parallax for depth */}
       <motion.span
         aria-hidden="true"
@@ -113,7 +109,7 @@ export default function Hero() {
             <Magnetic>
               <a
                 href="#work"
-                className="cta-glow group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-2 px-6 py-3.5 font-semibold text-white transition-all hover:brightness-110"
+                className="cta-glow group inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] transition-all hover:bg-accent-2"
               >
                 <span className="halo" aria-hidden="true">
                   <span className="halo-disc" />

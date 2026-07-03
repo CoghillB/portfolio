@@ -12,76 +12,84 @@
    `text-*`, `border-*` utility adapts automatically to the active theme.
 ---------------------------------------------------------------------------- */
 @theme {
-  --color-base: #08080a;
-  --color-base-2: #0c0c10;
-  --color-surface: #111116;
+  --color-base: #0a0a0a;
+  --color-base-2: #111111;
+  --color-surface: #16150f;
 
-  --color-ink: #f4f4f5;
-  --color-ink-soft: #a1a1aa;
-  --color-ink-muted: #71717a;
+  --color-ink: #ede9e0;
+  --color-ink-soft: #b8b4a8;
+  --color-ink-muted: #8a867b;
 
-  --color-line: rgba(255, 255, 255, 0.08);
-  --color-line-strong: rgba(255, 255, 255, 0.14);
+  --color-line: rgba(237, 233, 224, 0.14);
+  --color-line-strong: rgba(237, 233, 224, 0.26);
 
-  /* Subtle filled surfaces used across cards/chips. In dark these are faint
-     white overlays; in light they become real off-white/white fills. */
-  --color-card: rgba(255, 255, 255, 0.02);
-  --color-card-2: rgba(255, 255, 255, 0.03);
-  --color-card-hover: rgba(255, 255, 255, 0.06);
+  /* Card surfaces: faint bone overlays in dark; real off-white in light. */
+  --color-card: rgba(237, 233, 224, 0.03);
+  --color-card-2: rgba(237, 233, 224, 0.05);
+  --color-card-hover: rgba(237, 233, 224, 0.09);
 
-  --color-accent: #8b5cf6;
-  --color-accent-2: #6366f1;
-  --color-accent-3: #22d3ee;
-  --color-accent-glow: rgba(139, 92, 246, 0.35);
+  /* Acid-lime shout + hot-magenta jolt. Bright on jet as text AND fills. */
+  --color-accent: #c6ff00;
+  --color-accent-2: #ff2e9a;
+  --color-accent-3: #c6ff00;
+  --color-accent-glow: rgba(198, 255, 0, 0.22);
 
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
 
-  --radius-xl: 1.25rem;
+  /* Hard brutalist edges (rounded-full stays round for dots/pills). */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
 }
 
 /* Theme-only variables (not Tailwind tokens) consumed by the utilities below. */
 :root {
-  --grid-line: rgba(255, 255, 255, 0.04);
-  --glass-bg: rgba(255, 255, 255, 0.025);
-  --grad-1: #c4b5fd;
-  --grad-2: #818cf8;
-  --grad-3: #22d3ee;
-  --vignette: rgba(0, 0, 0, 0.45);
-  --stroke-ink: rgba(255, 255, 255, 0.16);
+  --grid-line: rgba(237, 233, 224, 0.05);
+  --glass-bg: rgba(237, 233, 224, 0.03);
+  --grad-1: #c6ff00;
+  --grad-2: #b6ff4d;
+  --grad-3: #ff2e9a;
+  --vignette: rgba(0, 0, 0, 0.5);
+  --stroke-ink: rgba(237, 233, 224, 0.5);
 }
 
 /* Light variant: redefine the same custom properties so utilities recolor. */
 html.light {
   color-scheme: light;
 
-  --color-base: #fbfbfd;
-  --color-base-2: #f3f4f8;
-  --color-surface: #ffffff;
+  --color-base: #ede9e0;
+  --color-base-2: #e3ded2;
+  --color-surface: #fbfaf6;
 
-  --color-ink: #18181b;
-  --color-ink-soft: #475569;
-  --color-ink-muted: #5b6472;
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #3a382f;
+  --color-ink-muted: #5c594e;
 
-  --color-line: rgba(15, 17, 26, 0.10);
-  --color-line-strong: rgba(15, 17, 26, 0.16);
+  --color-line: rgba(10, 10, 10, 0.14);
+  --color-line-strong: rgba(10, 10, 10, 0.26);
 
-  --color-card: #ffffff;
-  --color-card-2: #f4f4f8;
-  --color-card-hover: #eef0f6;
+  --color-card: #fbfaf6;
+  --color-card-2: #f2efe7;
+  --color-card-hover: #e9e5da;
 
-  /* Darken the cyan accent so it clears AA as small text on light surfaces. */
-  --color-accent-3: #0e7490;
-  --color-accent-glow: rgba(124, 58, 237, 0.28);
+  /* Darken acids so they clear AA as text/borders (and fills) on bone paper. */
+  --color-accent: #5a7a00;
+  --color-accent-2: #b2005e;
+  --color-accent-3: #5a7a00;
+  --color-accent-glow: rgba(90, 122, 0, 0.2);
 
-  --grid-line: rgba(15, 17, 26, 0.05);
-  --glass-bg: rgba(255, 255, 255, 0.72);
-  --grad-1: #7c3aed;
-  --grad-2: #4f46e5;
-  --grad-3: #0e7490;
-  --vignette: rgba(15, 17, 26, 0.06);
-  --stroke-ink: rgba(15, 17, 26, 0.22);
+  --grid-line: rgba(10, 10, 10, 0.06);
+  --glass-bg: rgba(251, 250, 246, 0.72);
+  --grad-1: #4e6b00;
+  --grad-2: #6a5a00;
+  --grad-3: #b2005e;
+  --vignette: rgba(10, 10, 10, 0.06);
+  --stroke-ink: rgba(10, 10, 10, 0.32);
 }
 
 html.dark {
@@ -107,7 +115,7 @@ body {
 
 ::selection {
   background: var(--color-accent);
-  color: #fff;
+  color: #0a0a0a;
 }
 
 /* Visible keyboard focus ring on interactive elements, both themes.
@@ -127,12 +135,11 @@ body {
   background: var(--color-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-line-strong);
-  border-radius: 999px;
-  border: 2px solid var(--color-base);
+  background: var(--color-accent);
+  border: 3px solid var(--color-base);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-ink-muted);
+  background: var(--color-accent-2);
 }
 
 /* ----------------------------------------------------------------------------
@@ -206,8 +213,8 @@ body {
     padding: 1px;
     background: linear-gradient(
       135deg,
-      rgba(139, 92, 246, 0.5),
-      rgba(34, 211, 238, 0.3),
+      rgba(198, 255, 0, 0.6),
+      rgba(255, 46, 154, 0.35),
       transparent 60%
     );
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { MotionConfig } from 'framer-motion'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import AuroraBackground from './components/AuroraBackground'
+import Backdrop from './components/Backdrop'
 import ScrollProgress from './components/fx/ScrollProgress'
 import { LoadingScreen } from './components/LoadingScreen'
 import { Navbar } from './components/Navbar'
@@ -17,7 +17,7 @@ import './index.css'
 
 const MainLayout = ({ children }) => (
   <>
-    <AuroraBackground />
+    <Backdrop />
     <ScrollProgress />
     <Navbar />
     <main>{children}</main>
