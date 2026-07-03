@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { MotionConfig } from 'framer-motion'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import AuroraBackground from './components/AuroraBackground'
+import Backdrop from './components/Backdrop'
+import ScrollProgress from './components/fx/ScrollProgress'
 import { LoadingScreen } from './components/LoadingScreen'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import Hero from './components/sections/Hero'
+import MarqueeBand from './components/MarqueeBand'
 import { About } from './components/sections/About'
 import { Experience } from './components/sections/Experience'
 import { Skills } from './components/sections/Skills'
@@ -16,7 +18,8 @@ import './index.css'
 
 const MainLayout = ({ children }) => (
   <>
-    <AuroraBackground />
+    <Backdrop />
+    <ScrollProgress />
     <Navbar />
     <main>{children}</main>
     <Footer />
@@ -26,6 +29,7 @@ const MainLayout = ({ children }) => (
 const Portfolio = () => (
   <>
     <Hero />
+    <MarqueeBand />
     <About />
     <Experience />
     <Skills />

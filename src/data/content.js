@@ -8,9 +8,9 @@ export const profile = {
   location: 'Kelowna, BC',
   available: true,
   tagline:
-    'I build clean, accessible web apps that feel good to use, usually with React, TypeScript, and Next.js.',
+    'I build web applications end to end, from clean React and TypeScript interfaces to the C#, Node, and PostgreSQL that power them.',
   intro:
-    'Frontend developer who likes turning ideas into fast, friendly experiences on the web.',
+    'Software developer who likes turning ideas into reliable, well-built products, front end to back.',
   email: 'brayden.coghill@gmail.com',
   socials: {
     github: 'https://github.com/CoghillB',
@@ -18,10 +18,13 @@ export const profile = {
   },
 }
 
+// Rotating descriptors in the hero role line.
+export const heroWords = ['fast', 'effortless', 'polished', 'human']
+
 export const about = {
   paragraphs: [
-    "I'm a husband and a proud dad based in Kelowna, BC, and I'm building my second career as a frontend developer. Before tech, I worked as a commercial diver. It was a tough, unusual job, and it taught me how to stay calm under pressure, think on my feet, and lead a team when it really counts.",
-    "I bring that same drive to web development now. I got into frontend because I love helping people bring their ideas to life, taking a rough vision and turning it into something real you can actually click and use. Whether it's my own side project or a client's big idea, watching it come together on screen is the part I look forward to most.",
+    "I'm a husband and a proud dad based in Kelowna, BC, and I'm building my second career as a software developer. Before tech, I worked as a commercial diver. It was a tough, unusual job, and it taught me how to stay calm under pressure, think on my feet, and lead a team when it really counts.",
+    "I bring that same drive to software development now. I got into it because I love helping people bring their ideas to life, taking a rough vision and turning it into something real that actually works. Whether it's my own side project or a client's big idea, watching it come together and ship is the part I look forward to most.",
   ],
   stats: [
     { value: '20+', label: 'Technologies' },
@@ -86,16 +89,6 @@ export const skillGroups = [
 
 export const projects = [
   {
-    title: 'Kelowna Creative',
-    subtitle: 'Agency Website',
-    description:
-      'A dynamic, visually immersive site for a local marketing agency. Fully responsive, showcasing their portfolio with glassmorphism cards and smooth Framer Motion animations.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'AOS'],
-    href: 'https://www.kelownacreative.ca/',
-    cta: 'View Site',
-    featured: true,
-  },
-  {
     title: 'EdgeFinder',
     subtitle: 'AI-Powered Sports Prop Betting Platform',
     description:
@@ -106,13 +99,83 @@ export const projects = [
     featured: true,
   },
   {
+    title: 'SeaTrace',
+    subtitle: 'Seafood Traceability Platform · Team',
+    description:
+      'A multi-tenant platform that tracks seafood from harvest through buying, grading, inventory, and sale, tying every lot back to its source vessel, gear, and fishing zone for full chain-of-custody traceability. Role-based portals for buyers, exporters, and a superadmin tier, with tenant isolation enforced by Postgres row-level security.',
+    tags: ['React', 'TypeScript', 'Supabase', 'Postgres', 'Tailwind', 'Multi-Tenant', 'RLS'],
+    href: '',
+    cta: 'Private',
+    featured: true,
+  },
+  {
+    title: 'Cyan Analytics',
+    subtitle: 'Data Transparency Platform · Team',
+    description:
+      'Marketing site for a data-analytics product that turns business data into transparency, traceability, and insight. Built with the team in Next.js, TypeScript, and Tailwind CSS.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Team'],
+    href: 'https://www.cyananalytics.io/',
+    cta: 'View Site',
+    featured: true,
+  },
+  {
+    title: 'PantryPal',
+    subtitle: 'AI Recipe Generator App',
+    description:
+      "A scenario-based recipe app that generates meals from what you have, what you're craving, and who you're feeding. React Native and Expo on mobile, a Fastify and Supabase backend, and GPT-4o doing the cooking.",
+    tags: ['React Native', 'Expo', 'Fastify', 'Supabase', 'OpenAI', 'TypeScript'],
+    href: 'https://github.com/CoghillB/RecipeApp',
+    cta: 'View on GitHub',
+    featured: true,
+  },
+  {
     title: 'ApeOffside',
     subtitle: 'Player-Prop Betting Platform',
     description:
       'A live player-prop betting platform with real-time odds and statistics. A Python/Django REST API integrates an AI assistant to provide users with data-driven betting insights.',
     tags: ['React', 'Python', 'Django', 'Docker', 'HTML5/CSS3'],
-    href: 'https://github.com/CoghillB/ApeOffside.git',
+    href: 'https://github.com/CoghillB/ApeOffside',
     cta: 'View on GitHub',
+    featured: true,
+  },
+  {
+    title: 'Kelowna Creative',
+    subtitle: 'Agency Website',
+    description:
+      'A dynamic, visually immersive site for a local marketing agency. Fully responsive, showcasing their portfolio with glassmorphism cards and smooth Framer Motion animations.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'AOS'],
+    href: 'https://www.kelownacreative.ca/',
+    cta: 'View Site',
+    featured: false,
+  },
+  {
+    title: 'M&B Capital',
+    subtitle: 'Investment Firm Site',
+    description:
+      'A marketing and investor-facing site for a private investment firm, walking through their acquire, build, and realize model with clear calls to action for investors and business owners.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/MB-Capital/',
+    cta: 'View Site',
+    featured: false,
+  },
+  {
+    title: 'Budget Quest',
+    subtitle: 'Personal Finance PWA',
+    description:
+      'A personal-finance app for tracking income, budgets, and expenses, with recurring transactions, shared household budgets, pay-period history, and full offline support. Installable straight to the home screen.',
+    tags: ['PWA', 'Offline', 'Budgeting', 'Responsive'],
+    href: 'https://coghillb.github.io/budget_app/',
+    cta: 'Open App',
+    featured: false,
+  },
+  {
+    title: 'Kerion',
+    subtitle: 'Creator Landing Page',
+    description:
+      "A landing page for a RimWorld YouTube channel, built to showcase story-driven let's-plays and challenge series and point viewers to the videos.",
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/kerion-youtube/',
+    cta: 'View Site',
     featured: false,
   },
   {
@@ -121,7 +184,7 @@ export const projects = [
     description:
       'A travel-planning app for organizing trips and managing budgets. Integrates the Google Maps API to visualize routes and locations, designed in Figma and built with vanilla JS.',
     tags: ['JavaScript', 'Node.js', 'HTML5', 'CSS3', 'Google Maps API'],
-    href: 'https://github.com/CoghillB/COSC205_CourseProject.git',
+    href: 'https://github.com/CoghillB/COSC205_CourseProject',
     cta: 'View on GitHub',
     featured: false,
   },

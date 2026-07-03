@@ -34,15 +34,49 @@ const work = [
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Supabase', 'Stripe', 'Capacitor', 'AI'],
     href: 'https://www.edgefinder.ca',
   },
+  {
+    title: 'M&B Capital',
+    img: '/mb-capital.png',
+    alt: 'M&B Capital, a marketing and investor site for a private investment firm',
+    body: 'A refined marketing and investor site for a private investment firm. An elegant, editorial design that walks investors and business owners through their acquire, build, and realize model with clear calls to action.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/MB-Capital/',
+  },
+  {
+    title: 'Cyan Analytics',
+    img: '/cyan-analytics.png',
+    alt: 'Cyan Analytics, a marketing site for a data-transparency analytics product',
+    body: 'A modern marketing site for a data-transparency analytics product, built with the team in Next.js. Clean, fast, and focused on communicating the platform’s value to a business audience.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Team'],
+    href: 'https://www.cyananalytics.io/',
+  },
+  {
+    title: 'Kerion',
+    img: '/kerion.png',
+    alt: 'Kerion, a landing page for a RimWorld YouTube channel',
+    body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/kerion-youtube/',
+  },
 ]
+
+// Acid/magenta preview art for entries without a screenshot (matches the
+// main Work section's preview style).
+const gradients = [
+  'linear-gradient(135deg, rgba(198,255,0,0.5), rgba(255,46,154,0.35) 55%, rgba(198,255,0,0.22))',
+  'linear-gradient(135deg, rgba(255,46,154,0.45), rgba(198,255,0,0.38) 55%, rgba(255,46,154,0.22))',
+  'linear-gradient(135deg, rgba(198,255,0,0.5), rgba(255,46,154,0.3) 55%, rgba(198,255,0,0.25))',
+]
+
+const initials = (t) => {
+  const w = t.split(/[\s&]+/).filter(Boolean)
+  return (w.length > 1 ? w.map((x) => x[0]).join('') : w[0]).slice(0, 2).toUpperCase()
+}
 
 const WebDev = () => {
   return (
     <>
       <section id="webdev" className="relative px-6 pt-36 pb-12 sm:pt-40">
-        {/* Hero glow */}
-        <div className="pointer-events-none absolute left-1/2 top-24 h-[45vh] w-[45vh] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.35),transparent_65%)] blur-[90px]" />
-
         <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>
             <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
@@ -66,7 +100,7 @@ const WebDev = () => {
           <Reveal delay={0.15}>
             <a
               href="#contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-2 px-6 py-3.5 font-semibold text-white shadow-[0_0_30px_-6px_var(--color-accent-glow)] transition-all hover:brightness-110"
+              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] transition-all hover:brightness-110"
             >
               Get a free quote
             </a>
@@ -99,11 +133,22 @@ const WebDev = () => {
             {work.map((w, i) => (
               <Reveal key={w.title} delay={i * 0.1} className="h-full">
                 <div className="glow-border flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-card p-6">
-                  <ImageWithSkeleton
-                    src={w.img}
-                    alt={w.alt}
-                    className="mb-5 aspect-video w-full rounded-xl border border-line object-cover"
-                  />
+                  {w.img ? (
+                    <ImageWithSkeleton
+                      src={w.img}
+                      alt={w.alt}
+                      className="mb-5 aspect-video w-full rounded-xl border border-line object-cover"
+                    />
+                  ) : (
+                    <div
+                      className="mb-5 grid aspect-video w-full place-items-center overflow-hidden rounded-xl border border-line"
+                      style={{ background: gradients[i % gradients.length] }}
+                    >
+                      <span className="text-stroke select-none font-display text-6xl font-bold leading-none opacity-80">
+                        {initials(w.title)}
+                      </span>
+                    </div>
+                  )}
                   <h3 className="font-display text-xl font-semibold text-ink">{w.title}</h3>
                   <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-soft">{w.body}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
