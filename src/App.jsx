@@ -7,6 +7,7 @@ import { LoadingScreen } from './components/LoadingScreen'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import Hero from './components/sections/Hero'
+import MarqueeBand from './components/MarqueeBand'
 import { About } from './components/sections/About'
 import { Experience } from './components/sections/Experience'
 import { Skills } from './components/sections/Skills'
@@ -28,6 +29,7 @@ const MainLayout = ({ children }) => (
 const Portfolio = () => (
   <>
     <Hero />
+    <MarqueeBand />
     <About />
     <Experience />
     <Skills />
