@@ -19,7 +19,7 @@ export const profile = {
 }
 
 // Rotating descriptors in the hero role line.
-export const heroWords = ['fast', 'accessible', 'delightful', 'human']
+export const heroWords = ['fast', 'effortless', 'polished', 'human']
 
 export const about = {
   paragraphs: [

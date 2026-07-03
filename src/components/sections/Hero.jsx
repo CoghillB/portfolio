@@ -104,7 +104,7 @@ export default function Hero() {
 
           <motion.div variants={item} className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
             <p className="font-display text-xl font-medium text-ink sm:text-2xl">
-              {profile.role}, building <RotatingWord /> things for the web
+              {profile.role} building web apps that feel <RotatingWord />
             </p>
           </motion.div>
 
