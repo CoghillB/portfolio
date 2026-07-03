@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Lock } from 'lucide-react'
 import { Github } from '../BrandIcons'
 import Reveal, { SectionHeading } from '../Reveal'
 import { projects } from '../../data/content'
@@ -30,8 +30,11 @@ function StackCard({ project, i, total, progress }) {
   }
   const spotlight = useMotionTemplate`radial-gradient(480px circle at ${mx}px ${my}px, rgba(198,255,0,0.12), transparent 70%)`
 
+  const isPrivate = !project.href
   const isGithub = project.cta.includes('GitHub')
-  const domain = project.href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/.*$/, '')
+  const domain = isPrivate
+    ? 'private platform'
+    : project.href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/.*$/, '')
 
   return (
     <div className="sticky top-0 flex h-screen items-center justify-center px-4 sm:px-6">
@@ -74,24 +77,31 @@ function StackCard({ project, i, total, progress }) {
                 </span>
               ))}
             </div>
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-7 inline-flex items-center gap-2 rounded-xl border border-line-strong bg-card px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-accent/50 hover:bg-accent/10"
-            >
-              {isGithub ? <Github size={16} /> : null}
-              {project.cta}
-              <ArrowUpRight size={15} className="text-accent-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            {isPrivate ? (
+              <span className="mt-7 inline-flex items-center gap-2 rounded-xl border border-line-strong bg-card px-5 py-2.5 text-sm font-semibold text-ink-soft">
+                <Lock size={15} className="text-accent-3" />
+                Private client platform
+              </span>
+            ) : (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-7 inline-flex items-center gap-2 rounded-xl border border-line-strong bg-card px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-accent/50 hover:bg-accent/10"
+              >
+                {isGithub ? <Github size={16} /> : null}
+                {project.cta}
+                <ArrowUpRight size={15} className="text-accent-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            )}
           </div>
 
           {/* Stylized browser preview */}
           <a
-            href={project.href}
+            href={project.href || undefined}
             target="_blank"
             rel="noreferrer"
-            aria-label={`Open ${project.title}`}
+            aria-label={isPrivate ? project.title : `Open ${project.title}`}
             className="relative hidden overflow-hidden rounded-2xl border border-line lg:block"
           >
             <div className="flex items-center gap-1.5 border-b border-line bg-card-2 px-4 py-2.5">
@@ -110,7 +120,15 @@ function StackCard({ project, i, total, progress }) {
                 {project.title.slice(0, 2)}
               </span>
               <span className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-lg bg-black/35 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
-                {isGithub ? 'Open repo' : 'Visit live site'} <ArrowUpRight size={13} />
+                {isPrivate ? (
+                  <>
+                    <Lock size={13} /> Private platform
+                  </>
+                ) : (
+                  <>
+                    {isGithub ? 'Open repo' : 'Visit live site'} <ArrowUpRight size={13} />
+                  </>
+                )}
               </span>
             </div>
           </a>

@@ -99,6 +99,16 @@ export const projects = [
     featured: true,
   },
   {
+    title: 'SeaTrace',
+    subtitle: 'Seafood Traceability Platform · Team',
+    description:
+      'A multi-tenant platform that tracks seafood from harvest through buying, grading, inventory, and sale, tying every lot back to its source vessel, gear, and fishing zone for full chain-of-custody traceability. Role-based portals for buyers, exporters, and a superadmin tier, with tenant isolation enforced by Postgres row-level security.',
+    tags: ['React', 'TypeScript', 'Supabase', 'Postgres', 'Tailwind', 'Multi-Tenant', 'RLS'],
+    href: '',
+    cta: 'Private',
+    featured: true,
+  },
+  {
     title: 'Cyan Analytics',
     subtitle: 'Data Transparency Platform · Team',
     description:
