@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { Github } from '../BrandIcons'
-import { SectionHeading } from '../Reveal'
+import Reveal, { SectionHeading } from '../Reveal'
 import { projects } from '../../data/content'
 
 // Per-card preview art (presentation only, copy stays in content.js).
@@ -120,6 +120,38 @@ function StackCard({ project, i, total, progress }) {
   )
 }
 
+// Compact card for the "More work" grid below the featured stack.
+function GridCard({ project }) {
+  const isGithub = project.cta.includes('GitHub')
+  return (
+    <a
+      href={project.href}
+      target="_blank"
+      rel="noreferrer"
+      className="group flex h-full flex-col border border-line bg-card p-6 transition-colors hover:border-accent/60 hover:bg-card-hover"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <span className="font-mono text-[11px] uppercase tracking-wider text-accent-3">{project.subtitle}</span>
+        <span className="shrink-0 text-ink-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent">
+          {isGithub ? <Github size={16} /> : <ArrowUpRight size={16} />}
+        </span>
+      </div>
+      <h3 className="mt-3 font-display text-2xl text-ink">{project.title}</h3>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">{project.description}</p>
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        {project.tags.slice(0, 4).map((t) => (
+          <span
+            key={t}
+            className="border border-line px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-ink-muted"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    </a>
+  )
+}
+
 export const Projects = () => {
   const stackRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -127,7 +159,8 @@ export const Projects = () => {
     offset: ['start start', 'end end'],
   })
 
-  const ordered = [...projects.filter((p) => p.featured), ...projects.filter((p) => !p.featured)]
+  const featured = projects.filter((p) => p.featured)
+  const rest = projects.filter((p) => !p.featured)
 
   return (
     <section id="work" className="relative">
@@ -135,14 +168,31 @@ export const Projects = () => {
         <SectionHeading
           eyebrow="Selected work"
           title="Things I've designed & shipped."
-          kicker="A mix of client sites and personal builds, from immersive marketing pages to AI-assisted data platforms. Keep scrolling, the deck stacks."
+          kicker="Client sites, team products, and personal builds. The featured few stack as you scroll; the rest are just below."
         />
       </div>
 
       <div ref={stackRef} className="relative">
-        {ordered.map((p, i) => (
-          <StackCard key={p.title} project={p} i={i} total={ordered.length} progress={scrollYProgress} />
+        {featured.map((p, i) => (
+          <StackCard key={p.title} project={p} i={i} total={featured.length} progress={scrollYProgress} />
         ))}
+      </div>
+
+      {/* More work: everything else, in a scannable grid */}
+      <div className="mx-auto max-w-5xl px-6 pb-4 pt-16 sm:pt-24">
+        <Reveal>
+          <div className="mb-6 flex items-baseline gap-3 border-t-2 border-line pt-6">
+            <span className="font-mono text-xs uppercase tracking-[0.3em] text-accent-3">More work</span>
+            <span className="font-mono text-xs text-ink-muted">[{rest.length}]</span>
+          </div>
+        </Reveal>
+        <div className="grid gap-4 sm:grid-cols-2 lg:auto-rows-fr lg:grid-cols-3">
+          {rest.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.05} className="h-full">
+              <GridCard project={p} />
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   )

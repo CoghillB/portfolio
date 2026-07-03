@@ -89,16 +89,6 @@ export const skillGroups = [
 
 export const projects = [
   {
-    title: 'Kelowna Creative',
-    subtitle: 'Agency Website',
-    description:
-      'A dynamic, visually immersive site for a local marketing agency. Fully responsive, showcasing their portfolio with glassmorphism cards and smooth Framer Motion animations.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'AOS'],
-    href: 'https://www.kelownacreative.ca/',
-    cta: 'View Site',
-    featured: true,
-  },
-  {
     title: 'EdgeFinder',
     subtitle: 'AI-Powered Sports Prop Betting Platform',
     description:
@@ -109,13 +99,73 @@ export const projects = [
     featured: true,
   },
   {
+    title: 'Cyan Analytics',
+    subtitle: 'Data Transparency Platform · Team',
+    description:
+      'Marketing site for a data-analytics product that turns business data into transparency, traceability, and insight. Built with the team in Next.js, TypeScript, and Tailwind CSS.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Team'],
+    href: 'https://www.cyananalytics.io/',
+    cta: 'View Site',
+    featured: true,
+  },
+  {
+    title: 'PantryPal',
+    subtitle: 'AI Recipe Generator App',
+    description:
+      "A scenario-based recipe app that generates meals from what you have, what you're craving, and who you're feeding. React Native and Expo on mobile, a Fastify and Supabase backend, and GPT-4o doing the cooking.",
+    tags: ['React Native', 'Expo', 'Fastify', 'Supabase', 'OpenAI', 'TypeScript'],
+    href: 'https://github.com/CoghillB/RecipeApp',
+    cta: 'View on GitHub',
+    featured: true,
+  },
+  {
     title: 'ApeOffside',
     subtitle: 'Player-Prop Betting Platform',
     description:
       'A live player-prop betting platform with real-time odds and statistics. A Python/Django REST API integrates an AI assistant to provide users with data-driven betting insights.',
     tags: ['React', 'Python', 'Django', 'Docker', 'HTML5/CSS3'],
-    href: 'https://github.com/CoghillB/ApeOffside.git',
+    href: 'https://github.com/CoghillB/ApeOffside',
     cta: 'View on GitHub',
+    featured: true,
+  },
+  {
+    title: 'Kelowna Creative',
+    subtitle: 'Agency Website',
+    description:
+      'A dynamic, visually immersive site for a local marketing agency. Fully responsive, showcasing their portfolio with glassmorphism cards and smooth Framer Motion animations.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'AOS'],
+    href: 'https://www.kelownacreative.ca/',
+    cta: 'View Site',
+    featured: false,
+  },
+  {
+    title: 'M&B Capital',
+    subtitle: 'Investment Firm Site',
+    description:
+      'A marketing and investor-facing site for a private investment firm, walking through their acquire, build, and realize model with clear calls to action for investors and business owners.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/MB-Capital/',
+    cta: 'View Site',
+    featured: false,
+  },
+  {
+    title: 'Budget Quest',
+    subtitle: 'Personal Finance PWA',
+    description:
+      'A personal-finance app for tracking income, budgets, and expenses, with recurring transactions, shared household budgets, pay-period history, and full offline support. Installable straight to the home screen.',
+    tags: ['PWA', 'Offline', 'Budgeting', 'Responsive'],
+    href: 'https://coghillb.github.io/budget_app/',
+    cta: 'Open App',
+    featured: false,
+  },
+  {
+    title: 'Kerion',
+    subtitle: 'Creator Landing Page',
+    description:
+      "A landing page for a RimWorld YouTube channel, built to showcase story-driven let's-plays and challenge series and point viewers to the videos.",
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/kerion-youtube/',
+    cta: 'View Site',
     featured: false,
   },
   {
@@ -124,7 +174,7 @@ export const projects = [
     description:
       'A travel-planning app for organizing trips and managing budgets. Integrates the Google Maps API to visualize routes and locations, designed in Figma and built with vanilla JS.',
     tags: ['JavaScript', 'Node.js', 'HTML5', 'CSS3', 'Google Maps API'],
-    href: 'https://github.com/CoghillB/COSC205_CourseProject.git',
+    href: 'https://github.com/CoghillB/COSC205_CourseProject',
     cta: 'View on GitHub',
     featured: false,
   },
