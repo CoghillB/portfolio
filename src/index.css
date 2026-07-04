@@ -211,6 +211,9 @@ body {
     inset: 0;
     border-radius: inherit;
     padding: 1px;
+    /* Decorative overlay only — must not swallow clicks on the card's
+       links (e.g. the "View Site" anchors on the web-design cards). */
+    pointer-events: none;
     background: linear-gradient(
       135deg,
       rgba(198, 255, 0, 0.6),
