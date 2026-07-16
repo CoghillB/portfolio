@@ -43,7 +43,7 @@ function Letter({ ch, mouse, interactive, radius, force }) {
   })
 
   return (
-    <span className="inline-block overflow-hidden pb-[0.08em] -mb-[0.08em] align-bottom" aria-hidden="true">
+    <span className="inline-block overflow-hidden pb-[0.25em] -mb-[0.25em] align-bottom" aria-hidden="true">
       <motion.span variants={charV} className="inline-block origin-bottom-left">
         <motion.span ref={ref} style={{ x: sx, y: sy, rotate: sr }} className="inline-block">
           {ch === ' ' ? ' ' : ch}
