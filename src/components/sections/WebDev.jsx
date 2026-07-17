@@ -13,7 +13,7 @@ const services = [
   },
   {
     title: 'SEO & Optimization',
-    body: 'Improve your Google rankings and site performance across the Okanagan.',
+    body: 'Improve your Google rankings and site performance to reach more of your audience.',
   },
 ]
 
@@ -86,13 +86,13 @@ const WebDev = () => {
           </Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-              Web design for small businesses <span className="text-gradient">& trades</span>
+              Web design that <span className="text-gradient">works for you</span>
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-              I build custom, affordable websites for small businesses and trades in Kelowna, Vernon, and Penticton.
-              My sites are fast, mobile-friendly, and optimized to attract local customers. Whether you need a new
+              I build custom, affordable websites for businesses, creators, and organizations of every kind.
+              My sites are fast, mobile-friendly, and optimized to reach the right audience. Whether you need a new
               site or a refresh, you get clean design, quick turnaround, and clear communication, without the agency
               price tag.
             </p>
@@ -194,9 +194,9 @@ const WebDev = () => {
                 </h2>
                 <p className="mt-3 leading-relaxed text-ink-soft">
                   Hi, I&apos;m Brayden Coghill, a web developer based in Kelowna, BC. I specialize in modern,
-                  affordable websites for small businesses and trades across the Okanagan. My goal is to build sites
-                  that are not only good looking but also fast, reliable, and optimized for local search so your
-                  business can grow.
+                  affordable websites for clients of all kinds, from businesses and creators to organizations and
+                  personal brands. My goal is to build sites that are not only good looking but also fast, reliable,
+                  and optimized for search so you can grow.
                 </p>
               </div>
             </div>
