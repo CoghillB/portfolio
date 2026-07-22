@@ -13,7 +13,7 @@ const services = [
   },
   {
     title: 'SEO & Optimization',
-    body: 'Improve your Google rankings and site performance across the Okanagan.',
+    body: 'Improve your Google rankings and site performance to reach more customers.',
   },
 ]
 
@@ -22,7 +22,7 @@ const work = [
     title: 'Kelowna Creative',
     img: '/kelowna-creative.png',
     alt: 'Kelowna Creative website redesign for a local creative agency',
-    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in the Okanagan.',
+    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in their market.',
     tags: ['TypeScript', 'Tailwind CSS', 'Next.js', 'Framer Motion', 'AOS'],
     href: 'https://www.kelownacreative.ca',
   },
@@ -81,7 +81,7 @@ const WebDev = () => {
           <Reveal>
             <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
               <span className="h-px w-8 bg-accent-3/60" />
-              Kelowna Web Design
+              Web Design & Development
             </span>
           </Reveal>
           <Reveal delay={0.05}>
@@ -91,8 +91,8 @@ const WebDev = () => {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-              I build custom, affordable websites for small businesses and trades in Kelowna, Vernon, and Penticton.
-              My sites are fast, mobile-friendly, and optimized to attract local customers. Whether you need a new
+              I build custom, affordable websites for small businesses and trades across Canada.
+              My sites are fast, mobile-friendly, and optimized to bring in new customers. Whether you need a new
               site or a refresh, you get clean design, quick turnaround, and clear communication, without the agency
               price tag.
             </p>
@@ -184,7 +184,7 @@ const WebDev = () => {
               <div className="shrink-0">
                 <ImageWithSkeleton
                   src="/aboutme.jpg"
-                  alt="Brayden Coghill, a web developer in Kelowna, BC"
+                  alt="Brayden Coghill, a Canadian web developer"
                   className="mx-auto h-40 w-40 rounded-2xl border border-line object-cover shadow-lg"
                 />
               </div>
@@ -193,9 +193,9 @@ const WebDev = () => {
                   <span className="text-gradient">About me</span>
                 </h2>
                 <p className="mt-3 leading-relaxed text-ink-soft">
-                  Hi, I&apos;m Brayden Coghill, a web developer based in Kelowna, BC. I specialize in modern,
-                  affordable websites for small businesses and trades across the Okanagan. My goal is to build sites
-                  that are not only good looking but also fast, reliable, and optimized for local search so your
+                  Hi, I&apos;m Brayden Coghill, a Canadian web developer. I specialize in modern,
+                  affordable websites for small businesses and trades across Canada. My goal is to build sites
+                  that are not only good looking but also fast, reliable, and optimized for search so your
                   business can grow.
                 </p>
               </div>

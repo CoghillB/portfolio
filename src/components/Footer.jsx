@@ -30,7 +30,11 @@ export const Footer = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="text-stroke pointer-events-auto select-none whitespace-nowrap font-display text-[13.5vw] font-bold leading-none transition-colors duration-500 hover:text-ink sm:text-[10vw]"
         >
-          COGHILL.DEV
+          {/* The period sits on the baseline, exactly the band the overflow-hidden
+             clip eats as the wordmark rises out of the edge, so it vanished once
+             the fill went solid. Raise it into the cap band (inherits the same
+             stroke + hover fill) so it stays visible in every state. */}
+          COGHILL<span className="align-[0.3em]">.</span>DEV
         </motion.span>
       </div>
 
