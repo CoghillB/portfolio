@@ -11,7 +11,7 @@ export const profile = {
     'I build web applications end to end, from clean React and TypeScript interfaces to the C#, Node, and PostgreSQL that power them.',
   intro:
     'Software developer who likes turning ideas into reliable, well-built products, front end to back.',
-  email: 'brayden.coghill@gmail.com',
+  email: 'brayden.coghill@coghilldev.com',
   socials: {
     github: 'https://github.com/CoghillB',
     linkedin: 'https://www.linkedin.com/in/braydencoghill',

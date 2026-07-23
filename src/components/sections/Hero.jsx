@@ -97,7 +97,10 @@ export default function Hero() {
             <span className="block text-ink">
               <KineticText text={profile.firstName} stagger={0.045} delay={0.25} />
             </span>
-            <span className="block text-gradient">
+            {/* pb/-mb pair extends the background-clip:text paint box below the
+                baseline so gradient descenders (the 'g' in Coghill) aren't
+                clipped, while the equal negative margin keeps layout unchanged. */}
+            <span className="block text-gradient pb-[0.2em] -mb-[0.2em]">
               <KineticText text={profile.lastName} stagger={0.045} delay={0.5} />
             </span>
           </h1>

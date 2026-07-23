@@ -99,6 +99,9 @@ html.dark {
 /* Base ------------------------------------------------------------------- */
 html {
   background-color: var(--color-base);
+  /* Offset anchor/hash jumps so section headings clear the fixed navbar
+     (native fragment nav and scrollIntoView both honor scroll-padding). */
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -116,6 +119,15 @@ body {
 ::selection {
   background: var(--color-accent);
   color: #0a0a0a;
+}
+
+/* Anton (our display face) ships a single 400 weight, but headings use the
+   `font-bold` / `font-semibold` utilities. That was triggering synthetic
+   ("faux") bold, which bloats Anton's condensed letterforms and hurts
+   legibility, especially at small title sizes. Render its true outline instead
+   — noticeably crisper and less thick, same font. */
+.font-display {
+  font-synthesis-weight: none;
 }
 
 /* Visible keyboard focus ring on interactive elements, both themes.

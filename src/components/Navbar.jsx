@@ -45,14 +45,8 @@ export const Navbar = () => {
     return () => observer.disconnect()
   }, [onHome, location.pathname])
 
-  // When landing on the home route with a hash (e.g. after navigating from the
-  // WebDev page), smooth-scroll to that section.
-  useEffect(() => {
-    if (onHome && location.hash) {
-      const el = document.getElementById(location.hash.slice(1))
-      if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth' }))
-    }
-  }, [onHome, location.hash])
+  // Hash landings (both routes) are handled centrally by <HashScroll> in App,
+  // which waits for the loading screen so the target section exists first.
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''

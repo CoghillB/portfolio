@@ -1,3 +1,4 @@
+import { Check } from 'lucide-react'
 import Reveal, { SectionHeading } from '../Reveal'
 import ImageWithSkeleton from '../ImageWithSkeleton'
 import { Contact } from './Contact.jsx'
@@ -14,6 +15,78 @@ const services = [
   {
     title: 'SEO & Optimization',
     body: 'Improve your Google rankings and site performance to reach more customers.',
+  },
+  {
+    title: 'E-commerce & Online Stores',
+    body: 'Sell online with a secure, easy-to-manage store and a checkout your customers trust.',
+  },
+  {
+    title: 'Custom Web Apps',
+    body: 'Booking systems, dashboards, calculators, and other bespoke tools built around how your business works.',
+  },
+  {
+    title: 'Landing Pages',
+    body: 'Focused, high-converting pages built to turn ad clicks and campaigns into real leads.',
+  },
+  {
+    title: 'Website Redesigns',
+    body: 'Give a dated site a fast, modern, mobile-friendly refresh that truly reflects your brand.',
+  },
+  {
+    title: 'Booking, Forms & Integrations',
+    body: 'Contact and booking forms, payments, and the third-party tools you rely on, wired up and working.',
+  },
+  {
+    title: 'Hosting & Setup',
+    body: 'Domain, hosting, and email set up and deployed for you, with no technical headaches on your end.',
+  },
+]
+
+// Flexible, quote-per-project pricing. The "starting from" figures below are
+// editable placeholders. Swap in your real numbers anytime.
+const pricing = [
+  {
+    name: 'Starter',
+    tagline: 'A simple one-page or landing site to get you online.',
+    priceLabel: 'Starting from',
+    price: '$499',
+    cadence: 'one-time',
+    featured: false,
+    features: [
+      'Single-page or landing site',
+      'Mobile-friendly & fast',
+      'Contact form built in',
+      'Basic SEO setup',
+    ],
+  },
+  {
+    name: 'Business',
+    tagline: 'A multi-page site to establish your small business online.',
+    priceLabel: 'Starting from',
+    price: '$1,499',
+    cadence: 'one-time',
+    featured: true,
+    features: [
+      'Up to ~5 custom pages',
+      'Designed around your brand',
+      'SEO & Google setup',
+      'Booking / contact forms',
+      'Launch + hosting help',
+    ],
+  },
+  {
+    name: 'Custom',
+    tagline: 'Web apps, e-commerce, or anything more advanced.',
+    priceLabel: 'Priced per project',
+    price: 'Custom quote',
+    cadence: '',
+    featured: false,
+    features: [
+      'E-commerce or full web app',
+      'Custom features & integrations',
+      'Scales as your business grows',
+      'Quoted to fit your budget',
+    ],
   },
 ]
 
@@ -109,12 +182,16 @@ const WebDev = () => {
       </section>
 
       {/* Services */}
-      <section className="relative px-6 py-16">
+      <section id="services" className="relative px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <SectionHeading eyebrow="Services" title="What I can build for you." />
-          <div className="grid gap-6 md:grid-cols-3">
+          <SectionHeading
+            eyebrow="Services"
+            title="What I can build for you."
+            kicker="Whatever you need built, I can help. If you can describe it, I can probably build it. Here's a sample of the work I take on."
+          />
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.1}>
+              <Reveal key={s.title} delay={(i % 3) * 0.08}>
                 <div className="glow-border h-full rounded-2xl border border-line bg-card p-6 text-center">
                   <h3 className="font-display text-lg font-semibold text-ink">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
@@ -173,6 +250,82 @@ const WebDev = () => {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Pricing / Packages */}
+      <section id="pricing" className="relative px-6 py-16">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeading
+            eyebrow="Pricing"
+            title="Simple, flexible pricing."
+            kicker="I don't do one-size-fits-all. Every project is quoted individually, so you only pay for what you actually need. The tiers below are starting points. Tell me your budget and scope and I'll tailor a quote to fit."
+          />
+          <div className="grid gap-6 md:grid-cols-3 md:items-stretch">
+            {pricing.map((tier, i) => (
+              <Reveal key={tier.name} delay={i * 0.1} className="h-full">
+                <div
+                  className={`glow-border relative flex h-full flex-col rounded-2xl border bg-card p-6 ${
+                    tier.featured
+                      ? 'border-accent/60 shadow-[0_0_40px_-12px_var(--color-accent-glow)]'
+                      : 'border-line'
+                  }`}
+                >
+                  {tier.featured && (
+                    <span className="absolute -top-3 left-6 rounded-full bg-accent px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0a0a0a]">
+                      Most popular
+                    </span>
+                  )}
+                  <h3 className="font-display text-xl font-semibold text-ink">{tier.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{tier.tagline}</p>
+
+                  <div className="mt-5 border-t border-line pt-5">
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-ink-muted">
+                      {tier.priceLabel}
+                    </span>
+                    <div className="mt-1 flex items-baseline gap-2">
+                      {/* pb/-mb keeps gradient descenders (e.g. the 'q') from clipping */}
+                      <span className="text-gradient pb-[0.1em] -mb-[0.1em] font-display text-4xl font-bold">
+                        {tier.price}
+                      </span>
+                      {tier.cadence && <span className="text-sm text-ink-muted">{tier.cadence}</span>}
+                    </div>
+                  </div>
+
+                  <ul className="mt-6 flex flex-1 flex-col gap-3">
+                    {tier.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5 text-sm text-ink-soft">
+                        <Check size={16} className="mt-0.5 shrink-0 text-accent-3" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href="#contact"
+                    className={`mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all ${
+                      tier.featured
+                        ? 'bg-accent text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] hover:brightness-110'
+                        : 'border border-line-strong bg-card text-ink hover:bg-card-hover'
+                    }`}
+                  >
+                    Get a free quote
+                  </a>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.1}>
+            <p className="mt-8 text-center text-sm leading-relaxed text-ink-muted">
+              Every budget and scope is welcome, from a quick one-pager to a full web app. Not sure where you
+              fit?{' '}
+              <a href="#contact" className="font-medium text-accent-3 hover:underline">
+                Get in touch
+              </a>{' '}
+              and I&apos;ll put together a custom quote, no pressure.
+            </p>
+          </Reveal>
         </div>
       </section>
 
