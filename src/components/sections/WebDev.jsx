@@ -42,14 +42,14 @@ const services = [
   },
 ]
 
-// Flexible, quote-per-project pricing. The "starting from" figures below are
-// editable placeholders. Swap in your real numbers anytime.
+// Flexible, quote-per-project pricing. "Starting from" floors (CAD), set to the
+// affordable end of the 2026 Canadian freelance market. Edit anytime.
 const pricing = [
   {
     name: 'Starter',
     tagline: 'A simple one-page or landing site to get you online.',
     priceLabel: 'Starting from',
-    price: '$499',
+    price: '$750',
     cadence: 'one-time',
     featured: false,
     features: [
@@ -63,7 +63,7 @@ const pricing = [
     name: 'Business',
     tagline: 'A multi-page site to establish your small business online.',
     priceLabel: 'Starting from',
-    price: '$1,499',
+    price: '$1,999',
     cadence: 'one-time',
     featured: true,
     features: [
@@ -77,9 +77,9 @@ const pricing = [
   {
     name: 'Custom',
     tagline: 'Web apps, e-commerce, or anything more advanced.',
-    priceLabel: 'Priced per project',
-    price: 'Custom quote',
-    cadence: '',
+    priceLabel: 'Starting from',
+    price: '$3,500',
+    cadence: 'per project',
     featured: false,
     features: [
       'E-commerce or full web app',
@@ -318,7 +318,7 @@ const WebDev = () => {
 
           <Reveal delay={0.1}>
             <p className="mt-8 text-center text-sm leading-relaxed text-ink-muted">
-              Every budget and scope is welcome, from a quick one-pager to a full web app. Not sure where you
+              All prices in CAD. Every budget and scope is welcome, from a quick one-pager to a full web app. Not sure where you
               fit?{' '}
               <a href="#contact" className="font-medium text-accent-3 hover:underline">
                 Get in touch
