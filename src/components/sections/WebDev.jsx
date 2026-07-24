@@ -165,7 +165,7 @@ const WebDev = () => {
                     href={w.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative z-10 mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent-3 hover:underline"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent-3 hover:underline"
                   >
                     View Site →
                   </a>
