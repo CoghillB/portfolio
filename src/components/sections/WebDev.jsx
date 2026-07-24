@@ -221,7 +221,7 @@ const WebDev = () => {
           <SectionHeading
             eyebrow="Services"
             title="What I can build for you."
-            kicker="Whatever you need built, I can help. If you can describe it, I can probably build it. Here's a sample of the work I take on."
+            kicker="Whatever you need built, I can help. If you can describe it, I can build it. Here's a sample of the work I take on."
           />
           <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {services.map((s, i) => (

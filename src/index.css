@@ -77,17 +77,21 @@ html.light {
   --color-card-2: #f2efe7;
   --color-card-hover: #e9e5da;
 
-  /* Darken acids so they clear AA as text/borders (and fills) on bone paper. */
-  --color-accent: #5a7a00;
-  --color-accent-2: #b2005e;
-  --color-accent-3: #5a7a00;
-  --color-accent-glow: rgba(90, 122, 0, 0.2);
+  /* Light-mode acids: a vibrant green for FILLS (buttons/badges carry dark text)
+     and a darker green for TEXT/icons so it clears AA on the bone paper. Keeping
+     both clean (not olive) is what stops the palette reading muddy. */
+  --color-accent: #6f9e00;
+  --color-accent-2: #c01568;
+  --color-accent-3: #40680a;
+  --color-accent-glow: rgba(111, 158, 0, 0.2);
 
   --grid-line: rgba(10, 10, 10, 0.06);
   --glass-bg: rgba(251, 250, 246, 0.72);
-  --grad-1: #4e6b00;
-  --grad-2: #6a5a00;
-  --grad-3: #b2005e;
+  /* Clean green -> green -> magenta (was olive -> brown -> magenta, which muddied
+     gradient text like the hero name). */
+  --grad-1: #3f7300;
+  --grad-2: #5a8f00;
+  --grad-3: #c01568;
   --vignette: rgba(10, 10, 10, 0.06);
   --stroke-ink: rgba(10, 10, 10, 0.32);
 }
