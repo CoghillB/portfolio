@@ -90,6 +90,40 @@ const pricing = [
   },
 ]
 
+// Recurring "care" plans (monthly, CAD): upkeep + hosting + light SEO. Market is
+// ~$30-100/mo basic and ~$100-250/mo mid. SEO here is ongoing upkeep, not a full
+// campaign (those run $750+/mo and are quoted separately). Edit anytime.
+const care = [
+  {
+    name: 'Essential Care',
+    tagline: 'Hands-off upkeep so your site stays secure, backed up, and online.',
+    price: '$99',
+    cadence: '/mo',
+    featured: false,
+    features: [
+      'Managed hosting & domain',
+      'SSL, security patches & monitoring',
+      'Weekly backups',
+      'Uptime monitoring',
+      'Small content edits (~1 hr/mo)',
+    ],
+  },
+  {
+    name: 'Care + SEO',
+    tagline: 'Everything in Essential, plus ongoing SEO upkeep and reporting.',
+    price: '$249',
+    cadence: '/mo',
+    featured: true,
+    features: [
+      'Everything in Essential Care',
+      'Ongoing SEO tune-ups & Google Business Profile',
+      'Monthly analytics & rankings report',
+      'Priority support (~3 hrs/mo of edits)',
+      'Performance & speed tuning',
+    ],
+  },
+]
+
 const work = [
   {
     title: 'Kelowna Creative',
@@ -314,6 +348,72 @@ const WebDev = () => {
                 </div>
               </Reveal>
             ))}
+          </div>
+
+          {/* Ongoing care plans (monthly) */}
+          <div className="mt-16">
+            <Reveal>
+              <div className="mx-auto mb-8 max-w-2xl text-center">
+                <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
+                  <span className="h-px w-8 bg-accent-3/60" />
+                  Ongoing care
+                  <span className="h-px w-8 bg-accent-3/60" />
+                </span>
+                <h3 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                  Keep it running.
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                  A launched site still needs upkeep. Keep yours secure, backed up, and steadily improving
+                  with a monthly plan. Cancel anytime, and bigger SEO campaigns are scoped separately.
+                </p>
+              </div>
+            </Reveal>
+            <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2 sm:items-stretch">
+              {care.map((plan, i) => (
+                <Reveal key={plan.name} delay={i * 0.1} className="h-full">
+                  <div
+                    className={`glow-border relative flex h-full flex-col rounded-2xl border bg-card p-6 ${
+                      plan.featured
+                        ? 'border-accent/60 shadow-[0_0_40px_-12px_var(--color-accent-glow)]'
+                        : 'border-line'
+                    }`}
+                  >
+                    {plan.featured && (
+                      <span className="absolute -top-3 left-6 rounded-full bg-accent px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0a0a0a]">
+                        Best value
+                      </span>
+                    )}
+                    <h4 className="font-display text-xl font-semibold text-ink">{plan.name}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">{plan.tagline}</p>
+
+                    <div className="mt-5 flex items-baseline gap-1 border-t border-line pt-5">
+                      <span className="text-gradient font-display text-4xl font-bold">{plan.price}</span>
+                      <span className="text-sm text-ink-muted">{plan.cadence}</span>
+                    </div>
+
+                    <ul className="mt-6 flex flex-1 flex-col gap-3">
+                      {plan.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2.5 text-sm text-ink-soft">
+                          <Check size={16} className="mt-0.5 shrink-0 text-accent-3" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a
+                      href="#contact"
+                      className={`mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all ${
+                        plan.featured
+                          ? 'bg-accent text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] hover:brightness-110'
+                          : 'border border-line-strong bg-card text-ink hover:bg-card-hover'
+                      }`}
+                    >
+                      Get started
+                    </a>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
 
           <Reveal delay={0.1}>
