@@ -126,14 +126,6 @@ const care = [
 
 const work = [
   {
-    title: 'Kelowna Creative',
-    img: '/kelowna-creative.png',
-    alt: 'Kelowna Creative website redesign for a local creative agency',
-    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in their market.',
-    tags: ['TypeScript', 'Tailwind CSS', 'Next.js', 'Framer Motion', 'AOS'],
-    href: 'https://www.kelownacreative.ca',
-  },
-  {
     title: 'EdgeFinder',
     img: '/edgefinder.png',
     alt: 'EdgeFinder, an AI-powered sports prop betting platform',
@@ -150,6 +142,14 @@ const work = [
     href: 'https://coghillb.github.io/MB-Capital/',
   },
   {
+    title: 'Kerion',
+    img: '/kerion.png',
+    alt: 'Kerion, a landing page for a RimWorld YouTube channel',
+    body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/kerion-youtube/',
+  },
+  {
     title: 'Cyan Analytics',
     img: '/cyan-analytics.png',
     alt: 'Cyan Analytics, a marketing site for a data-transparency analytics product',
@@ -158,12 +158,12 @@ const work = [
     href: 'https://www.cyananalytics.io/',
   },
   {
-    title: 'Kerion',
-    img: '/kerion.png',
-    alt: 'Kerion, a landing page for a RimWorld YouTube channel',
-    body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-    href: 'https://coghillb.github.io/kerion-youtube/',
+    title: 'Kelowna Creative',
+    img: '/kelowna-creative.png',
+    alt: 'Kelowna Creative website redesign for a local creative agency',
+    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in their market.',
+    tags: ['TypeScript', 'Tailwind CSS', 'Next.js', 'Framer Motion', 'AOS'],
+    href: 'https://www.kelownacreative.ca',
   },
 ]
 
