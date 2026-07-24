@@ -158,6 +158,14 @@ const work = [
     href: 'https://www.cyananalytics.io/',
   },
   {
+    title: 'Factum',
+    img: '/factum.png',
+    alt: 'Factum, an escrow-style payment protection platform for clients and small businesses',
+    body: 'A payment-protection platform that holds funds in escrow between a client and the business they hired, releasing the money only on approval. A clean, editorial design built to earn trust, so both sides stay protected from deposit to final sign-off.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+    href: 'https://coghillb.github.io/demo/',
+  },
+  {
     title: 'Kelowna Creative',
     img: '/kelowna-creative.png',
     alt: 'Kelowna Creative website redesign for a local creative agency',

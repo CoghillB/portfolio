@@ -226,6 +226,9 @@ body {
     content: "";
     position: absolute;
     inset: 0;
+    /* Decorative only: never intercept clicks on card content (buttons/links
+       sit inside the card and were being blocked by this overlay). */
+    pointer-events: none;
     border-radius: inherit;
     padding: 1px;
     background: linear-gradient(
