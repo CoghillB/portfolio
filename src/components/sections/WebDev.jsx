@@ -42,14 +42,14 @@ const services = [
   },
 ]
 
-// Flexible, quote-per-project pricing. "Starting from" floors (CAD), set to the
-// affordable end of the 2026 Canadian freelance market. Edit anytime.
+// Flexible, quote-per-project pricing. "Starting from" floors (CAD) for custom
+// React/Next.js work: above template shops, well under agency rates. Edit anytime.
 const pricing = [
   {
     name: 'Starter',
     tagline: 'A simple one-page or landing site to get you online.',
     priceLabel: 'Starting from',
-    price: '$750',
+    price: '$900',
     cadence: 'one-time',
     featured: false,
     features: [
@@ -63,7 +63,7 @@ const pricing = [
     name: 'Business',
     tagline: 'A multi-page site to establish your small business online.',
     priceLabel: 'Starting from',
-    price: '$1,999',
+    price: '$2,500',
     cadence: 'one-time',
     featured: true,
     features: [
@@ -78,7 +78,7 @@ const pricing = [
     name: 'Custom',
     tagline: 'Web apps, e-commerce, or anything more advanced.',
     priceLabel: 'Starting from',
-    price: '$3,500',
+    price: '$5,000',
     cadence: 'per project',
     featured: false,
     features: [
