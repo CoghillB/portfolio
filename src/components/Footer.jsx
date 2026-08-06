@@ -3,18 +3,17 @@ import { motion } from 'framer-motion'
 import { Mail, ArrowUp } from 'lucide-react'
 import { Github, Linkedin } from './BrandIcons'
 import { profile, businessNav, portfolioNav } from '../data/content'
-
-const PORTFOLIO_ROUTE = '/portfolio'
+import { BUSINESS_ROUTE, PORTFOLIO_ROUTE, isPortfolioRoute } from '../routes'
 
 export const Footer = () => {
   const location = useLocation()
-  const onPortfolio = location.pathname === PORTFOLIO_ROUTE
+  const onPortfolio = isPortfolioRoute(location.pathname)
 
   // Mirrors the Navbar: the active route's own anchors, plus a link across to
   // the other audience's page.
   const links = onPortfolio ? portfolioNav : businessNav
   const crossLink = onPortfolio
-    ? { label: 'Website Services', to: '/' }
+    ? { label: 'Website Services', to: BUSINESS_ROUTE }
     : { label: 'Dev Portfolio', to: PORTFOLIO_ROUTE }
 
   const goToSection = (href) => (e) => {

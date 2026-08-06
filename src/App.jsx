@@ -14,6 +14,7 @@ import { Skills } from './components/sections/Skills'
 import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import WebDev from './components/sections/WebDev'
+import { normalizePath } from './routes'
 import './index.css'
 
 // Scrolls to the URL hash target once loading finishes. This is what makes a
@@ -74,7 +75,8 @@ function DocumentMeta() {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const meta = ROUTE_META[pathname] ?? ROUTE_META['/']
+    // normalizePath: production serves /portfolio/ with a trailing slash.
+    const meta = ROUTE_META[normalizePath(pathname)] ?? ROUTE_META['/']
     document.title = meta.title
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description)
   }, [pathname])

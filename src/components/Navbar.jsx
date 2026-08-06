@@ -4,16 +4,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { Github, Linkedin } from './BrandIcons'
 import { businessNav, portfolioNav, profile } from '../data/content'
+import { BUSINESS_ROUTE, PORTFOLIO_ROUTE, isPortfolioRoute } from '../routes'
 import { ThemeToggle } from './ThemeToggle'
-
-const PORTFOLIO_ROUTE = '/portfolio'
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('')
   const location = useLocation()
-  const onPortfolio = location.pathname === PORTFOLIO_ROUTE
+  const onPortfolio = isPortfolioRoute(location.pathname)
 
   // Both routes are single scrolling pages, so the nav shows whichever set of
   // section anchors belongs to the one you're on.
@@ -23,7 +22,7 @@ export const Navbar = () => {
   // route change rather than another section, so the business page never
   // hides the fact that there's a developer résumé behind it.
   const crossLink = onPortfolio
-    ? { label: 'Website Services', to: '/' }
+    ? { label: 'Website Services', to: BUSINESS_ROUTE }
     : { label: 'Dev Portfolio', to: PORTFOLIO_ROUTE }
 
   useEffect(() => {
