@@ -1,4 +1,4 @@
-import { Check } from 'lucide-react'
+import { Check, Clock, FileText, MapPin, User } from 'lucide-react'
 import Reveal, { SectionHeading } from '../Reveal'
 import ImageWithSkeleton from '../ImageWithSkeleton'
 import { Contact } from './Contact.jsx'
@@ -124,38 +124,19 @@ const care = [
   },
 ]
 
+// Ordered for the visitor this page is for: a local small-business or trades
+// owner deciding whether this person builds sites for people like them. Real
+// local business first, then small-business-facing work, then B2B marketing
+// sites. The betting app and the YouTube channel are the least relatable proof
+// for that buyer, so they sit at the bottom.
 const work = [
   {
-    title: 'EdgeFinder',
-    img: '/edgefinder.png',
-    alt: 'EdgeFinder, an AI-powered sports prop betting platform',
-    body: 'A full-stack web app for sports prop betting analysis. It blends an AI model with trend and weather data to surface prop picks, with user accounts and subscription billing. The same React front end also ships to Android and iOS through Capacitor.',
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Supabase', 'Stripe', 'Capacitor', 'AI'],
-    href: 'https://www.edgefinder.ca',
-  },
-  {
-    title: 'M&B Capital',
-    img: '/mb-capital.png',
-    alt: 'M&B Capital, a marketing and investor site for a private investment firm',
-    body: 'A refined marketing and investor site for a private investment firm. An elegant, editorial design that walks investors and business owners through their acquire, build, and realize model with clear calls to action.',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-    href: 'https://coghillb.github.io/MB-Capital/',
-  },
-  {
-    title: 'Kerion',
-    img: '/kerion.png',
-    alt: 'Kerion, a landing page for a RimWorld YouTube channel',
-    body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-    href: 'https://coghillb.github.io/kerion-youtube/',
-  },
-  {
-    title: 'Cyan Analytics',
-    img: '/cyan-analytics.png',
-    alt: 'Cyan Analytics, a marketing site for a data-transparency analytics product',
-    body: 'A modern marketing site for a data-transparency analytics product, built with the team in Next.js. Clean, fast, and focused on communicating the platform’s value to a business audience.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Team'],
-    href: 'https://www.cyananalytics.io/',
+    title: 'Kelowna Creative',
+    img: '/kelowna-creative.png',
+    alt: 'Kelowna Creative website redesign for a local creative agency',
+    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in their market.',
+    tags: ['TypeScript', 'Tailwind CSS', 'Next.js', 'Framer Motion', 'AOS'],
+    href: 'https://www.kelownacreative.ca',
   },
   {
     title: 'Factum',
@@ -166,12 +147,86 @@ const work = [
     href: 'https://coghillb.github.io/demo/',
   },
   {
-    title: 'Kelowna Creative',
-    img: '/kelowna-creative.png',
-    alt: 'Kelowna Creative website redesign for a local creative agency',
-    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in their market.',
-    tags: ['TypeScript', 'Tailwind CSS', 'Next.js', 'Framer Motion', 'AOS'],
-    href: 'https://www.kelownacreative.ca',
+    title: 'Cyan Analytics',
+    img: '/cyan-analytics.png',
+    alt: 'Cyan Analytics, a marketing site for a data-transparency analytics product',
+    body: 'A modern marketing site for a data-transparency analytics product, built with the team in Next.js. Clean, fast, and focused on communicating the platform’s value to a business audience.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Team'],
+    href: 'https://www.cyananalytics.io/',
+  },
+  {
+    title: 'M&B Capital',
+    img: '/mb-capital.png',
+    alt: 'M&B Capital, a marketing and investor site for a private investment firm',
+    body: 'A refined marketing and investor site for a private investment firm. An elegant, editorial design that walks investors and business owners through their acquire, build, and realize model with clear calls to action.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/MB-Capital/',
+  },
+  {
+    title: 'EdgeFinder',
+    img: '/edgefinder.png',
+    alt: 'EdgeFinder, an AI-powered sports prop betting platform',
+    body: 'A full-stack web app for sports prop betting analysis. It blends an AI model with trend and weather data to surface prop picks, with user accounts and subscription billing. The same React front end also ships to Android and iOS through Capacitor.',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Supabase', 'Stripe', 'Capacitor', 'AI'],
+    href: 'https://www.edgefinder.ca',
+  },
+  {
+    title: 'Kerion',
+    img: '/kerion.png',
+    alt: 'Kerion, a landing page for a RimWorld YouTube channel',
+    body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/kerion-youtube/',
+  },
+]
+
+// Trust signals for a risk-reduction-driven buyer: a contractor or shop owner
+// deciding whether hiring this person is safe. Every line is a promise Brayden
+// confirmed he will actually hold to — don't add to this list without asking
+// him first, and don't soften one without telling him it changed.
+const promises = [
+  {
+    icon: MapPin,
+    title: 'Based in Kelowna',
+    body: "Local, same time zone, happy to meet in person. You're not filing a ticket with an agency three provinces away.",
+  },
+  {
+    icon: User,
+    title: 'You deal with me',
+    body: 'No account manager, no handoffs. The person you talk to is the person building your site, start to finish.',
+  },
+  {
+    icon: FileText,
+    title: 'Fixed price up front',
+    body: 'You get a fixed price in writing before I start. No hourly billing, and no surprise invoice at the end.',
+  },
+  {
+    icon: Clock,
+    title: 'Reply in 1 business day',
+    body: 'Every message gets a real answer from me within one business day. Usually sooner.',
+  },
+]
+
+const process = [
+  {
+    title: 'Free quote',
+    body: 'A short call about your business and what the site actually needs to do. You get a written price, no obligation.',
+  },
+  {
+    title: 'Content',
+    body: "I tell you exactly what I need from you — photos, services, logo — and chase it up so the project doesn't stall.",
+  },
+  {
+    title: 'Design',
+    body: 'I show you the layout and the look before any code gets written. Nothing gets built until you approve it.',
+  },
+  {
+    title: 'Build',
+    body: 'I build the site, with check-ins along the way so nothing at the end is a surprise.',
+  },
+  {
+    title: 'Launch',
+    body: 'Domain, hosting and email set up for you, plus a walkthrough so you can make your own edits afterward.',
   },
 ]
 
@@ -245,7 +300,7 @@ const WebDev = () => {
       </section>
 
       {/* Recent work */}
-      <section className="relative px-6 py-16">
+      <section id="recent-work" className="relative px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <SectionHeading eyebrow="Recent work" title="Web design projects." />
           <div className="grid gap-6 md:grid-cols-2 md:auto-rows-fr">
@@ -291,6 +346,75 @@ const WebDev = () => {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Working with me: trust signals, then the process. Sits between the work
+          and the prices deliberately — this is the de-risking a cautious buyer
+          needs before a number is put in front of them. */}
+      <section id="how-it-works" className="relative px-6 py-16">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeading
+            eyebrow="Working with me"
+            title="No agency runaround."
+            kicker="You're hiring one person who answers his own phone, quotes a real number before starting, and builds the thing himself. Here's exactly how that goes."
+          />
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {promises.map(({ icon: Icon, title, body }, i) => (
+              <Reveal key={title} delay={(i % 4) * 0.08} className="h-full">
+                <div className="glow-border h-full rounded-2xl border border-line bg-card p-6">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-accent/30 bg-accent/10 text-accent-3">
+                    <Icon size={18} />
+                  </span>
+                  <h3 className="mt-4 font-display text-lg font-semibold text-ink">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* How a project actually runs */}
+          <div className="mt-16">
+            <Reveal>
+              <div className="mx-auto mb-10 max-w-2xl text-center">
+                <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
+                  <span className="h-px w-8 bg-accent-3/60" />
+                  How it works
+                  <span className="h-px w-8 bg-accent-3/60" />
+                </span>
+                <h3 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                  Five steps, start to finish.
+                </h3>
+              </div>
+            </Reveal>
+
+            <ol className="mx-auto max-w-3xl">
+              {process.map((step, i) => (
+                <Reveal
+                  as="li"
+                  key={step.title}
+                  delay={i * 0.06}
+                  className="relative flex gap-5 pb-8 last:pb-0"
+                >
+                  {/* Connector between step markers; the last step has none. */}
+                  {i < process.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-5 top-12 h-[calc(100%-3rem)] w-px bg-line"
+                    />
+                  )}
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-accent/40 bg-card font-display text-sm font-bold text-accent-3">
+                    {i + 1}
+                  </span>
+                  <div className="pt-1">
+                    <h4 className="font-display text-lg font-semibold text-ink">{step.title}</h4>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-ink-soft">{step.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
           </div>
         </div>
       </section>

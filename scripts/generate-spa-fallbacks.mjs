@@ -21,7 +21,10 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
 const source = join(dist, 'index.html')
 
-const routes = ['/web-development']
+// "/web-development" is no longer a rendered route — the web-design page moved
+// to "/" — but it stays here so the old URL still answers HTTP 200 for existing
+// Google Ads destinations and indexed links before React redirects it to root.
+const routes = ['/portfolio', '/web-development']
 
 if (!existsSync(source)) {
   console.error('[spa-fallbacks] dist/index.html not found — run `vite build` first.')

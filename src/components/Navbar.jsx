@@ -1,20 +1,30 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { Github, Linkedin } from './BrandIcons'
-import { nav, profile } from '../data/content'
+import { businessNav, portfolioNav, profile } from '../data/content'
 import { ThemeToggle } from './ThemeToggle'
 
-const WEBDEV = { label: 'Web Dev', to: '/web-development' }
+const PORTFOLIO_ROUTE = '/portfolio'
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [active, setActive] = useState('home')
+  const [active, setActive] = useState('')
   const location = useLocation()
-  const navigate = useNavigate()
-  const onHome = location.pathname === '/'
+  const onPortfolio = location.pathname === PORTFOLIO_ROUTE
+
+  // Both routes are single scrolling pages, so the nav shows whichever set of
+  // section anchors belongs to the one you're on.
+  const links = onPortfolio ? portfolioNav : businessNav
+
+  // The other audience's door. Kept visible on both routes but styled as a
+  // route change rather than another section, so the business page never
+  // hides the fact that there's a developer résumé behind it.
+  const crossLink = onPortfolio
+    ? { label: 'Website Services', to: '/' }
+    : { label: 'Dev Portfolio', to: PORTFOLIO_ROUTE }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
@@ -23,13 +33,9 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Scroll-spy, home route only.
+  // Scroll-spy over the active route's own sections.
   useEffect(() => {
-    if (!onHome) {
-      setActive(location.pathname === WEBDEV.to ? 'webdev' : '')
-      return
-    }
-    const ids = nav.map((n) => n.href.slice(1))
+    setActive('')
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -38,12 +44,12 @@ export const Navbar = () => {
       },
       { rootMargin: '-45% 0px -50% 0px' },
     )
-    ids.forEach((id) => {
-      const el = document.getElementById(id)
+    links.forEach((n) => {
+      const el = document.getElementById(n.href.slice(1))
       if (el) observer.observe(el)
     })
     return () => observer.disconnect()
-  }, [onHome, location.pathname])
+  }, [links])
 
   // Hash landings (both routes) are handled centrally by <HashScroll> in App,
   // which waits for the loading screen so the target section exists first.
@@ -55,15 +61,11 @@ export const Navbar = () => {
     }
   }, [open])
 
+  // Every anchor in `links` belongs to the route currently rendered, so these
+  // are always same-page scrolls.
   const goToSection = (href) => (e) => {
-    const id = href.slice(1)
-    if (onHome) {
-      e.preventDefault()
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      e.preventDefault()
-      navigate(`/${href}`) // e.g. "/#about"
-    }
+    e.preventDefault()
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' })
     setOpen(false)
   }
 
@@ -88,8 +90,8 @@ export const Navbar = () => {
 
         {/* Desktop links */}
         <ul className="hidden items-center gap-1 lg:flex">
-          {nav.map((item) => {
-            const isActive = onHome && active === item.href.slice(1)
+          {links.map((item) => {
+            const isActive = active === item.href.slice(1)
             return (
               <li key={item.href}>
                 <a
@@ -111,21 +113,12 @@ export const Navbar = () => {
               </li>
             )
           })}
-          <li>
+          <li className="ml-2 border-l border-line pl-3">
             <Link
-              to={WEBDEV.to}
-              className={`relative rounded-lg px-3.5 py-2 text-sm transition-colors ${
-                active === 'webdev' ? 'text-ink' : 'text-ink-soft hover:text-ink'
-              }`}
+              to={crossLink.to}
+              className="rounded-lg border border-line px-3 py-1.5 text-xs text-ink-muted transition-colors hover:border-line-strong hover:text-ink"
             >
-              {active === 'webdev' && (
-                <motion.span
-                  layoutId="nav-pill"
-                  className="absolute inset-0 -z-10 rounded-lg bg-card-hover ring-1 ring-line"
-                  transition={{ type: 'spring', stiffness: 400, damping: 32 }}
-                />
-              )}
-              {WEBDEV.label}
+              {crossLink.label}
             </Link>
           </li>
         </ul>
@@ -163,7 +156,7 @@ export const Navbar = () => {
             className="glass absolute inset-x-4 top-[4.75rem] z-40 rounded-2xl p-4 lg:hidden"
           >
             <ul className="flex flex-col gap-1">
-              {nav.map((item) => (
+              {links.map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
@@ -174,13 +167,13 @@ export const Navbar = () => {
                   </a>
                 </li>
               ))}
-              <li>
+              <li className="mt-1 border-t border-line pt-1">
                 <Link
-                  to={WEBDEV.to}
+                  to={crossLink.to}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-4 py-3 text-base text-ink-soft transition-colors hover:bg-card-hover hover:text-ink"
+                  className="block rounded-lg px-4 py-3 text-sm text-ink-muted transition-colors hover:bg-card-hover hover:text-ink"
                 >
-                  {WEBDEV.label}
+                  {crossLink.label}
                 </Link>
               </li>
             </ul>
