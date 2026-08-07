@@ -1,3 +1,4 @@
+import { Check, Clock, FileText, MapPin, User } from 'lucide-react'
 import Reveal, { SectionHeading } from '../Reveal'
 import ImageWithSkeleton from '../ImageWithSkeleton'
 import { Contact } from './Contact.jsx'
@@ -5,7 +6,7 @@ import { Contact } from './Contact.jsx'
 const services = [
   {
     title: 'Web Design & Development',
-    body: 'Modern, responsive websites built to turn visitors into customers.',
+    body: 'Custom, responsive websites designed, built, and launched for you.',
   },
   {
     title: 'Website Maintenance',
@@ -13,34 +14,137 @@ const services = [
   },
   {
     title: 'SEO & Optimization',
-    body: 'Improve your Google rankings and site performance across the Okanagan.',
+    body: 'Technical SEO setup, page speed work, and Google Business Profile configuration.',
+  },
+  {
+    title: 'E-commerce & Online Stores',
+    body: 'Sell online with an easy-to-manage store and a standard, secure checkout flow.',
+  },
+  {
+    title: 'Custom Web Apps',
+    body: 'Booking systems, dashboards, calculators, and other bespoke tools built around how your business works.',
+  },
+  {
+    title: 'Landing Pages',
+    body: 'A single focused page for one campaign or ad, with one clear action and a form wired up.',
+  },
+  {
+    title: 'Website Redesigns',
+    body: 'Give a dated site a fast, modern, mobile-friendly refresh that truly reflects your brand.',
+  },
+  {
+    title: 'Booking, Forms & Integrations',
+    body: 'Contact and booking forms, payments, and the third-party tools you rely on, wired up and working.',
+  },
+  {
+    title: 'Hosting & Setup',
+    body: 'Domain, hosting, and email set up and deployed for you, with no technical headaches on your end.',
   },
 ]
 
+// Flexible, quote-per-project pricing. "Starting from" floors (CAD) for custom
+// React/Next.js work: above template shops, well under agency rates. Edit anytime.
+const pricing = [
+  {
+    name: 'Starter',
+    tagline: 'A simple one-page or landing site to get you online.',
+    priceLabel: 'Starting from',
+    price: '$900',
+    cadence: 'one-time',
+    featured: false,
+    features: [
+      'Single-page or landing site',
+      'Mobile-friendly & fast',
+      'Contact form built in',
+      'Basic SEO setup',
+    ],
+  },
+  {
+    name: 'Business',
+    tagline: 'A multi-page site to establish your small business online.',
+    priceLabel: 'Starting from',
+    price: '$2,500',
+    cadence: 'one-time',
+    featured: true,
+    features: [
+      'Up to ~5 custom pages',
+      'Designed around your brand',
+      'SEO & Google setup',
+      'Booking / contact forms',
+      'Launch + hosting help',
+    ],
+  },
+  {
+    name: 'Custom',
+    tagline: 'Web apps, e-commerce, or anything more advanced.',
+    priceLabel: 'Starting from',
+    price: '$5,000',
+    cadence: 'per project',
+    featured: false,
+    features: [
+      'E-commerce or full web app',
+      'Custom features & integrations',
+      'Scales as your business grows',
+      'Quoted to fit your budget',
+    ],
+  },
+]
+
+// Recurring "care" plans (monthly, CAD): upkeep + hosting + light SEO. Market is
+// ~$30-100/mo basic and ~$100-250/mo mid. SEO here is ongoing upkeep, not a full
+// campaign (those run $750+/mo and are quoted separately). Edit anytime.
+const care = [
+  {
+    name: 'Essential Care',
+    tagline: 'Hands-off upkeep so your site stays secure, backed up, and online.',
+    price: '$99',
+    cadence: '/mo',
+    featured: false,
+    features: [
+      'Managed hosting & domain',
+      'SSL, security patches & monitoring',
+      'Weekly backups',
+      'Uptime monitoring',
+      'Small content edits (~1 hr/mo)',
+    ],
+  },
+  {
+    name: 'Care + SEO',
+    tagline: 'Everything in Essential, plus ongoing SEO upkeep and reporting.',
+    price: '$249',
+    cadence: '/mo',
+    featured: true,
+    features: [
+      'Everything in Essential Care',
+      'Ongoing SEO tune-ups & Google Business Profile',
+      'Monthly analytics & rankings report',
+      'Priority support (~3 hrs/mo of edits)',
+      'Performance & speed tuning',
+    ],
+  },
+]
+
+// Ordered for the visitor this page is for: a local small-business or trades
+// owner deciding whether this person builds sites for people like them. Real
+// local business first, then small-business-facing work, then B2B marketing
+// sites. The betting app and the YouTube channel are the least relatable proof
+// for that buyer, so they sit at the bottom.
 const work = [
   {
     title: 'Kelowna Creative',
     img: '/kelowna-creative.png',
     alt: 'Kelowna Creative website redesign for a local creative agency',
-    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in the Okanagan.',
+    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in their market.',
     tags: ['TypeScript', 'Tailwind CSS', 'Next.js', 'Framer Motion', 'AOS'],
     href: 'https://www.kelownacreative.ca',
   },
   {
-    title: 'EdgeFinder',
-    img: '/edgefinder.png',
-    alt: 'EdgeFinder, an AI-powered sports prop betting platform',
-    body: 'A full-stack web app for sports prop betting analysis. It blends an AI model with trend and weather data to surface prop picks, with user accounts and subscription billing. The same React front end also ships to Android and iOS through Capacitor.',
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Supabase', 'Stripe', 'Capacitor', 'AI'],
-    href: 'https://www.edgefinder.ca',
-  },
-  {
-    title: 'M&B Capital',
-    img: '/mb-capital.png',
-    alt: 'M&B Capital, a marketing and investor site for a private investment firm',
-    body: 'A refined marketing and investor site for a private investment firm. An elegant, editorial design that walks investors and business owners through their acquire, build, and realize model with clear calls to action.',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
-    href: 'https://coghillb.github.io/MB-Capital/',
+    title: 'Factum',
+    img: '/factum.png',
+    alt: 'Factum, an escrow-style payment protection platform for clients and small businesses',
+    body: 'A payment-protection platform that holds funds in escrow between a client and the business they hired, releasing the money only on approval. A clean, editorial design built to earn trust, so both sides stay protected from deposit to final sign-off.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+    href: 'https://coghillb.github.io/demo/',
   },
   {
     title: 'Cyan Analytics',
@@ -51,12 +155,78 @@ const work = [
     href: 'https://www.cyananalytics.io/',
   },
   {
+    title: 'M&B Capital',
+    img: '/mb-capital.png',
+    alt: 'M&B Capital, a marketing and investor site for a private investment firm',
+    body: 'A refined marketing and investor site for a private investment firm. An elegant, editorial design that walks investors and business owners through their acquire, build, and realize model with clear calls to action.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    href: 'https://coghillb.github.io/MB-Capital/',
+  },
+  {
+    title: 'EdgeFinder',
+    img: '/edgefinder.png',
+    alt: 'EdgeFinder, an AI-powered sports prop betting platform',
+    body: 'A full-stack web app for sports prop betting analysis. It blends an AI model with trend and weather data to surface prop picks, with user accounts and subscription billing. The same React front end also ships to Android and iOS through Capacitor.',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Supabase', 'Stripe', 'Capacitor', 'AI'],
+    href: 'https://www.edgefinder.ca',
+  },
+  {
     title: 'Kerion',
     img: '/kerion.png',
     alt: 'Kerion, a landing page for a RimWorld YouTube channel',
     body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
     tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
     href: 'https://coghillb.github.io/kerion-youtube/',
+  },
+]
+
+// Trust signals for a risk-reduction-driven buyer: a contractor or shop owner
+// deciding whether hiring this person is safe. Every line is a promise Brayden
+// confirmed he will actually hold to — don't add to this list without asking
+// him first, and don't soften one without telling him it changed.
+const promises = [
+  {
+    icon: MapPin,
+    title: 'Based in Kelowna',
+    body: "Local, same time zone, happy to meet in person. You're not filing a ticket with an agency three provinces away.",
+  },
+  {
+    icon: User,
+    title: 'You deal with me',
+    body: 'No account manager, no handoffs. The person you talk to is the person building your site, start to finish.',
+  },
+  {
+    icon: FileText,
+    title: 'Fixed price up front',
+    body: 'You get a fixed price in writing before I start. No hourly billing, and no surprise invoice at the end.',
+  },
+  {
+    icon: Clock,
+    title: 'Reply in 1 business day',
+    body: 'Every message gets a real answer from me within one business day. Usually sooner.',
+  },
+]
+
+const process = [
+  {
+    title: 'Free quote',
+    body: 'A short call about your business and what the site actually needs to do. You get a written price, no obligation.',
+  },
+  {
+    title: 'Content',
+    body: "I tell you exactly what I need from you — photos, services, logo — and chase it up so the project doesn't stall.",
+  },
+  {
+    title: 'Design',
+    body: 'I show you the layout and the look before any code gets written. Nothing gets built until you approve it.',
+  },
+  {
+    title: 'Build',
+    body: 'I build the site, with check-ins along the way so nothing at the end is a surprise.',
+  },
+  {
+    title: 'Launch',
+    body: 'Domain, hosting and email set up for you, plus a walkthrough so you can make your own edits afterward.',
   },
 ]
 
@@ -81,7 +251,7 @@ const WebDev = () => {
           <Reveal>
             <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
               <span className="h-px w-8 bg-accent-3/60" />
-              Kelowna Web Design
+              Web Design & Development
             </span>
           </Reveal>
           <Reveal delay={0.05}>
@@ -91,10 +261,10 @@ const WebDev = () => {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-              I build custom, affordable websites for small businesses and trades in Kelowna, Vernon, and Penticton.
-              My sites are fast, mobile-friendly, and optimized to attract local customers. Whether you need a new
-              site or a refresh, you get clean design, quick turnaround, and clear communication, without the agency
-              price tag.
+              I build custom websites for small businesses and trades across Canada. Fast,
+              mobile-friendly, and built around how your business actually works. Whether you need a
+              new site or a refresh, you get clean design, a fixed price in writing before I start,
+              and a reply to every message within one business day.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -109,12 +279,16 @@ const WebDev = () => {
       </section>
 
       {/* Services */}
-      <section className="relative px-6 py-16">
+      <section id="services" className="relative px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <SectionHeading eyebrow="Services" title="What I can build for you." />
-          <div className="grid gap-6 md:grid-cols-3">
+          <SectionHeading
+            eyebrow="Services"
+            title="What I can build for you."
+            kicker="Whatever you need built, I can help. If you can describe it, I can build it. Here's a sample of the work I take on."
+          />
+          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {services.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.1}>
+              <Reveal key={s.title} delay={(i % 3) * 0.08}>
                 <div className="glow-border h-full rounded-2xl border border-line bg-card p-6 text-center">
                   <h3 className="font-display text-lg font-semibold text-ink">{s.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
@@ -126,7 +300,7 @@ const WebDev = () => {
       </section>
 
       {/* Recent work */}
-      <section className="relative px-6 py-16">
+      <section id="recent-work" className="relative px-6 py-16">
         <div className="mx-auto max-w-5xl">
           <SectionHeading eyebrow="Recent work" title="Web design projects." />
           <div className="grid gap-6 md:grid-cols-2 md:auto-rows-fr">
@@ -176,6 +350,216 @@ const WebDev = () => {
         </div>
       </section>
 
+      {/* Working with me: trust signals, then the process. Sits between the work
+          and the prices deliberately — this is the de-risking a cautious buyer
+          needs before a number is put in front of them. */}
+      <section id="how-it-works" className="relative px-6 py-16">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeading
+            eyebrow="Working with me"
+            title="No agency runaround."
+            kicker="You're hiring one person who answers his own phone, quotes a real number before starting, and builds the thing himself. Here's exactly how that goes."
+          />
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {promises.map(({ icon: Icon, title, body }, i) => (
+              <Reveal key={title} delay={(i % 4) * 0.08} className="h-full">
+                <div className="glow-border h-full rounded-2xl border border-line bg-card p-6">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-accent/30 bg-accent/10 text-accent-3">
+                    <Icon size={18} />
+                  </span>
+                  <h3 className="mt-4 font-display text-lg font-semibold text-ink">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* How a project actually runs */}
+          <div className="mt-16">
+            <Reveal>
+              <div className="mx-auto mb-10 max-w-2xl text-center">
+                <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
+                  <span className="h-px w-8 bg-accent-3/60" />
+                  How it works
+                  <span className="h-px w-8 bg-accent-3/60" />
+                </span>
+                <h3 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                  Five steps, start to finish.
+                </h3>
+              </div>
+            </Reveal>
+
+            <ol className="mx-auto max-w-3xl">
+              {process.map((step, i) => (
+                <Reveal
+                  as="li"
+                  key={step.title}
+                  delay={i * 0.06}
+                  className="relative flex gap-5 pb-8 last:pb-0"
+                >
+                  {/* Connector between step markers; the last step has none. */}
+                  {i < process.length - 1 && (
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-5 top-12 h-[calc(100%-3rem)] w-px bg-line"
+                    />
+                  )}
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-accent/40 bg-card font-display text-sm font-bold text-accent-3">
+                    {i + 1}
+                  </span>
+                  <div className="pt-1">
+                    <h4 className="font-display text-lg font-semibold text-ink">{step.title}</h4>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-ink-soft">{step.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing / Packages */}
+      <section id="pricing" className="relative px-6 py-16">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeading
+            eyebrow="Pricing"
+            title="Simple, flexible pricing."
+            kicker="I don't do one-size-fits-all. Every project is quoted individually, so you only pay for what you actually need. The tiers below are starting points. Tell me your budget and scope and I'll tailor a quote to fit."
+          />
+          <div className="grid gap-6 md:grid-cols-3 md:items-stretch">
+            {pricing.map((tier, i) => (
+              <Reveal key={tier.name} delay={i * 0.1} className="h-full">
+                <div
+                  className={`glow-border relative flex h-full flex-col rounded-2xl border bg-card p-6 ${
+                    tier.featured
+                      ? 'border-accent/60 shadow-[0_0_40px_-12px_var(--color-accent-glow)]'
+                      : 'border-line'
+                  }`}
+                >
+                  {/* No badge text here on purpose. The old badge asserted popularity,
+                      which is a factual claim about sales volume — and nothing has sold
+                      yet, so it wasn't substantiable. The accent border and glow from
+                      `tier.featured` still draw the eye; visual emphasis isn't a
+                      representation. B2 introduces "Recommended" instead, which states
+                      Brayden's own advice and is substantiable as opinion. */}
+                  <h3 className="font-display text-xl font-semibold text-ink">{tier.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{tier.tagline}</p>
+
+                  <div className="mt-5 border-t border-line pt-5">
+                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-ink-muted">
+                      {tier.priceLabel}
+                    </span>
+                    <div className="mt-1 flex items-baseline gap-2">
+                      {/* pb/-mb keeps gradient descenders (e.g. the 'q') from clipping */}
+                      <span className="text-gradient pb-[0.1em] -mb-[0.1em] font-display text-4xl font-bold">
+                        {tier.price}
+                      </span>
+                      {tier.cadence && <span className="text-sm text-ink-muted">{tier.cadence}</span>}
+                    </div>
+                  </div>
+
+                  <ul className="mt-6 flex flex-1 flex-col gap-3">
+                    {tier.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2.5 text-sm text-ink-soft">
+                        <Check size={16} className="mt-0.5 shrink-0 text-accent-3" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href="#contact"
+                    className={`mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all ${
+                      tier.featured
+                        ? 'bg-accent text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] hover:brightness-110'
+                        : 'border border-line-strong bg-card text-ink hover:bg-card-hover'
+                    }`}
+                  >
+                    Get a free quote
+                  </a>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Ongoing care plans (monthly) */}
+          <div className="mt-16">
+            <Reveal>
+              <div className="mx-auto mb-8 max-w-2xl text-center">
+                <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
+                  <span className="h-px w-8 bg-accent-3/60" />
+                  Ongoing care
+                  <span className="h-px w-8 bg-accent-3/60" />
+                </span>
+                <h3 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                  Keep it running.
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                  A launched site still needs upkeep. Keep yours secure, backed up, and up to date
+                  with a monthly plan. Cancel anytime, and bigger SEO campaigns are scoped separately.
+                </p>
+              </div>
+            </Reveal>
+            <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2 sm:items-stretch">
+              {care.map((plan, i) => (
+                <Reveal key={plan.name} delay={i * 0.1} className="h-full">
+                  <div
+                    className={`glow-border relative flex h-full flex-col rounded-2xl border bg-card p-6 ${
+                      plan.featured
+                        ? 'border-accent/60 shadow-[0_0_40px_-12px_var(--color-accent-glow)]'
+                        : 'border-line'
+                    }`}
+                  >
+                    {/* Badge text removed for the same reason as the build tier above:
+                        it asserted a comparison nothing substantiates yet. The featured
+                        highlight stays. */}
+                    <h4 className="font-display text-xl font-semibold text-ink">{plan.name}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">{plan.tagline}</p>
+
+                    <div className="mt-5 flex items-baseline gap-1 border-t border-line pt-5">
+                      <span className="text-gradient font-display text-4xl font-bold">{plan.price}</span>
+                      <span className="text-sm text-ink-muted">{plan.cadence}</span>
+                    </div>
+
+                    <ul className="mt-6 flex flex-1 flex-col gap-3">
+                      {plan.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2.5 text-sm text-ink-soft">
+                          <Check size={16} className="mt-0.5 shrink-0 text-accent-3" />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a
+                      href="#contact"
+                      className={`mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all ${
+                        plan.featured
+                          ? 'bg-accent text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] hover:brightness-110'
+                          : 'border border-line-strong bg-card text-ink hover:bg-card-hover'
+                      }`}
+                    >
+                      Get started
+                    </a>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal delay={0.1}>
+            <p className="mt-8 text-center text-sm leading-relaxed text-ink-muted">
+              All prices in CAD. Every budget and scope is welcome, from a quick one-pager to a full web app. Not sure where you
+              fit?{' '}
+              <a href="#contact" className="font-medium text-accent-3 hover:underline">
+                Get in touch
+              </a>{' '}
+              and I&apos;ll put together a custom quote, no pressure.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* About blurb */}
       <section className="relative px-6 py-16">
         <div className="mx-auto max-w-5xl">
@@ -184,7 +568,7 @@ const WebDev = () => {
               <div className="shrink-0">
                 <ImageWithSkeleton
                   src="/aboutme.jpg"
-                  alt="Brayden Coghill, a web developer in Kelowna, BC"
+                  alt="Brayden Coghill, a Canadian web developer"
                   className="mx-auto h-40 w-40 rounded-2xl border border-line object-cover shadow-lg"
                 />
               </div>
@@ -193,10 +577,10 @@ const WebDev = () => {
                   <span className="text-gradient">About me</span>
                 </h2>
                 <p className="mt-3 leading-relaxed text-ink-soft">
-                  Hi, I&apos;m Brayden Coghill, a web developer based in Kelowna, BC. I specialize in modern,
-                  affordable websites for small businesses and trades across the Okanagan. My goal is to build sites
-                  that are not only good looking but also fast, reliable, and optimized for local search so your
-                  business can grow.
+                  Hi, I&apos;m Brayden Coghill, a Canadian web developer. I build custom websites for
+                  small businesses and trades across Canada. My goal is to build sites that are not
+                  only good looking but also fast, reliable, and straightforward for you to keep
+                  using after launch.
                 </p>
               </div>
             </div>

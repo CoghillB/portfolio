@@ -11,7 +11,7 @@ export const profile = {
     'I build web applications end to end, from clean React and TypeScript interfaces to the C#, Node, and PostgreSQL that power them.',
   intro:
     'Software developer who likes turning ideas into reliable, well-built products, front end to back.',
-  email: 'brayden.coghill@gmail.com',
+  email: 'brayden.coghill@coghilldev.com',
   socials: {
     github: 'https://github.com/CoghillB',
     linkedin: 'https://www.linkedin.com/in/braydencoghill',
@@ -206,7 +206,19 @@ export const education = [
   },
 ]
 
-export const nav = [
+// The site serves two audiences on two routes, so it needs two nav sets.
+// Navbar and Footer pick one based on the active route.
+
+// Site root: the small-business / trades buyer who wants a website built.
+export const businessNav = [
+  { label: 'Services', href: '#services' },
+  { label: 'Recent Work', href: '#recent-work' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Contact', href: '#contact' },
+]
+
+// /portfolio: the hiring manager reading a developer's résumé.
+export const portfolioNav = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },

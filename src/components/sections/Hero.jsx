@@ -97,7 +97,14 @@ export default function Hero() {
             <span className="block text-ink">
               <KineticText text={profile.firstName} stagger={0.045} delay={0.25} />
             </span>
+            {/* background-clip:text only paints the gradient inside the border
+                box, and the h1's leading-[0.95] makes that box shorter than
+                Anton's glyphs — so the 'g' descender in Coghill got no paint and
+                vanished. The bottom padding extends the paintable area; the
+                equal negative margin keeps layout unchanged. 0.25em, not 0.2em:
+                the smaller value still left a visible cutoff. */}
             <span className="block text-gradient pb-[0.25em] -mb-[0.25em]">
+
               <KineticText text={profile.lastName} stagger={0.045} delay={0.5} />
             </span>
           </h1>

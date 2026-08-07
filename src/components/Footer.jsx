@@ -1,22 +1,24 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Mail, ArrowUp } from 'lucide-react'
 import { Github, Linkedin } from './BrandIcons'
-import { profile, nav } from '../data/content'
+import { profile, businessNav, portfolioNav } from '../data/content'
+import { BUSINESS_ROUTE, PORTFOLIO_ROUTE, isPortfolioRoute } from '../routes'
 
 export const Footer = () => {
   const location = useLocation()
-  const navigate = useNavigate()
-  const onHome = location.pathname === '/'
+  const onPortfolio = isPortfolioRoute(location.pathname)
+
+  // Mirrors the Navbar: the active route's own anchors, plus a link across to
+  // the other audience's page.
+  const links = onPortfolio ? portfolioNav : businessNav
+  const crossLink = onPortfolio
+    ? { label: 'Website Services', to: BUSINESS_ROUTE }
+    : { label: 'Dev Portfolio', to: PORTFOLIO_ROUTE }
 
   const goToSection = (href) => (e) => {
-    const id = href.slice(1)
     e.preventDefault()
-    if (onHome) {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      navigate(`/${href}`)
-    }
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -30,7 +32,11 @@ export const Footer = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="text-stroke pointer-events-auto select-none whitespace-nowrap font-display text-[13.5vw] font-bold leading-none transition-colors duration-500 hover:text-ink sm:text-[10vw]"
         >
-          COGHILL.DEV
+          {/* The period sits on the baseline, exactly the band the overflow-hidden
+             clip eats as the wordmark rises out of the edge, so it vanished once
+             the fill went solid. Raise it into the cap band (inherits the same
+             stroke + hover fill) so it stays visible in every state. */}
+          COGHILL<span className="align-[0.3em]">.</span>DEV
         </motion.span>
       </div>
 
@@ -42,8 +48,8 @@ export const Footer = () => {
           <p className="mt-2 max-w-xs text-sm text-ink-muted">{profile.intro}</p>
         </div>
 
-        <nav className="flex flex-wrap gap-x-5 gap-y-2">
-          {nav.map((n) => (
+        <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
+          {links.map((n) => (
             <a
               key={n.href}
               href={n.href}
@@ -53,6 +59,12 @@ export const Footer = () => {
               {n.label}
             </a>
           ))}
+          <Link
+            to={crossLink.to}
+            className="text-sm text-ink-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
+          >
+            {crossLink.label}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">

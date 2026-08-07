@@ -77,17 +77,22 @@ html.light {
   --color-card-2: #f2efe7;
   --color-card-hover: #e9e5da;
 
-  /* Darken acids so they clear AA as text/borders (and fills) on bone paper. */
-  --color-accent: #5a7a00;
-  --color-accent-2: #b2005e;
-  --color-accent-3: #5a7a00;
-  --color-accent-glow: rgba(90, 122, 0, 0.2);
+  /* Light-mode acids: a clean, deep green for FILLS (buttons/badges carry dark
+     text) and a darker green for TEXT/icons so it clears AA on the bone paper.
+     Deep (not neon) keeps it from reading stark; clean (not olive) keeps it from
+     reading muddy. */
+  --color-accent: #5f8f14;
+  --color-accent-2: #c01568;
+  --color-accent-3: #40680a;
+  --color-accent-glow: rgba(95, 143, 20, 0.12);
 
   --grid-line: rgba(10, 10, 10, 0.06);
   --glass-bg: rgba(251, 250, 246, 0.72);
-  --grad-1: #4e6b00;
-  --grad-2: #6a5a00;
-  --grad-3: #b2005e;
+  /* Clean green -> green -> magenta (was olive -> brown -> magenta, which muddied
+     gradient text like the hero name). */
+  --grad-1: #3f7300;
+  --grad-2: #4f8300;
+  --grad-3: #c01568;
   --vignette: rgba(10, 10, 10, 0.06);
   --stroke-ink: rgba(10, 10, 10, 0.32);
 }
@@ -99,6 +104,9 @@ html.dark {
 /* Base ------------------------------------------------------------------- */
 html {
   background-color: var(--color-base);
+  /* Offset anchor/hash jumps so section headings clear the fixed navbar
+     (native fragment nav and scrollIntoView both honor scroll-padding). */
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -116,6 +124,15 @@ body {
 ::selection {
   background: var(--color-accent);
   color: #0a0a0a;
+}
+
+/* Anton (our display face) ships a single 400 weight, but headings use the
+   `font-bold` / `font-semibold` utilities. That was triggering synthetic
+   ("faux") bold, which bloats Anton's condensed letterforms and hurts
+   legibility, especially at small title sizes. Render its true outline instead
+   — noticeably crisper and less thick, same font. */
+.font-display {
+  font-synthesis-weight: none;
 }
 
 /* Visible keyboard focus ring on interactive elements, both themes.
@@ -209,11 +226,13 @@ body {
     content: "";
     position: absolute;
     inset: 0;
+    /* Decorative only: must never intercept clicks on card content. Buttons and
+       links sit inside the card and were being blocked by this overlay — the
+       "View Site" anchors on the web-design cards were unclickable because of
+       it. Fixing it here is why those anchors don't need their own z-index. */
+    pointer-events: none;
     border-radius: inherit;
     padding: 1px;
-    /* Decorative overlay only — must not swallow clicks on the card's
-       links (e.g. the "View Site" anchors on the web-design cards). */
-    pointer-events: none;
     background: linear-gradient(
       135deg,
       rgba(198, 255, 0, 0.6),
