@@ -6,7 +6,7 @@ import { Contact } from './Contact.jsx'
 const services = [
   {
     title: 'Web Design & Development',
-    body: 'Modern, responsive websites built to turn visitors into customers.',
+    body: 'Custom, responsive websites designed, built, and launched for you.',
   },
   {
     title: 'Website Maintenance',
@@ -14,11 +14,11 @@ const services = [
   },
   {
     title: 'SEO & Optimization',
-    body: 'Improve your Google rankings and site performance to reach more customers.',
+    body: 'Technical SEO setup, page speed work, and Google Business Profile configuration.',
   },
   {
     title: 'E-commerce & Online Stores',
-    body: 'Sell online with a secure, easy-to-manage store and a checkout your customers trust.',
+    body: 'Sell online with an easy-to-manage store and a standard, secure checkout flow.',
   },
   {
     title: 'Custom Web Apps',
@@ -26,7 +26,7 @@ const services = [
   },
   {
     title: 'Landing Pages',
-    body: 'Focused, high-converting pages built to turn ad clicks and campaigns into real leads.',
+    body: 'A single focused page for one campaign or ad, with one clear action and a form wired up.',
   },
   {
     title: 'Website Redesigns',
@@ -261,10 +261,10 @@ const WebDev = () => {
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-              I build custom, affordable websites for small businesses and trades across Canada.
-              My sites are fast, mobile-friendly, and optimized to bring in new customers. Whether you need a new
-              site or a refresh, you get clean design, quick turnaround, and clear communication, without the agency
-              price tag.
+              I build custom websites for small businesses and trades across Canada. Fast,
+              mobile-friendly, and built around how your business actually works. Whether you need a
+              new site or a refresh, you get clean design, a fixed price in writing before I start,
+              and a reply to every message within one business day.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
@@ -437,11 +437,12 @@ const WebDev = () => {
                       : 'border-line'
                   }`}
                 >
-                  {tier.featured && (
-                    <span className="absolute -top-3 left-6 rounded-full bg-accent px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0a0a0a]">
-                      Most popular
-                    </span>
-                  )}
+                  {/* No badge text here on purpose. The old badge asserted popularity,
+                      which is a factual claim about sales volume — and nothing has sold
+                      yet, so it wasn't substantiable. The accent border and glow from
+                      `tier.featured` still draw the eye; visual emphasis isn't a
+                      representation. B2 introduces "Recommended" instead, which states
+                      Brayden's own advice and is substantiable as opinion. */}
                   <h3 className="font-display text-xl font-semibold text-ink">{tier.name}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{tier.tagline}</p>
 
@@ -495,7 +496,7 @@ const WebDev = () => {
                   Keep it running.
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  A launched site still needs upkeep. Keep yours secure, backed up, and steadily improving
+                  A launched site still needs upkeep. Keep yours secure, backed up, and up to date
                   with a monthly plan. Cancel anytime, and bigger SEO campaigns are scoped separately.
                 </p>
               </div>
@@ -510,11 +511,9 @@ const WebDev = () => {
                         : 'border-line'
                     }`}
                   >
-                    {plan.featured && (
-                      <span className="absolute -top-3 left-6 rounded-full bg-accent px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0a0a0a]">
-                        Best value
-                      </span>
-                    )}
+                    {/* Badge text removed for the same reason as the build tier above:
+                        it asserted a comparison nothing substantiates yet. The featured
+                        highlight stays. */}
                     <h4 className="font-display text-xl font-semibold text-ink">{plan.name}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-ink-soft">{plan.tagline}</p>
 
@@ -578,10 +577,10 @@ const WebDev = () => {
                   <span className="text-gradient">About me</span>
                 </h2>
                 <p className="mt-3 leading-relaxed text-ink-soft">
-                  Hi, I&apos;m Brayden Coghill, a Canadian web developer. I specialize in modern,
-                  affordable websites for small businesses and trades across Canada. My goal is to build sites
-                  that are not only good looking but also fast, reliable, and optimized for search so your
-                  business can grow.
+                  Hi, I&apos;m Brayden Coghill, a Canadian web developer. I build custom websites for
+                  small businesses and trades across Canada. My goal is to build sites that are not
+                  only good looking but also fast, reliable, and straightforward for you to keep
+                  using after launch.
                 </p>
               </div>
             </div>
