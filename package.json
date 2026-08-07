@@ -5,12 +5,11 @@
   "type": "module",
   "homepage": "https://coghillb.github.io/portfolio",
   "scripts": {
-    "deploy": "gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build && node scripts/generate-spa-fallbacks.mjs",
+    "build": "vite build && node scripts/generate-spa-fallbacks.mjs && node scripts/verify-dist.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build"
+    "verify:dist": "node scripts/verify-dist.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",

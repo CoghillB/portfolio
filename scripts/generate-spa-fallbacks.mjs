@@ -11,20 +11,21 @@
 // build uses an absolute base ("/"), the copied shell still loads its assets
 // from any depth, and React Router takes over routing on the client.
 //
-// Keep `routes` in sync with the <Route> paths in src/App.jsx. "/" is already
-// covered by dist/index.html and does not need an entry here.
+// The route list lives in scripts/prerender-routes.mjs so verify-dist.mjs can
+// check the same set this script writes.
+//
+// Note "/web-development" is no longer a rendered route — the web-design page
+// moved to "/" — but it stays in the list so the old URL still answers HTTP 200
+// for existing Google Ads destinations and indexed links before React redirects
+// it to root.
 import { existsSync, mkdirSync, copyFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { PRERENDER_ROUTES as routes } from './prerender-routes.mjs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
 const source = join(dist, 'index.html')
-
-// "/web-development" is no longer a rendered route — the web-design page moved
-// to "/" — but it stays here so the old URL still answers HTTP 200 for existing
-// Google Ads destinations and indexed links before React redirects it to root.
-const routes = ['/portfolio', '/web-development']
 
 if (!existsSync(source)) {
   console.error('[spa-fallbacks] dist/index.html not found — run `vite build` first.')

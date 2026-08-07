@@ -1,22 +1,40 @@
-name: Deploy to GitHub Pages
+# The only way the live site gets published.
+#
+# coghilldev.com is served from the gh-pages branch. This workflow is the single
+# writer of that branch: main is the trunk, and a push here is what deploys.
+#
+# There used to be a second path — `npm run deploy` published whatever was in a
+# local working tree, from any branch, with no lint, no build check and no
+# review. That is how main drifted 15 commits behind what was actually live, and
+# it meant a routine push to main would have silently reverted the site. The
+# script is gone; do not add it back. If you need to publish, push to main.
+name: Deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  # Lets a deploy be re-run from the Actions tab without an empty commit.
+  workflow_dispatch:
 
 permissions:
   contents: write
+
+# Queue deploys rather than cancelling them. A cancelled deploy can leave
+# gh-pages partially written, and the run is short enough that waiting is
+# cheaper than reasoning about a half-published site.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
@@ -24,12 +42,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Gate the deploy on lint. Anything that fails here should not reach the
+      # live site. The claim linter (#20) joins this step once it lands.
+      - name: Lint
+        run: npm run lint
+
+      # `npm run build` ends with scripts/verify-dist.mjs, which fails the build
+      # if dist/ is missing CNAME, .nojekyll, 404.html, the JS/CSS bundles, or a
+      # pre-rendered route directory. Those failures are otherwise silent: the
+      # deploy succeeds and the site is quietly broken.
       - name: Build
         run: npm run build
         env:
           VITE_PUBLIC_KEY: ${{ secrets.VITE_PUBLIC_KEY }}
           VITE_SERVICE_ID: ${{ secrets.VITE_SERVICE_ID }}
           VITE_TEMPLATE_ID: ${{ secrets.VITE_TEMPLATE_ID }}
+
+      # The contact form is the site's only conversion path, and it fails at
+      # runtime rather than at build time if these are unset — a blank build
+      # secret produces a page that looks fine and silently drops enquiries.
+      - name: Check contact form keys were present at build time
+        run: |
+          if [ -z "${{ secrets.VITE_PUBLIC_KEY }}" ] || [ -z "${{ secrets.VITE_SERVICE_ID }}" ] || [ -z "${{ secrets.VITE_TEMPLATE_ID }}" ]; then
+            echo "::error::One or more EmailJS build secrets are unset. The contact form would be broken on the deployed site."
+            exit 1
+          fi
+          echo "All three EmailJS build secrets were present."
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
