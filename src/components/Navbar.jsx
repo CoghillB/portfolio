@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { Github, Linkedin } from './BrandIcons'
 import { businessNav, portfolioNav, profile } from '../data/content'
-import { BUSINESS_ROUTE, PORTFOLIO_ROUTE, isPortfolioRoute } from '../routes'
+import { BUSINESS_ROUTE, PORTFOLIO_ROUTE, isPortfolioRoute, isSectionRoute } from '../routes'
 import { ThemeToggle } from './ThemeToggle'
 
 export const Navbar = () => {
@@ -12,7 +12,12 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('')
   const location = useLocation()
+  const navigate = useNavigate()
   const onPortfolio = isPortfolioRoute(location.pathname)
+
+  // Standalone pages like /privacy render no sections at all, so the anchors
+  // below have to leave the page instead of scrolling within it.
+  const onSection = isSectionRoute(location.pathname)
 
   // Both routes are single scrolling pages, so the nav shows whichever set of
   // section anchors belongs to the one you're on.
@@ -60,12 +65,23 @@ export const Navbar = () => {
     }
   }, [open])
 
-  // Every anchor in `links` belongs to the route currently rendered, so these
-  // are always same-page scrolls.
+  // On /privacy the section anchors belong to the business page, so they have
+  // to be written as real cross-route URLs — otherwise "#pricing" resolves
+  // against /privacy, where nothing has that id, and copying or middle-clicking
+  // the link yields an address that goes nowhere.
+  const sectionHref = (href) => (onSection ? href : `${BUSINESS_ROUTE}${href}`)
+
   const goToSection = (href) => (e) => {
     e.preventDefault()
-    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' })
     setOpen(false)
+    // Off a section route there is nothing on this page to scroll to. Navigate
+    // to the business page carrying the hash and let <HashScroll> in App.jsx
+    // do the scrolling once the sections have actually mounted.
+    if (!onSection) {
+      navigate(`${BUSINESS_ROUTE}${href}`)
+      return
+    }
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -94,7 +110,7 @@ export const Navbar = () => {
             return (
               <li key={item.href}>
                 <a
-                  href={item.href}
+                  href={sectionHref(item.href)}
                   onClick={goToSection(item.href)}
                   className={`relative rounded-lg px-3.5 py-2 text-sm transition-colors ${
                     isActive ? 'text-ink' : 'text-ink-soft hover:text-ink'
@@ -125,7 +141,7 @@ export const Navbar = () => {
         <div className="flex items-center gap-1">
           <ThemeToggle />
           <a
-            href="#contact"
+            href={sectionHref('#contact')}
             onClick={goToSection('#contact')}
             className="ml-1 hidden rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-base transition-transform hover:scale-[1.03] lg:inline-block"
           >
@@ -158,7 +174,7 @@ export const Navbar = () => {
               {links.map((item) => (
                 <li key={item.href}>
                   <a
-                    href={item.href}
+                    href={sectionHref(item.href)}
                     onClick={goToSection(item.href)}
                     className="block rounded-lg px-4 py-3 text-base text-ink-soft transition-colors hover:bg-card-hover hover:text-ink"
                   >

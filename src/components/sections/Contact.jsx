@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import emailjs from 'emailjs-com'
 import { Mail, Send, Check, AlertCircle } from 'lucide-react'
 import { Github, Linkedin } from '../BrandIcons'
 import Reveal, { SectionHeading } from '../Reveal'
 import TiltCard from '../fx/TiltCard'
 import { profile } from '../../data/content'
+import { ENQUIRY_RETENTION_MONTHS } from '../../data/legal'
+import { PRIVACY_ROUTE } from '../../routes'
 
 const initial = { name: '', email: '', phone: '', message: '' }
 
@@ -84,7 +87,7 @@ export const Contact = () => {
       })
       .catch((err) => {
         // EmailJS rejects with { status, text }; log both so failures like a
-        // 412 "reconnect your Gmail account" read clearly instead of a minified blob.
+        // 412 "reconnect your Outlook account" read clearly instead of a minified blob.
         console.error('EmailJS send failed:', err?.status, err?.text || err)
         setStatus('error')
       })
@@ -206,10 +209,25 @@ export const Contact = () => {
                 )}
               </div>
 
+              {/* Notice at the point of collection. BC PIPA wants the purpose
+                  stated where the information is actually handed over — a
+                  footer link a visitor has to go looking for is not notice.
+                  Deliberately above the button, not below it, so it is read
+                  before the click rather than after. */}
+              <p className="mt-5 rounded-xl border border-line bg-base-2/60 px-4 py-3 text-xs leading-relaxed text-ink-muted">
+                What happens to this: your name, email, phone and message are delivered through EmailJS to my Outlook
+                inbox, and used only to reply to you. Nothing is sold, and there is no mailing list. If it doesn&apos;t
+                turn into work, it&apos;s deleted within {ENQUIRY_RETENTION_MONTHS} months.{' '}
+                <Link to={PRIVACY_ROUTE} className="text-accent-3 underline-offset-2 hover:underline">
+                  Privacy policy
+                </Link>
+                .
+              </p>
+
               <button
                 type="submit"
                 disabled={status === 'sending' || status === 'sent'}
-                className="cta-glow mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] transition-all hover:bg-accent-2 hover:text-[#0a0a0a] disabled:opacity-70"
+                className="cta-glow mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] transition-all hover:bg-accent-2 hover:text-[#0a0a0a] disabled:opacity-70"
               >
                 <span className="halo" aria-hidden="true">
                   <span className="halo-disc" />

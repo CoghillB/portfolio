@@ -2,10 +2,27 @@
 This is a personal portfolio project showcasing my skills, projects, and experience as a software developer.
 
 ## Live Site
-Deployed on GitHub Pages at [https://coghilldev.com](https://coghilldev.com), with two routes:
+Deployed on GitHub Pages at [https://coghilldev.com](https://coghilldev.com), with three routes:
 
 - `/` — the web design business page
 - `/portfolio` — this software developer portfolio
+- `/privacy` — the published privacy policy (BC PIPA); linked from the footer of
+  every page and from the contact form itself
+
+## Privacy
+
+`/privacy` is a compliance surface, not marketing copy. It names every third
+party that receives personal information from a visit to the site, and that list
+lives in `src/data/legal.js` — the page renders it rather than restating it.
+
+**Adding any third-party script, font host, analytics tag, form handler or CRM
+adds a recipient of personal information, and the policy has to name it before
+it ships.** Add a row to `thirdParties` in `src/data/legal.js`, and if the new
+recipient is hosted outside Canada, add it to `legal/open-questions.md` as well.
+
+`legal/open-questions.md` records the cross-border questions that are
+deliberately unanswered. Do not close one by reasoning about it in a commit
+message.
 
 ## Features
 - Overview of my technical skills and expertise.

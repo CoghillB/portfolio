@@ -14,7 +14,8 @@ import { Skills } from './components/sections/Skills'
 import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import WebDev from './components/sections/WebDev'
-import { normalizePath } from './routes'
+import { Privacy } from './components/sections/Privacy'
+import { normalizePath, PRIVACY_ROUTE } from './routes'
 import './index.css'
 
 // Scrolls to the URL hash target once loading finishes. This is what makes a
@@ -65,6 +66,11 @@ const ROUTE_META = {
     title: 'Brayden Coghill — Software Developer | Kelowna, BC',
     description:
       'Software developer in Kelowna, BC. I build web applications end to end, from React and TypeScript interfaces to the C#, Node, and PostgreSQL behind them.',
+  },
+  [PRIVACY_ROUTE]: {
+    title: 'Privacy Policy | Coghilldev',
+    description:
+      'What coghilldev.com collects, why, which third parties receive it, how long it is kept, and how to have it corrected or deleted. Privacy officer contact included.',
   },
 }
 
@@ -153,6 +159,7 @@ function App() {
           <Routes>
             <Route path="/" element={<BusinessHome />} />
             <Route path="/portfolio" element={<MainLayout><Portfolio /></MainLayout>} />
+            <Route path={PRIVACY_ROUTE} element={<MainLayout><Privacy /></MainLayout>} />
             <Route path="/web-development" element={<LegacyWebDevRedirect />} />
             {/* Unknown paths (typos, stale links) land on the business page
                 rather than an empty shell. */}
