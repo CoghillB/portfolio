@@ -97,7 +97,7 @@ unconditionally, say that — do not imply a consent gate that does not exist.]
 ## Who else receives it
 
 | Who | What they receive | Why | Where they are hosted |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | **Cloudflare** (Pages and Workers) | Your IP address and request details for every page; the full contents of any form you submit | It serves this website and handles form submissions | Cloudflare's global edge network — see the note below |
 | **{{LEAD_DESTINATION}}** | Your form submission and everything in it | It is where enquiries are delivered and stored so we can answer them | {{LEAD_DESTINATION_REGION}} |
 | [OPTIONAL] **{{CRM_NAME}}** | Your contact details and our correspondence with you | It is where we track enquiries and customers | {{CRM_REGION}} |
@@ -175,7 +175,7 @@ policy containing `{{` is worse than no policy: it is visible evidence that
 nobody read it.
 
 | Placeholder | What goes in it |
-|---|---|
+| --- | --- |
 | `{{LAST_UPDATED}}` | Date the policy text was last changed |
 | `{{BUSINESS_NAME}}` | The client's business name, as they trade |
 | `{{WEBSITE_DOMAIN}}` | The live domain, e.g. `example.ca` |

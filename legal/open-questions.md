@@ -89,9 +89,9 @@ which is what the published policy renders — if the two disagree, one of them 
 a compliance bug.
 
 | Processor | Found in | Receives | Hosted | Cross-border status |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **EmailJS** | `src/components/sections/Contact.jsx`, `emailjs-com` in `package.json` | Name, email, phone, message | United States | **Open — question 1** |
-| **Microsoft (Outlook)** | Not in the repo. It is the EmailJS service the form is connected to (Outlook, authenticated as `brayden.coghill@coghilldev.com`) | The delivered message and everything in it | Microsoft data centres; the region holding this mailbox has **not been confirmed** | **Open** — confirm the mailbox region, then record whether it raises the same question as 1 |
+| **Microsoft (Outlook)** | Not in the repo. It is the EmailJS service the form is connected to (Outlook, authenticated as `brayden.coghill@coghilldev.com`) | The delivered message and everything in it | Microsoft data centres | **Open — same as question 1.** A foreign-headquartered processor holding the message, raising the same PIPA/PIPEDA question as the relay that delivers it. |
 | **Google — Google Ads tag `AW-10816741322`** | `index.html` | IP address, browser and device details, page viewed | United States | **Open — question 2, both parts** |
 | **Google — Google Fonts** | `index.html` (`fonts.googleapis.com`, `fonts.gstatic.com`) | IP address, browser details, on every page load | United States | **Open.** A font request is a request: it carries an IP address to a US server whether or not anyone thinks of it as tracking. Self-hosting the fonts would remove this processor entirely and is worth pricing against the effort. |
 | **GitHub Pages** | `.github/workflows/deploy.yml`, `public/CNAME` | IP address and request logs for every page served | United States (GitHub / Microsoft) | **Open.** The site cannot be served without a host, so this one is unavoidable rather than optional — but it is still a US processor and the policy names it. |

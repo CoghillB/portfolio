@@ -51,7 +51,7 @@ export const thirdParties = [
     name: 'Microsoft (Outlook)',
     receives: 'The delivered message, and everything you wrote in it.',
     why: 'It hosts the business inbox that EmailJS delivers to, and stores the message afterwards.',
-    where: 'Microsoft data centres — the region depends on the account, and I have not confirmed which one holds this mailbox.',
+    where: 'Microsoft data centres',
   },
   {
     name: 'Google — Google Ads conversion tag',
