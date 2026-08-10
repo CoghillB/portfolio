@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Signed releases carry a handwritten signature, a named individual and their job
+# title — personal information, in a public repo that deploys to Pages. Only the
+# pointer records belong here. See legal/releases/README.md.
+legal/releases/*
+!legal/releases/README.md
+!legal/releases/index.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
