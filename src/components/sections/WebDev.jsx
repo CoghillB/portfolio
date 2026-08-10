@@ -1,8 +1,18 @@
-import { Check, Clock, FileText, MapPin, User } from 'lucide-react'
+import { Check, Clock, FileText, MapPin, User, X } from 'lucide-react'
 import Reveal, { SectionHeading } from '../Reveal'
 import ImageWithSkeleton from '../ImageWithSkeleton'
 import { Contact } from './Contact.jsx'
-import { BUILD_STANDARD, CURRENCY, formatPrice } from '../../data/pricing'
+import {
+  ANNUAL_PREPAY_DISCOUNT_PCT,
+  ANNUAL_PREPAY_MONTHS,
+  BUILD_STANDARD,
+  BUILD_TIERS,
+  CARE_PLANS,
+  CURRENCY,
+  MONTHS_PER_YEAR,
+  annualPrice,
+  formatPrice,
+} from '../../data/pricing'
 
 const services = [
   {
@@ -40,88 +50,6 @@ const services = [
   {
     title: 'Hosting & Setup',
     body: 'Domain, hosting, and email set up and deployed for you, with no technical headaches on your end.',
-  },
-]
-
-// Flexible, quote-per-project pricing. "Starting from" floors (CAD) for custom
-// React/Next.js work: above template shops, well under agency rates. Edit anytime.
-const pricing = [
-  {
-    name: 'Starter',
-    tagline: 'A simple one-page or landing site to get you online.',
-    priceLabel: 'Starting from',
-    price: '$900',
-    cadence: 'one-time',
-    featured: false,
-    features: [
-      'Single-page or landing site',
-      'Mobile-friendly & fast',
-      'Contact form built in',
-      'Basic SEO setup',
-    ],
-  },
-  {
-    name: 'Business',
-    tagline: 'A multi-page site to establish your small business online.',
-    priceLabel: 'Starting from',
-    price: '$2,500',
-    cadence: 'one-time',
-    featured: true,
-    features: [
-      'Up to ~5 custom pages',
-      'Designed around your brand',
-      'SEO & Google setup',
-      'Booking / contact forms',
-      'Launch + hosting help',
-    ],
-  },
-  {
-    name: 'Custom',
-    tagline: 'Web apps, e-commerce, or anything more advanced.',
-    priceLabel: 'Starting from',
-    price: '$5,000',
-    cadence: 'per project',
-    featured: false,
-    features: [
-      'E-commerce or full web app',
-      'Custom features & integrations',
-      'Scales as your business grows',
-      'Quoted to fit your budget',
-    ],
-  },
-]
-
-// Recurring "care" plans (monthly, CAD): upkeep + hosting + light SEO. Market is
-// ~$30-100/mo basic and ~$100-250/mo mid. SEO here is ongoing upkeep, not a full
-// campaign (those run $750+/mo and are quoted separately). Edit anytime.
-const care = [
-  {
-    name: 'Essential Care',
-    tagline: 'Hands-off upkeep so your site stays secure, backed up, and online.',
-    price: '$99',
-    cadence: '/mo',
-    featured: false,
-    features: [
-      'Managed hosting & domain',
-      'SSL, security patches & monitoring',
-      'Weekly backups',
-      'Uptime monitoring',
-      'Small content edits (~1 hr/mo)',
-    ],
-  },
-  {
-    name: 'Care + SEO',
-    tagline: 'Everything in Essential, plus ongoing SEO upkeep and reporting.',
-    price: '$249',
-    cadence: '/mo',
-    featured: true,
-    features: [
-      'Everything in Essential Care',
-      'Ongoing SEO tune-ups & Google Business Profile',
-      'Monthly analytics & rankings report',
-      'Priority support (~3 hrs/mo of edits)',
-      'Performance & speed tuning',
-    ],
   },
 ]
 
@@ -210,8 +138,11 @@ const promises = [
 
 const process = [
   {
-    title: 'Free quote',
-    body: 'A short call about your business and what the site actually needs to do. You get a written price, no obligation.',
+    // Deliberately not framed as a quote request: the price is published above,
+    // so there is nothing to quote. The call confirms which tier fits and what
+    // the site needs to do, then that same published price goes in writing.
+    title: 'First call',
+    body: 'A short call about your business and what the site actually needs to do. You get the price in writing, no obligation.',
   },
   {
     title: 'Content',
@@ -454,11 +385,11 @@ const WebDev = () => {
         <div className="mx-auto max-w-5xl">
           <SectionHeading
             eyebrow="Pricing"
-            title="Simple, flexible pricing."
-            kicker="I don't do one-size-fits-all. Every project is quoted individually, so you only pay for what you actually need. The tiers below are starting points. Tell me your budget and scope and I'll tailor a quote to fit."
+            title="Here's what it costs."
+            kicker="Fixed scope, fixed price, published on this page. You'll know what you're paying before you contact me, and the number doesn't change once we start."
           />
           <div className="grid gap-6 md:grid-cols-3 md:items-stretch">
-            {pricing.map((tier, i) => (
+            {BUILD_TIERS.map((tier, i) => (
               <Reveal key={tier.name} delay={i * 0.1} className="h-full">
                 <div
                   className={`glow-border relative flex h-full flex-col rounded-2xl border bg-card p-6 ${
@@ -467,25 +398,25 @@ const WebDev = () => {
                       : 'border-line'
                   }`}
                 >
-                  {/* No badge text here on purpose. The old badge asserted popularity,
-                      which is a factual claim about sales volume — and nothing has sold
-                      yet, so it wasn't substantiable. The accent border and glow from
-                      `tier.featured` still draw the eye; visual emphasis isn't a
-                      representation. B2 introduces "Recommended" instead, which states
-                      Brayden's own advice and is substantiable as opinion. */}
+                  {/* Deliberately no popularity badge on the build tiers. Any wording
+                      that ranks a tier by how many people chose it asserts a fact about
+                      sales volume, and nothing has sold yet. The accent border and glow
+                      from `tier.featured` carry the emphasis instead — visual weight
+                      isn't a representation. The care plans below do carry a
+                      "Recommended" pill, which is different: it states Brayden's own
+                      advice rather than a fact about what other buyers did. */}
                   <h3 className="font-display text-xl font-semibold text-ink">{tier.name}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{tier.tagline}</p>
 
                   <div className="mt-5 border-t border-line pt-5">
-                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-ink-muted">
-                      {tier.priceLabel}
-                    </span>
-                    <div className="mt-1 flex items-baseline gap-2">
+                    <div className="flex items-baseline gap-2">
                       {/* pb/-mb keeps gradient descenders (e.g. the 'q') from clipping */}
                       <span className="text-gradient pb-[0.1em] -mb-[0.1em] font-display text-4xl font-bold">
-                        {tier.price}
+                        {formatPrice(tier.amount)}
                       </span>
-                      {tier.cadence && <span className="text-sm text-ink-muted">{tier.cadence}</span>}
+                      <span className="text-sm text-ink-muted">
+                        {CURRENCY} {tier.priceNote}
+                      </span>
                     </div>
                   </div>
 
@@ -506,7 +437,7 @@ const WebDev = () => {
                         : 'border border-line-strong bg-card text-ink hover:bg-card-hover'
                     }`}
                   >
-                    Get a free quote
+                    Start your project
                   </a>
                 </div>
               </Reveal>
@@ -526,33 +457,63 @@ const WebDev = () => {
                   Keep it running.
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  A launched site still needs upkeep. Keep yours secure, backed up, and up to date
-                  with a monthly plan. Cancel anytime, and bigger SEO campaigns are scoped separately.
+                  A launched site still needs upkeep, and things change — prices, hours, a new
+                  service, photos of last week&apos;s job. Pick a plan and send them over. Cancel
+                  any time.
                 </p>
               </div>
             </Reveal>
-            <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2 sm:items-stretch">
-              {care.map((plan, i) => (
-                <Reveal key={plan.name} delay={i * 0.1} className="h-full">
+
+            {/* Care sits in the middle column on purpose: it's the recommended
+                default, and most people should end up on it. Essentials is the floor
+                for a site that genuinely never changes, not the starting point.
+
+                DOM order is Essentials, Care, Growth so Care lands centre on desktop.
+                The `-order-1 sm:order-none` on the recommended plan pulls it to the
+                top when the grid stacks on a phone, so the default is what a
+                contractor sees first there too. */}
+            <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3 sm:items-stretch">
+              {CARE_PLANS.map((plan, i) => (
+                <Reveal
+                  key={plan.name}
+                  delay={i * 0.1}
+                  className={`h-full ${plan.recommended ? '-order-1 sm:order-none' : ''}`}
+                >
                   <div
                     className={`glow-border relative flex h-full flex-col rounded-2xl border bg-card p-6 ${
-                      plan.featured
+                      plan.recommended
                         ? 'border-accent/60 shadow-[0_0_40px_-12px_var(--color-accent-glow)]'
                         : 'border-line'
                     }`}
                   >
-                    {/* Badge text removed for the same reason as the build tier above:
-                        it asserted a comparison nothing substantiates yet. The featured
-                        highlight stays. */}
+                    {/* "Recommended" states Brayden's own advice, which he can stand
+                        behind. That is why it's allowed here where popularity or
+                        best-in-class wording is not: those assert facts about sales
+                        volume and comparisons that nothing yet substantiates. */}
+                    {plan.recommended && (
+                      <span className="absolute -top-3 left-6 rounded-full bg-accent px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0a0a0a]">
+                        Recommended
+                      </span>
+                    )}
                     <h4 className="font-display text-xl font-semibold text-ink">{plan.name}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-ink-soft">{plan.tagline}</p>
 
-                    <div className="mt-5 flex items-baseline gap-1 border-t border-line pt-5">
-                      <span className="text-gradient font-display text-4xl font-bold">{plan.price}</span>
-                      <span className="text-sm text-ink-muted">{plan.cadence}</span>
+                    <div className="mt-5 border-t border-line pt-5">
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="text-gradient font-display text-4xl font-bold">
+                          {formatPrice(plan.amount)}
+                        </span>
+                        <span className="text-sm text-ink-muted">{CURRENCY}/mo</span>
+                      </div>
+                      <p className="mt-1.5 text-xs text-ink-muted">
+                        or {formatPrice(annualPrice(plan.amount))} {CURRENCY} a year — pay for{' '}
+                        {ANNUAL_PREPAY_MONTHS}
+                        {' months, get '}
+                        {MONTHS_PER_YEAR}
+                      </p>
                     </div>
 
-                    <ul className="mt-6 flex flex-1 flex-col gap-3">
+                    <ul className="mt-6 flex flex-col gap-3">
                       {plan.features.map((f) => (
                         <li key={f} className="flex items-start gap-2.5 text-sm text-ink-soft">
                           <Check size={16} className="mt-0.5 shrink-0 text-accent-3" />
@@ -561,10 +522,22 @@ const WebDev = () => {
                       ))}
                     </ul>
 
+                    {/* Exclusions are shown to the visitor, not just tracked internally.
+                        Enforcing a boundary the client was never told about is how a
+                        fixed-price plan turns into an argument. */}
+                    <ul className="mt-4 flex flex-1 flex-col gap-2 border-t border-line pt-4">
+                      {plan.excludes.map((x) => (
+                        <li key={x} className="flex items-start gap-2.5 text-xs text-ink-muted">
+                          <X size={14} className="mt-0.5 shrink-0 opacity-70" />
+                          <span>{x}</span>
+                        </li>
+                      ))}
+                    </ul>
+
                     <a
                       href="#contact"
                       className={`mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all ${
-                        plan.featured
+                        plan.recommended
                           ? 'bg-accent text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] hover:brightness-110'
                           : 'border border-line-strong bg-card text-ink hover:bg-card-hover'
                       }`}
@@ -579,12 +552,13 @@ const WebDev = () => {
 
           <Reveal delay={0.1}>
             <p className="mt-8 text-center text-sm leading-relaxed text-ink-muted">
-              All prices in CAD. Every budget and scope is welcome, from a quick one-pager to a full web app. Not sure where you
-              fit?{' '}
+              All prices in {CURRENCY}. Taxes extra where applicable. Paying for a year up front
+              saves {ANNUAL_PREPAY_DISCOUNT_PCT}%. Care plans are month to month otherwise — cancel
+              any time, and the site is yours either way. Not sure which fits?{' '}
               <a href="#contact" className="font-medium text-accent-3 hover:underline">
-                Get in touch
-              </a>{' '}
-              and I&apos;ll put together a custom quote, no pressure.
+                Ask me
+              </a>
+              .
             </p>
           </Reveal>
         </div>
