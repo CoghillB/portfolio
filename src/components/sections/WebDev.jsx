@@ -2,6 +2,7 @@ import { Check, Clock, FileText, MapPin, User } from 'lucide-react'
 import Reveal, { SectionHeading } from '../Reveal'
 import ImageWithSkeleton from '../ImageWithSkeleton'
 import { Contact } from './Contact.jsx'
+import { BUILD_STANDARD, CURRENCY, formatPrice } from '../../data/pricing'
 
 const services = [
   {
@@ -246,34 +247,63 @@ const initials = (t) => {
 const WebDev = () => {
   return (
     <>
-      <section id="webdev" className="relative px-6 pt-36 pb-12 sm:pt-40">
+      {/* First screen. Four things have to be answerable above the fold: who
+          this is for, what they get, why it's credible, and what to do next.
+          A contractor should be able to say who it's for after five seconds —
+          which is why the trades are named outright rather than implied by
+          "small business".
+
+          Every line here is either a description of the product, a fact about
+          Brayden's own pricing, or a promise about his own conduct. There are no
+          performance claims and there is nothing about results, because there is
+          no completed client work to substantiate any of it. The conduct
+          promises are the four from the `promises` list below — don't add a
+          fifth here without asking him first.
+
+          Top padding is deliberately tighter on mobile than desktop: the whole
+          screen has to clear the fold on a phone, which is where a contractor
+          will actually open it. */}
+      <section id="webdev" className="relative px-6 pt-28 pb-12 sm:pt-40">
         <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>
             <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
               <span className="h-px w-8 bg-accent-3/60" />
-              Web Design & Development
+              Kelowna &amp; the Central Okanagan
             </span>
           </Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-              Web design for small businesses <span className="text-gradient">& trades</span>
+              Websites for Kelowna <span className="text-gradient">trades</span>
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-              I build custom websites for small businesses and trades across Canada. Fast,
-              mobile-friendly, and built around how your business actually works. Whether you need a
-              new site or a refresh, you get clean design, a fixed price in writing before I start,
-              and a reply to every message within one business day.
+            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+              Roofing, HVAC, electrical, plumbing. A {BUILD_STANDARD.pages}-page site with a quote
+              form, for one fixed price:{' '}
+              <span className="whitespace-nowrap font-semibold text-ink">
+                {formatPrice(BUILD_STANDARD.amount)} {CURRENCY}
+              </span>
+              . Published, not quoted.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
-            <a
-              href="#contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] transition-all hover:brightness-110"
-            >
-              Get a free quote
-            </a>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted">
+              You deal with me, not an account manager. You get the price in writing before I start,
+              and a reply to every message within one business day.
+            </p>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-8 flex flex-col items-center gap-3">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] transition-all hover:brightness-110"
+              >
+                Start your project
+              </a>
+              <a href="#pricing" className="text-sm font-medium text-accent-3 hover:underline">
+                See exactly what&apos;s included →
+              </a>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -576,11 +606,16 @@ const WebDev = () => {
                 <h2 className="font-display text-2xl font-semibold text-ink">
                   <span className="text-gradient">About me</span>
                 </h2>
+                {/* The first screen commits to Kelowna trades deliberately. This is
+                    where the wider reach lives instead — below the fold, so it can't
+                    dilute who the page is for, but still there for the out-of-town
+                    enquiries and existing ad traffic that already land here. */}
                 <p className="mt-3 leading-relaxed text-ink-soft">
-                  Hi, I&apos;m Brayden Coghill, a Canadian web developer. I build custom websites for
-                  small businesses and trades across Canada. My goal is to build sites that are not
-                  only good looking but also fast, reliable, and straightforward for you to keep
-                  using after launch.
+                  Hi, I&apos;m Brayden Coghill, a web developer in Kelowna, BC. I build sites for
+                  local trades and contractors across the Central Okanagan — and I work remotely
+                  with clients elsewhere in Canada too. My goal is to build sites that are not only
+                  good looking but also fast, reliable, and straightforward for you to keep using
+                  after launch.
                 </p>
               </div>
             </div>

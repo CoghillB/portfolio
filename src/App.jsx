@@ -57,9 +57,9 @@ function HashScroll({ ready }) {
 
 const ROUTE_META = {
   '/': {
-    title: 'Web Design for Small Business & Trades | Kelowna, BC',
+    title: 'Websites for Kelowna Trades & Contractors | Coghilldev',
     description:
-      'Custom websites for small businesses and trades in Kelowna and across Canada. Fixed price in writing before I start, one business day reply, and you deal with me directly.',
+      'Websites for Kelowna trades and contractors — roofing, HVAC, electrical, plumbing. A 6-page site with a quote form for one fixed price, published up front. You deal with me directly and get a reply within one business day.',
   },
   '/portfolio': {
     title: 'Brayden Coghill — Software Developer | Kelowna, BC',
