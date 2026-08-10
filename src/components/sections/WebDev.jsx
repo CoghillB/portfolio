@@ -53,14 +53,42 @@ const services = [
   },
 ]
 
-// Ordered for the visitor this page is for: a local small-business or trades
-// owner deciding whether this person builds sites for people like them. Real
-// local business first, then small-business-facing work, then B2B marketing
-// sites. The betting app and the YouTube channel are the least relatable proof
-// for that buyer, so they sit at the bottom.
+// A section headed "Recent work" is a representation about commercial track
+// record: a visitor reasonably reads every card in it as work done for someone
+// who asked for it. So every entry carries an explicit `kind`, and anything that
+// isn't client work says so on the card.
+//
+// Classification confirmed by Brayden, 2026-08-10:
+//   Kelowna Creative  client   — real external client
+//   Cyan Analytics    client   — real external client, built with a team
+//   M&B Capital       client   — real external client
+//   Kerion            client   — real external client
+//   EdgeFinder        product  — his own venture, co-owned with a business
+//                                partner; he was the sole developer
+//   Factum            concept  — a demo built to show prospective clients. Its
+//                                own footer says "Demo prototype, no real
+//                                payments are processed". Not a client project,
+//                                and there is no client behind it.
+//
+// Do not add an entry without setting `kind`, and do not set `kind: 'client'`
+// for anything that wasn't commissioned. Guessing here is how a section like
+// this quietly overstates a track record.
+//
+// Ordering is for the visitor this page is for: a trades or local business owner
+// deciding whether this person builds sites for people like them. Client work
+// leads; the concept and the personal product sit lower, so the section opens on
+// what it claims to be. The YouTube channel page is the least relatable proof
+// for that buyer, so it stays at the bottom.
+const WORK_KINDS = {
+  client: null, // The section's default meaning — no badge needed.
+  concept: 'Concept — not a client project',
+  product: 'My own product',
+}
+
 const work = [
   {
     title: 'Kelowna Creative',
+    kind: 'client',
     img: '/kelowna-creative.png',
     alt: 'Kelowna Creative website redesign for a local creative agency',
     body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in their market.',
@@ -68,15 +96,8 @@ const work = [
     href: 'https://www.kelownacreative.ca',
   },
   {
-    title: 'Factum',
-    img: '/factum.png',
-    alt: 'Factum, an escrow-style payment protection platform for clients and small businesses',
-    body: 'A payment-protection platform that holds funds in escrow between a client and the business they hired, releasing the money only on approval. A clean, editorial design built to earn trust, so both sides stay protected from deposit to final sign-off.',
-    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    href: 'https://coghillb.github.io/demo/',
-  },
-  {
     title: 'Cyan Analytics',
+    kind: 'client',
     img: '/cyan-analytics.png',
     alt: 'Cyan Analytics, a marketing site for a data-transparency analytics product',
     body: 'A modern marketing site for a data-transparency analytics product, built with the team in Next.js. Clean, fast, and focused on communicating the platform’s value to a business audience.',
@@ -85,6 +106,7 @@ const work = [
   },
   {
     title: 'M&B Capital',
+    kind: 'client',
     img: '/mb-capital.png',
     alt: 'M&B Capital, a marketing and investor site for a private investment firm',
     body: 'A refined marketing and investor site for a private investment firm. An elegant, editorial design that walks investors and business owners through their acquire, build, and realize model with clear calls to action.',
@@ -92,15 +114,29 @@ const work = [
     href: 'https://coghillb.github.io/MB-Capital/',
   },
   {
+    // Body copy deliberately says "concept" and "would" rather than describing a
+    // running product. The previous wording was present tense and read as a
+    // delivered engagement, which it isn't.
+    title: 'Factum',
+    kind: 'concept',
+    img: '/factum.png',
+    alt: 'Factum, a design concept for an escrow-style payment protection platform',
+    body: 'A design concept for a payment-protection platform: funds would sit in escrow between a client and the business they hired, releasing only on approval. I built it to show what a trust-heavy product can look like — a clean, editorial interface for a nervous transaction. It is a working prototype, not a live service, and it processes no real payments.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+    href: 'https://coghillb.github.io/demo/',
+  },
+  {
     title: 'EdgeFinder',
+    kind: 'product',
     img: '/edgefinder.png',
     alt: 'EdgeFinder, an AI-powered sports prop betting platform',
-    body: 'A full-stack web app for sports prop betting analysis. It blends an AI model with trend and weather data to surface prop picks, with user accounts and subscription billing. The same React front end also ships to Android and iOS through Capacitor.',
+    body: 'A product I co-own and built end to end as the sole developer. A full-stack web app for sports prop betting analysis, blending an AI model with trend and weather data to surface prop picks, with user accounts and subscription billing. The same React front end also ships to Android and iOS through Capacitor.',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Fastify', 'Supabase', 'Stripe', 'Capacitor', 'AI'],
     href: 'https://www.edgefinder.ca',
   },
   {
     title: 'Kerion',
+    kind: 'client',
     img: '/kerion.png',
     alt: 'Kerion, a landing page for a RimWorld YouTube channel',
     body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
@@ -284,6 +320,16 @@ const WebDev = () => {
                       </span>
                     </div>
                   )}
+                  {/* Anything that isn't client work is labelled here. Deliberately
+                      muted rather than accent-coloured: this is a disclosure, not a
+                      promotion, and it shouldn't compete with the card's content. It's
+                      real text, so screen readers get it in reading order right before
+                      the title. */}
+                  {WORK_KINDS[w.kind] && (
+                    <span className="mb-2 inline-flex w-fit items-center rounded-md border border-line-strong bg-card-2 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-ink-muted">
+                      {WORK_KINDS[w.kind]}
+                    </span>
+                  )}
                   <h3 className="font-display text-xl font-semibold text-ink">{w.title}</h3>
                   <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-soft">{w.body}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
@@ -302,7 +348,9 @@ const WebDev = () => {
                     rel="noopener noreferrer"
                     className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent-3 hover:underline"
                   >
-                    View Site →
+                    {/* "View Site" would oversell a prototype that isn't a running
+                        service, so the concept gets its own wording. */}
+                    {w.kind === 'concept' ? 'View prototype →' : 'View Site →'}
                   </a>
                 </div>
               </Reveal>
