@@ -7,4 +7,4 @@
 //
 // Keep in sync with the <Route> paths in src/App.jsx. "/" is covered by
 // dist/index.html and does not need an entry.
-export const PRERENDER_ROUTES = ['/portfolio', '/web-development']
+export const PRERENDER_ROUTES = ['/portfolio', '/web-development', '/privacy']

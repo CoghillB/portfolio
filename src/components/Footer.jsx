@@ -1,13 +1,15 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Mail, ArrowUp } from 'lucide-react'
 import { Github, Linkedin } from './BrandIcons'
 import { profile, businessNav, portfolioNav } from '../data/content'
-import { BUSINESS_ROUTE, PORTFOLIO_ROUTE, isPortfolioRoute } from '../routes'
+import { BUSINESS_ROUTE, PORTFOLIO_ROUTE, PRIVACY_ROUTE, isPortfolioRoute, isSectionRoute } from '../routes'
 
 export const Footer = () => {
   const location = useLocation()
+  const navigate = useNavigate()
   const onPortfolio = isPortfolioRoute(location.pathname)
+  const onSection = isSectionRoute(location.pathname)
 
   // Mirrors the Navbar: the active route's own anchors, plus a link across to
   // the other audience's page.
@@ -16,8 +18,17 @@ export const Footer = () => {
     ? { label: 'Website Services', to: BUSINESS_ROUTE }
     : { label: 'Dev Portfolio', to: PORTFOLIO_ROUTE }
 
+  // Same rule as the Navbar: off a section route (/privacy) these anchors point
+  // at another page, so they navigate rather than scroll, and their href has to
+  // carry the route so the link is valid when copied.
+  const sectionHref = (href) => (onSection ? href : `${BUSINESS_ROUTE}${href}`)
+
   const goToSection = (href) => (e) => {
     e.preventDefault()
+    if (!onSection) {
+      navigate(`${BUSINESS_ROUTE}${href}`)
+      return
+    }
     document.getElementById(href.slice(1))?.scrollIntoView({ behavior: 'smooth' })
   }
 
@@ -52,7 +63,7 @@ export const Footer = () => {
           {links.map((n) => (
             <a
               key={n.href}
-              href={n.href}
+              href={sectionHref(n.href)}
               onClick={goToSection(n.href)}
               className="text-sm text-ink-soft transition-colors hover:text-ink"
             >
@@ -95,8 +106,13 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="mx-auto mt-8 max-w-5xl border-t border-line pt-6 text-center text-xs text-ink-muted">
-        © {new Date().getFullYear()} {profile.name}. Built with React, Tailwind &amp; Framer Motion.
+      {/* The Footer renders on every route, which is what makes this the
+          site-wide link to the policy that BC PIPA expects to be findable. */}
+      <div className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-2 border-t border-line pt-6 text-center text-xs text-ink-muted sm:flex-row sm:justify-between sm:text-left">
+        <p>© {new Date().getFullYear()} {profile.name}. Built with React, Tailwind &amp; Framer Motion.</p>
+        <Link to={PRIVACY_ROUTE} className="underline-offset-4 transition-colors hover:text-ink hover:underline">
+          Privacy Policy
+        </Link>
       </div>
     </footer>
   )
