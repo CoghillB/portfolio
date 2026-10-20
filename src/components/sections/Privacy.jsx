@@ -68,7 +68,7 @@ export const Privacy = () => (
         </P>
         <div className="mt-5 rounded-2xl border border-line bg-card p-5">
           <p className="text-sm font-semibold text-ink">{privacyOfficer.name}</p>
-          <p className="text-sm text-ink-muted">{privacyOfficer.title}, Coghilldev — Kelowna, BC</p>
+          <p className="text-sm text-ink-muted">{privacyOfficer.title}, Coghilldev, Kelowna, BC</p>
           <a
             href={`mailto:${privacyOfficer.email}`}
             className="mt-2 inline-block text-sm text-accent-3 hover:underline"
@@ -91,7 +91,7 @@ export const Privacy = () => (
           <strong className="text-ink">message</strong> you write. That is the whole list. There are no hidden fields.
         </P>
         <P>
-          I use it to read your enquiry and reply to it, and — if it turns into work — to contact you about that work
+          I use it to read your enquiry and reply to it, and, if it turns into work, to contact you about that work
           and to invoice it. I do not use it for anything else, I do not add you to a mailing list, and I do not sell,
           rent or trade it.
         </P>
@@ -106,7 +106,7 @@ export const Privacy = () => (
         <P>
           The Google Ads tag runs on <strong className="text-ink">every page load</strong>. It is not held back behind a
           consent prompt, and this notice is the only notice of it. Whether it ought to be behind a consent prompt is a
-          question I have not answered — see{' '}
+          question I have not answered. See{' '}
           <a href="#not-settled" className="text-accent-3 hover:underline">
             what is not settled
           </a>{' '}
@@ -146,7 +146,7 @@ export const Privacy = () => (
           ))}
         </ul>
         <P>
-          Beyond that list, I disclose personal information to no one — except where the law requires me to, in which
+          Beyond that list, I disclose personal information to no one, except where the law requires me to, in which
           case I will tell you unless I am prohibited from doing so.
         </P>
 
@@ -157,7 +157,7 @@ export const Privacy = () => (
         </P>
         <P>
           If we do work together, our correspondence and your project records are kept for as long as I am working for
-          you. After that, records that support a tax filing — invoices and the correspondence behind them — are kept
+          you. After that, records that support a tax filing (invoices and the correspondence behind them) are kept
           for {TAX_RECORD_RETENTION_YEARS} years from the end of the tax year they belong to, because the Canada Revenue
           Agency requires it. That obligation outlasts a deletion request, and I would rather say so than promise you a
           deletion I cannot carry out.
@@ -195,7 +195,7 @@ export const Privacy = () => (
         <Heading>Consent, and taking it back</Heading>
         <P>
           Sending the contact form is how you consent to my using those details to reply to you. You can withdraw that
-          consent at any time by emailing the privacy officer, and I will delete what I hold — apart from the tax
+          consent at any time by emailing the privacy officer, and I will delete what I hold, apart from the tax
           records described above, which I am required to keep.
         </P>
 
@@ -209,14 +209,14 @@ export const Privacy = () => (
         <Heading>Changes to this policy</Heading>
         <P>
           If this policy changes, the date at the top changes with it. This website is built from a public repository,
-          so every past version of this page and the exact date it changed are on public record — you do not have to
+          so every past version of this page and the exact date it changed are on public record. You do not have to
           take my word for what it said before.
         </P>
 
         <Heading id="not-settled">What is not settled</Heading>
         <P>
           Several of the companies above are hosted in the United States, which means personal information collected
-          here can leave Canada. There are open legal questions about what that requires of me — including whether the
+          here can leave Canada. There are open legal questions about what that requires of me, including whether the
           Google Ads tag needs a consent mechanism rather than only this disclosure.
         </P>
         <P>

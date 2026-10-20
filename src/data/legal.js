@@ -54,13 +54,13 @@ export const thirdParties = [
     where: 'Microsoft data centres',
   },
   {
-    name: 'Google — Google Ads conversion tag',
+    name: 'Google (Google Ads conversion tag)',
     receives: 'Your IP address, browser and device details, and which page you loaded.',
     why: 'It measures whether an ad led to an enquiry. It loads on every page, before you interact with anything.',
     where: 'United States',
   },
   {
-    name: 'Google — Google Fonts',
+    name: 'Google (Google Fonts)',
     receives: 'Your IP address and browser details.',
     why: 'The typefaces this site uses are requested from Google servers when the page loads.',
     where: 'United States',

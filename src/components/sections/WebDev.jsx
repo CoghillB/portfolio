@@ -81,7 +81,7 @@ const services = [
 // for that buyer, so it stays at the bottom.
 const WORK_KINDS = {
   client: null, // The section's default meaning — no badge needed.
-  concept: 'Concept — not a client project',
+  concept: 'Concept, not a client project',
   product: 'My own product',
 }
 
@@ -121,7 +121,7 @@ const work = [
     kind: 'concept',
     img: '/factum.png',
     alt: 'Factum, a design concept for an escrow-style payment protection platform',
-    body: 'A design concept for a payment-protection platform: funds would sit in escrow between a client and the business they hired, releasing only on approval. I built it to show what a trust-heavy product can look like — a clean, editorial interface for a nervous transaction. It is a working prototype, not a live service, and it processes no real payments.',
+    body: 'A design concept for a payment-protection platform: funds would sit in escrow between a client and the business they hired, releasing only on approval. I built it to show what a trust-heavy product can look like: a clean, editorial interface for a nervous transaction. It is a working prototype, not a live service, and it processes no real payments.',
     tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
     href: 'https://coghillb.github.io/demo/',
   },
@@ -182,7 +182,7 @@ const process = [
   },
   {
     title: 'Content',
-    body: "I tell you exactly what I need from you — photos, services, logo — and chase it up so the project doesn't stall.",
+    body: "I tell you exactly what I need from you (photos, services, logo) and chase it up so the project doesn't stall.",
   },
   {
     title: 'Design',
@@ -507,7 +507,7 @@ const WebDev = () => {
                   Keep it running.
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  A launched site still needs upkeep, and things change — prices, hours, a new
+                  A launched site still needs upkeep, and things change: prices, hours, a new
                   service, new photos. Pick a plan and send them over. Cancel any time.
                 </p>
               </div>
@@ -555,10 +555,10 @@ const WebDev = () => {
                         <span className="text-sm text-ink-muted">{CURRENCY}/mo</span>
                       </div>
                       <p className="mt-1.5 text-xs text-ink-muted">
-                        or {formatPrice(annualPrice(plan.amount))} {CURRENCY} a year — pay for{' '}
+                        or {formatPrice(annualPrice(plan.amount))} {CURRENCY} a year (pay for{' '}
                         {ANNUAL_PREPAY_MONTHS}
                         {' months, get '}
-                        {MONTHS_PER_YEAR}
+                        {MONTHS_PER_YEAR})
                       </p>
                     </div>
 
@@ -602,7 +602,7 @@ const WebDev = () => {
           <Reveal delay={0.1}>
             <p className="mt-8 text-center text-sm leading-relaxed text-ink-muted">
               All prices in {CURRENCY}. Taxes extra where applicable. Paying for a year up front
-              saves {ANNUAL_PREPAY_DISCOUNT_PCT}%. Care plans are month to month otherwise — cancel
+              saves {ANNUAL_PREPAY_DISCOUNT_PCT}%. Care plans are month to month otherwise. Cancel
               any time, and the site is yours either way. Not sure which fits?{' '}
               <a href="#contact" className="font-medium text-accent-3 hover:underline">
                 Ask me
@@ -635,7 +635,7 @@ const WebDev = () => {
                     enquiries and existing ad traffic that already land here. */}
                 <p className="mt-3 leading-relaxed text-ink-soft">
                   Hi, I&apos;m Brayden Coghill, a web developer in Kelowna, BC. I build sites for
-                  small businesses of every kind across the Central Okanagan — and I work remotely
+                  small businesses of every kind across the Central Okanagan, and I work remotely
                   with clients elsewhere in Canada too. My goal is to build sites that are not only
                   good looking but also fast, reliable, and straightforward for you to keep using
                   after launch.

@@ -151,7 +151,7 @@ export const CARE_PLANS = [
     recommended: true,
     features: [
       'Everything in Essentials',
-      'Unlimited content edits — prices, hours, services, photos, text',
+      'Unlimited content edits: prices, hours, services, photos, text',
       'Individual edits up to about 30 minutes each',
       'No limit on how many you send',
     ],
