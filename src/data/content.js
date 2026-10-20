@@ -209,7 +209,7 @@ export const education = [
 // The site serves two audiences on two routes, so it needs two nav sets.
 // Navbar and Footer pick one based on the active route.
 
-// Site root: the small-business / trades buyer who wants a website built.
+// Site root: the small-business owner who wants a website built.
 export const businessNav = [
   { label: 'Services', href: '#services' },
   { label: 'Recent Work', href: '#recent-work' },

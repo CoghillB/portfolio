@@ -74,7 +74,7 @@ const services = [
 // for anything that wasn't commissioned. Guessing here is how a section like
 // this quietly overstates a track record.
 //
-// Ordering is for the visitor this page is for: a trades or local business owner
+// Ordering is for the visitor this page is for: a local business owner
 // deciding whether this person builds sites for people like them. Client work
 // leads; the concept and the personal product sit lower, so the section opens on
 // what it claims to be. The YouTube channel page is the least relatable proof
@@ -145,7 +145,7 @@ const work = [
   },
 ]
 
-// Trust signals for a risk-reduction-driven buyer: a contractor or shop owner
+// Trust signals for a risk-reduction-driven buyer: a business owner
 // deciding whether hiring this person is safe. Every line is a promise Brayden
 // confirmed he will actually hold to — don't add to this list without asking
 // him first, and don't soften one without telling him it changed.
@@ -216,9 +216,10 @@ const WebDev = () => {
     <>
       {/* First screen. Four things have to be answerable above the fold: who
           this is for, what they get, why it's credible, and what to do next.
-          A contractor should be able to say who it's for after five seconds —
-          which is why the trades are named outright rather than implied by
-          "small business".
+          The page used to be for trades only; Brayden broadened it to any local
+          business (2026-10-20). A spread of business types is still named
+          outright, so a visitor can find themselves in it in five seconds
+          rather than having to infer it from "small business".
 
           Every line here is either a description of the product, a fact about
           Brayden's own pricing, or a promise about his own conduct. There are no
@@ -228,8 +229,8 @@ const WebDev = () => {
           fifth here without asking him first.
 
           Top padding is deliberately tighter on mobile than desktop: the whole
-          screen has to clear the fold on a phone, which is where a contractor
-          will actually open it. */}
+          screen has to clear the fold on a phone, which is where a business
+          owner will actually open it. */}
       <section id="webdev" className="relative px-6 pt-28 pb-12 sm:pt-40">
         <div className="relative mx-auto max-w-3xl text-center">
           <Reveal>
@@ -240,13 +241,14 @@ const WebDev = () => {
           </Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-              Websites for Kelowna <span className="text-gradient">trades</span>
+              Websites for Kelowna{' '}
+              <span className="text-gradient">small businesses</span>
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-              Roofing, HVAC, electrical, plumbing. A {BUILD_STANDARD.pages}-page site with a quote
-              form, for one fixed price:{' '}
+              Shops, studios, clinics, restaurants, trades and professional services. A{' '}
+              {BUILD_STANDARD.pages}-page site with a contact form, for one fixed price:{' '}
               <span className="whitespace-nowrap font-semibold text-ink">
                 {formatPrice(BUILD_STANDARD.amount)} {CURRENCY}
               </span>
@@ -506,8 +508,7 @@ const WebDev = () => {
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                   A launched site still needs upkeep, and things change — prices, hours, a new
-                  service, photos of last week&apos;s job. Pick a plan and send them over. Cancel
-                  any time.
+                  service, new photos. Pick a plan and send them over. Cancel any time.
                 </p>
               </div>
             </Reveal>
@@ -519,7 +520,7 @@ const WebDev = () => {
                 DOM order is Essentials, Care, Growth so Care lands centre on desktop.
                 The `-order-1 sm:order-none` on the recommended plan pulls it to the
                 top when the grid stacks on a phone, so the default is what a
-                contractor sees first there too. */}
+                visitor sees first there too. */}
             <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3 sm:items-stretch">
               {CARE_PLANS.map((plan, i) => (
                 <Reveal
@@ -628,13 +629,13 @@ const WebDev = () => {
                 <h2 className="font-display text-2xl font-semibold text-ink">
                   <span className="text-gradient">About me</span>
                 </h2>
-                {/* The first screen commits to Kelowna trades deliberately. This is
-                    where the wider reach lives instead — below the fold, so it can't
+                {/* The first screen commits to Kelowna deliberately. This is where
+                    the wider reach lives instead — below the fold, so it can't
                     dilute who the page is for, but still there for the out-of-town
                     enquiries and existing ad traffic that already land here. */}
                 <p className="mt-3 leading-relaxed text-ink-soft">
                   Hi, I&apos;m Brayden Coghill, a web developer in Kelowna, BC. I build sites for
-                  local trades and contractors across the Central Okanagan — and I work remotely
+                  small businesses of every kind across the Central Okanagan — and I work remotely
                   with clients elsewhere in Canada too. My goal is to build sites that are not only
                   good looking but also fast, reliable, and straightforward for you to keep using
                   after launch.
