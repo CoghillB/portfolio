@@ -23,16 +23,18 @@ export const formatPrice = (amount) => `$${amount.toLocaleString('en-CA')}`
 // One-off builds
 // ---------------------------------------------------------------------------
 
-// The standard productized build: a fixed-scope contractor site.
+// The standard productized build: a fixed-scope small-business site.
 //
 // `amount` moves 2500 -> 3500 once THREE case studies of real client work are
 // published. That is a trigger, not a date — and it counts real client work
 // only, not demos or self-directed projects. As of now there are zero.
 //
-// `pages` is the fixed scope: home, services, service areas, about, contact
-// with quote form, gallery. Keep it in step with the build template — if the
-// template grows a seventh page type, that is a change to what $2,500 buys, not
-// a detail.
+// `pages` is the fixed scope: home, services, about, gallery, contact with
+// form, plus one more standard page the client picks (FAQ, team, menu or
+// service areas). The sixth page used to be service areas for everyone; it
+// became a choice when the offer widened from trades to any business. Keep it
+// in step with the build template — if the template grows a seventh page type,
+// that is a change to what $2,500 buys, not a detail.
 export const BUILD_STANDARD = {
   amount: 2500,
   pages: 6,
@@ -51,18 +53,18 @@ export const BUILD_CUSTOM_FROM = { amount: 12000 }
 export const BUILD_TIERS = [
   {
     id: 'standard',
-    name: 'The Contractor Site',
-    tagline: `A ${BUILD_STANDARD.pages}-page site for a single-location trade business.`,
+    name: 'The Small Business Site',
+    tagline: `A ${BUILD_STANDARD.pages}-page site for a single-location business.`,
     amount: BUILD_STANDARD.amount,
     // "flat" not "starting from" — the whole positioning is that this is a
     // fixed price, and "starting from" quietly reintroduces the quote.
     priceNote: 'flat',
     featured: true,
     features: [
-      `${BUILD_STANDARD.pages} pages: home, services, service areas, about, contact, gallery`,
-      'Quote request form, wired up and tested',
+      `${BUILD_STANDARD.pages} pages: home, services, about, gallery, contact, plus one you choose (FAQ, team, menu or service areas)`,
+      'Contact or quote request form, wired up and tested',
       'Built for phones first',
-      'Your service areas and trades set up on each page',
+      'Your services, hours and location set up on each page',
       'Google Business Profile configured',
       'Accessibility pass on every page',
       'Domain, hosting and email set up for you at launch',
@@ -76,7 +78,7 @@ export const BUILD_TIERS = [
     priceNote: 'flat',
     featured: false,
     features: [
-      'Everything in The Contractor Site',
+      'Everything in The Small Business Site',
       'A page per location or service area',
       'Separate contact routing per location',
       'Location-specific Google Business Profiles',
