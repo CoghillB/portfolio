@@ -34,8 +34,8 @@ The evidence for a price is that it is the published price and it is honoured.
 
 | Claim as published | Evidence | Evidence location | Date obtained | Where published |
 | --- | --- | --- | --- | --- |
-| "$2,500 CAD" flat for a 6-page small business site (was "contractor site" until 2026-10-20; price and page count unchanged) | The published price; honoured as quoted | `src/data/pricing.js` → `BUILD_STANDARD` | 2026-08-10 | Homepage first screen, pricing section |
-| "$6,500" multi-location | Same | `src/data/pricing.js` → `BUILD_MULTI_LOCATION` | 2026-08-10 | Pricing section |
+| "$1,000 CAD" flat for a 6-page small business site (was "$2,500" until 2026-10-23; was "contractor site" until 2026-10-20) | The published price; honoured as quoted | `src/data/pricing.js` → `BUILD_STANDARD` | 2026-10-23 | Homepage first screen, pricing section |
+| "$6,000" multi-location (was "$6,500" until 2026-10-23) | Same | `src/data/pricing.js` → `BUILD_MULTI_LOCATION` | 2026-10-23 | Pricing section |
 | "$12,000 and up" custom / web apps | Same. "and up" is honest here — scope genuinely isn't fixed | `src/data/pricing.js` → `BUILD_CUSTOM_FROM` | 2026-08-10 | Pricing section |
 | "Published, not quoted" | Describes Coghilldev's own practice. True as long as prices stay on the page | The pricing section itself | 2026-08-10 | Homepage first screen |
 | Care plans at "$99 / $179 / $299 CAD per month" | Published prices | `src/data/pricing.js` → `CARE_PLANS` | 2026-08-10 | Pricing section |
@@ -154,7 +154,7 @@ Four confirmed client projects could become case studies — Kelowna Creative, C
 Analytics, M&B Capital, Kerion (see the `work` array in
 `src/components/sections/WebDev.jsx`). Each needs a signed release from
 `legal/templates/testimonial-release.md` before anything about it is published.
-**Three published case studies is the trigger for the $2,500 → $3,500 move**, so
+**Three published case studies is the trigger for the $1,000 → $2,000 move**, so
 this table is also the price gate.
 
 No pre-launch baseline exists for any of them, because all four launched before
