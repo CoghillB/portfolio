@@ -15,7 +15,7 @@
 
 export const CURRENCY = 'CAD'
 
-// Formats to "$2,500". Takes the amount only, so the currency label stays an
+// Formats to "$1,500". Takes the amount only, so the currency label stays an
 // explicit decision at the call site rather than something a reader assumes.
 export const formatPrice = (amount) => `$${amount.toLocaleString('en-CA')}`
 
@@ -25,22 +25,23 @@ export const formatPrice = (amount) => `$${amount.toLocaleString('en-CA')}`
 
 // The standard productized build: a fixed-scope small-business site.
 //
-// `amount` moves 2500 -> 3500 once THREE case studies of real client work are
+// `amount` moves 1500 -> 2500 once THREE case studies of real client work are
 // published. That is a trigger, not a date — and it counts real client work
-// only, not demos or self-directed projects. As of now there are zero.
+// only, not demos or self-directed projects. As of now there are zero. (The
+// published price was 2500, with the step to 3500, until 2026-10-23.)
 //
 // `pages` is the fixed scope: home, services, about, gallery, contact with
 // form, plus one more standard page the client picks (FAQ, team, menu or
 // service areas). The sixth page used to be service areas for everyone; it
 // became a choice when the offer widened from trades to any business. Keep it
 // in step with the build template — if the template grows a seventh page type,
-// that is a change to what $2,500 buys, not a detail.
+// that is a change to what the flat price buys, not a detail.
 export const BUILD_STANDARD = {
-  amount: 2500,
+  amount: 1500,
   pages: 6,
 }
 
-export const BUILD_MULTI_LOCATION = { amount: 6500 }
+export const BUILD_MULTI_LOCATION = { amount: 6000 }
 
 // Custom work and web apps. The only tier where "from" is honest rather than
 // evasive, because the scope genuinely isn't fixed.
