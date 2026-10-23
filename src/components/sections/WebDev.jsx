@@ -70,6 +70,10 @@ const services = [
 //                                payments are processed". Not a client project,
 //                                and there is no client behind it.
 //
+// Added 2026-10-23:
+//   The Daily Edit    client   — built for the business's owner, who holds its
+//                                Google Workspace and enquiry sheet
+//
 // Do not add an entry without setting `kind`, and do not set `kind: 'client'`
 // for anything that wasn't commissioned. Guessing here is how a section like
 // this quietly overstates a track record.
@@ -86,6 +90,15 @@ const WORK_KINDS = {
 }
 
 const work = [
+  {
+    title: 'The Daily Edit',
+    kind: 'client',
+    img: '/dailyedit.png',
+    alt: 'The Daily Edit, a website for a lifestyle concierge in the Tri-Cities',
+    body: "A multi-page site for a lifestyle concierge in the Tri-Cities, built from the owner's brand guide and business card. Services and packages are laid out with clear pricing, and the booking and contact forms send each enquiry to the owner's inbox and a spreadsheet. I also set up the hosting and the business's domain email.",
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP', 'Cloudflare Workers'],
+    href: 'https://dailyedit.ca/',
+  },
   {
     title: 'Kelowna Creative',
     kind: 'client',
