@@ -28,5 +28,5 @@ resolved by assumption.**
 
 Four confirmed client projects are candidates for the first releases — Kelowna
 Creative, Cyan Analytics, M&B Capital and Kerion. None has been approached yet.
-**Three published case studies triggers the $1,500 → $2,500 price move**, so this
+**Three published case studies triggers the $1,000 → $2,000 price move**, so this
 table gates that too.

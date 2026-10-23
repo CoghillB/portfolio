@@ -15,7 +15,7 @@
 
 export const CURRENCY = 'CAD'
 
-// Formats to "$1,500". Takes the amount only, so the currency label stays an
+// Formats to "$1,000". Takes the amount only, so the currency label stays an
 // explicit decision at the call site rather than something a reader assumes.
 export const formatPrice = (amount) => `$${amount.toLocaleString('en-CA')}`
 
@@ -25,7 +25,7 @@ export const formatPrice = (amount) => `$${amount.toLocaleString('en-CA')}`
 
 // The standard productized build: a fixed-scope small-business site.
 //
-// `amount` moves 1500 -> 2500 once THREE case studies of real client work are
+// `amount` moves 1000 -> 2000 once THREE case studies of real client work are
 // published. That is a trigger, not a date — and it counts real client work
 // only, not demos or self-directed projects. As of now there are zero. (The
 // published price was 2500, with the step to 3500, until 2026-10-23.)
@@ -37,7 +37,7 @@ export const formatPrice = (amount) => `$${amount.toLocaleString('en-CA')}`
 // in step with the build template — if the template grows a seventh page type,
 // that is a change to what the flat price buys, not a detail.
 export const BUILD_STANDARD = {
-  amount: 1500,
+  amount: 1000,
   pages: 6,
 }
 
