@@ -135,7 +135,7 @@ Recorded so nobody rediscovers these and assumes they're fine.
 | "Only ~11% of Kelowna web firms publish prices" / "2 of 18" | Brayden's own unpublished count, and an **unsubstantiated competitor comparison** either way. Would need its method, sample definition and date recorded here first — and even then it's a comparison claim. Publishing prices is still the differentiator; just don't quantify competitors to make the point |
 | Care plan market bands "$30–100/mo basic, $100–250/mo mid"; "SEO campaigns $750+/mo" | Unsourced. Fine as internal pricing reasoning, never publishable |
 | "Most popular" / "Best value" on any tier | Factual claims about sales volume and comparative value. Nothing has sold. Removed in #16; the visual highlight and the word "Recommended" carry the same emphasis honestly |
-| Anything from the four confirmed client projects | No signed release on file yet. See section F |
+| Anything from the five confirmed client projects | No signed release on file yet. See section F |
 | Any before/after figure for Factum | It's a demo, not a client project — no client, no baseline, nothing to measure. See #25, #43 |
 | Close rate of "one in five" | Explicitly unsourced. #31 replaces it with measured data |
 | Care plan attach rate | Internal operating metric. Publishing it would be a claim about the business off a single-digit sample |
@@ -150,15 +150,16 @@ covers permission, not accuracy.
 | --- | --- | --- | --- | --- | --- | --- |
 | _(none yet)_ | | | | | | |
 
-Four confirmed client projects could become case studies — Kelowna Creative, Cyan
-Analytics, M&B Capital, Kerion (see the `work` array in
+Five confirmed client projects could become case studies — Kelowna Creative, Cyan
+Analytics, M&B Capital, Kerion, The Daily Edit (see the `work` array in
 `src/components/sections/WebDev.jsx`). Each needs a signed release from
 `legal/templates/testimonial-release.md` before anything about it is published.
 **Three published case studies is the trigger for the $1,000 → $2,000 move**, so
 this table is also the price gate.
 
-No pre-launch baseline exists for any of them, because all four launched before
-`proof/_procedure/baseline-capture.md` was written. They can still carry
+No pre-launch baseline exists for any of them. The first four launched before
+`proof/_procedure/baseline-capture.md` was written, and The Daily Edit launched
+after it without one being captured. They can still carry
 qualitative case studies and quotes — they just can't carry measured before/after
 figures. The next client can, if the baseline is captured before launch.
 

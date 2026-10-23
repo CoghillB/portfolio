@@ -139,6 +139,16 @@ export const projects = [
     featured: true,
   },
   {
+    title: 'The Daily Edit',
+    subtitle: 'Lifestyle Concierge Site',
+    description:
+      'A multi-page site for a Tri-Cities lifestyle concierge, with GSAP and Lenis scroll animation and a monogram traced from the business card. Its booking and contact forms post to a Cloudflare Worker, which relays them to an Apps Script that logs each enquiry and emails the owner.',
+    tags: ['JavaScript', 'GSAP', 'Cloudflare Workers', 'Apps Script', 'Lenis'],
+    href: 'https://dailyedit.ca/',
+    cta: 'View Site',
+    featured: false,
+  },
+  {
     title: 'Kelowna Creative',
     subtitle: 'Agency Website',
     description:
