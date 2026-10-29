@@ -59,7 +59,6 @@ const services = [
 // isn't client work says so on the card.
 //
 // Classification confirmed by Brayden, 2026-08-10:
-//   Kelowna Creative  client   — real external client
 //   Cyan Analytics    client   — real external client, built with a team
 //   M&B Capital       client   — real external client
 //   Kerion            client   — real external client
@@ -73,6 +72,9 @@ const services = [
 // Added 2026-10-23:
 //   The Daily Edit    client   — built for the business's owner, who holds its
 //                                Google Workspace and enquiry sheet
+//
+// Removed 2026-10-29:
+//   Kelowna Creative  client   — the site is no longer in use
 //
 // Do not add an entry without setting `kind`, and do not set `kind: 'client'`
 // for anything that wasn't commissioned. Guessing here is how a section like
@@ -98,15 +100,6 @@ const work = [
     body: "A multi-page site for a lifestyle concierge in the Tri-Cities, built from the owner's brand guide and business card. Services and packages are laid out with clear pricing, and the booking and contact forms send each enquiry to the owner's inbox and a spreadsheet. I also set up the hosting and the business's domain email.",
     tags: ['HTML5', 'CSS3', 'JavaScript', 'GSAP', 'Cloudflare Workers'],
     href: 'https://dailyedit.ca/',
-  },
-  {
-    title: 'Kelowna Creative',
-    kind: 'client',
-    img: '/kelowna-creative.png',
-    alt: 'Kelowna Creative website redesign for a local creative agency',
-    body: 'I built a dynamic, visually immersive website for Kelowna Creative that reflects their high-end brand. The result is a fully responsive, polished platform that showcases their portfolio and positions them as a leading creative force in their market.',
-    tags: ['TypeScript', 'Tailwind CSS', 'Next.js', 'Framer Motion', 'AOS'],
-    href: 'https://www.kelownacreative.ca',
   },
   {
     title: 'Cyan Analytics',
