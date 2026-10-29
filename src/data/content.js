@@ -149,16 +149,6 @@ export const projects = [
     featured: false,
   },
   {
-    title: 'Kelowna Creative',
-    subtitle: 'Agency Website',
-    description:
-      'A dynamic, visually immersive site for a local marketing agency. Fully responsive, showcasing their portfolio with glassmorphism cards and smooth Framer Motion animations.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'AOS'],
-    href: 'https://www.kelownacreative.ca/',
-    cta: 'View Site',
-    featured: false,
-  },
-  {
     title: 'M&B Capital',
     subtitle: 'Investment Firm Site',
     description:
