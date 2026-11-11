@@ -89,7 +89,7 @@ conduct guarantee becomes an unsubstantiated claim.
 ## D. Third-party statistics cleared for use
 
 Each traced to a named primary source. **Cite the source and date inline every
-time.** Label US data as US data — most of it is, and Coghilldev sells in Kelowna.
+time.** Label US data as US data — most of it is, and Coghilldev sells in Canada.
 
 None of these are currently published anywhere. This is the approved pool, not a
 record of use. When one gets used, add its location to the last column.

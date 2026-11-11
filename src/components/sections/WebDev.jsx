@@ -223,9 +223,11 @@ const WebDev = () => {
       {/* First screen. Four things have to be answerable above the fold: who
           this is for, what they get, why it's credible, and what to do next.
           The page used to be for trades only; Brayden broadened it to any local
-          business (2026-10-20). A spread of business types is still named
-          outright, so a visitor can find themselves in it in five seconds
-          rather than having to infer it from "small business".
+          business (2026-10-20), then dropped the Kelowna framing (2026-11-11) so
+          it works for leads from anywhere, not just the Okanagan. A spread of
+          business types is still named outright, so a visitor can find
+          themselves in it in five seconds rather than having to infer it from
+          "small business".
 
           Every line here is either a description of the product, a fact about
           Brayden's own pricing, or a promise about his own conduct. There are no
@@ -242,13 +244,12 @@ const WebDev = () => {
           <Reveal>
             <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
               <span className="h-px w-8 bg-accent-3/60" />
-              Kelowna &amp; the Central Okanagan
+              Web design &amp; development
             </span>
           </Reveal>
           <Reveal delay={0.05}>
             <h1 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-              Websites for Kelowna{' '}
-              <span className="text-gradient">small businesses</span>
+              Websites for <span className="text-gradient">small businesses</span>
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
@@ -635,14 +636,12 @@ const WebDev = () => {
                 <h2 className="font-display text-2xl font-semibold text-ink">
                   <span className="text-gradient">About me</span>
                 </h2>
-                {/* The first screen commits to Kelowna deliberately. This is where
-                    the wider reach lives instead — below the fold, so it can't
-                    dilute who the page is for, but still there for the out-of-town
-                    enquiries and existing ad traffic that already land here. */}
+                {/* Where he's based lives here rather than on the first screen, which
+                    is deliberately location-free so it works for out-of-town leads. */}
                 <p className="mt-3 leading-relaxed text-ink-soft">
-                  Hi, I&apos;m Brayden Coghill, a web developer in Kelowna, BC. I build sites for
-                  small businesses of every kind across the Central Okanagan — and I work remotely
-                  with clients elsewhere in Canada too. My goal is to build sites that are not only
+                  Hi, I&apos;m Brayden Coghill, a web developer based in Kelowna, BC. I build sites
+                  for small businesses of every kind, working remotely with clients across Canada or
+                  in person here in the Okanagan. My goal is to build sites that are not only
                   good looking but also fast, reliable, and straightforward for you to keep using
                   after launch.
                 </p>

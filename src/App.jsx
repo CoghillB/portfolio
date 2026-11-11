@@ -58,9 +58,9 @@ function HashScroll({ ready }) {
 
 const ROUTE_META = {
   '/': {
-    title: 'Websites for Kelowna Small Businesses | Coghilldev',
+    title: 'Websites for Small Businesses | Coghilldev',
     description:
-      'Websites for Kelowna small businesses — shops, studios, clinics, restaurants, trades and professional services. A 6-page site with a contact form for one fixed price, published up front. You deal with me directly and get a reply within one business day.',
+      'Websites for small businesses — shops, studios, clinics, restaurants, trades and professional services. A 6-page site with a contact form for one fixed price, published up front. You deal with me directly and get a reply within one business day.',
   },
   '/portfolio': {
     title: 'Brayden Coghill — Software Developer | Kelowna, BC',
