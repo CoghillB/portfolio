@@ -1,9 +1,9 @@
 import { motion, useScroll, useSpring } from 'framer-motion'
 
-// Page scroll progress: a thin gradient bar pinned to the very top.
+// Crisp acid-lime scroll progress bar pinned to the top viewport edge.
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.001 })
+  const scaleX = useSpring(scrollYProgress, { stiffness: 160, damping: 32, restDelta: 0.001 })
 
   return (
     <motion.div

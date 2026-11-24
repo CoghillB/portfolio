@@ -7,12 +7,13 @@ export const ThemeToggle = () => {
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
-      className="grid h-9 w-9 place-items-center rounded-lg border border-line text-ink-soft transition-colors hover:bg-card-hover hover:text-ink"
+      className="grid h-9 w-9 place-items-center rounded-md border border-line bg-card/70 text-ink-soft transition-colors hover:border-line-strong hover:bg-card-hover hover:text-ink"
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      {isDark ? <Sun size={16} strokeWidth={1.8} /> : <Moon size={16} strokeWidth={1.8} />}
     </button>
   )
 }

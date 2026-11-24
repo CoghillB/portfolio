@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import emailjs from 'emailjs-com'
-import { Mail, Send, Check, AlertCircle } from 'lucide-react'
+import { Mail, Send, Check, AlertCircle, Copy, ArrowUpRight } from 'lucide-react'
 import { Github, Linkedin } from '../BrandIcons'
 import Reveal, { SectionHeading } from '../Reveal'
-import TiltCard from '../fx/TiltCard'
 import { profile } from '../../data/content'
 import { ENQUIRY_RETENTION_MONTHS } from '../../data/legal'
 import { PRIVACY_ROUTE } from '../../routes'
@@ -20,6 +19,7 @@ export const Contact = () => {
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const [configValid, setConfigValid] = useState(true)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     const missing = []
@@ -43,6 +43,16 @@ export const Contact = () => {
     }
   }, [publicKey, serviceId, templateId])
 
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profile.email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Mailto link right beside it still works.
+    }
+  }
+
   const update = (k) => (e) => {
     setForm((f) => ({ ...f, [k]: e.target.value }))
     setErrors((er) => ({ ...er, [k]: undefined }))
@@ -62,7 +72,6 @@ export const Contact = () => {
     const next = validate()
     setErrors(next)
     if (Object.keys(next).length) {
-      // Move focus to the first invalid field for keyboard/screen-reader users.
       const firstInvalid = ['name', 'email', 'message'].find((k) => next[k])
       if (firstInvalid) document.getElementById(firstInvalid)?.focus()
       return
@@ -86,8 +95,6 @@ export const Contact = () => {
         setForm(initial)
       })
       .catch((err) => {
-        // EmailJS rejects with { status, text }; log both so failures like a
-        // 412 "reconnect your Outlook account" read clearly instead of a minified blob.
         console.error('EmailJS send failed:', err?.status, err?.text || err)
         setStatus('error')
       })
@@ -95,92 +102,150 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="relative px-6 py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="Contact"
-          title="Have a project in mind?"
+          title="Have a project"
+          accent="in mind?"
           kicker="Tell me what you're building and I'll get back to you as soon as I can."
         />
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr]">
-          {/* Direct links */}
+        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.15fr] lg:items-start">
+          {/* Direct channels */}
           <div className="flex flex-col gap-3">
             <Reveal>
-              <TiltCard max={5}>
-              <a
-                href={`mailto:${profile.email}`}
-                className="glow-border flex items-center gap-4 rounded-2xl border border-line bg-card p-5 transition-colors hover:bg-card-hover"
-              >
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-[#0a0a0a]">
-                  <Mail size={18} />
-                </span>
-                <span className="min-w-0">
-                  <span className="block text-xs uppercase tracking-wider text-ink-muted">Email</span>
-                  <span className="block truncate text-sm text-ink">{profile.email}</span>
-                </span>
-              </a>
-              </TiltCard>
+              <div className="studio-card flex items-center justify-between gap-3 rounded-xl border border-line bg-card p-5">
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="flex min-w-0 flex-1 items-center gap-4"
+                >
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-accent text-[#0a0a0b]">
+                    <Mail size={17} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
+                      Email
+                    </span>
+                    <span className="mt-0.5 block truncate text-sm font-semibold text-ink">
+                      {profile.email}
+                    </span>
+                  </span>
+                </a>
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  aria-label="Copy email address"
+                  className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-line-strong bg-card-2 px-3 py-1.5 font-mono text-[11px] font-bold text-ink-soft transition-colors hover:border-accent-3 hover:text-ink"
+                >
+                  {copied ? (
+                    <>
+                      <Check size={12} className="text-accent-3" />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={12} />
+                      Copy
+                    </>
+                  )}
+                </button>
+              </div>
             </Reveal>
+
             <Reveal delay={0.06}>
-              <TiltCard max={5}>
               <a
                 href={profile.socials.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="glow-border flex items-center gap-4 rounded-2xl border border-line bg-card p-5 transition-colors hover:bg-card-hover"
+                className="studio-card group flex items-center justify-between gap-4 rounded-xl border border-line bg-card p-5 transition-all hover:-translate-y-0.5 hover:bg-card-hover"
               >
-                <span className="grid h-11 w-11 place-items-center rounded-xl border border-line bg-card-2 text-ink">
-                  <Linkedin size={18} />
+                <span className="flex items-center gap-4">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md border border-line bg-card-2 text-ink">
+                    <Linkedin size={17} />
+                  </span>
+                  <span>
+                    <span className="block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
+                      LinkedIn
+                    </span>
+                    <span className="mt-0.5 block text-sm font-semibold text-ink">
+                      in/braydencoghill
+                    </span>
+                  </span>
                 </span>
-                <span>
-                  <span className="block text-xs uppercase tracking-wider text-ink-muted">LinkedIn</span>
-                  <span className="block text-sm text-ink">in/braydencoghill</span>
-                </span>
+                <ArrowUpRight
+                  size={16}
+                  className="text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-3"
+                />
               </a>
-              </TiltCard>
             </Reveal>
+
             <Reveal delay={0.12}>
-              <TiltCard max={5}>
               <a
                 href={profile.socials.github}
                 target="_blank"
                 rel="noreferrer"
-                className="glow-border flex items-center gap-4 rounded-2xl border border-line bg-card p-5 transition-colors hover:bg-card-hover"
+                className="studio-card group flex items-center justify-between gap-4 rounded-xl border border-line bg-card p-5 transition-all hover:-translate-y-0.5 hover:bg-card-hover"
               >
-                <span className="grid h-11 w-11 place-items-center rounded-xl border border-line bg-card-2 text-ink">
-                  <Github size={18} />
+                <span className="flex items-center gap-4">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md border border-line bg-card-2 text-ink">
+                    <Github size={17} />
+                  </span>
+                  <span>
+                    <span className="block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
+                      GitHub
+                    </span>
+                    <span className="mt-0.5 block text-sm font-semibold text-ink">@CoghillB</span>
+                  </span>
                 </span>
-                <span>
-                  <span className="block text-xs uppercase tracking-wider text-ink-muted">GitHub</span>
-                  <span className="block text-sm text-ink">@CoghillB</span>
-                </span>
+                <ArrowUpRight
+                  size={16}
+                  className="text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-3"
+                />
               </a>
-              </TiltCard>
+            </Reveal>
+
+            <Reveal delay={0.16}>
+              <div className="mt-1 rounded-xl border border-line bg-card/60 p-5">
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-accent-3">
+                  Location &amp; Response
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  Based in <span className="font-semibold text-ink">Kelowna, BC</span> (Pacific
+                  Time). Every message reaches me directly and gets a reply within one business day.
+                </p>
+              </div>
             </Reveal>
           </div>
 
           {/* Form */}
-          <Reveal delay={0.1}>
-            <form onSubmit={onSubmit} noValidate className="glass rounded-3xl p-6 sm:p-8">
-              <Field
-                id="name"
-                label="Name"
-                value={form.name}
-                onChange={update('name')}
-                error={errors.name}
-                placeholder="Jane Doe"
-                autoComplete="name"
-              />
-              <Field
-                id="email"
-                label="Email"
-                type="email"
-                value={form.email}
-                onChange={update('email')}
-                error={errors.email}
-                placeholder="jane@company.com"
-                autoComplete="email"
-              />
+          <Reveal delay={0.08}>
+            <form
+              onSubmit={onSubmit}
+              noValidate
+              className="rounded-2xl border border-line bg-card p-6 sm:p-9"
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                <Field
+                  id="name"
+                  label="Name"
+                  value={form.name}
+                  onChange={update('name')}
+                  error={errors.name}
+                  placeholder="Jane Doe"
+                  autoComplete="name"
+                />
+                <Field
+                  id="email"
+                  label="Email"
+                  type="email"
+                  value={form.email}
+                  onChange={update('email')}
+                  error={errors.email}
+                  placeholder="jane@company.com"
+                  autoComplete="email"
+                />
+              </div>
+
               <Field
                 id="phone"
                 label="Phone"
@@ -191,8 +256,12 @@ export const Contact = () => {
                 placeholder="(250) 555-0123"
                 autoComplete="tel"
               />
+
               <div className="mb-1">
-                <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink-soft">
+                <label
+                  htmlFor="message"
+                  className="mb-2 block font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink-soft"
+                >
                   Message
                 </label>
                 <textarea
@@ -200,25 +269,27 @@ export const Contact = () => {
                   rows={4}
                   value={form.message}
                   onChange={update('message')}
-                  placeholder="Tell me about your project…"
+                  placeholder="Tell me about your project, timeline, or goals…"
                   aria-invalid={!!errors.message}
-                  className="w-full resize-none rounded-xl border border-line bg-base-2 px-4 py-3 text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-accent/60 focus:ring-2 focus:ring-accent/20"
+                  className="w-full resize-none rounded-lg border border-line bg-base-2 px-4 py-3 text-sm text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-accent-3 focus:ring-2 focus:ring-accent/20"
                 />
                 {errors.message && (
-                  <p role="alert" className="mt-1.5 text-sm text-rose-600 dark:text-rose-400">{errors.message}</p>
+                  <p role="alert" className="mt-1.5 text-xs text-rose-500 dark:text-rose-400">
+                    {errors.message}
+                  </p>
                 )}
               </div>
 
-              {/* Notice at the point of collection. BC PIPA wants the purpose
-                  stated where the information is actually handed over — a
-                  footer link a visitor has to go looking for is not notice.
-                  Deliberately above the button, not below it, so it is read
-                  before the click rather than after. */}
-              <p className="mt-5 rounded-xl border border-line bg-base-2/60 px-4 py-3 text-xs leading-relaxed text-ink-muted">
-                What happens to this: your name, email, phone and message are delivered through EmailJS to my Outlook
-                inbox, and used only to reply to you. Nothing is sold, and there is no mailing list. If it doesn&apos;t
-                turn into work, it&apos;s deleted within {ENQUIRY_RETENTION_MONTHS} months.{' '}
-                <Link to={PRIVACY_ROUTE} className="text-accent-3 underline-offset-2 hover:underline">
+              {/* BC PIPA point-of-collection notice — deliberately above the submit button */}
+              <p className="mt-5 rounded-lg border border-line bg-base-2/80 px-4 py-3 text-xs leading-relaxed text-ink-muted">
+                What happens to this: your name, email, phone and message are delivered through
+                EmailJS to my Outlook inbox, and used only to reply to you. Nothing is sold, and
+                there is no mailing list. If it doesn&apos;t turn into work, it&apos;s deleted
+                within {ENQUIRY_RETENTION_MONTHS} months.{' '}
+                <Link
+                  to={PRIVACY_ROUTE}
+                  className="font-semibold text-accent-3 underline-offset-2 hover:underline"
+                >
                   Privacy policy
                 </Link>
                 .
@@ -227,31 +298,34 @@ export const Contact = () => {
               <button
                 type="submit"
                 disabled={status === 'sending' || status === 'sent'}
-                className="cta-glow mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] transition-all hover:bg-accent-2 hover:text-[#0a0a0a] disabled:opacity-70"
+                className="btn-accent mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider disabled:opacity-70"
               >
-                <span className="halo" aria-hidden="true">
-                  <span className="halo-disc" />
-                </span>
                 {status === 'sent' ? (
                   <>
-                    <Check size={18} /> Message sent
+                    <Check size={16} /> Message sent
                   </>
                 ) : status === 'sending' ? (
                   'Sending…'
                 ) : (
                   <>
-                    Send message <Send size={16} />
+                    Send message <Send size={14} />
                   </>
                 )}
               </button>
 
               {status === 'sent' && (
-                <p role="status" className="mt-3 flex items-center justify-center gap-1.5 text-center text-sm text-emerald-700 dark:text-emerald-400">
+                <p
+                  role="status"
+                  className="mt-3 flex items-center justify-center gap-1.5 text-center text-sm text-emerald-700 dark:text-emerald-400"
+                >
                   <Check size={15} /> Thanks! I&apos;ll get back to you soon.
                 </p>
               )}
               {status === 'error' && (
-                <p role="alert" className="mt-3 flex items-center justify-center gap-1.5 text-center text-sm text-rose-600 dark:text-rose-400">
+                <p
+                  role="alert"
+                  className="mt-3 flex items-center justify-center gap-1.5 text-center text-sm text-rose-600 dark:text-rose-400"
+                >
                   <AlertCircle size={15} /> Something went wrong. Email me directly at{' '}
                   <a href={`mailto:${profile.email}`} className="text-accent-3 hover:underline">
                     {profile.email}
@@ -279,17 +353,28 @@ export const Contact = () => {
 function Field({ id, label, error, optionalLabel, ...props }) {
   return (
     <div className="mb-4">
-      <label htmlFor={id} className="mb-1.5 flex items-center justify-between text-sm font-medium text-ink-soft">
+      <label
+        htmlFor={id}
+        className="mb-2 flex items-center justify-between font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink-soft"
+      >
         <span>{label}</span>
-        {optionalLabel && <span className="text-xs font-normal text-ink-muted">{optionalLabel}</span>}
+        {optionalLabel && (
+          <span className="font-mono text-[10px] font-normal lowercase tracking-normal text-ink-muted">
+            {optionalLabel}
+          </span>
+        )}
       </label>
       <input
         id={id}
         aria-invalid={!!error}
-        className="w-full rounded-xl border border-line bg-base-2 px-4 py-3 text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-accent/60 focus:ring-2 focus:ring-accent/20"
+        className="w-full rounded-lg border border-line bg-base-2 px-4 py-3 text-sm text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-accent-3 focus:ring-2 focus:ring-accent/20"
         {...props}
       />
-      {error && <p role="alert" className="mt-1.5 text-sm text-rose-600 dark:text-rose-400">{error}</p>}
+      {error && (
+        <p role="alert" className="mt-1.5 text-xs text-rose-500 dark:text-rose-400">
+          {error}
+        </p>
+      )}
     </div>
   )
 }

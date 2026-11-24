@@ -1,16 +1,15 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowUpRight, ArrowDown, MapPin } from 'lucide-react'
+import { ArrowUpRight, ArrowDown, FileText, MapPin } from 'lucide-react'
 import { profile, heroWords } from '../../data/content'
+import ImageWithSkeleton from '../ImageWithSkeleton'
 import KineticText from '../fx/KineticText'
 import Magnetic from '../fx/Magnetic'
-
-// Heavy three.js scene: split into its own chunk, loaded after first paint.
-const Hero3D = lazy(() => import('../Hero3D'))
+import TiltCard from '../fx/TiltCard'
 
 const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
 }
 
 function RotatingWord() {
@@ -22,15 +21,15 @@ function RotatingWord() {
   }, [])
 
   return (
-    <span className="relative inline-flex h-[1.4em] items-center overflow-hidden align-bottom">
-      <AnimatePresence initial={false}>
+    <span className="relative inline-flex h-[1.45em] items-center overflow-hidden align-middle">
+      <AnimatePresence initial={false} mode="wait">
         <motion.span
           key={heroWords[index]}
-          initial={{ y: '100%', opacity: 0 }}
+          initial={{ y: '85%', opacity: 0 }}
           animate={{ y: '0%', opacity: 1 }}
-          exit={{ y: '-100%', opacity: 0, position: 'absolute' }}
-          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block text-gradient font-semibold"
+          exit={{ y: '-85%', opacity: 0 }}
+          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block rounded-sm bg-accent px-2.5 py-0.5 font-mono text-[0.82em] font-bold uppercase tracking-wider text-[#0a0a0b]"
         >
           {heroWords[index]}
         </motion.span>
@@ -41,129 +40,172 @@ function RotatingWord() {
 
 export default function Hero() {
   const ref = useRef(null)
-
-  // Parallax exit: as the hero scrolls away the content sinks and fades while
-  // the giant backdrop word drifts the other way. Transform/opacity only.
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, 140])
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.65], [1, 0])
-  const backdropY = useTransform(scrollYProgress, [0, 1], [0, -120])
+  const portraitY = useTransform(scrollYProgress, [0, 1], [0, 44])
 
   return (
     <section
       id="home"
       ref={ref}
-      className="relative flex min-h-[100dvh] items-center overflow-hidden px-6 pt-28 pb-20"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden px-6 pt-28 pb-16 sm:pt-36 sm:pb-24"
     >
-      {/* giant backdrop word, slower parallax for depth */}
-      <motion.span
-        aria-hidden="true"
-        style={{ y: backdropY }}
-        className="text-stroke pointer-events-none absolute left-1/2 top-[16%] -translate-x-1/2 select-none font-display text-[22vw] font-bold leading-none opacity-40 sm:top-[12%]"
-      >
-        DEV
-      </motion.span>
-
-      {/* 3D wireframe knot: desktop only, decorative, cursor-reactive */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 right-0 top-24 z-0 hidden w-[44%] items-center opacity-90 [mask-image:linear-gradient(to_right,transparent,black_30%)] lg:flex"
-      >
-        <Suspense fallback={null}>
-          <Hero3D />
-        </Suspense>
-      </div>
-
-      <motion.div style={{ y: contentY, opacity: contentOpacity }} className="relative z-10 mx-auto w-full max-w-5xl">
-        <motion.div
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } } }}
-          initial="hidden"
-          animate="show"
-          className="flex flex-col items-start"
-        >
-          {/* Availability pill */}
-          <motion.div variants={item}>
-            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-1.5 text-sm text-ink-soft">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-              </span>
-              Available for new projects
-            </span>
-          </motion.div>
-
-          {/* Name: per-character kinetic reveal */}
-          <h1 className="mt-8 font-display text-[clamp(2.75rem,9vw,6.5rem)] font-bold leading-[0.95] tracking-tight">
-            <span className="block text-ink">
-              <KineticText text={profile.firstName} stagger={0.045} delay={0.25} />
-            </span>
-            {/* background-clip:text only paints the gradient inside the border
-                box, and the h1's leading-[0.95] makes that box shorter than
-                Anton's glyphs — so the 'g' descender in Coghill got no paint and
-                vanished. The bottom padding extends the paintable area; the
-                equal negative margin keeps layout unchanged. 0.25em, not 0.2em:
-                the smaller value still left a visible cutoff. */}
-            <span className="block text-gradient pb-[0.25em] -mb-[0.25em]">
-
-              <KineticText text={profile.lastName} stagger={0.045} delay={0.5} />
-            </span>
-          </h1>
-
-          <motion.div variants={item} className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-            <p className="font-display text-xl font-medium text-ink sm:text-2xl">
-              {profile.role} building web apps that feel <RotatingWord />
-            </p>
-          </motion.div>
-
-          <motion.div variants={item} className="mt-3 flex items-center gap-1.5 text-ink-soft">
-            <MapPin size={16} className="text-accent-3" />
-            {profile.location}
-          </motion.div>
-
-          <motion.p variants={item} className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
-            {profile.tagline}
-          </motion.p>
-
-          {/* CTAs: magnetic, primary gets the spinning halo */}
-          <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
-            <Magnetic>
-              <a
-                href="#work"
-                className="cta-glow group inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] transition-all hover:bg-accent-2"
-              >
-                <span className="halo" aria-hidden="true">
-                  <span className="halo-disc" />
+      <div className="relative z-10 mx-auto w-full max-w-6xl">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-14">
+          {/* Left kinetic column */}
+          <motion.div
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } },
+            }}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col items-start"
+          >
+            {/* Availability + location strip */}
+            <motion.div variants={item} className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center gap-2 rounded-md border border-line-strong bg-card px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-3" />
                 </span>
-                View my work
-                <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-            </Magnetic>
-            <Magnetic>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-line-strong bg-card px-6 py-3.5 font-semibold text-ink transition-colors hover:bg-card-hover"
-              >
-                Get in touch
-              </a>
-            </Magnetic>
-          </motion.div>
-        </motion.div>
+                Available for new projects
+              </span>
+              <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink-muted">
+                <MapPin size={13} className="text-accent-3" />
+                {profile.location}
+              </span>
+            </motion.div>
 
-        {/* Scroll hint */}
+            {/* Playful cursor-reactive KineticText display name */}
+            <h1 className="mt-7 font-display text-[clamp(3.2rem,8.4vw,6.2rem)] font-extrabold leading-[0.94] tracking-[-0.04em]">
+              <span className="block text-ink">
+                <KineticText text={profile.firstName} stagger={0.035} delay={0.1} radius={125} force={38} />
+              </span>
+              <span className="block text-accent-3">
+                <KineticText text={profile.lastName} stagger={0.035} delay={0.28} radius={125} force={38} />
+              </span>
+            </h1>
+
+            {/* Role + rotating highlight chip */}
+            <motion.p
+              variants={item}
+              className="mt-7 flex flex-wrap items-center gap-x-2 gap-y-2 text-lg font-semibold tracking-[-0.015em] text-ink sm:text-2xl"
+            >
+              <span>{profile.role} building web apps that feel</span>
+              <RotatingWord />
+            </motion.p>
+
+            {/* Tagline */}
+            <motion.p
+              variants={item}
+              className="mt-4 max-w-xl text-[16px] leading-relaxed text-ink-soft sm:text-lg"
+            >
+              {profile.tagline}
+            </motion.p>
+
+            {/* Action row */}
+            <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3.5">
+              <Magnetic strength={0.16}>
+                <a
+                  href="#work"
+                  className="btn-accent group inline-flex items-center gap-2 rounded-md px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider"
+                >
+                  View selected work
+                  <ArrowUpRight
+                    size={15}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.16}>
+                <a
+                  href="#contact"
+                  className="btn-outline inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-sm font-semibold"
+                >
+                  Get in touch
+                </a>
+              </Magnetic>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-2 font-mono text-xs font-bold uppercase tracking-[0.14em] text-ink-muted transition-colors hover:text-accent-3"
+              >
+                <FileText size={14} className="text-accent-3" />
+                Résumé
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Right column — Interactive TiltCard studio portrait */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: portraitY }}
+            className="mx-auto w-full max-w-sm lg:max-w-none"
+          >
+            <TiltCard max={6}>
+              <div className="relative rounded-2xl border border-line-strong bg-card p-3 shadow-[8px_8px_0px_var(--color-line)]">
+                {/* Tactile acid corner accents */}
+                <span aria-hidden="true" className="pointer-events-none absolute -top-1 -left-1 h-4 w-4 border-t-2 border-l-2 border-accent" />
+                <span aria-hidden="true" className="pointer-events-none absolute -right-1 -bottom-1 h-4 w-4 border-r-2 border-b-2 border-accent" />
+
+                <div className="relative overflow-hidden rounded-xl border border-line bg-base-2">
+                  <ImageWithSkeleton
+                    src="/aboutme.jpg"
+                    alt="Brayden Coghill, Software Developer in Kelowna, BC"
+                    loading="eager"
+                    wrapperClassName="aspect-[4/4.3] w-full"
+                    className="h-full w-full object-cover object-top contrast-[1.03]"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"
+                  />
+                  <div className="absolute inset-x-3.5 bottom-3.5 flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-wider text-white">
+                    <span className="rounded-sm bg-black/65 px-2 py-1 backdrop-blur-sm">
+                      Kelowna, BC
+                    </span>
+                    <span className="rounded-sm bg-accent px-2 py-1 text-[#0a0a0b] tabular-nums">
+                      49.88° N · 119.49° W
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-3 flex items-center justify-between px-1.5 py-1">
+                  <div>
+                    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-ink-muted">
+                      Currently building at
+                    </p>
+                    <p className="mt-0.5 font-display text-sm font-bold text-ink">
+                      Barreleye Software
+                    </p>
+                  </div>
+                  <span className="rounded-sm border border-line bg-card-2 px-2 py-0.5 font-mono text-[11px] font-bold text-accent-3">
+                    Full-Stack
+                  </span>
+                </div>
+              </div>
+            </TiltCard>
+          </motion.div>
+        </div>
+
+        {/* Minimal scroll cue */}
         <motion.a
           href="#about"
           aria-label="Scroll to about"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="mt-20 hidden items-center gap-2 text-sm text-ink-muted transition-colors hover:text-ink-soft sm:inline-flex"
+          transition={{ delay: 0.8 }}
+          className="mt-14 hidden items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink-muted transition-colors hover:text-ink sm:inline-flex"
         >
-          <motion.span animate={{ y: [0, 5, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-            <ArrowDown size={16} />
+          <motion.span animate={{ y: [0, 4, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>
+            <ArrowDown size={14} className="text-accent-3" />
           </motion.span>
           Scroll to explore
         </motion.a>
-      </motion.div>
+      </div>
     </section>
   )
 }

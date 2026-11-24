@@ -1,6 +1,9 @@
-import { Check, Clock, FileText, MapPin, User, X } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowUpRight, Check, Clock, FileText, MapPin, User, X } from 'lucide-react'
 import Reveal, { SectionHeading } from '../Reveal'
 import ImageWithSkeleton from '../ImageWithSkeleton'
+import TiltCard from '../fx/TiltCard'
 import { Contact } from './Contact.jsx'
 import {
   ANNUAL_PREPAY_DISCOUNT_PCT,
@@ -53,41 +56,11 @@ const services = [
   },
 ]
 
-// A section headed "Recent work" is a representation about commercial track
-// record: a visitor reasonably reads every card in it as work done for someone
-// who asked for it. So every entry carries an explicit `kind`, and anything that
-// isn't client work says so on the card.
-//
-// Classification confirmed by Brayden, 2026-08-10:
-//   Cyan Analytics    client   — real external client, built with a team
-//   M&B Capital       client   — real external client
-//   Kerion            client   — real external client
-//   EdgeFinder        product  — his own venture, co-owned with a business
-//                                partner; he was the sole developer
-//   Factum            concept  — a demo built to show prospective clients. Its
-//                                own footer says "Demo prototype, no real
-//                                payments are processed". Not a client project,
-//                                and there is no client behind it.
-//
-// Added 2026-10-23:
-//   The Daily Edit    client   — built for the business's owner, who holds its
-//                                Google Workspace and enquiry sheet
-//
-// Removed 2026-10-29:
-//   Kelowna Creative  client   — the site is no longer in use
-//
-// Do not add an entry without setting `kind`, and do not set `kind: 'client'`
-// for anything that wasn't commissioned. Guessing here is how a section like
-// this quietly overstates a track record.
-//
-// Ordering is for the visitor this page is for: a local business owner
-// deciding whether this person builds sites for people like them. Client work
-// leads; the concept and the personal product sit lower, so the section opens on
-// what it claims to be. The YouTube channel page is the least relatable proof
-// for that buyer, so it stays at the bottom.
+// Explicit commercial track-record classification:
+// anything that isn't commissioned client work says so on the card.
 const WORK_KINDS = {
-  client: null, // The section's default meaning — no badge needed.
-  concept: 'Concept — not a client project',
+  client: null,
+  concept: 'Concept · Not a client project',
   product: 'My own product',
 }
 
@@ -95,6 +68,7 @@ const work = [
   {
     title: 'The Daily Edit',
     kind: 'client',
+    category: 'Lifestyle Concierge',
     img: '/dailyedit.png',
     alt: 'The Daily Edit, a website for a lifestyle concierge in the Tri-Cities',
     body: "A multi-page site for a lifestyle concierge in the Tri-Cities, built from the owner's brand guide and business card. Services and packages are laid out with clear pricing, and the booking and contact forms send each enquiry to the owner's inbox and a spreadsheet. I also set up the hosting and the business's domain email.",
@@ -104,6 +78,7 @@ const work = [
   {
     title: 'Cyan Analytics',
     kind: 'client',
+    category: 'Data Analytics · Team',
     img: '/cyan-analytics.png',
     alt: 'Cyan Analytics, a marketing site for a data-transparency analytics product',
     body: 'A modern marketing site for a data-transparency analytics product, built with the team in Next.js. Clean, fast, and focused on communicating the platform’s value to a business audience.',
@@ -113,6 +88,7 @@ const work = [
   {
     title: 'M&B Capital',
     kind: 'client',
+    category: 'Private Investment Firm',
     img: '/mb-capital.png',
     alt: 'M&B Capital, a marketing and investor site for a private investment firm',
     body: 'A refined marketing and investor site for a private investment firm. An elegant, editorial design that walks investors and business owners through their acquire, build, and realize model with clear calls to action.',
@@ -120,20 +96,19 @@ const work = [
     href: 'https://coghillb.github.io/MB-Capital/',
   },
   {
-    // Body copy deliberately says "concept" and "would" rather than describing a
-    // running product. The previous wording was present tense and read as a
-    // delivered engagement, which it isn't.
     title: 'Factum',
     kind: 'concept',
+    category: 'Payment Protection Prototype',
     img: '/factum.png',
     alt: 'Factum, a design concept for an escrow-style payment protection platform',
-    body: 'A design concept for a payment-protection platform: funds would sit in escrow between a client and the business they hired, releasing only on approval. I built it to show what a trust-heavy product can look like — a clean, editorial interface for a nervous transaction. It is a working prototype, not a live service, and it processes no real payments.',
+    body: 'A design concept for a payment-protection platform: funds would sit in escrow between a client and the business they hired, releasing only on approval. I built it to show what a trust-heavy product can look like, with a clean, editorial interface for a nervous transaction. It is a working prototype, not a live service, and it processes no real payments.',
     tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
     href: 'https://coghillb.github.io/demo/',
   },
   {
     title: 'EdgeFinder',
     kind: 'product',
+    category: 'Full-Stack Web & Mobile App',
     img: '/edgefinder.png',
     alt: 'EdgeFinder, an AI-powered sports prop betting platform',
     body: 'A product I co-own and built end to end as the sole developer. A full-stack web app for sports prop betting analysis, blending an AI model with trend and weather data to surface prop picks, with user accounts and subscription billing. The same React front end also ships to Android and iOS through Capacitor.',
@@ -143,6 +118,7 @@ const work = [
   {
     title: 'Kerion',
     kind: 'client',
+    category: 'Creator Landing Page',
     img: '/kerion.png',
     alt: 'Kerion, a landing page for a RimWorld YouTube channel',
     body: 'A punchy landing page for a RimWorld YouTube channel, designed to showcase story-driven let’s-plays and challenge series and funnel viewers straight to the videos.',
@@ -151,10 +127,7 @@ const work = [
   },
 ]
 
-// Trust signals for a risk-reduction-driven buyer: a business owner
-// deciding whether hiring this person is safe. Every line is a promise Brayden
-// confirmed he will actually hold to — don't add to this list without asking
-// him first, and don't soften one without telling him it changed.
+// Confirmed conduct promises. Do not add to this list without owner confirmation.
 const promises = [
   {
     icon: MapPin,
@@ -180,15 +153,12 @@ const promises = [
 
 const process = [
   {
-    // Deliberately not framed as a quote request: the price is published above,
-    // so there is nothing to quote. The call confirms which tier fits and what
-    // the site needs to do, then that same published price goes in writing.
     title: 'First call',
     body: 'A short call about your business and what the site actually needs to do. You get the price in writing, no obligation.',
   },
   {
     title: 'Content',
-    body: "I tell you exactly what I need from you — photos, services, logo — and chase it up so the project doesn't stall.",
+    body: "I tell you exactly what I need from you (photos, services, logo) and chase it up so the project doesn't stall.",
   },
   {
     title: 'Design',
@@ -204,232 +174,369 @@ const process = [
   },
 ]
 
-// Acid/magenta preview art for entries without a screenshot (matches the
-// main Work section's preview style).
-const gradients = [
-  'linear-gradient(135deg, rgba(198,255,0,0.5), rgba(255,46,154,0.35) 55%, rgba(198,255,0,0.22))',
-  'linear-gradient(135deg, rgba(255,46,154,0.45), rgba(198,255,0,0.38) 55%, rgba(255,46,154,0.22))',
-  'linear-gradient(135deg, rgba(198,255,0,0.5), rgba(255,46,154,0.3) 55%, rgba(198,255,0,0.25))',
-]
+function HeroShowcase({ items }) {
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
 
-const initials = (t) => {
-  const w = t.split(/[\s&]+/).filter(Boolean)
-  return (w.length > 1 ? w.map((x) => x[0]).join('') : w[0]).slice(0, 2).toUpperCase()
+  useEffect(() => {
+    if (paused) return
+    const id = setInterval(() => {
+      setActive((prev) => (prev + 1) % items.length)
+    }, 4800)
+    return () => clearInterval(id)
+  }, [paused, items.length])
+
+  const current = items[active]
+
+  return (
+    <TiltCard max={4}>
+      <div
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        className="relative rounded-2xl border border-line-strong bg-card p-3 shadow-[8px_8px_0px_var(--color-line)]"
+      >
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-1 -left-1 h-4 w-4 border-t-2 border-l-2 border-accent"
+        />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-1 -bottom-1 h-4 w-4 border-r-2 border-b-2 border-accent"
+        />
+
+        {/* Project switcher tabs */}
+        <div className="mb-2.5 flex items-center gap-1.5 overflow-x-auto pb-0.5">
+          {items.map((item, idx) => {
+            const isCurrent = idx === active
+            return (
+              <button
+                key={item.title}
+                type="button"
+                onClick={() => {
+                  setActive(idx)
+                  setPaused(true)
+                }}
+                className={`shrink-0 rounded-sm px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                  isCurrent
+                    ? 'bg-accent text-[#0a0a0b]'
+                    : 'border border-line bg-card-2 text-ink-muted hover:text-ink'
+                }`}
+              >
+                0{idx + 1} {item.title}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Live screenshot viewport */}
+        <a
+          href={current.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block aspect-[16/10] overflow-hidden rounded-xl border border-line bg-base-2"
+        >
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={current.title}
+              src={current.img}
+              alt={current.alt}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+          </AnimatePresence>
+        </a>
+
+        {/* Caption bar */}
+        <div className="mt-3 flex items-center justify-between gap-3 px-1.5 py-1">
+          <div className="min-w-0">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-ink-muted">
+              Client Build · {current.category}
+            </p>
+            <p className="mt-0.5 truncate font-display text-[15px] font-extrabold text-ink">
+              {current.title}
+            </p>
+          </div>
+          <a
+            href={current.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex shrink-0 items-center gap-1 rounded-sm border border-line-strong bg-card-2 px-2.5 py-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-ink transition-colors hover:border-accent hover:bg-accent hover:text-[#0a0a0b]"
+          >
+            Live site
+            <ArrowUpRight size={12} />
+          </a>
+        </div>
+      </div>
+    </TiltCard>
+  )
 }
 
 const WebDev = () => {
+  const [billing, setBilling] = useState('monthly') // 'monthly' | 'annual'
+  const showcaseItems = work.slice(0, 3) // The Daily Edit, Cyan Analytics, M&B Capital
+  const [leadProject, ...remainingWork] = work
+  const featuredPair = remainingWork.slice(0, 2) // Cyan Analytics, M&B Capital
+  const bottomRow = remainingWork.slice(2) // Factum, EdgeFinder, Kerion
+
   return (
     <>
-      {/* First screen. Four things have to be answerable above the fold: who
-          this is for, what they get, why it's credible, and what to do next.
-          The page used to be for trades only; Brayden broadened it to any local
-          business (2026-10-20), then dropped the Kelowna framing (2026-11-11) so
-          it works for leads from anywhere, not just the Okanagan. A spread of
-          business types is still named outright, so a visitor can find
-          themselves in it in five seconds rather than having to infer it from
-          "small business".
-
-          Every line here is either a description of the product, a fact about
-          Brayden's own pricing, or a promise about his own conduct. There are no
-          performance claims and there is nothing about results, because there is
-          no completed client work to substantiate any of it. The conduct
-          promises are the four from the `promises` list below — don't add a
-          fifth here without asking him first.
-
-          Top padding is deliberately tighter on mobile than desktop: the whole
-          screen has to clear the fold on a phone, which is where a business
-          owner will actually open it. */}
-      <section id="webdev" className="relative px-6 pt-28 pb-12 sm:pt-40">
-        <div className="relative mx-auto max-w-3xl text-center">
-          <Reveal>
-            <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
-              <span className="h-px w-8 bg-accent-3/60" />
-              Web design &amp; development
-            </span>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h1 className="mt-4 font-display text-4xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-              Websites for <span className="text-gradient">small businesses</span>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-              Shops, studios, clinics, restaurants, trades and professional services. A{' '}
-              {BUILD_STANDARD.pages}-page site with a contact form, for one fixed price:{' '}
-              <span className="whitespace-nowrap font-semibold text-ink">
-                {formatPrice(BUILD_STANDARD.amount)} {CURRENCY}
-              </span>
-              . Published, not quoted.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted">
-              You deal with me, not an account manager. You get the price in writing before I start,
-              and a reply to every message within one business day.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mt-8 flex flex-col items-center gap-3">
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-semibold text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] transition-all hover:brightness-110"
-              >
-                Start your project
-              </a>
-              <a href="#pricing" className="text-sm font-medium text-accent-3 hover:underline">
-                See exactly what&apos;s included →
-              </a>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Services */}
-      <section id="services" className="relative px-6 py-16">
-        <div className="mx-auto max-w-5xl">
-          <SectionHeading
-            eyebrow="Services"
-            title="What I can build for you."
-            kicker="Whatever you need built, I can help. If you can describe it, I can build it. Here's a sample of the work I take on."
-          />
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-            {services.map((s, i) => (
-              <Reveal key={s.title} delay={(i % 3) * 0.08}>
-                <div className="glow-border h-full rounded-2xl border border-line bg-card p-6 text-center">
-                  <h3 className="font-display text-lg font-semibold text-ink">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
+      {/* Hero: lead with craft and proof of work before price */}
+      <section id="webdev" className="relative px-6 pt-28 pb-16 sm:pt-36 sm:pb-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
+            {/* Left copy column */}
+            <div>
+              <Reveal y={10}>
+                <div className="inline-flex flex-wrap items-center gap-2 rounded-md border border-line bg-card px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink-soft">
+                  <span className="h-2 w-2 rounded-full bg-accent" />
+                  <span>Web design &amp; development</span>
                 </div>
               </Reveal>
-            ))}
+
+              <Reveal delay={0.05} y={16}>
+                <h1 className="mt-6 font-display text-[clamp(2.65rem,5.8vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-ink">
+                  Websites for{' '}
+                  <span className="inline-block bg-accent px-2.5 py-0.5 text-[#0a0a0b]">
+                    small businesses.
+                  </span>
+                </h1>
+              </Reveal>
+
+              <Reveal delay={0.1} y={16}>
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-[19px]">
+                  Shops, studios, clinics, restaurants, trades, and professional services. Custom{' '}
+                  {BUILD_STANDARD.pages}-page websites designed, built, and launched for one fixed
+                  price, published right on this page.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.14} y={14}>
+                <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-muted">
+                  You deal with me, not an account manager. You get the price in writing before I
+                  start, and a reply to every message within one business day.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.18} y={14}>
+                <div className="mt-8 flex flex-wrap items-center gap-3.5">
+                  <a
+                    href="#recent-work"
+                    className="btn-accent group inline-flex items-center gap-2 rounded-md px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider"
+                  >
+                    See recent work
+                    <ArrowUpRight
+                      size={15}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </a>
+                  <a
+                    href="#pricing"
+                    className="btn-outline inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-sm font-semibold"
+                  >
+                    See pricing
+                  </a>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Right column: interactive client work showcase */}
+            <Reveal delay={0.12} y={20}>
+              <HeroShowcase items={showcaseItems} />
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* Recent work */}
-      <section id="recent-work" className="relative px-6 py-16">
-        <div className="mx-auto max-w-5xl">
-          <SectionHeading eyebrow="Recent work" title="Web design projects." />
-          <div className="grid gap-6 md:grid-cols-2 md:auto-rows-fr">
-            {work.map((w, i) => (
-              <Reveal key={w.title} delay={i * 0.1} className="h-full">
-                <div className="glow-border flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-card p-6">
-                  {w.img ? (
-                    <ImageWithSkeleton
-                      src={w.img}
-                      alt={w.alt}
-                      className="mb-5 aspect-video w-full rounded-xl border border-line object-cover"
-                    />
-                  ) : (
-                    <div
-                      className="mb-5 grid aspect-video w-full place-items-center overflow-hidden rounded-xl border border-line"
-                      style={{ background: gradients[i % gradients.length] }}
-                    >
-                      <span className="text-stroke select-none font-display text-6xl font-bold leading-none opacity-80">
-                        {initials(w.title)}
-                      </span>
-                    </div>
-                  )}
-                  {/* Anything that isn't client work is labelled here. Deliberately
-                      muted rather than accent-coloured: this is a disclosure, not a
-                      promotion, and it shouldn't compete with the card's content. It's
-                      real text, so screen readers get it in reading order right before
-                      the title. */}
-                  {WORK_KINDS[w.kind] && (
-                    <span className="mb-2 inline-flex w-fit items-center rounded-md border border-line-strong bg-card-2 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-ink-muted">
-                      {WORK_KINDS[w.kind]}
-                    </span>
-                  )}
-                  <h3 className="font-display text-xl font-semibold text-ink">{w.title}</h3>
-                  <p className="mt-2 flex-1 text-[15px] leading-relaxed text-ink-soft">{w.body}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {w.tags.map((t) => (
+      {/* 01 Recent work: proof of craft right below the fold */}
+      <section id="recent-work" className="relative border-t border-line px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeading
+            index="01"
+            eyebrow="Recent work"
+            title="Web design"
+            accent="projects."
+            kicker="Take a look at the sites I've shipped before you decide if the price is worth it."
+          />
+
+          {/* Lead featured client project */}
+          <Reveal y={18}>
+            <article className="studio-card group mb-6 grid overflow-hidden rounded-2xl border border-line bg-card hover:shadow-[6px_6px_0px_var(--hard-shadow)] lg:grid-cols-[1.25fr_1fr]">
+              <a
+                href={leadProject.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block overflow-hidden border-b border-line bg-base-2 lg:border-r lg:border-b-0"
+              >
+                <ImageWithSkeleton
+                  src={leadProject.img}
+                  alt={leadProject.alt}
+                  wrapperClassName="aspect-video lg:h-full lg:aspect-auto"
+                  className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                />
+              </a>
+              <div className="flex flex-col justify-between p-7 sm:p-9">
+                <div>
+                  <span className="inline-flex rounded-sm bg-accent px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#0a0a0b]">
+                    01 · Client Build
+                  </span>
+                  <h3 className="mt-4 font-display text-2xl font-extrabold tracking-[-0.025em] text-ink sm:text-3xl">
+                    {leadProject.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">
+                    {leadProject.body}
+                  </p>
+                </div>
+
+                <div className="mt-7">
+                  <div className="flex flex-wrap gap-1.5">
+                    {leadProject.tags.map((t) => (
                       <span
                         key={t}
-                        className="rounded-md border border-line bg-card-2 px-2.5 py-1 font-mono text-xs text-ink-muted"
+                        className="rounded-sm border border-line bg-card-2 px-2.5 py-0.5 font-mono text-[11px] text-ink-muted"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
                   <a
-                    href={w.href}
+                    href={leadProject.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent-3 hover:underline"
+                    className="mt-6 inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-ink transition-colors hover:text-accent-3"
                   >
-                    {/* "View Site" would oversell a prototype that isn't a running
-                        service, so the concept gets its own wording. */}
-                    {w.kind === 'concept' ? 'View prototype →' : 'View Site →'}
+                    View Site
+                    <ArrowUpRight
+                      size={15}
+                      className="text-accent-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </a>
                 </div>
+              </div>
+            </article>
+          </Reveal>
+
+          {/* Client builds pair (Cyan Analytics + M&B Capital) */}
+          <div className="grid gap-6 md:grid-cols-2 md:auto-rows-fr">
+            {featuredPair.map((w, i) => (
+              <Reveal key={w.title} delay={i * 0.08} className="h-full">
+                <WorkCard item={w} index={i + 2} />
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Remaining builds in balanced 3-column row (Factum, EdgeFinder, Kerion) */}
+          <div className="mt-6 grid gap-6 md:grid-cols-3 md:auto-rows-fr">
+            {bottomRow.map((w, i) => (
+              <Reveal key={w.title} delay={i * 0.07} className="h-full">
+                <WorkCard item={w} index={i + 4} compact />
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Working with me: trust signals, then the process. Sits between the work
-          and the prices deliberately — this is the de-risking a cautious buyer
-          needs before a number is put in front of them. */}
-      <section id="how-it-works" className="relative px-6 py-16">
-        <div className="mx-auto max-w-5xl">
+      {/* 02 Services: crisp 3x3 hairline grid */}
+      <section id="services" className="relative px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl">
           <SectionHeading
+            index="02"
+            eyebrow="Services"
+            title="What I can build"
+            accent="for you."
+            kicker="Whatever you need built, I can help. If you can describe it, I can build it. Here's a sample of the work I take on."
+          />
+
+          <Reveal y={16}>
+            <div className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+              {services.map((s, i) => (
+                <div
+                  key={s.title}
+                  className="group flex flex-col justify-between bg-card p-6 transition-colors duration-200 hover:bg-card-hover sm:p-7"
+                >
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex rounded-sm border border-line bg-card-2 px-2 py-0.5 font-mono text-[11px] font-bold text-accent-3 tabular-nums transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-[#0a0a0b]">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <ArrowUpRight
+                        size={15}
+                        className="text-ink-muted opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-3 group-hover:opacity-100"
+                      />
+                    </div>
+                    <h3 className="mt-5 font-display text-lg font-bold tracking-[-0.02em] text-ink">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.body}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 03 Working with me: conduct promises + 5-step process */}
+      <section id="how-it-works" className="relative px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeading
+            index="03"
             eyebrow="Working with me"
-            title="No agency runaround."
+            title="No agency"
+            accent="runaround."
             kicker="You're hiring one person who answers his own phone, quotes a real number before starting, and builds the thing himself. Here's exactly how that goes."
           />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {promises.map(({ icon: Icon, title, body }, i) => (
-              <Reveal key={title} delay={(i % 4) * 0.08} className="h-full">
-                <div className="glow-border h-full rounded-2xl border border-line bg-card p-6">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-accent/30 bg-accent/10 text-accent-3">
-                    <Icon size={18} />
+              <Reveal key={title} delay={i * 0.06} className="h-full">
+                <div className="studio-card group flex h-full flex-col rounded-xl border border-line bg-card p-6 hover:-translate-y-1">
+                  <span className="grid h-10 w-10 place-items-center rounded-md border border-line-strong bg-card-2 text-accent-3 transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-[#0a0a0b]">
+                    <Icon size={17} strokeWidth={1.9} />
                   </span>
-                  <h3 className="mt-4 font-display text-lg font-semibold text-ink">{title}</h3>
+                  <h3 className="mt-5 font-display text-[17px] font-bold tracking-[-0.015em] text-ink">
+                    {title}
+                  </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{body}</p>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* How a project actually runs */}
-          <div className="mt-16">
+          {/* Five steps: crisp architectural row */}
+          <div className="mt-16 rounded-2xl border border-line bg-card p-7 sm:p-10">
             <Reveal>
-              <div className="mx-auto mb-10 max-w-2xl text-center">
-                <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
-                  <span className="h-px w-8 bg-accent-3/60" />
-                  How it works
-                  <span className="h-px w-8 bg-accent-3/60" />
-                </span>
-                <h3 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-                  Five steps, start to finish.
-                </h3>
+              <div className="mb-9 flex flex-col justify-between gap-4 border-b border-line pb-7 md:flex-row md:items-end">
+                <div>
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-accent-3">
+                    How it works
+                  </span>
+                  <h3 className="mt-2 font-display text-2xl font-extrabold tracking-[-0.025em] text-ink sm:text-4xl">
+                    Five steps, start to finish.
+                  </h3>
+                </div>
+                <p className="max-w-sm text-sm text-ink-muted">
+                  Clear milestones, no guesswork, and nothing built until you&apos;ve approved the
+                  look.
+                </p>
               </div>
             </Reveal>
 
-            <ol className="mx-auto max-w-3xl">
+            <ol className="grid gap-7 md:grid-cols-5 md:gap-5">
               {process.map((step, i) => (
-                <Reveal
-                  as="li"
-                  key={step.title}
-                  delay={i * 0.06}
-                  className="relative flex gap-5 pb-8 last:pb-0"
-                >
-                  {/* Connector between step markers; the last step has none. */}
-                  {i < process.length - 1 && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-5 top-12 h-[calc(100%-3rem)] w-px bg-line"
-                    />
-                  )}
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-accent/40 bg-card font-display text-sm font-bold text-accent-3">
-                    {i + 1}
-                  </span>
-                  <div className="pt-1">
-                    <h4 className="font-display text-lg font-semibold text-ink">{step.title}</h4>
-                    <p className="mt-1.5 text-[15px] leading-relaxed text-ink-soft">{step.body}</p>
+                <Reveal as="li" key={step.title} delay={i * 0.05} className="flex flex-col">
+                  <div className="flex items-center gap-2.5">
+                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-sm bg-accent font-mono text-xs font-bold text-[#0a0a0b] tabular-nums">
+                      0{i + 1}
+                    </span>
+                    <span aria-hidden="true" className="h-px flex-1 bg-line" />
                   </div>
+                  <h4 className="mt-4 font-display text-[16px] font-bold text-ink">
+                    {step.title}
+                  </h4>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{step.body}</p>
                 </Reveal>
               ))}
             </ol>
@@ -437,41 +544,44 @@ const WebDev = () => {
         </div>
       </section>
 
-      {/* Pricing / Packages */}
-      <section id="pricing" className="relative px-6 py-16">
-        <div className="mx-auto max-w-5xl">
+      {/* 04 Pricing & Ongoing Care */}
+      <section id="pricing" className="relative px-6 py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl">
           <SectionHeading
+            index="04"
             eyebrow="Pricing"
-            title="Here's what it costs."
+            title="Here's what it"
+            accent="costs."
             kicker="Fixed scope, fixed price, published on this page. You'll know what you're paying before you contact me, and the number doesn't change once we start."
           />
-          <div className="grid gap-6 md:grid-cols-3 md:items-stretch">
+
+          {/* Build tiers: no popularity badge on build tiers */}
+          <div className="grid gap-6 lg:grid-cols-3 lg:items-stretch">
             {BUILD_TIERS.map((tier, i) => (
-              <Reveal key={tier.name} delay={i * 0.1} className="h-full">
+              <Reveal key={tier.name} delay={i * 0.08} className="h-full">
                 <div
-                  className={`glow-border relative flex h-full flex-col rounded-2xl border bg-card p-6 ${
+                  className={`studio-card relative flex h-full flex-col rounded-2xl border p-7 sm:p-8 ${
                     tier.featured
-                      ? 'border-accent/60 shadow-[0_0_40px_-12px_var(--color-accent-glow)]'
-                      : 'border-line'
+                      ? 'border-accent bg-surface shadow-[6px_6px_0px_var(--hard-shadow)]'
+                      : 'border-line bg-card'
                   }`}
                 >
-                  {/* Deliberately no popularity badge on the build tiers. Any wording
-                      that ranks a tier by how many people chose it asserts a fact about
-                      sales volume, and nothing has sold yet. The accent border and glow
-                      from `tier.featured` carry the emphasis instead — visual weight
-                      isn't a representation. The care plans below do carry a
-                      "Recommended" pill, which is different: it states Brayden's own
-                      advice rather than a fact about what other buyers did. */}
-                  <h3 className="font-display text-xl font-semibold text-ink">{tier.name}</h3>
+                  <div className="flex items-baseline justify-between gap-2">
+                    <h3 className="font-display text-xl font-extrabold tracking-[-0.02em] text-ink">
+                      {tier.name}
+                    </h3>
+                    <span className="font-mono text-xs font-bold text-ink-muted tabular-nums">
+                      0{i + 1}
+                    </span>
+                  </div>
                   <p className="mt-2 text-sm leading-relaxed text-ink-soft">{tier.tagline}</p>
 
-                  <div className="mt-5 border-t border-line pt-5">
+                  <div className="mt-6 border-y border-line py-5">
                     <div className="flex items-baseline gap-2">
-                      {/* pb/-mb keeps gradient descenders (e.g. the 'q') from clipping */}
-                      <span className="text-gradient pb-[0.1em] -mb-[0.1em] font-display text-4xl font-bold">
+                      <span className="font-display text-4xl font-extrabold tracking-[-0.03em] text-ink tabular-nums sm:text-[2.75rem]">
                         {formatPrice(tier.amount)}
                       </span>
-                      <span className="text-sm text-ink-muted">
+                      <span className="font-mono text-xs font-bold uppercase tracking-wider text-accent-3">
                         {CURRENCY} {tier.priceNote}
                       </span>
                     </div>
@@ -480,7 +590,7 @@ const WebDev = () => {
                   <ul className="mt-6 flex flex-1 flex-col gap-3">
                     {tier.features.map((f) => (
                       <li key={f} className="flex items-start gap-2.5 text-sm text-ink-soft">
-                        <Check size={16} className="mt-0.5 shrink-0 text-accent-3" />
+                        <Check size={15} className="mt-0.5 shrink-0 text-accent-3" />
                         <span>{f}</span>
                       </li>
                     ))}
@@ -488,103 +598,134 @@ const WebDev = () => {
 
                   <a
                     href="#contact"
-                    className={`mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all ${
-                      tier.featured
-                        ? 'bg-accent text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] hover:brightness-110'
-                        : 'border border-line-strong bg-card text-ink hover:bg-card-hover'
+                    className={`mt-8 inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
+                      tier.featured ? 'btn-accent' : 'btn-outline'
                     }`}
                   >
                     Start your project
+                    <ArrowUpRight size={15} />
                   </a>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          {/* Ongoing care plans (monthly) */}
-          <div className="mt-16">
+          {/* Ongoing care plans */}
+          <div className="mt-24">
             <Reveal>
-              <div className="mx-auto mb-8 max-w-2xl text-center">
-                <span className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-accent-3">
-                  <span className="h-px w-8 bg-accent-3/60" />
+              <div className="mx-auto mb-10 max-w-2xl text-center">
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-accent-3">
                   Ongoing care
-                  <span className="h-px w-8 bg-accent-3/60" />
                 </span>
-                <h3 className="mt-4 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+                <h3 className="mt-3 font-display text-3xl font-extrabold tracking-[-0.03em] text-ink sm:text-4xl">
                   Keep it running.
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  A launched site still needs upkeep, and things change — prices, hours, a new
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft sm:text-[16px]">
+                  A launched site still needs upkeep, and things change: prices, hours, a new
                   service, new photos. Pick a plan and send them over. Cancel any time.
                 </p>
+
+                {/* Monthly / Annual display toggle */}
+                <div className="mt-7 inline-flex items-center rounded-md border border-line-strong bg-card p-1">
+                  <button
+                    type="button"
+                    onClick={() => setBilling('monthly')}
+                    className={`rounded-sm px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors ${
+                      billing === 'monthly'
+                        ? 'bg-accent text-[#0a0a0b]'
+                        : 'text-ink-soft hover:text-ink'
+                    }`}
+                  >
+                    Monthly
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setBilling('annual')}
+                    className={`inline-flex items-center gap-1.5 rounded-sm px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors ${
+                      billing === 'annual'
+                        ? 'bg-accent text-[#0a0a0b]'
+                        : 'text-ink-soft hover:text-ink'
+                    }`}
+                  >
+                    Annual
+                    <span className="opacity-80">−{ANNUAL_PREPAY_DISCOUNT_PCT}%</span>
+                  </button>
+                </div>
               </div>
             </Reveal>
 
-            {/* Care sits in the middle column on purpose: it's the recommended
-                default, and most people should end up on it. Essentials is the floor
-                for a site that genuinely never changes, not the starting point.
-
-                DOM order is Essentials, Care, Growth so Care lands centre on desktop.
-                The `-order-1 sm:order-none` on the recommended plan pulls it to the
-                top when the grid stacks on a phone, so the default is what a
-                visitor sees first there too. */}
-            <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3 sm:items-stretch">
+            <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-3 sm:items-stretch">
               {CARE_PLANS.map((plan, i) => (
                 <Reveal
                   key={plan.name}
-                  delay={i * 0.1}
+                  delay={i * 0.08}
                   className={`h-full ${plan.recommended ? '-order-1 sm:order-none' : ''}`}
                 >
                   <div
-                    className={`glow-border relative flex h-full flex-col rounded-2xl border bg-card p-6 ${
+                    className={`studio-card relative flex h-full flex-col rounded-2xl border p-7 ${
                       plan.recommended
-                        ? 'border-accent/60 shadow-[0_0_40px_-12px_var(--color-accent-glow)]'
-                        : 'border-line'
+                        ? 'border-accent bg-surface shadow-[6px_6px_0px_var(--hard-shadow)]'
+                        : 'border-line bg-card'
                     }`}
                   >
-                    {/* "Recommended" states Brayden's own advice, which he can stand
-                        behind. That is why it's allowed here where popularity or
-                        best-in-class wording is not: those assert facts about sales
-                        volume and comparisons that nothing yet substantiates. */}
                     {plan.recommended && (
-                      <span className="absolute -top-3 left-6 rounded-full bg-accent px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-[#0a0a0a]">
+                      <span className="absolute -top-3 left-6 rounded-sm bg-accent px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#0a0a0b]">
                         Recommended
                       </span>
                     )}
-                    <h4 className="font-display text-xl font-semibold text-ink">{plan.name}</h4>
+
+                    <h4 className="font-display text-xl font-extrabold tracking-[-0.02em] text-ink">
+                      {plan.name}
+                    </h4>
                     <p className="mt-2 text-sm leading-relaxed text-ink-soft">{plan.tagline}</p>
 
-                    <div className="mt-5 border-t border-line pt-5">
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="text-gradient font-display text-4xl font-bold">
-                          {formatPrice(plan.amount)}
-                        </span>
-                        <span className="text-sm text-ink-muted">{CURRENCY}/mo</span>
-                      </div>
-                      <p className="mt-1.5 text-xs text-ink-muted">
-                        or {formatPrice(annualPrice(plan.amount))} {CURRENCY} a year — pay for{' '}
-                        {ANNUAL_PREPAY_MONTHS}
-                        {' months, get '}
-                        {MONTHS_PER_YEAR}
-                      </p>
+                    <div className="mt-6 border-y border-line py-5">
+                      {billing === 'monthly' ? (
+                        <>
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="font-display text-4xl font-extrabold tracking-[-0.03em] text-ink tabular-nums">
+                              {formatPrice(plan.amount)}
+                            </span>
+                            <span className="font-mono text-xs font-bold text-accent-3">
+                              {CURRENCY}/mo
+                            </span>
+                          </div>
+                          <p className="mt-1.5 text-xs text-ink-muted tabular-nums">
+                            or {formatPrice(annualPrice(plan.amount))} {CURRENCY} a year (pay for{' '}
+                            {ANNUAL_PREPAY_MONTHS} months, get {MONTHS_PER_YEAR})
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <div className="flex items-baseline gap-1.5">
+                            <span className="font-display text-4xl font-extrabold tracking-[-0.03em] text-ink tabular-nums">
+                              {formatPrice(annualPrice(plan.amount))}
+                            </span>
+                            <span className="font-mono text-xs font-bold text-accent-3">
+                              {CURRENCY}/yr
+                            </span>
+                          </div>
+                          <p className="mt-1.5 text-xs text-ink-muted tabular-nums">
+                            Pay for {ANNUAL_PREPAY_MONTHS} months, get {MONTHS_PER_YEAR} (or{' '}
+                            {formatPrice(plan.amount)} {CURRENCY}/mo month to month)
+                          </p>
+                        </>
+                      )}
                     </div>
 
                     <ul className="mt-6 flex flex-col gap-3">
                       {plan.features.map((f) => (
                         <li key={f} className="flex items-start gap-2.5 text-sm text-ink-soft">
-                          <Check size={16} className="mt-0.5 shrink-0 text-accent-3" />
+                          <Check size={15} className="mt-0.5 shrink-0 text-accent-3" />
                           <span>{f}</span>
                         </li>
                       ))}
                     </ul>
 
-                    {/* Exclusions are shown to the visitor, not just tracked internally.
-                        Enforcing a boundary the client was never told about is how a
-                        fixed-price plan turns into an argument. */}
-                    <ul className="mt-4 flex flex-1 flex-col gap-2 border-t border-line pt-4">
+                    <ul className="mt-5 flex flex-1 flex-col gap-2 border-t border-line pt-4">
                       {plan.excludes.map((x) => (
                         <li key={x} className="flex items-start gap-2.5 text-xs text-ink-muted">
-                          <X size={14} className="mt-0.5 shrink-0 opacity-70" />
+                          <X size={13} className="mt-0.5 shrink-0 opacity-70" />
                           <span>{x}</span>
                         </li>
                       ))}
@@ -592,13 +733,12 @@ const WebDev = () => {
 
                     <a
                       href="#contact"
-                      className={`mt-7 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold transition-all ${
-                        plan.recommended
-                          ? 'bg-accent text-[#0a0a0a] shadow-[0_0_30px_-6px_var(--color-accent-glow)] hover:brightness-110'
-                          : 'border border-line-strong bg-card text-ink hover:bg-card-hover'
+                      className={`mt-8 inline-flex items-center justify-center gap-2 rounded-md px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider transition-all ${
+                        plan.recommended ? 'btn-accent' : 'btn-outline'
                       }`}
                     >
                       Get started
+                      <ArrowUpRight size={15} />
                     </a>
                   </div>
                 </Reveal>
@@ -607,11 +747,14 @@ const WebDev = () => {
           </div>
 
           <Reveal delay={0.1}>
-            <p className="mt-8 text-center text-sm leading-relaxed text-ink-muted">
+            <p className="mx-auto mt-10 max-w-3xl text-center text-sm leading-relaxed text-ink-muted">
               All prices in {CURRENCY}. Taxes extra where applicable. Paying for a year up front
-              saves {ANNUAL_PREPAY_DISCOUNT_PCT}%. Care plans are month to month otherwise — cancel
+              saves {ANNUAL_PREPAY_DISCOUNT_PCT}%. Care plans are month to month otherwise. Cancel
               any time, and the site is yours either way. Not sure which fits?{' '}
-              <a href="#contact" className="font-medium text-accent-3 hover:underline">
+              <a
+                href="#contact"
+                className="font-semibold text-accent-3 underline-offset-4 hover:underline"
+              >
                 Ask me
               </a>
               .
@@ -621,29 +764,31 @@ const WebDev = () => {
       </section>
 
       {/* About blurb */}
-      <section className="relative px-6 py-16">
-        <div className="mx-auto max-w-5xl">
+      <section className="relative px-6 py-16 sm:py-20">
+        <div className="mx-auto max-w-6xl">
           <Reveal>
-            <div className="glass flex flex-col items-center gap-8 rounded-3xl p-8 md:flex-row">
-              <div className="shrink-0">
+            <div className="grid items-center gap-8 overflow-hidden rounded-2xl border border-line bg-card p-7 sm:p-10 md:grid-cols-[190px_1fr] md:gap-12">
+              <div className="mx-auto w-44 md:mx-0 md:w-full">
                 <ImageWithSkeleton
                   src="/aboutme.jpg"
                   alt="Brayden Coghill, a Canadian web developer"
-                  className="mx-auto h-40 w-40 rounded-2xl border border-line object-cover shadow-lg"
+                  wrapperClassName="aspect-square rounded-xl border border-line-strong"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div>
-                <h2 className="font-display text-2xl font-semibold text-ink">
-                  <span className="text-gradient">About me</span>
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-accent-3">
+                  About me · Kelowna, BC
+                </span>
+                <h2 className="mt-2 font-display text-2xl font-extrabold tracking-[-0.025em] text-ink sm:text-3xl">
+                  Built by one person, not an agency.
                 </h2>
-                {/* Where he's based lives here rather than on the first screen, which
-                    is deliberately location-free so it works for out-of-town leads. */}
-                <p className="mt-3 leading-relaxed text-ink-soft">
+                <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-soft sm:text-[16px]">
                   Hi, I&apos;m Brayden Coghill, a web developer based in Kelowna, BC. I build sites
                   for small businesses of every kind, working remotely with clients across Canada or
-                  in person here in the Okanagan. My goal is to build sites that are not only
-                  good looking but also fast, reliable, and straightforward for you to keep using
-                  after launch.
+                  in person here in the Okanagan. My goal is to build sites that are not only good
+                  looking, but also fast, reliable, and straightforward for you to keep using after
+                  launch.
                 </p>
               </div>
             </div>
@@ -651,9 +796,73 @@ const WebDev = () => {
         </div>
       </section>
 
-      {/* Contact (shared EmailJS form) */}
+      {/* Shared Contact section */}
       <Contact />
     </>
+  )
+}
+
+function WorkCard({ item: w, index, compact = false }) {
+  return (
+    <article className="studio-card group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-card hover:shadow-[5px_5px_0px_var(--hard-shadow)]">
+      <a
+        href={w.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block overflow-hidden border-b border-line bg-base-2"
+      >
+        <ImageWithSkeleton
+          src={w.img}
+          alt={w.alt}
+          wrapperClassName="aspect-video w-full"
+          className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      </a>
+
+      <div className={`flex flex-1 flex-col ${compact ? 'p-5 sm:p-6' : 'p-6 sm:p-7'}`}>
+        {/* Honest disclosure label in reading order right before title */}
+        {WORK_KINDS[w.kind] && (
+          <span className="mb-3 inline-flex w-fit items-center rounded-sm border border-line-strong bg-card-2 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted">
+            {WORK_KINDS[w.kind]}
+          </span>
+        )}
+
+        <div className="flex items-baseline justify-between gap-4">
+          <h3 className="font-display text-xl font-bold tracking-[-0.02em] text-ink">{w.title}</h3>
+          <span className="font-mono text-xs font-bold text-ink-muted tabular-nums">
+            {String(index).padStart(2, '0')}
+          </span>
+        </div>
+
+        <p className="mt-2.5 flex-1 text-sm leading-relaxed text-ink-soft">{w.body}</p>
+
+        <div className="mt-5 flex flex-wrap gap-1.5">
+          {(compact ? w.tags.slice(0, 4) : w.tags).map((t) => (
+            <span
+              key={t}
+              className="rounded-sm border border-line bg-card-2 px-2 py-0.5 font-mono text-[11px] text-ink-muted"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-5 border-t border-line pt-4">
+          <a
+            href={w.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-bold uppercase tracking-wider text-ink transition-colors hover:text-accent-3"
+          >
+            {w.kind === 'concept' ? 'View prototype' : 'View Site'}
+            <ArrowUpRight
+              size={14}
+              className="text-accent-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </a>
+        </div>
+      </div>
+    </article>
   )
 }
 

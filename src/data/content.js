@@ -124,8 +124,10 @@ export const projects = [
     description:
       "A scenario-based recipe app that generates meals from what you have, what you're craving, and who you're feeding. React Native and Expo on mobile, a Fastify and Supabase backend, and GPT-4o doing the cooking.",
     tags: ['React Native', 'Expo', 'Fastify', 'Supabase', 'OpenAI', 'TypeScript'],
-    href: 'https://github.com/CoghillB/RecipeApp',
-    cta: 'View on GitHub',
+    href: 'https://play.google.com/store/apps/details?id=com.pantrypal.pantrypal&pcampaignid=web_share',
+    cta: 'Google Play',
+    secondaryHref: 'https://github.com/CoghillB/RecipeApp',
+    secondaryCta: 'GitHub',
     featured: true,
   },
   {
@@ -211,8 +213,8 @@ export const education = [
 
 // Site root: the small-business owner who wants a website built.
 export const businessNav = [
-  { label: 'Services', href: '#services' },
   { label: 'Recent Work', href: '#recent-work' },
+  { label: 'Services', href: '#services' },
   { label: 'Pricing', href: '#pricing' },
   { label: 'Contact', href: '#contact' },
 ]

@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Mail, ArrowUp } from 'lucide-react'
+import { Mail, ArrowUp, ArrowUpRight } from 'lucide-react'
 import { Github, Linkedin } from './BrandIcons'
 import { profile, businessNav, portfolioNav } from '../data/content'
 import { BUSINESS_ROUTE, PORTFOLIO_ROUTE, PRIVACY_ROUTE, isPortfolioRoute, isSectionRoute } from '../routes'
@@ -11,16 +11,11 @@ export const Footer = () => {
   const onPortfolio = isPortfolioRoute(location.pathname)
   const onSection = isSectionRoute(location.pathname)
 
-  // Mirrors the Navbar: the active route's own anchors, plus a link across to
-  // the other audience's page.
   const links = onPortfolio ? portfolioNav : businessNav
   const crossLink = onPortfolio
     ? { label: 'Website Services', to: BUSINESS_ROUTE }
     : { label: 'Dev Portfolio', to: PORTFOLIO_ROUTE }
 
-  // Same rule as the Navbar: off a section route (/privacy) these anchors point
-  // at another page, so they navigate rather than scroll, and their href has to
-  // carry the route so the link is valid when copied.
   const sectionHref = (href) => (onSection ? href : `${BUSINESS_ROUTE}${href}`)
 
   const goToSection = (href) => (e) => {
@@ -33,86 +28,130 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="relative overflow-hidden border-t border-line px-6 py-12">
-      {/* Giant wordmark rising out of the page edge; fills with gradient on hover */}
-      <div aria-hidden="true" className="pointer-events-none relative -mx-6 mb-2 flex justify-center overflow-hidden">
-        <motion.span
-          initial={{ y: '45%', opacity: 0 }}
-          whileInView={{ y: '12%', opacity: 1 }}
-          viewport={{ once: true, margin: '0px 0px -40px 0px' }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="text-stroke pointer-events-auto select-none whitespace-nowrap font-display text-[13.5vw] font-bold leading-none transition-colors duration-500 hover:text-ink sm:text-[10vw]"
+    <footer className="relative overflow-hidden border-t border-line bg-base-2/40 px-6 pt-16 pb-10">
+      <div className="mx-auto max-w-6xl">
+        {/* Top row */}
+        <div className="grid gap-10 pb-12 md:grid-cols-[1.3fr_1fr_auto] md:items-start">
+          <div>
+            <Link to="/" className="group inline-flex items-center gap-2.5">
+              <span className="grid h-8 w-8 place-items-center rounded-md bg-accent font-mono text-xs font-bold text-[#0a0a0b] transition-transform duration-200 group-hover:-rotate-6">
+                BC
+              </span>
+              <span className="font-display text-[17px] font-extrabold tracking-[-0.03em] text-ink">
+                Coghill<span className="text-accent-3">.dev</span>
+              </span>
+            </Link>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
+              {profile.intro}
+            </p>
+            <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-muted">
+              {profile.location} · Canada
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8 text-sm">
+            <div>
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink-muted">
+                Navigation
+              </p>
+              <nav className="mt-4 flex flex-col gap-2.5">
+                {links.map((n) => (
+                  <a
+                    key={n.href}
+                    href={sectionHref(n.href)}
+                    onClick={goToSection(n.href)}
+                    className="w-fit text-ink-soft transition-colors hover:text-ink"
+                  >
+                    {n.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
+            <div>
+              <p className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-ink-muted">
+                Elsewhere
+              </p>
+              <div className="mt-4 flex flex-col gap-2.5">
+                <Link
+                  to={crossLink.to}
+                  className="inline-flex w-fit items-center gap-1 text-ink-soft transition-colors hover:text-ink"
+                >
+                  {crossLink.label}
+                  <ArrowUpRight size={13} className="text-accent-3" />
+                </Link>
+                <a
+                  href={`mailto:${profile.email}`}
+                  className="w-fit text-ink-soft transition-colors hover:text-ink"
+                >
+                  Email directly
+                </a>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex w-fit items-center gap-1 text-ink-soft transition-colors hover:text-ink"
+                >
+                  Résumé (PDF)
+                  <ArrowUpRight size={13} className="text-accent-3" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {[
+              { href: `mailto:${profile.email}`, icon: Mail, label: 'Email' },
+              { href: profile.socials.github, icon: Github, label: 'GitHub' },
+              { href: profile.socials.linkedin, icon: Linkedin, label: 'LinkedIn' },
+            ].map(({ href, icon: Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('mailto') ? undefined : '_blank'}
+                rel="noreferrer"
+                aria-label={label}
+                className="grid h-10 w-10 place-items-center rounded-md border border-line bg-card text-ink-soft transition-all hover:-translate-y-0.5 hover:border-accent-3 hover:bg-card-hover hover:text-ink"
+              >
+                <Icon size={16} />
+              </a>
+            ))}
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              aria-label="Back to top"
+              className="grid h-10 w-10 place-items-center rounded-md border border-line bg-card text-ink-soft transition-all hover:-translate-y-0.5 hover:border-accent-3 hover:bg-accent hover:text-[#0a0a0b]"
+            >
+              <ArrowUp size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* Interactive oversized wordmark — fills cleanly on hover */}
+        <div
+          aria-hidden="true"
+          className="overflow-hidden border-t border-line pt-6 pb-2 text-center"
         >
-          {/* The period sits on the baseline, exactly the band the overflow-hidden
-             clip eats as the wordmark rises out of the edge, so it vanished once
-             the fill went solid. Raise it into the cap band (inherits the same
-             stroke + hover fill) so it stays visible in every state. */}
-          COGHILL<span className="align-[0.3em]">.</span>DEV
-        </motion.span>
-      </div>
-
-      <div className="mx-auto flex max-w-5xl flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <Link to="/" className="font-display text-lg font-semibold text-ink">
-            Coghill<span className="text-ink-muted">.dev</span>
-          </Link>
-          <p className="mt-2 max-w-xs text-sm text-ink-muted">{profile.intro}</p>
+          <motion.span
+            initial={{ y: '30%', opacity: 0 }}
+            whileInView={{ y: '0%', opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="text-stroke inline-block cursor-default select-none font-display text-[clamp(3rem,11.5vw,9rem)] font-extrabold leading-[0.9] tracking-[-0.04em] transition-colors duration-300 hover:text-accent-3"
+          >
+            COGHILL.DEV
+          </motion.span>
         </div>
 
-        <nav className="flex flex-wrap items-center gap-x-5 gap-y-2">
-          {links.map((n) => (
-            <a
-              key={n.href}
-              href={sectionHref(n.href)}
-              onClick={goToSection(n.href)}
-              className="text-sm text-ink-soft transition-colors hover:text-ink"
-            >
-              {n.label}
-            </a>
-          ))}
+        {/* Bottom legal bar — renders on every route for BC PIPA discoverability */}
+        <div className="mt-6 flex flex-col items-center gap-2 border-t border-line pt-6 text-center text-xs text-ink-muted sm:flex-row sm:justify-between sm:text-left">
+          <p>© {new Date().getFullYear()} {profile.name} · Kelowna, British Columbia.</p>
           <Link
-            to={crossLink.to}
-            className="text-sm text-ink-muted underline-offset-4 transition-colors hover:text-ink hover:underline"
+            to={PRIVACY_ROUTE}
+            className="underline-offset-4 transition-colors hover:text-ink hover:underline"
           >
-            {crossLink.label}
+            Privacy Policy
           </Link>
-        </nav>
-
-        <div className="flex items-center gap-2">
-          {[
-            { href: `mailto:${profile.email}`, icon: Mail, label: 'Email' },
-            { href: profile.socials.github, icon: Github, label: 'GitHub' },
-            { href: profile.socials.linkedin, icon: Linkedin, label: 'LinkedIn' },
-          ].map(({ href, icon: Icon, label }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith('mailto') ? undefined : '_blank'}
-              rel="noreferrer"
-              aria-label={label}
-              className="grid h-10 w-10 place-items-center rounded-xl border border-line text-ink-soft transition-colors hover:border-accent/40 hover:bg-card-hover hover:text-ink"
-            >
-              <Icon size={18} />
-            </a>
-          ))}
-          <button
-            type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            aria-label="Back to top"
-            className="grid h-10 w-10 place-items-center rounded-xl border border-line text-ink-soft transition-colors hover:border-accent/40 hover:bg-card-hover hover:text-ink"
-          >
-            <ArrowUp size={18} />
-          </button>
         </div>
-      </div>
-
-      {/* The Footer renders on every route, which is what makes this the
-          site-wide link to the policy that BC PIPA expects to be findable. */}
-      <div className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-2 border-t border-line pt-6 text-center text-xs text-ink-muted sm:flex-row sm:justify-between sm:text-left">
-        <p>© {new Date().getFullYear()} {profile.name}. Built with React, Tailwind &amp; Framer Motion.</p>
-        <Link to={PRIVACY_ROUTE} className="underline-offset-4 transition-colors hover:text-ink hover:underline">
-          Privacy Policy
-        </Link>
       </div>
     </footer>
   )
