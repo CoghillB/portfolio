@@ -101,7 +101,7 @@ export const Contact = () => {
   }
 
   return (
-    <section id="contact" className="relative px-6 py-24 sm:py-32">
+    <section id="contact" className="relative px-4 py-16 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           eyebrow="Contact"
@@ -110,23 +110,23 @@ export const Contact = () => {
           kicker="Tell me what you're building and I'll get back to you as soon as I can."
         />
 
-        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.15fr] lg:items-start">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-[0.95fr_1.15fr] lg:items-start">
           {/* Direct channels */}
-          <div className="flex flex-col gap-3">
+          <div className="flex min-w-0 flex-col gap-3">
             <Reveal>
-              <div className="studio-card flex items-center justify-between gap-3 rounded-xl border border-line bg-card p-5">
+              <div className="studio-card flex items-center justify-between gap-2.5 rounded-xl border border-line bg-card p-4 sm:gap-3 sm:p-5">
                 <a
                   href={`mailto:${profile.email}`}
-                  className="flex min-w-0 flex-1 items-center gap-4"
+                  className="flex min-w-0 flex-1 items-center gap-3 sm:gap-4"
                 >
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-accent text-[#0a0a0b]">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-accent text-[#0a0a0b] sm:h-11 sm:w-11">
                     <Mail size={17} />
                   </span>
-                  <span className="min-w-0">
+                  <span className="min-w-0 flex-1">
                     <span className="block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
                       Email
                     </span>
-                    <span className="mt-0.5 block truncate text-sm font-semibold text-ink">
+                    <span className="mt-0.5 block truncate text-[13px] font-semibold text-ink sm:text-sm">
                       {profile.email}
                     </span>
                   </span>
@@ -135,7 +135,7 @@ export const Contact = () => {
                   type="button"
                   onClick={copyEmail}
                   aria-label="Copy email address"
-                  className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-line-strong bg-card-2 px-3 py-1.5 font-mono text-[11px] font-bold text-ink-soft transition-colors hover:border-accent-3 hover:text-ink"
+                  className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-line-strong bg-card-2 px-2.5 py-1.5 font-mono text-[11px] font-bold text-ink-soft transition-colors hover:border-accent-3 hover:text-ink sm:px-3"
                 >
                   {copied ? (
                     <>
@@ -157,24 +157,24 @@ export const Contact = () => {
                 href={profile.socials.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="studio-card group flex items-center justify-between gap-4 rounded-xl border border-line bg-card p-5 transition-all hover:-translate-y-0.5 hover:bg-card-hover"
+                className="studio-card group flex items-center justify-between gap-3 rounded-xl border border-line bg-card p-4 transition-all hover:-translate-y-0.5 hover:bg-card-hover sm:gap-4 sm:p-5"
               >
-                <span className="flex items-center gap-4">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md border border-line bg-card-2 text-ink">
+                <span className="flex min-w-0 items-center gap-3 sm:gap-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-line bg-card-2 text-ink sm:h-11 sm:w-11">
                     <Linkedin size={17} />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
                       LinkedIn
                     </span>
-                    <span className="mt-0.5 block text-sm font-semibold text-ink">
+                    <span className="mt-0.5 block truncate text-sm font-semibold text-ink">
                       in/braydencoghill
                     </span>
                   </span>
                 </span>
                 <ArrowUpRight
                   size={16}
-                  className="text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-3"
+                  className="shrink-0 text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-3"
                 />
               </a>
             </Reveal>
@@ -184,28 +184,28 @@ export const Contact = () => {
                 href={profile.socials.github}
                 target="_blank"
                 rel="noreferrer"
-                className="studio-card group flex items-center justify-between gap-4 rounded-xl border border-line bg-card p-5 transition-all hover:-translate-y-0.5 hover:bg-card-hover"
+                className="studio-card group flex items-center justify-between gap-3 rounded-xl border border-line bg-card p-4 transition-all hover:-translate-y-0.5 hover:bg-card-hover sm:gap-4 sm:p-5"
               >
-                <span className="flex items-center gap-4">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md border border-line bg-card-2 text-ink">
+                <span className="flex min-w-0 items-center gap-3 sm:gap-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md border border-line bg-card-2 text-ink sm:h-11 sm:w-11">
                     <Github size={17} />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
                       GitHub
                     </span>
-                    <span className="mt-0.5 block text-sm font-semibold text-ink">@CoghillB</span>
+                    <span className="mt-0.5 block truncate text-sm font-semibold text-ink">@CoghillB</span>
                   </span>
                 </span>
                 <ArrowUpRight
                   size={16}
-                  className="text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-3"
+                  className="shrink-0 text-ink-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-3"
                 />
               </a>
             </Reveal>
 
             <Reveal delay={0.16}>
-              <div className="mt-1 rounded-xl border border-line bg-card/60 p-5">
+              <div className="mt-1 rounded-xl border border-line bg-card/60 p-4 sm:p-5">
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-accent-3">
                   Location &amp; Response
                 </p>
@@ -218,11 +218,11 @@ export const Contact = () => {
           </div>
 
           {/* Form */}
-          <Reveal delay={0.08}>
+          <Reveal delay={0.08} className="min-w-0">
             <form
               onSubmit={onSubmit}
               noValidate
-              className="rounded-2xl border border-line bg-card p-6 sm:p-9"
+              className="rounded-2xl border border-line bg-card p-5 sm:p-9"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field
@@ -271,7 +271,7 @@ export const Contact = () => {
                   onChange={update('message')}
                   placeholder="Tell me about your project, timeline, or goals…"
                   aria-invalid={!!errors.message}
-                  className="w-full resize-none rounded-lg border border-line bg-base-2 px-4 py-3 text-sm text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-accent-3 focus:ring-2 focus:ring-accent/20"
+                  className="w-full resize-none rounded-lg border border-line bg-base-2 px-4 py-3 text-base text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-accent-3 focus:ring-2 focus:ring-accent/20 sm:text-sm"
                 />
                 {errors.message && (
                   <p role="alert" className="mt-1.5 text-xs text-rose-500 dark:text-rose-400">
@@ -324,19 +324,19 @@ export const Contact = () => {
               {status === 'error' && (
                 <p
                   role="alert"
-                  className="mt-3 flex items-center justify-center gap-1.5 text-center text-sm text-rose-600 dark:text-rose-400"
+                  className="mt-3 flex flex-wrap items-center justify-center gap-1.5 break-words text-center text-sm text-rose-600 dark:text-rose-400"
                 >
-                  <AlertCircle size={15} /> Something went wrong. Email me directly at{' '}
-                  <a href={`mailto:${profile.email}`} className="text-accent-3 hover:underline">
+                  <AlertCircle size={15} className="shrink-0" /> Something went wrong. Email me directly at{' '}
+                  <a href={`mailto:${profile.email}`} className="break-all text-accent-3 hover:underline">
                     {profile.email}
                   </a>
                   .
                 </p>
               )}
               {status !== 'sent' && status !== 'error' && (
-                <p className="mt-3 text-center text-xs text-ink-muted">
+                <p className="mt-3 break-words text-center text-xs text-ink-muted">
                   Prefer email? Reach me directly at{' '}
-                  <a href={`mailto:${profile.email}`} className="text-accent-3 hover:underline">
+                  <a href={`mailto:${profile.email}`} className="break-all text-accent-3 hover:underline">
                     {profile.email}
                   </a>
                   .
@@ -367,7 +367,7 @@ function Field({ id, label, error, optionalLabel, ...props }) {
       <input
         id={id}
         aria-invalid={!!error}
-        className="w-full rounded-lg border border-line bg-base-2 px-4 py-3 text-sm text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-accent-3 focus:ring-2 focus:ring-accent/20"
+        className="w-full rounded-lg border border-line bg-base-2 px-4 py-3 text-base text-ink placeholder:text-ink-muted outline-none transition-colors focus:border-accent-3 focus:ring-2 focus:ring-accent/20 sm:text-sm"
         {...props}
       />
       {error && (

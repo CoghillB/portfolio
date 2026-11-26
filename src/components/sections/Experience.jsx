@@ -14,7 +14,7 @@ export const Experience = () => {
   const lineScale = useSpring(scrollYProgress, { stiffness: 100, damping: 28, restDelta: 0.001 })
 
   return (
-    <section id="experience" className="relative px-6 py-24 sm:py-32">
+    <section id="experience" className="relative px-4 py-16 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           index="02"
@@ -25,7 +25,7 @@ export const Experience = () => {
 
         <div
           ref={railRef}
-          className="relative grid grid-cols-[18px_1fr] gap-5 sm:grid-cols-[24px_1fr] sm:gap-8"
+          className="relative grid grid-cols-[12px_minmax(0,1fr)] gap-3.5 sm:grid-cols-[24px_minmax(0,1fr)] sm:gap-8"
         >
           {/* Scroll-drawn acid timeline rail */}
           <div className="relative">
@@ -34,21 +34,21 @@ export const Experience = () => {
               style={{ scaleY: lineScale }}
               className="absolute inset-y-0 left-1/2 w-[2px] -translate-x-1/2 origin-top bg-accent"
             />
-            <span className="absolute left-1/2 top-9 h-3 w-3 -translate-x-1/2 rounded-sm bg-accent ring-4 ring-base" />
+            <span className="absolute left-1/2 top-7 h-3 w-3 -translate-x-1/2 rounded-sm bg-accent ring-4 ring-base sm:top-9" />
           </div>
 
-          <div className="space-y-6">
+          <div className="min-w-0 space-y-6">
             {experience.map((job) => (
               <Reveal key={job.company}>
-                <article className="studio-card rounded-2xl border border-line bg-card p-7 sm:p-10">
+                <article className="studio-card rounded-2xl border border-line bg-card p-5 sm:p-10">
                   {/* Header */}
-                  <div className="flex flex-col gap-4 border-b border-line pb-7 sm:flex-row sm:items-start sm:justify-between">
-                    <div className="flex items-start gap-4">
-                      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-accent text-[#0a0a0b]">
-                        <Briefcase size={20} strokeWidth={2} />
+                  <div className="flex flex-col gap-4 border-b border-line pb-5 sm:flex-row sm:items-start sm:justify-between sm:pb-7">
+                    <div className="flex items-start gap-3.5 sm:gap-4">
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-accent text-[#0a0a0b] sm:h-12 sm:w-12">
+                        <Briefcase size={18} strokeWidth={2} className="sm:h-5 sm:w-5" />
                       </span>
-                      <div>
-                        <h3 className="font-display text-xl font-extrabold tracking-[-0.02em] text-ink sm:text-2xl">
+                      <div className="min-w-0">
+                        <h3 className="font-display text-lg font-extrabold tracking-[-0.02em] text-ink sm:text-2xl">
                           {job.role}
                         </h3>
                         <p className="mt-1 text-sm text-ink-soft sm:text-[16px]">
@@ -58,8 +58,8 @@ export const Experience = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2.5 sm:flex-col sm:items-end">
-                      <span className="font-mono text-xs font-bold text-ink-soft tabular-nums">
+                    <div className="flex flex-wrap items-center gap-2.5 sm:flex-col sm:items-end">
+                      <span className="whitespace-nowrap font-mono text-xs font-bold text-ink-soft tabular-nums">
                         {job.period}
                       </span>
                       {job.current && (

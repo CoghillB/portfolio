@@ -27,13 +27,13 @@ const P = ({ children }) => (
 )
 
 export const Privacy = () => (
-  <section id="privacy" className="relative px-6 pt-32 pb-24 sm:pt-36">
+  <section id="privacy" className="relative px-4 pt-24 pb-16 sm:px-6 sm:pt-36 sm:pb-24">
     <div className="mx-auto max-w-3xl">
-      <div className="mb-12 border-b border-line pb-10">
+      <div className="mb-10 border-b border-line pb-8 sm:mb-12 sm:pb-10">
         <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-accent-3">
           Privacy
         </span>
-        <h1 className="mt-3 font-display text-4xl font-extrabold tracking-[-0.03em] text-ink sm:text-5xl">
+        <h1 className="mt-3 font-display text-3xl font-extrabold tracking-[-0.03em] text-ink sm:text-5xl">
           Privacy policy.
         </h1>
         <p className="mt-4 text-[16px] leading-relaxed text-ink-soft sm:text-lg">
@@ -57,14 +57,14 @@ export const Privacy = () => (
           PIPA requires a business to designate one person as responsible for how it handles personal
           information, and to publish how to reach them. For Coghilldev that is:
         </P>
-        <div className="mt-5 rounded-xl border border-line bg-card p-6">
+        <div className="mt-5 rounded-xl border border-line bg-card p-5 sm:p-6">
           <p className="text-sm font-bold text-ink">{privacyOfficer.name}</p>
           <p className="mt-0.5 text-sm text-ink-muted">
             {privacyOfficer.title}, Coghilldev — Kelowna, BC
           </p>
           <a
             href={`mailto:${privacyOfficer.email}`}
-            className="mt-3 inline-block font-mono text-xs font-bold text-accent-3 hover:underline"
+            className="mt-3 inline-block break-all font-mono text-xs font-bold text-accent-3 hover:underline"
           >
             {privacyOfficer.email}
           </a>

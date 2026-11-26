@@ -193,7 +193,7 @@ function HeroShowcase({ items }) {
       <div
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
-        className="relative rounded-2xl border border-line-strong bg-card p-3 shadow-[8px_8px_0px_var(--color-line)]"
+        className="relative rounded-2xl border border-line-strong bg-card p-2.5 shadow-[4px_4px_0px_var(--color-line)] sm:p-3 sm:shadow-[8px_8px_0px_var(--color-line)]"
       >
         <span
           aria-hidden="true"
@@ -205,7 +205,7 @@ function HeroShowcase({ items }) {
         />
 
         {/* Project switcher tabs */}
-        <div className="mb-2.5 flex items-center gap-1.5 overflow-x-auto pb-0.5">
+        <div className="mb-2.5 flex flex-wrap items-center gap-1.5">
           {items.map((item, idx) => {
             const isCurrent = idx === active
             return (
@@ -216,7 +216,7 @@ function HeroShowcase({ items }) {
                   setActive(idx)
                   setPaused(true)
                 }}
-                className={`shrink-0 rounded-sm px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`rounded-sm px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-wider transition-colors sm:px-2.5 ${
                   isCurrent
                     ? 'bg-accent text-[#0a0a0b]'
                     : 'border border-line bg-card-2 text-ink-muted hover:text-ink'
@@ -250,9 +250,9 @@ function HeroShowcase({ items }) {
         </a>
 
         {/* Caption bar */}
-        <div className="mt-3 flex items-center justify-between gap-3 px-1.5 py-1">
+        <div className="mt-3 flex items-center justify-between gap-2 px-1 py-1 sm:gap-3 sm:px-1.5">
           <div className="min-w-0">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-ink-muted">
+            <p className="truncate font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-ink-muted">
               Client Build · {current.category}
             </p>
             <p className="mt-0.5 truncate font-display text-[15px] font-extrabold text-ink">
@@ -284,11 +284,11 @@ const WebDev = () => {
   return (
     <>
       {/* Hero: lead with craft and proof of work before price */}
-      <section id="webdev" className="relative px-6 pt-28 pb-16 sm:pt-36 sm:pb-24">
+      <section id="webdev" className="relative px-4 pt-24 pb-14 sm:px-6 sm:pt-36 sm:pb-24">
         <div className="mx-auto max-w-6xl">
-          <div className="grid items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
             {/* Left copy column */}
-            <div>
+            <div className="min-w-0">
               <Reveal y={10}>
                 <div className="inline-flex flex-wrap items-center gap-2 rounded-md border border-line bg-card px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink-soft">
                   <span className="h-2 w-2 rounded-full bg-accent" />
@@ -297,16 +297,16 @@ const WebDev = () => {
               </Reveal>
 
               <Reveal delay={0.05} y={16}>
-                <h1 className="mt-6 font-display text-[clamp(2.65rem,5.8vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-ink">
+                <h1 className="mt-5 font-display text-[clamp(1.95rem,8.2vw,4.6rem)] font-extrabold leading-[1.02] tracking-[-0.035em] text-ink sm:mt-6 sm:leading-[0.98]">
                   Websites for{' '}
-                  <span className="inline-block bg-accent px-2.5 py-0.5 text-[#0a0a0b]">
+                  <span className="inline-block max-w-full bg-accent px-2 py-0.5 text-[#0a0a0b] sm:px-2.5">
                     small businesses.
                   </span>
                 </h1>
               </Reveal>
 
               <Reveal delay={0.1} y={16}>
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-[19px]">
+                <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:mt-6 sm:text-[19px]">
                   Shops, studios, clinics, restaurants, trades, and professional services. Custom{' '}
                   {BUILD_STANDARD.pages}-page websites designed, built, and launched for one fixed
                   price, published right on this page.
@@ -314,17 +314,17 @@ const WebDev = () => {
               </Reveal>
 
               <Reveal delay={0.14} y={14}>
-                <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-muted">
+                <p className="mt-3.5 max-w-xl text-sm leading-relaxed text-ink-muted sm:mt-4">
                   You deal with me, not an account manager. You get the price in writing before I
                   start, and a reply to every message within one business day.
                 </p>
               </Reveal>
 
               <Reveal delay={0.18} y={14}>
-                <div className="mt-8 flex flex-wrap items-center gap-3.5">
+                <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-3.5">
                   <a
                     href="#recent-work"
-                    className="btn-accent group inline-flex items-center gap-2 rounded-md px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider"
+                    className="btn-accent group inline-flex items-center gap-2 rounded-md px-5 py-3 font-mono text-xs font-bold uppercase tracking-wider sm:px-6 sm:py-3.5"
                   >
                     See recent work
                     <ArrowUpRight
@@ -334,7 +334,7 @@ const WebDev = () => {
                   </a>
                   <a
                     href="#pricing"
-                    className="btn-outline inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-sm font-semibold"
+                    className="btn-outline inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-semibold sm:px-6 sm:py-3.5"
                   >
                     See pricing
                   </a>
@@ -343,7 +343,7 @@ const WebDev = () => {
             </div>
 
             {/* Right column: interactive client work showcase */}
-            <Reveal delay={0.12} y={20}>
+            <Reveal delay={0.12} y={20} className="min-w-0">
               <HeroShowcase items={showcaseItems} />
             </Reveal>
           </div>
@@ -351,7 +351,7 @@ const WebDev = () => {
       </section>
 
       {/* 01 Recent work: proof of craft right below the fold */}
-      <section id="recent-work" className="relative border-t border-line px-6 py-20 sm:py-28">
+      <section id="recent-work" className="relative border-t border-line px-4 py-16 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <SectionHeading
             index="01"
@@ -377,7 +377,7 @@ const WebDev = () => {
                   className="h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </a>
-              <div className="flex flex-col justify-between p-7 sm:p-9">
+              <div className="flex min-w-0 flex-col justify-between p-5 sm:p-9">
                 <div>
                   <span className="inline-flex rounded-sm bg-accent px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-[#0a0a0b]">
                     01 · Client Build
@@ -428,7 +428,7 @@ const WebDev = () => {
           </div>
 
           {/* Remaining builds in balanced 3-column row (Factum, EdgeFinder, Kerion) */}
-          <div className="mt-6 grid gap-6 md:grid-cols-3 md:auto-rows-fr">
+          <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:auto-rows-fr">
             {bottomRow.map((w, i) => (
               <Reveal key={w.title} delay={i * 0.07} className="h-full">
                 <WorkCard item={w} index={i + 4} compact />
@@ -439,7 +439,7 @@ const WebDev = () => {
       </section>
 
       {/* 02 Services: crisp 3x3 hairline grid */}
-      <section id="services" className="relative px-6 py-20 sm:py-28">
+      <section id="services" className="relative px-4 py-16 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <SectionHeading
             index="02"
@@ -454,7 +454,7 @@ const WebDev = () => {
               {services.map((s, i) => (
                 <div
                   key={s.title}
-                  className="group flex flex-col justify-between bg-card p-6 transition-colors duration-200 hover:bg-card-hover sm:p-7"
+                  className="group flex flex-col justify-between bg-card p-5 transition-colors duration-200 hover:bg-card-hover sm:p-7"
                 >
                   <div>
                     <div className="flex items-center justify-between">
@@ -479,7 +479,7 @@ const WebDev = () => {
       </section>
 
       {/* 03 Working with me: conduct promises + 5-step process */}
-      <section id="how-it-works" className="relative px-6 py-20 sm:py-28">
+      <section id="how-it-works" className="relative px-4 py-16 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <SectionHeading
             index="03"
@@ -489,10 +489,10 @@ const WebDev = () => {
             kicker="You're hiring one person who answers his own phone, quotes a real number before starting, and builds the thing himself. Here's exactly how that goes."
           />
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {promises.map(({ icon: Icon, title, body }, i) => (
               <Reveal key={title} delay={i * 0.06} className="h-full">
-                <div className="studio-card group flex h-full flex-col rounded-xl border border-line bg-card p-6 hover:-translate-y-1">
+                <div className="studio-card group flex h-full flex-col rounded-xl border border-line bg-card p-5 hover:-translate-y-1 sm:p-6">
                   <span className="grid h-10 w-10 place-items-center rounded-md border border-line-strong bg-card-2 text-accent-3 transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-[#0a0a0b]">
                     <Icon size={17} strokeWidth={1.9} />
                   </span>
@@ -506,7 +506,7 @@ const WebDev = () => {
           </div>
 
           {/* Five steps: crisp architectural row */}
-          <div className="mt-16 rounded-2xl border border-line bg-card p-7 sm:p-10">
+          <div className="mt-12 rounded-2xl border border-line bg-card p-5 sm:mt-16 sm:p-10">
             <Reveal>
               <div className="mb-9 flex flex-col justify-between gap-4 border-b border-line pb-7 md:flex-row md:items-end">
                 <div>
@@ -545,7 +545,7 @@ const WebDev = () => {
       </section>
 
       {/* 04 Pricing & Ongoing Care */}
-      <section id="pricing" className="relative px-6 py-20 sm:py-28">
+      <section id="pricing" className="relative px-4 py-16 sm:px-6 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <SectionHeading
             index="04"
@@ -558,11 +558,11 @@ const WebDev = () => {
           {/* Build tiers: no popularity badge on build tiers */}
           <div className="grid gap-6 lg:grid-cols-3 lg:items-stretch">
             {BUILD_TIERS.map((tier, i) => (
-              <Reveal key={tier.name} delay={i * 0.08} className="h-full">
+              <Reveal key={tier.name} delay={i * 0.08} className="h-full min-w-0">
                 <div
-                  className={`studio-card relative flex h-full flex-col rounded-2xl border p-7 sm:p-8 ${
+                  className={`studio-card relative flex h-full flex-col rounded-2xl border p-5 sm:p-8 ${
                     tier.featured
-                      ? 'border-accent bg-surface shadow-[6px_6px_0px_var(--hard-shadow)]'
+                      ? 'border-accent bg-surface shadow-[4px_4px_0px_var(--hard-shadow)] sm:shadow-[6px_6px_0px_var(--hard-shadow)]'
                       : 'border-line bg-card'
                   }`}
                 >
@@ -611,7 +611,7 @@ const WebDev = () => {
           </div>
 
           {/* Ongoing care plans */}
-          <div className="mt-24">
+          <div className="mt-20 sm:mt-24">
             <Reveal>
               <div className="mx-auto mb-10 max-w-2xl text-center">
                 <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-accent-3">
@@ -630,7 +630,7 @@ const WebDev = () => {
                   <button
                     type="button"
                     onClick={() => setBilling('monthly')}
-                    className={`rounded-sm px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors ${
+                    className={`rounded-sm px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors sm:px-4 ${
                       billing === 'monthly'
                         ? 'bg-accent text-[#0a0a0b]'
                         : 'text-ink-soft hover:text-ink'
@@ -641,7 +641,7 @@ const WebDev = () => {
                   <button
                     type="button"
                     onClick={() => setBilling('annual')}
-                    className={`inline-flex items-center gap-1.5 rounded-sm px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors ${
+                    className={`inline-flex items-center gap-1.5 rounded-sm px-3.5 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-colors sm:px-4 ${
                       billing === 'annual'
                         ? 'bg-accent text-[#0a0a0b]'
                         : 'text-ink-soft hover:text-ink'
@@ -654,17 +654,17 @@ const WebDev = () => {
               </div>
             </Reveal>
 
-            <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-3 sm:items-stretch">
+            <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-3 lg:items-stretch">
               {CARE_PLANS.map((plan, i) => (
                 <Reveal
                   key={plan.name}
                   delay={i * 0.08}
-                  className={`h-full ${plan.recommended ? '-order-1 sm:order-none' : ''}`}
+                  className={`h-full min-w-0 ${plan.recommended ? '-order-1 lg:order-none' : ''}`}
                 >
                   <div
-                    className={`studio-card relative flex h-full flex-col rounded-2xl border p-7 ${
+                    className={`studio-card relative flex h-full flex-col rounded-2xl border p-5 sm:p-7 ${
                       plan.recommended
-                        ? 'border-accent bg-surface shadow-[6px_6px_0px_var(--hard-shadow)]'
+                        ? 'border-accent bg-surface shadow-[4px_4px_0px_var(--hard-shadow)] sm:shadow-[6px_6px_0px_var(--hard-shadow)]'
                         : 'border-line bg-card'
                     }`}
                   >
@@ -764,10 +764,10 @@ const WebDev = () => {
       </section>
 
       {/* About blurb */}
-      <section className="relative px-6 py-16 sm:py-20">
+      <section className="relative px-4 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <div className="grid items-center gap-8 overflow-hidden rounded-2xl border border-line bg-card p-7 sm:p-10 md:grid-cols-[190px_1fr] md:gap-12">
+            <div className="grid items-center gap-6 overflow-hidden rounded-2xl border border-line bg-card p-5 sm:gap-8 sm:p-10 md:grid-cols-[190px_1fr] md:gap-12">
               <div className="mx-auto w-44 md:mx-0 md:w-full">
                 <ImageWithSkeleton
                   src="/aboutme.jpg"
@@ -819,7 +819,7 @@ function WorkCard({ item: w, index, compact = false }) {
         />
       </a>
 
-      <div className={`flex flex-1 flex-col ${compact ? 'p-5 sm:p-6' : 'p-6 sm:p-7'}`}>
+      <div className={`flex flex-1 flex-col ${compact ? 'p-5 sm:p-6' : 'p-5 sm:p-7'}`}>
         {/* Honest disclosure label in reading order right before title */}
         {WORK_KINDS[w.kind] && (
           <span className="mb-3 inline-flex w-fit items-center rounded-sm border border-line-strong bg-card-2 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted">

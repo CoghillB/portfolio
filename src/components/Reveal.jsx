@@ -29,7 +29,7 @@ export function SectionHeading({
   const centered = align === 'center'
 
   return (
-    <div className={`mb-12 ${centered ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'} ${className}`}>
+    <div className={`mb-9 sm:mb-12 ${centered ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'} ${className}`}>
       {eyebrow && (
         <Reveal y={10}>
           <span

@@ -80,7 +80,7 @@ export const Navbar = () => {
           : 'border-transparent bg-transparent'
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         {/* Brand stamp */}
         <Link
           to={onPortfolio ? PORTFOLIO_ROUTE : BUSINESS_ROUTE}
@@ -163,7 +163,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.18 }}
-            className="glass border-t border-line px-6 py-5 lg:hidden"
+            className="glass max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line px-4 py-5 sm:px-6 lg:hidden"
           >
             <ul className="flex flex-col gap-1">
               {links.map((item) => (
@@ -189,7 +189,16 @@ export const Navbar = () => {
               </li>
             </ul>
 
-            <div className="mt-4 flex items-center gap-2 border-t border-line pt-4">
+            <a
+              href={sectionHref('#contact')}
+              onClick={goToSection('#contact')}
+              className="btn-accent mt-4 inline-flex w-full items-center justify-center gap-1.5 rounded-md px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider"
+            >
+              Let&apos;s talk
+              <ArrowUpRight size={14} />
+            </a>
+
+            <div className="mt-3 flex items-center gap-2 border-t border-line pt-3">
               <a
                 href={profile.socials.github}
                 target="_blank"

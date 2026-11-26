@@ -3,7 +3,7 @@ import { skillGroups } from '../../data/content'
 
 export const Skills = () => {
   return (
-    <section id="skills" className="relative px-6 py-24 sm:py-32">
+    <section id="skills" className="relative px-4 py-16 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           index="03"
@@ -16,7 +16,7 @@ export const Skills = () => {
         <div className="divide-y divide-line border-y border-line">
           {skillGroups.map((group, gi) => (
             <Reveal key={group.title} delay={gi * 0.06}>
-              <div className="grid gap-6 py-8 md:grid-cols-[260px_1fr] md:items-start md:py-10">
+              <div className="grid gap-4 py-6 sm:gap-6 md:grid-cols-[260px_1fr] md:items-start md:py-10">
                 <div className="flex items-baseline gap-3">
                   <span className="font-mono text-xs font-bold text-accent-3 tabular-nums">
                     0{gi + 1}
@@ -33,7 +33,7 @@ export const Skills = () => {
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="cursor-default rounded-md border border-line bg-card px-3.5 py-2 font-mono text-xs font-medium text-ink-soft transition-all duration-150 hover:-translate-y-0.5 hover:border-accent hover:bg-accent hover:text-[#0a0a0b]"
+                      className="cursor-default rounded-md border border-line bg-card px-3 py-1.5 font-mono text-xs font-medium text-ink-soft transition-all duration-150 hover:-translate-y-0.5 hover:border-accent hover:bg-accent hover:text-[#0a0a0b] sm:px-3.5 sm:py-2"
                     >
                       {item}
                     </li>

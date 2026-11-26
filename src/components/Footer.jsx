@@ -28,7 +28,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer className="relative overflow-hidden border-t border-line bg-base-2/40 px-6 pt-16 pb-10">
+    <footer className="relative overflow-hidden border-t border-line bg-base-2/40 px-4 pt-12 pb-8 sm:px-6 sm:pt-16 sm:pb-10">
       <div className="mx-auto max-w-6xl">
         {/* Top row */}
         <div className="grid gap-10 pb-12 md:grid-cols-[1.3fr_1fr_auto] md:items-start">
@@ -136,7 +136,7 @@ export const Footer = () => {
             whileInView={{ y: '0%', opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="text-stroke inline-block cursor-default select-none font-display text-[clamp(3rem,11.5vw,9rem)] font-extrabold leading-[0.9] tracking-[-0.04em] transition-colors duration-300 hover:text-accent-3"
+            className="text-stroke inline-block cursor-default select-none font-display text-[clamp(2.25rem,11vw,9rem)] font-extrabold leading-[0.9] tracking-[-0.04em] transition-colors duration-300 hover:text-accent-3"
           >
             COGHILL.DEV
           </motion.span>

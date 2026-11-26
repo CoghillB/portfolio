@@ -21,15 +21,15 @@ function RotatingWord() {
   }, [])
 
   return (
-    <span className="relative inline-flex h-[1.45em] items-center overflow-hidden align-middle">
+    <span className="relative inline-flex h-[1.4em] items-center overflow-hidden align-middle">
       <AnimatePresence initial={false} mode="wait">
         <motion.span
           key={heroWords[index]}
-          initial={{ y: '85%', opacity: 0 }}
+          initial={{ y: '75%', opacity: 0 }}
           animate={{ y: '0%', opacity: 1 }}
-          exit={{ y: '-85%', opacity: 0 }}
-          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block rounded-sm bg-accent px-2.5 py-0.5 font-mono text-[0.82em] font-bold uppercase tracking-wider text-[#0a0a0b]"
+          exit={{ y: '-75%', opacity: 0 }}
+          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block rounded-sm bg-accent px-2 py-0.5 font-mono text-[0.8em] font-bold uppercase tracking-wider text-[#0a0a0b] sm:px-2.5"
         >
           {heroWords[index]}
         </motion.span>
@@ -47,10 +47,10 @@ export default function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative flex min-h-[100dvh] items-center overflow-hidden px-6 pt-28 pb-16 sm:pt-36 sm:pb-24"
+      className="relative flex min-h-[auto] items-center overflow-hidden px-4 pt-24 pb-14 sm:px-6 sm:pt-36 sm:pb-24 lg:min-h-[100dvh]"
     >
       <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-14">
+        <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.22fr_0.78fr] lg:gap-14">
           {/* Left kinetic column */}
           <motion.div
             variants={{
@@ -59,10 +59,10 @@ export default function Hero() {
             }}
             initial="hidden"
             animate="show"
-            className="flex flex-col items-start"
+            className="flex min-w-0 flex-col items-start"
           >
             {/* Availability + location strip */}
-            <motion.div variants={item} className="flex flex-wrap items-center gap-3">
+            <motion.div variants={item} className="flex flex-wrap items-center gap-2.5 sm:gap-3">
               <span className="inline-flex items-center gap-2 rounded-md border border-line-strong bg-card px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-ink">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
@@ -77,7 +77,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Playful cursor-reactive KineticText display name */}
-            <h1 className="mt-7 font-display text-[clamp(3.2rem,8.4vw,6.2rem)] font-extrabold leading-[0.94] tracking-[-0.04em]">
+            <h1 className="mt-6 font-display text-[clamp(2.75rem,11vw,6.2rem)] font-extrabold leading-[0.94] tracking-[-0.04em] sm:mt-7">
               <span className="block text-ink">
                 <KineticText text={profile.firstName} stagger={0.035} delay={0.1} radius={125} force={38} />
               </span>
@@ -89,26 +89,26 @@ export default function Hero() {
             {/* Role + rotating highlight chip */}
             <motion.p
               variants={item}
-              className="mt-7 flex flex-wrap items-center gap-x-2 gap-y-2 text-lg font-semibold tracking-[-0.015em] text-ink sm:text-2xl"
+              className="mt-6 text-lg font-semibold leading-snug tracking-[-0.015em] text-ink sm:mt-7 sm:text-2xl"
             >
-              <span>{profile.role} building web apps that feel</span>
+              {profile.role} building web apps that feel{' '}
               <RotatingWord />
             </motion.p>
 
             {/* Tagline */}
             <motion.p
               variants={item}
-              className="mt-4 max-w-xl text-[16px] leading-relaxed text-ink-soft sm:text-lg"
+              className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-soft sm:text-lg"
             >
               {profile.tagline}
             </motion.p>
 
             {/* Action row */}
-            <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3.5">
+            <motion.div variants={item} className="mt-7 flex flex-wrap items-center gap-3 sm:mt-9 sm:gap-3.5">
               <Magnetic strength={0.16}>
                 <a
                   href="#work"
-                  className="btn-accent group inline-flex items-center gap-2 rounded-md px-6 py-3.5 font-mono text-xs font-bold uppercase tracking-wider"
+                  className="btn-accent group inline-flex items-center gap-2 rounded-md px-5 py-3 font-mono text-xs font-bold uppercase tracking-wider sm:px-6 sm:py-3.5"
                 >
                   View selected work
                   <ArrowUpRight
@@ -120,7 +120,7 @@ export default function Hero() {
               <Magnetic strength={0.16}>
                 <a
                   href="#contact"
-                  className="btn-outline inline-flex items-center gap-2 rounded-md px-6 py-3.5 text-sm font-semibold"
+                  className="btn-outline inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-semibold sm:px-6 sm:py-3.5"
                 >
                   Get in touch
                 </a>
@@ -143,10 +143,10 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
             style={{ y: portraitY }}
-            className="mx-auto w-full max-w-sm lg:max-w-none"
+            className="mx-auto w-full min-w-0 max-w-sm lg:max-w-none"
           >
             <TiltCard max={6}>
-              <div className="relative rounded-2xl border border-line-strong bg-card p-3 shadow-[8px_8px_0px_var(--color-line)]">
+              <div className="relative rounded-2xl border border-line-strong bg-card p-2.5 shadow-[5px_5px_0px_var(--color-line)] sm:p-3 sm:shadow-[8px_8px_0px_var(--color-line)]">
                 {/* Tactile acid corner accents */}
                 <span aria-hidden="true" className="pointer-events-none absolute -top-1 -left-1 h-4 w-4 border-t-2 border-l-2 border-accent" />
                 <span aria-hidden="true" className="pointer-events-none absolute -right-1 -bottom-1 h-4 w-4 border-r-2 border-b-2 border-accent" />
@@ -163,7 +163,7 @@ export default function Hero() {
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent"
                   />
-                  <div className="absolute inset-x-3.5 bottom-3.5 flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-wider text-white">
+                  <div className="absolute inset-x-3 bottom-3 flex flex-wrap items-center justify-between gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-white sm:inset-x-3.5 sm:bottom-3.5">
                     <span className="rounded-sm bg-black/65 px-2 py-1 backdrop-blur-sm">
                       Kelowna, BC
                     </span>

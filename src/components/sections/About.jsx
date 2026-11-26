@@ -12,7 +12,7 @@ const parseStat = (raw) => {
 
 export const About = () => {
   return (
-    <section id="about" className="relative border-t border-line px-6 py-24 sm:py-32">
+    <section id="about" className="relative border-t border-line px-4 py-16 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           index="01"
@@ -21,9 +21,9 @@ export const About = () => {
           accent="full stack."
         />
 
-        <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr] lg:items-start">
+        <div className="grid gap-10 sm:gap-12 lg:grid-cols-[1.35fr_1fr] lg:items-start">
           {/* Bio & stats */}
-          <div>
+          <div className="min-w-0">
             <div className="space-y-5">
               {about.paragraphs.map((p, i) => (
                 <Reveal key={i} delay={i * 0.08}>
@@ -31,7 +31,7 @@ export const About = () => {
                     className={
                       i === 0
                         ? 'text-lg leading-relaxed text-ink sm:text-xl sm:leading-relaxed'
-                        : 'text-[16px] leading-relaxed text-ink-soft sm:text-[17px]'
+                        : 'text-[15px] leading-relaxed text-ink-soft sm:text-[17px]'
                     }
                   >
                     {p}
@@ -42,15 +42,15 @@ export const About = () => {
 
             {/* Stats bar */}
             <Reveal delay={0.14}>
-              <div className="mt-10 grid grid-cols-3 divide-x divide-line overflow-hidden rounded-xl border border-line bg-card">
+              <div className="mt-8 grid grid-cols-3 divide-x divide-line overflow-hidden rounded-xl border border-line bg-card sm:mt-10">
                 {about.stats.map((s) => {
                   const stat = parseStat(s.value)
                   return (
-                    <div key={s.label} className="px-4 py-6 text-center sm:px-6">
-                      <div className="font-display text-3xl font-extrabold tracking-[-0.03em] text-accent-3 tabular-nums sm:text-4xl">
+                    <div key={s.label} className="min-w-0 px-2 py-5 text-center sm:px-6 sm:py-6">
+                      <div className="font-display text-2xl font-extrabold tracking-[-0.03em] text-accent-3 tabular-nums sm:text-4xl">
                         {stat ? <Counter value={stat.value} suffix={stat.suffix} /> : s.value}
                       </div>
-                      <div className="mt-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-ink-muted sm:text-[11px]">
+                      <div className="mt-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-ink-muted sm:text-[11px] sm:tracking-[0.14em]">
                         {s.label}
                       </div>
                     </div>
@@ -61,7 +61,7 @@ export const About = () => {
           </div>
 
           {/* Education cards */}
-          <div>
+          <div className="min-w-0">
             <Reveal>
               <h3 className="mb-5 flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] text-ink-muted">
                 <GraduationCap size={16} className="text-accent-3" />
@@ -72,8 +72,8 @@ export const About = () => {
               {education.map((e, i) => (
                 <Reveal key={e.credential} delay={i * 0.08}>
                   <TiltCard max={4}>
-                    <div className="studio-card rounded-xl border border-line bg-card p-6 hover:shadow-[4px_4px_0px_var(--hard-shadow)]">
-                      <div className="flex items-baseline justify-between gap-3">
+                    <div className="studio-card rounded-xl border border-line bg-card p-5 hover:shadow-[4px_4px_0px_var(--hard-shadow)] sm:p-6">
+                      <div className="flex flex-wrap items-baseline justify-between gap-2 sm:gap-3">
                         <span className="font-display text-[17px] font-bold text-ink">
                           {e.org}
                         </span>

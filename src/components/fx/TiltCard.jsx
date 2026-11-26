@@ -10,6 +10,7 @@ export default function TiltCard({ children, max = 7, className = '', style }) {
   const rotateY = useTransform(px, [0, 1], [-max, max])
 
   const onMouseMove = (e) => {
+    if (typeof window !== 'undefined' && !window.matchMedia('(pointer: fine)').matches) return
     const rect = ref.current?.getBoundingClientRect()
     if (!rect) return
     px.set((e.clientX - rect.left) / rect.width)

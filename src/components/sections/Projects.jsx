@@ -23,18 +23,18 @@ const projectMedia = {
 function SchematicPreview({ title }) {
   if (title === 'SeaTrace') {
     return (
-      <div className="flex h-full w-full flex-col justify-between bg-[#0e0f12] p-6 text-[#ede9e0] sm:p-7">
-        <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
-          <div className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#c6ff00]">
-            <ShieldCheck size={14} />
-            Multi-Tenant Custody Ledger
+      <div className="flex h-full w-full flex-col justify-between bg-[#0e0f12] p-4 text-[#ede9e0] sm:p-7">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+          <div className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-[#c6ff00] sm:text-[11px] sm:tracking-[0.14em]">
+            <ShieldCheck size={14} className="shrink-0" />
+            <span>Multi-Tenant Custody Ledger</span>
           </div>
-          <span className="rounded-sm bg-[#c6ff00] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0a0a0b]">
+          <span className="shrink-0 rounded-sm bg-[#c6ff00] px-2 py-0.5 font-mono text-[10px] font-bold text-[#0a0a0b]">
             RLS Enforced
           </span>
         </div>
 
-        <div className="my-5 space-y-2.5 font-mono text-xs">
+        <div className="my-4 space-y-2 font-mono text-xs sm:my-5 sm:space-y-2.5">
           {[
             { stage: '01 HARVEST', detail: 'Vessel #FV-409 · Zone 23B', status: 'Verified' },
             { stage: '02 GRADING', detail: 'Lot #ST-8821 · Grade A', status: 'Logged' },
@@ -42,20 +42,20 @@ function SchematicPreview({ title }) {
           ].map((row) => (
             <div
               key={row.stage}
-              className="flex items-center justify-between rounded-md border border-white/10 bg-white/[0.03] px-3.5 py-2.5"
+              className="flex items-center justify-between gap-3 rounded-md border border-white/10 bg-white/[0.03] px-3 py-2.5 sm:px-3.5"
             >
-              <div>
-                <span className="text-[10px] font-bold tracking-[0.14em] text-[#c6ff00]">
+              <div className="min-w-0">
+                <span className="block text-[10px] font-bold tracking-[0.14em] text-[#c6ff00]">
                   {row.stage}
                 </span>
                 <p className="mt-0.5 text-[11px] text-white/85">{row.detail}</p>
               </div>
-              <span className="text-[10px] text-white/55">{row.status}</span>
+              <span className="shrink-0 text-[10px] text-white/55">{row.status}</span>
             </div>
           ))}
         </div>
 
-        <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
+        <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-white/50 sm:tracking-[0.14em]">
           <span>Buyers · Exporters · Superadmin</span>
           <span>Postgres RLS</span>
         </div>
@@ -65,18 +65,18 @@ function SchematicPreview({ title }) {
 
   if (title === 'PantryPal') {
     return (
-      <div className="flex h-full w-full flex-col justify-between bg-[#0e0f12] p-6 text-[#ede9e0] sm:p-7">
-        <div className="flex items-center justify-between border-b border-white/10 pb-3.5">
-          <div className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#c6ff00]">
-            <Sparkles size={14} />
-            Mobile Recipe Engine
+      <div className="flex h-full w-full flex-col justify-between bg-[#0e0f12] p-4 text-[#ede9e0] sm:p-7">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-3">
+          <div className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-[#c6ff00] sm:text-[11px] sm:tracking-[0.14em]">
+            <Sparkles size={14} className="shrink-0" />
+            <span>Mobile Recipe Engine</span>
           </div>
-          <span className="rounded-sm border border-white/15 bg-white/5 px-2 py-0.5 font-mono text-[10px] font-bold text-white/80">
+          <span className="shrink-0 rounded-sm border border-white/15 bg-white/5 px-2 py-0.5 font-mono text-[10px] font-bold text-white/80">
             iOS &amp; Android
           </span>
         </div>
 
-        <div className="my-5 grid gap-2.5 sm:grid-cols-2">
+        <div className="my-4 grid gap-2.5 sm:my-5 sm:grid-cols-2">
           <div className="rounded-md border border-white/10 bg-white/[0.03] p-3.5">
             <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
               Pantry Input
@@ -95,7 +95,7 @@ function SchematicPreview({ title }) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-white/50">
+        <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-white/50 sm:tracking-[0.14em]">
           <span>React Native · Expo</span>
           <span>Fastify + OpenAI</span>
         </div>
@@ -136,7 +136,11 @@ function FeaturedRow({ project, i, total }) {
   const reversed = i % 2 === 1
 
   const previewNode = (
-    <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-line bg-base-2">
+    <div
+      className={`relative overflow-hidden rounded-xl border border-line bg-base-2 ${
+        media ? 'aspect-[16/10]' : 'lg:aspect-[16/10]'
+      }`}
+    >
       {media ? (
         <ImageWithSkeleton
           src={media.src}
@@ -155,7 +159,7 @@ function FeaturedRow({ project, i, total }) {
       <article
         ref={cardRef}
         onMouseMove={onMove}
-        className="studio-card group relative overflow-hidden rounded-2xl border border-line bg-card p-6 hover:shadow-[6px_6px_0px_var(--hard-shadow)] sm:p-8 lg:p-10"
+        className="studio-card group relative overflow-hidden rounded-2xl border border-line bg-card p-5 hover:shadow-[6px_6px_0px_var(--hard-shadow)] sm:p-8 lg:p-10"
       >
         <motion.div
           aria-hidden="true"
@@ -163,9 +167,9 @@ function FeaturedRow({ project, i, total }) {
           style={{ background: spotlight }}
         />
 
-        <div className="relative grid items-center gap-8 lg:grid-cols-12 lg:gap-10">
+        <div className="relative grid items-center gap-6 sm:gap-8 lg:grid-cols-12 lg:gap-10">
           {/* Copy column */}
-          <div className={`lg:col-span-5 ${reversed ? 'lg:order-2' : ''}`}>
+          <div className={`min-w-0 lg:col-span-5 ${reversed ? 'lg:order-2' : ''}`}>
             <div className="flex flex-wrap items-center gap-2.5 font-mono text-[11px] font-bold uppercase tracking-[0.14em]">
               <span className="rounded-sm bg-accent px-2 py-0.5 text-[#0a0a0b] tabular-nums">
                 {String(i + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
@@ -231,7 +235,7 @@ function FeaturedRow({ project, i, total }) {
           </div>
 
           {/* Preview column */}
-          <div className={`lg:col-span-7 ${reversed ? 'lg:order-1' : ''}`}>
+          <div className={`min-w-0 lg:col-span-7 ${reversed ? 'lg:order-1' : ''}`}>
             {isPrivate ? (
               previewNode
             ) : (
@@ -276,7 +280,7 @@ function ArchiveCard({ project }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-start justify-between gap-3">
           <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-accent-3">
             {project.subtitle}
@@ -311,7 +315,7 @@ export const Projects = () => {
   const rest = projects.filter((p) => !p.featured)
 
   return (
-    <section id="work" className="relative px-6 py-24 sm:py-32">
+    <section id="work" className="relative px-4 py-16 sm:px-6 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <SectionHeading
           index="04"
